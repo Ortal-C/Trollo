@@ -59,6 +59,5 @@ export const boardStore = {
                 throw err
             }
         },
-
     }
 }
