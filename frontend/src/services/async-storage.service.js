@@ -1,3 +1,5 @@
+import { boardData } from '../services/data/board.js'
+
 export const storageService = {
     query,
     get,
@@ -7,6 +9,18 @@ export const storageService = {
 }
 
 _createBoard()
+
+function _createBoard() {
+    var board = load('board')
+    if (!board || !board.length) {
+        post('board', boardData)
+    }
+}
+
+function load(key) {
+    var val = localStorage.getItem(key)
+    return (val) ? JSON.parse(val) : null;
+}
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []

@@ -1,6 +1,7 @@
 <template>
   <div class="board">
     <h1>Board</h1>
+    <pre>{{board}}</pre>
   </div>
 </template>
 
@@ -9,6 +10,14 @@
 export default {
   name: 'board',
   components: {
+  },
+  created() {
+    this.$store.dispatch({type: 'loadBoard'})
+  },
+  computed: {
+    board() {
+      return this.$store.getters.board
+    }
   }
 }
 </script>

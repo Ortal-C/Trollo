@@ -1,3 +1,5 @@
+import { boardService } from "../services/board.service";
+
 export const boardStore = {
     state: {
         boards: [],
@@ -5,10 +7,14 @@ export const boardStore = {
     },
     getters: {
         boards(state) { return state.boards },
+        board(state) { return state.board }
     },
     mutations: {
         setBoards(state, { boards }) {
             state.boards = boards;
+        },
+        setBoard(state, { board }) {
+            state.board = board;
         },
         addBoard(state, { board }) {
             state.boards.push(board)
@@ -18,6 +24,16 @@ export const boardStore = {
         },
     },
     actions: {
+        async loadBoard(context, { board }) {
+            try {
+                board = await boardService.query(board)
+                context.commit({ type: 'setBoard', board })
+                return board;
+            } catch (err) {
+                console.log('boardStore: Error in addBoard', err)
+                throw err
+            }
+        },
         async addBoard(context, { board }) {
             try {
                 board = await reviewService.add(board)
