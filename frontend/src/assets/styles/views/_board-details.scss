@@ -1,7 +1,11 @@
 .board-details {
-	background-color: $clr4;
-
-	.groups-container {
-		display: flex;
-	}
+    background-color: $clr4;
+    .groups-container {
+        display: flex;
+    }
+    .add-group {
+        height: 40px;
+        border: none;
+        background-color: $clr4;
+    }
 }
