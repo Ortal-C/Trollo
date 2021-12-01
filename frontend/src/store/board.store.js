@@ -35,6 +35,9 @@ export const boardStore = {
                 throw err
             }
         },
+        async setIsStarred(context, { board }) {
+            
+        }
         // async addBoard(context, { board }) {
         //     try {
         //         board = await reviewService.add(board)
