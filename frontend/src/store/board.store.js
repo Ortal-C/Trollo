@@ -35,11 +35,20 @@ export const boardStore = {
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
-                console.log('boardStore: Error in setBoard', err)
+                console.log('boardStore: Error in loadBoard', err)
                 throw err
             }
         },
-        async setIsStarred(context, { board }) {
+        async setBoard(context, { board }) {
+            try{
+                board = await boardService.save(board)
+                context.commit({ type: 'setBoard', board })
+                return board;
+
+            }catch{
+                console.log('boardStore: Error in setBoard', err)
+                throw err
+            }
             
         },
         async addGroup({ commit }, { title }) {

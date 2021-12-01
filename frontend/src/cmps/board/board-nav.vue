@@ -33,8 +33,8 @@ export default {
   },
   methods: {
   toggleStar(){
-    // this.$store.dispatch({type:"setIsStarred"})
     this.board.isStarred = !this.board.isStarred 
+    this.$store.dispatch({type:"setBoard", board: this.board})
 },
   },
   computed: {
