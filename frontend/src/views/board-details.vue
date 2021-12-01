@@ -3,17 +3,11 @@
 
 <template>
   <div class="board-details" v-if="board">
-    <h1>Board details</h1>
     <board-nav />
     <section class="groups-container">
-      <group-preview
-        v-for="group in board.groups"
-        :key="group.id"
-        :group="group"
-      />
-      <button class="add-group" @click="addGroup()">➕</button>
+      <group-preview v-for="group in board.groups" :key="group.id" :group="group" />
+      <div class="group-add" @click="addGroup()">Add another list</div>
     </section>
-    <!-- <pre>{{board}}</pre> -->
   </div>
 </template>
 

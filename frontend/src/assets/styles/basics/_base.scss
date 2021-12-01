@@ -4,6 +4,7 @@
 
 body {
 	margin: 0;
+	color: #172b4d;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -14,4 +15,16 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.6em;
+}
+
+p {
+	margin: 0;
+}
+
+ul {
+	padding-inline-start: 0;
+}
+
+li {
+	list-style: none;
 }

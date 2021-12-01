@@ -2,7 +2,7 @@
 
 <template>
   <div class="card-preview">
-    <h3>{{card.title}}</h3>
+    <p>{{card.title}}</p>
     <!-- ADD NEW CARD -->
   </div>
 </template>

@@ -1,6 +1,12 @@
 .group-preview {
-	width: 250px;
-	padding: 5px;
-	margin: 5px;
-	background-color: $clr3;
+	// max-height: 100%;
+	border-radius: 3px;
+	min-width: 272px;
+	max-width: 272px;
+	background-color: #ebecf0;
+	margin: 0 4px;
+	padding: 0 4px;
+	h2 {
+		font-size: 1rem;
+	}
 }

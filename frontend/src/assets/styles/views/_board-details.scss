@@ -1,11 +1,20 @@
 .board-details {
-    background-color: $clr4;
-    .groups-container {
-        display: flex;
-    }
-    .add-group {
-        height: 40px;
-        border: none;
-        background-color: $clr4;
-    }
+	height: calc(100vh - 40px);
+	background-color: #ebe4ff;
+	.groups-container {
+		display: flex;
+		align-items: start;
+	}
+	.group-add {
+		min-width: 272px;
+		max-width: 272px;
+		color: #fff;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		background-color: hsla(0, 0%, 100%, 0.24);
+		padding: 10px 12px;
+		transition: background-color 85ms ease-in;
+	}
 }
