@@ -45,7 +45,7 @@ async function post(entityType, newEntity) {
 
 async function postMany(entityType, newEntities) {
     const entities = await query(entityType)
-    newEntities = newEntities.map(entity => ({ ...entity, _id: _makeId() }))
+    newEntities = newEntities.map(entity => ({...entity, _id: _makeId() }))
     entities.push(...newEntities)
     _save(entityType, entities)
     return entities
