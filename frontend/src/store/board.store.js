@@ -44,7 +44,7 @@ export const boardStore = {
                 board = await boardService.save(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
-            }catch{
+            }catch(err){
                 console.log('boardStore: Error in setBoard', err)
                 throw err
             }
