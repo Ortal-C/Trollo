@@ -29,9 +29,10 @@ export const boardStore = {
         // },
     },
     actions: {
-        async loadBoard(context, { board }) {
+        async loadBoard(context, { boardId }) {
             try {
-                board = await boardService.query(board)
+                const board = await boardService.getById(boardId)
+                // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -40,15 +41,14 @@ export const boardStore = {
             }
         },
         async setBoard(context, { board }) {
-            try{
+            try {
                 board = await boardService.save(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
-            }catch(err){
+            } catch (err) {
                 console.log('boardStore: Error in setBoard', err)
                 throw err
             }
-            
         },
         async addGroup({ commit }, { title }) {
             try {
@@ -58,10 +58,20 @@ export const boardStore = {
                 console.log(('issues with creating a new group', err));
                 throw err
             }
-            // return toyService
-            //     .getEmptyGroup()
-            //     .then((title) => commit({ type: 'addGroup', title }))
         },
+        async toggleStar(context, { isStarred }) {
+            try {
+                console.log(isStarred, context.state.board.isStarred);
+                const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
+                console.log(updatedBoard);
+                context.commit({ type: 'setBoard', board: updatedBoard })
+                console.log(context.state.board.isStarred);
+                return updatedBoard;
+            } catch (err) {
+                console.log(('issues with toggleStar', err));
+                throw err
+            }
+        }
         // async addBoard(context, { board }) {
         //     try {
         //         board = await reviewService.add(board)

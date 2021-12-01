@@ -9,12 +9,14 @@ export const storageService = {
     postMany
 }
 
-_createBoard()
+_createBoards()
 
-function _createBoard() {
-    var board = load('board')
-    if (!board || !board.length) {
-        _save('board', boardData)
+function _createBoards() {
+    let boards = load('boardsDB')
+    if (!boards || !boards.length) {
+        boards = []
+        boards.push(boardData)
+        _save('boardsDB', boards)
     }
 }
 
@@ -30,7 +32,7 @@ function query(entityType) {
 
 async function get(entityType, entityId) {
     const entities = await query(entityType)
-    entities.find(entity => entity._id === entityId)
+    return entities.find(entity => entity._id === entityId) || null
 }
 
 async function post(entityType, newEntity) {
@@ -51,10 +53,9 @@ async function postMany(entityType, newEntities) {
 
 async function put(entityType, updatedEntity) {
     const entities = await query(entityType)
-    // console.log('entities', entities);
-    // const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
-    // entities.splice(idx, 1, updatedEntity)
-    remove(entityType, entities._id)
+    console.log(entities);
+    const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
+    entities.splice(idx, 1, updatedEntity)
     _save(entityType, updatedEntity)
     return updatedEntity
 }

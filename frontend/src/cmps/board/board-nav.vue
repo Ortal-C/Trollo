@@ -26,20 +26,26 @@ export default {
     return {
       circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       board: null,
+      isStarred: null
     }
   },
-  created() {
-    this.board = { ... this.$store.getters.board }
+    created() {
+    // const boardId = this.$route.params.boardId
+    const boardId = 'b101'
+    console.log(boardId);
+    this.board = this.$store.getters.board
+    this.isStarred = this.board.isStarred
   },
   methods: {
     async toggleStar() {
-      this.board.isStarred = !this.board.isStarred
-      await this.$store.dispatch({ type: 'setBoard', board: this.board })
+      this.isStarred = !this.isStarred
+      // await this.$store.dispatch({ type: 'setBoard', board: this.board, isStarred: this.isStarred })
+      await this.$store.dispatch({ type: 'toggleStar', isStarred: this.isStarred })
     },
   },
   computed: {
     isStar() {
-      return { "starred": this.board.isStarred }
+      return { "starred": this.isStarred }
     },
   },
   components: {

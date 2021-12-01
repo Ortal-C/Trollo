@@ -3,7 +3,7 @@ import { utilService } from './util.service'
 // import { httpService } from './http.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 
-const KEY = "board"
+const KEY = 'boardsDB'
 export const boardService = {
     query,
     remove,
@@ -17,19 +17,19 @@ window.boardService = boardService
 
 function query() {
     // return httpService.get(`board${queryStr}`)
-    return storageService.query('board')
+    return storageService.query(KEY)
 }
 
 async function getById(boardId) {
     // const board = await httpService.get(`board/${boardId}`)
-    const board = await storageService.get('board', boardId)
-        // gWatchedUser = board;
+    const board = await storageService.get(KEY, boardId)
+    // gWatchedUser = board;
     return board;
 }
 
 function remove(boardId) {
     // return httpService.delete(`board/${boardId}`)
-    return storageService.delete('board', boardId)
+    return storageService.delete(KEY, boardId)
 }
 
 function save(board) {

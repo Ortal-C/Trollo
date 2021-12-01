@@ -28,9 +28,10 @@ export default {
     groupPreview,
   },
   created() {
-    const boardId = this.$route.params.boardId
+    // const boardId = this.$route.params.boardId
+    const boardId = 'b101'
     console.log(boardId);
-    this.$store.dispatch({ type: "loadBoard" });
+    this.$store.dispatch({ type: "loadBoard", boardId});
   },
   computed: {
     board() {
