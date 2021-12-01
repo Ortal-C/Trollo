@@ -3,7 +3,8 @@ import { boardService } from "../services/board.service";
 export const boardStore = {
     state: {
         boards: [],
-        board: null
+        board: null,
+        currGroup: null,
     },
     getters: {
         boards(state) { return state.boards },
@@ -17,7 +18,10 @@ export const boardStore = {
         setBoard(state, { board }) {
             state.board = board;
         },
-        // addBoard(state, { board }) {
+        addGroup(state, { group }) {
+            state.board.groups.push(group)
+        },
+        // addBoard(state, { board }) 
         //     state.boards.push(board)
         // },
         // removeBoard(state, { reviewId }) {
@@ -37,7 +41,19 @@ export const boardStore = {
         },
         async setIsStarred(context, { board }) {
             
-        }
+        },
+        async addGroup({ commit }, { title }) {
+            try {
+                const group = await boardService.getEmptyGroup(title)
+                commit({ type: 'addGroup', group })
+            } catch (err) {
+                console.log(('issues with creating a new group', err));
+                throw err
+            }
+            // return toyService
+            //     .getEmptyGroup()
+            //     .then((title) => commit({ type: 'addGroup', title }))
+        },
         // async addBoard(context, { board }) {
         //     try {
         //         board = await reviewService.add(board)

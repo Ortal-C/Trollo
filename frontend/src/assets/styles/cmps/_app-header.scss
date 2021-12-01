@@ -1,3 +1,46 @@
 .app-header {
-	background-color: $clr1;
+	height: 40px;
+	background-color: $clr4;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.logo {
+		font-size: 20px;
+	}
+
+	.btn-header-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.btn-header {
+		height: 32px;
+		width: 32px;
+		padding: 4px;
+		background-color: hsla(0, 0%, 100%, 0.3);
+		border-radius: 3px;
+		border: none;
+		align-items: center;
+		align-self: center;
+		color: #fff;
+		display: -webkit-flex;
+		display: flex;
+		font-weight: 700;
+		height: 32px;
+		line-height: 32px;
+		margin: 0 4px 0 0;
+		padding: 0 6px;
+		white-space: nowrap;
+		transition: 0.15s;
+		cursor: pointer;
+	}
+
+	.boards-btn {
+		width: auto;
+	}
+
+	.profile-avatar {
+		display: inline-flex;
+	}
 }
