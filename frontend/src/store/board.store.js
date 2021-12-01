@@ -61,11 +61,8 @@ export const boardStore = {
         },
         async toggleStar(context, { isStarred }) {
             try {
-                console.log(isStarred, context.state.board.isStarred);
                 const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
-                console.log(updatedBoard);
                 context.commit({ type: 'setBoard', board: updatedBoard })
-                console.log(context.state.board.isStarred);
                 return updatedBoard;
             } catch (err) {
                 console.log(('issues with toggleStar', err));
