@@ -40,22 +40,34 @@ export const boardStore = {
                 throw err
             }
         },
-        async setBoard(context, { board }) {
-            try {
-                board = await boardService.save(board)
-                context.commit({ type: 'setBoard', board })
-                return board;
-            } catch (err) {
-                console.log('boardStore: Error in setBoard', err)
-                throw err
-            }
-        },
+        // async setBoard(context, { board }) {
+        //     try {
+        //         board = await boardService.save(board)
+        //         context.commit({ type: 'setBoard', board })
+        //         return board;
+        //     } catch (err) {
+        //         console.log('boardStore: Error in setBoard', err)
+        //         throw err
+        //     }
+        // },
         async addGroup({ commit }, { title }) {
             try {
                 const group = await boardService.getEmptyGroup(title)
                 commit({ type: 'addGroup', group })
             } catch (err) {
                 console.log(('issues with creating a new group', err));
+                throw err
+            }
+        },
+        async setBoard(context, { board }) {
+            try {
+                const updatedBoard = await boardService.save(board)
+                console.log(updatedBoard);
+                context.commit({ type: 'setBoard', board: updatedBoard })
+                console.log(context.state.board);
+                return updatedBoard;
+            } catch (err) {
+                console.log(('issues with setBoard', err));
                 throw err
             }
         },
