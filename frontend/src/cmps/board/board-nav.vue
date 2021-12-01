@@ -29,12 +29,12 @@ export default {
     }
   },
   created() {
-    this.board = this.$store.getters.board
+    this.board = { ... this.$store.getters.board }
   },
   methods: {
     async toggleStar() {
-      const isStarred = !this.board.isStarred
-      await this.$store.dispatch({ type: 'setBoard', board: { ...this.board, isStarred } })
+      this.board.isStarred = !this.board.isStarred
+      await this.$store.dispatch({ type: 'setBoard', board: this.board })
     },
   },
   computed: {

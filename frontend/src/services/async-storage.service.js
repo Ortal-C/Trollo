@@ -51,9 +51,11 @@ async function postMany(entityType, newEntities) {
 
 async function put(entityType, updatedEntity) {
     const entities = await query(entityType)
-    const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
-    entities.splice(idx, 1, updatedEntity)
-    _save(entityType, entities)
+    // console.log('entities', entities);
+    // const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
+    // entities.splice(idx, 1, updatedEntity)
+    remove(entityType, entities._id)
+    _save(entityType, updatedEntity)
     return updatedEntity
 }
 
