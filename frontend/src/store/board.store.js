@@ -7,7 +7,8 @@ export const boardStore = {
     },
     getters: {
         boards(state) { return state.boards },
-        board(state) { return state.board }
+        board(state) { return state.board },
+        // groups(state) { return state.board.groups },
     },
     mutations: {
         setBoards(state, { boards }) {
@@ -16,12 +17,12 @@ export const boardStore = {
         setBoard(state, { board }) {
             state.board = board;
         },
-        addBoard(state, { board }) {
-            state.boards.push(board)
-        },
-        removeBoard(state, { reviewId }) {
-            state.boards = state.boards.filter(board => board._id !== reviewId)
-        },
+        // addBoard(state, { board }) {
+        //     state.boards.push(board)
+        // },
+        // removeBoard(state, { reviewId }) {
+        //     state.boards = state.boards.filter(board => board._id !== reviewId)
+        // },
     },
     actions: {
         async loadBoard(context, { board }) {
@@ -30,22 +31,22 @@ export const boardStore = {
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
-                console.log('boardStore: Error in addBoard', err)
+                console.log('boardStore: Error in setBoard', err)
                 throw err
             }
         },
-        async addBoard(context, { board }) {
-            try {
-                board = await reviewService.add(board)
-                context.commit({ type: 'addBoard', board })
-                context.dispatch({ type: 'increaseScore' })
+        // async addBoard(context, { board }) {
+        //     try {
+        //         board = await reviewService.add(board)
+        //         context.commit({ type: 'addBoard', board })
+        //         context.dispatch({ type: 'increaseScore' })
 
-                return board;
-            } catch (err) {
-                console.log('reviewStore: Error in addBoard', err)
-                throw err
-            }
-        },
+        //         return board;
+        //     } catch (err) {
+        //         console.log('reviewStore: Error in addBoard', err)
+        //         throw err
+        //     }
+        // },
         // async loadBoards(context) {
         //     try {
         //         const boards = await reviewService.query();
@@ -66,14 +67,14 @@ export const boardStore = {
         //         throw err
         //     }
         // },
-        async removeBoard(context, { reviewId }) {
-            try {
-                await reviewService.remove(reviewId);
-                context.commit({ type: 'removeBoard', reviewId })
-            } catch (err) {
-                console.log('reviewStore: Error in removeBoard', err)
-                throw err
-            }
-        },
+        // async removeBoard(context, { reviewId }) {
+        //     try {
+        //         await reviewService.remove(reviewId);
+        //         context.commit({ type: 'removeBoard', reviewId })
+        //     } catch (err) {
+        //         console.log('reviewStore: Error in removeBoard', err)
+        //         throw err
+        //     }
+        // },
     }
 }

@@ -4,6 +4,7 @@
 <template>
   <div class="group-preview">
     <h1>Group preview</h1>
+    <pre>{{group}}</pre>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 // @ is an alias to /src
 export default {
   name: 'group-preview',
+  props: ['group'],
   components: {
   }
 }

@@ -14,7 +14,7 @@ _createBoard()
 function _createBoard() {
     var board = load('board')
     if (!board || !board.length) {
-        post('board', boardData)
+        _save('board', boardData)
     }
 }
 
