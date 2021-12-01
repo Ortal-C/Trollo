@@ -5,7 +5,7 @@
   <div class="group-preview">
     <h1>Group preview</h1>
     <ul>
-      <li v-for="card in group.card" :key="card.id">
+      <li v-for="card in group.cards" :key="card.id">
         <card-preview :card="card" />
       </li>
     </ul>
