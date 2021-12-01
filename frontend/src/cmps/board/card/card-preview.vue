@@ -1,15 +1,15 @@
-// Gets boards from store
+// Gets each card
 
 <template>
-  <div class="board-app">
-    <h1>Board app</h1>
+  <div class="card-preview">
+    <h1>Card preview</h1>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 export default {
-  name: 'board-app',
+  name: 'card-preview',
   components: {
   }
 }

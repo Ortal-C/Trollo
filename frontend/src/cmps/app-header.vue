@@ -1,15 +1,13 @@
-// Gets boards from store
-
 <template>
-  <div class="board-app">
-    <h1>Board app</h1>
+  <div class="app-header">
+    <h1>Header</h1>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 export default {
-  name: 'board-app',
+  name: 'app-header',
   components: {
   }
 }

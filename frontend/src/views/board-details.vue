@@ -1,4 +1,5 @@
-// Gets id from params
+// Gets id from params, render currBoard
+// v-for group in groups group-preview, send group prop
 
 <template>
   <div class="board-details">
