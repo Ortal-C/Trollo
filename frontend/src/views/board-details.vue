@@ -28,6 +28,8 @@ export default {
     groupPreview,
   },
   created() {
+    const boardId = this.$route.params.boardId
+    console.log(boardId);
     this.$store.dispatch({ type: "loadBoard" });
   },
   computed: {

@@ -13,7 +13,7 @@
         <el-avatar :size="30" :src="member.imgUrl" />
       </div>
     </section>
-    <button>menu</button>
+    <button>Menu</button>
   </div>
 </template>
 
@@ -24,22 +24,22 @@ export default {
   props: {},
   data() {
     return {
-        circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-        board: null,
+      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      board: null,
     }
   },
   created() {
     this.board = this.$store.getters.board
   },
   methods: {
-  async toggleStar(){
-    const board = this.board.isStarred 
-    await this.$store.dispatch({type:"setBoard", board })
-},
+    async toggleStar() {
+      const isStarred = !this.board.isStarred
+      await this.$store.dispatch({ type: 'setBoard', board: { ...this.board, isStarred } })
+    },
   },
   computed: {
-    isStar(){
-      return {"starred": this.board.isStarred}  
+    isStar() {
+      return { "starred": this.board.isStarred }
     },
   },
   components: {
