@@ -64,26 +64,27 @@ export const boardStore = {
         },
         async setBoard(context, { board }) {
             try {
+                //console.log('in setBoard');
                 const updatedBoard = await boardService.save(board)
-                console.log(updatedBoard);
+                //console.log(updatedBoard);
                 context.commit({ type: 'setBoard', board: updatedBoard })
-                console.log(context.state.board);
+                //console.log(context.state.board);
                 return updatedBoard;
             } catch (err) {
                 console.log(('issues with setBoard', err));
                 throw err
             }
         },
-        async toggleStar(context, { isStarred }) {
-            try {
-                const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
-                context.commit({ type: 'setBoard', board: updatedBoard })
-                return updatedBoard;
-            } catch (err) {
-                console.log(('issues with toggleStar', err));
-                throw err
-            }
-        }
+        // async toggleStar(context, { isStarred }) {
+        //     try {
+        //         const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
+        //         context.commit({ type: 'setBoard', board: updatedBoard })
+        //         return updatedBoard;
+        //     } catch (err) {
+        //         console.log(('issues with toggleStar', err));
+        //         throw err
+        //     }
+        // }
         // async addBoard(context, { board }) {
         //     try {
         //         board = await reviewService.add(board)
