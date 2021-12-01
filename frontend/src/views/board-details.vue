@@ -1,3 +1,5 @@
+// Gets id from params
+
 <template>
   <div class="board">
     <h1>Board</h1>

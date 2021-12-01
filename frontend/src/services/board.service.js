@@ -7,7 +7,6 @@ export const boardService = {
     remove,
     add,
     getById,
-
 }
 
 // Debug technique
@@ -35,3 +34,20 @@ async function add(board) {
     const addedBoard = storageService.post('board', board)
     return addedBoard
 }
+
+// function query() {
+//     return storageService.query(KEY)
+// }
+
+// function getById(id) {
+//     return storageService.get(KEY, id)
+// }
+
+// function remove(id) {
+//     return storageService.remove(KEY, id)
+// }
+
+// function save(product) {
+//     const savedProduct = (product._id) ? storageService.put(KEY, product) : storageService.post(KEY, product)
+//     return savedProduct;
+// }
