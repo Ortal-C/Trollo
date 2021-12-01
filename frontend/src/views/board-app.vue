@@ -1,13 +1,13 @@
 <template>
-  <div class="board-list">
-    <h1>Board list</h1>
+  <div class="board-app">
+    <h1>Board app</h1>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 export default {
-  name: 'board-list',
+  name: 'board-app',
   components: {
   }
 }

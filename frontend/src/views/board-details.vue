@@ -1,8 +1,8 @@
 // Gets id from params
 
 <template>
-  <div class="board">
-    <h1>Board</h1>
+  <div class="board-details">
+    <h1>Board details</h1>
     <pre>{{board}}</pre>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: 'board',
+  name: 'board-details',
   components: {
   },
   created() {

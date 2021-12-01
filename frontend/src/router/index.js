@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '../views/home.vue'
-import boardList from '../views/board-list.vue'
-import board from '../views/board.vue'
+import boardApp from '../views/board-app.vue'
+import boardDetails from '../views/board-details.vue'
 
 Vue.use(VueRouter)
 
@@ -14,13 +14,13 @@ const routes = [
   },
   {
     path: '/board',
-    name: 'boardList',
-    component: boardList
+    name: 'boardApp',
+    component: boardApp
   },
   {
-    path: '/board/boardId',
-    name: 'boardApp',
-    component: board
+    path: '/board/:boardId',
+    name: 'boardDetails',
+    component: boardDetails
   },
 ]
 
