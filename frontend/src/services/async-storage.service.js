@@ -45,7 +45,7 @@ async function post(entityType, newEntity) {
 
 async function postMany(entityType, newEntities) {
     const entities = await query(entityType)
-    newEntities = newEntities.map(entity => ({ ...entity, _id: _makeId() }))
+    newEntities = newEntities.map(entity => ({...entity, _id: _makeId() }))
     entities.push(...newEntities)
     _save(entityType, entities)
     return entities
@@ -56,7 +56,7 @@ async function put(entityType, updatedEntity) {
     console.log(entities);
     const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
     entities.splice(idx, 1, updatedEntity)
-    _save(entityType, updatedEntity)
+    _save(entityType, entities)
     return updatedEntity
 }
 

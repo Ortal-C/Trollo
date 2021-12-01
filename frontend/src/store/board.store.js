@@ -20,6 +20,7 @@ export const boardStore = {
         },
         addGroup(state, { group }) {
             state.board.groups.push(group)
+            console.log(state.board.groups);
         },
         // addBoard(state, { board }) 
         //     state.boards.push(board)
@@ -32,7 +33,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                // board = await boardService.query(board)
+                    // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -50,10 +51,12 @@ export const boardStore = {
         //         throw err
         //     }
         // },
-        async addGroup({ commit }, { title }) {
+        async addGroup(context, { title }) {
             try {
                 const group = await boardService.getEmptyGroup(title)
-                commit({ type: 'addGroup', group })
+                boardService.save(context.state.board)
+                console.log({...context.state.board });
+                context.commit({ type: 'addGroup', group })
             } catch (err) {
                 console.log(('issues with creating a new group', err));
                 throw err
@@ -74,7 +77,7 @@ export const boardStore = {
         async toggleStar(context, { isStarred }) {
             try {
                 console.log(isStarred, context.state.board.isStarred);
-                const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
+                const updatedBoard = await boardService.save({...context.state.board, isStarred })
                 console.log(updatedBoard);
                 context.commit({ type: 'setBoard', board: updatedBoard })
                 console.log(context.state.board.isStarred);
