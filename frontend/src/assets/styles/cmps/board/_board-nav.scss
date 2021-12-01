@@ -1,3 +1,12 @@
 .board-nav {
 	background-color: $clr2;
+	display: flex;
+	justify-content: space-between;
+	section{
+		display: flex;
+		justify-content: space-between;		
+	}
+	.starred{
+		color: gold;
+	}
 }

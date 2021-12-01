@@ -7,6 +7,7 @@ export const boardData = {
         "fullname": "Lihi Sered",
         "imgUrl": "http://some-img"
     },
+    "isStarred": true,
     "style": {},
     "labels": [
         {
@@ -54,17 +55,17 @@ export const boardData = {
         {
             "_id": "u407",
             "fullname": "Lihi Sered",
-            "imgUrl": "img1"
+            "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
         },
         {
             "_id": "u123",
             "fullname": "Michal Ozeri",
-            "imgUrl": "img2"
+            "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
         },
         {
             "_id": "u245",
             "fullname": "Ortal Cohen",
-            "imgUrl": "img3"
+            "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
         }
     ],
     "groups": [

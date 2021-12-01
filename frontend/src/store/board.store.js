@@ -39,6 +39,9 @@ export const boardStore = {
                 throw err
             }
         },
+        async setIsStarred(context, { board }) {
+            
+        },
         async addGroup({ commit }, { title }) {
             try {
                 const group = await boardService.getEmptyGroup(title)
