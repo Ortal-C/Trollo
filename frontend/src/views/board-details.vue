@@ -5,7 +5,11 @@
   <div class="board-details" v-if="board">
     <board-nav />
     <section class="groups-container">
-      <group-preview v-for="group in board.groups" :key="group.id" :group="group" />
+      <group-preview
+        v-for="group in board.groups"
+        :key="group.id"
+        :group="group"
+      />
       <div class="group-add" @click="addGroup()">Add another list</div>
     </section>
   </div>
@@ -13,19 +17,35 @@
 
 <script>
 // @ is an alias to /src
+import { boardService } from '@/services/board.service.js';
 import boardNav from "@/cmps/board/board-nav.vue";
 import groupPreview from "@/cmps/board/group/group-preview.vue";
 export default {
   name: "board-details",
-  components: {
-    boardNav,
-    groupPreview,
+
+  data() {
+    return {
+      group: null,
+    }
   },
   created() {
     // const boardId = this.$route.params.boardId
     const boardId = 'b101'
-    console.log(boardId);
-    this.$store.dispatch({ type: "loadBoard", boardId});
+    this.group = boardService.getEmptyGroup();
+    // console.log(this.group);
+    // console.log(boardId);
+    this.$store.dispatch({ type: "loadBoard", boardId });
+  },
+  methods: {
+    async addGroup() {
+      const title = prompt("Group title:");
+      this.group.title = title;
+      if (!title) return
+      const board = { ...this.board, groups: [...this.groups, this.group] }
+      //this.$store.dispatch({ type: "addGroup", title });
+      await this.$store.dispatch({ type: 'updateBoard', board })
+
+    },
   },
   computed: {
     board() {
@@ -35,12 +55,10 @@ export default {
       return this.$store.getters.board.groups;
     },
   },
-  methods: {
-    addGroup() {
-      const title = prompt("Group title:");
-      if(!title) return
-       this.$store.dispatch({ type: "addGroup", title });
-    },
+  components: {
+    boardNav,
+    groupPreview,
   },
+
 };
 </script>

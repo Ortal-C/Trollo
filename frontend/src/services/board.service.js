@@ -36,7 +36,7 @@ function save(board) {
     return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
 }
 
-function getEmptyGroup(title) {
+function getEmptyGroup(title='') {
     return {
         id: utilService.makeId(),
         title,
