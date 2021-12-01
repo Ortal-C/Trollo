@@ -32,9 +32,9 @@ export default {
     this.board = this.$store.getters.board
   },
   methods: {
-  toggleStar(){
-    this.board.isStarred = !this.board.isStarred 
-    this.$store.dispatch({type:"setBoard", board: this.board})
+  async toggleStar(){
+    const board = this.board.isStarred 
+    await this.$store.dispatch({type:"setBoard", board })
 },
   },
   computed: {
