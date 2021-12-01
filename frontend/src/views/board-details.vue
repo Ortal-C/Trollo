@@ -6,7 +6,12 @@
     <h1>Board details</h1>
     <board-nav />
     <section class="groups-container">
-    <group-preview v-for="group in board.groups" :key="group.id" :group="group"/>
+      <group-preview
+        v-for="group in board.groups"
+        :key="group.id"
+        :group="group"
+      />
+      <button class="add-group" @click="addGroup()">➕</button>
     </section>
     <!-- <pre>{{board}}</pre> -->
   </div>
@@ -14,24 +19,30 @@
 
 <script>
 // @ is an alias to /src
-import boardNav from '@/cmps/board/board-nav.vue'
-import groupPreview from '@/cmps/board/group/group-preview.vue'
+import boardNav from "@/cmps/board/board-nav.vue";
+import groupPreview from "@/cmps/board/group/group-preview.vue";
 export default {
-  name: 'board-details',
+  name: "board-details",
   components: {
     boardNav,
-    groupPreview
+    groupPreview,
   },
   created() {
-    this.$store.dispatch({type: 'loadBoard'})
+    this.$store.dispatch({ type: "loadBoard" });
   },
   computed: {
     board() {
-      return this.$store.getters.board
+      return this.$store.getters.board;
     },
     groups() {
-      return this.$store.getters.board.groups
-    }
-  }
-}
+      return this.$store.getters.board.groups;
+    },
+  },
+  methods: {
+    addGroup() {
+      const title = prompt("Group title:");
+       this.$store.dispatch({ type: "addGroup", title });
+    },
+  },
+};
 </script>
