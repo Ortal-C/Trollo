@@ -40,7 +40,7 @@ export default {
   methods: {
     async toggleStar() {
       this.isStarred = !this.isStarred
-      await this.$store.dispatch({ type: 'setBoard', board: {...this.board, isStarred: this.isStarred} })
+      await this.$store.dispatch({ type: 'updateBoard', board: {...this.board, isStarred: this.isStarred} })
       // await this.$store.dispatch({ type: 'toggleStar', isStarred: this.isStarred })
     },
   },
