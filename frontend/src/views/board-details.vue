@@ -41,6 +41,7 @@ export default {
   methods: {
     addGroup() {
       const title = prompt("Group title:");
+      if(!title) return
        this.$store.dispatch({ type: "addGroup", title });
     },
   },
