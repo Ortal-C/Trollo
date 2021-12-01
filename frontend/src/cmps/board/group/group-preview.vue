@@ -3,13 +3,13 @@
 
 <template>
   <div class="group-preview">
-    <h1>Group preview</h1>
+    <h2>{{group.title}}</h2>
     <ul>
       <li v-for="card in group.cards" :key="card.id">
         <card-preview :card="card" />
       </li>
     </ul>
-    <pre>{{group}}</pre>
+    <hr />
   </div>
 </template>
 
