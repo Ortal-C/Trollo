@@ -3,11 +3,10 @@ import { utilService } from './util.service'
 // import { httpService } from './http.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 
-const KEY = "board"
 export const boardService = {
     query,
     remove,
-    save,
+    add,
     getById,
     getEmptyGroup
 }
@@ -23,7 +22,7 @@ function query() {
 async function getById(boardId) {
     // const board = await httpService.get(`board/${boardId}`)
     const board = await storageService.get('board', boardId)
-    // gWatchedUser = board;
+        // gWatchedUser = board;
     return board;
 }
 
@@ -32,8 +31,10 @@ function remove(boardId) {
     return storageService.delete('board', boardId)
 }
 
-function save(board) {
-    return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
+async function add(board) {
+    // const addedBoard = await httpService.post(`board`, board)
+    const addedBoard = storageService.post('board', board)
+    return addedBoard
 }
 
 function getEmptyGroup(title) {
