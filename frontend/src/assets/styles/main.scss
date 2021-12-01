@@ -1,2 +1,14 @@
+// Setup
+@import 'setup/variables';
+
 // Basics
 @import 'basics/base';
+
+// Views
+@import 'views/board-details';
+
+// Cmps
+@import 'cmps/app-header';
+@import 'cmps/board/board-nav';
+@import 'cmps/board/group/group-preview';
+@import 'cmps/board/card/card-preview';

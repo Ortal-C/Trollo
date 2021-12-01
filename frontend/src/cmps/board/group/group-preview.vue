@@ -9,7 +9,6 @@
         <card-preview :card="card" />
       </li>
     </ul>
-    <hr />
   </div>
 </template>
 
