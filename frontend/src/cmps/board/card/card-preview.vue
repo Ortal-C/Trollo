@@ -2,8 +2,8 @@
 
 <template>
   <div class="card-preview">
-    <h1>Card preview</h1>
-    <pre>{{card}}</pre>
+    <h3>{{card.title}}</h3>
+    <!-- ADD NEW CARD -->
   </div>
 </template>
 
