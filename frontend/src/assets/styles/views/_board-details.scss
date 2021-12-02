@@ -20,4 +20,9 @@
 		padding: 10px 12px;
 		transition: background-color 85ms ease-in;
 	}
+	input {
+		outline: none;
+		border: none;
+		background-color: transparent;
+	}
 }

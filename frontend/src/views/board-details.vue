@@ -11,7 +11,6 @@
         :key="group.id"
         :group="group"
       />
-      <div class="group-add" @click="addGroup()">Add another list</div>
      <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
@@ -22,7 +21,6 @@
           />
         </div>
       </form>
-      <!-- <div class="group-add" @click="addGroup()">Add another list</div> -->
     </section>
   </div>
 </template>
