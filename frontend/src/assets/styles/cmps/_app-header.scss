@@ -4,14 +4,19 @@
 	z-index: 1;
 	width: 100%;
 	height: 40px;
-	// background-color: $clr4;
+	background-color: $clr4;
 	background-color: rgba(0, 0, 0, 0.192);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 
 	.logo {
-		font-size: 20px;
+		font-family: Charlie, sans-serif;
+		font-size: 25px;
+		font-weight: 600;
+		letter-spacing: em(4px);
+		color: #fff;
+		text-shadow: 0.5px 0.5px 2px black;
 	}
 
 	.btn-header-container {
