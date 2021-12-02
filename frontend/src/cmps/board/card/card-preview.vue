@@ -17,6 +17,7 @@ export default {
   methods: {
     cardDetails() {
       this.$router.push('/board/b101/'+this.group.id+'/'+this.card.id)
+      document.body.classList.add('details-open');
     }
   }
 }

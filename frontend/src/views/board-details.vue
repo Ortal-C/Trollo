@@ -12,18 +12,17 @@
         :group="group"
       />
       <div class="group-add" @click="addGroup()">Add another list</div>
+     <router-view></router-view>
     </section>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import { boardService } from "@/services/board.service.js";
 import boardNav from "@/cmps/board/board-nav.vue";
 import groupPreview from "@/cmps/board/group/group-preview.vue";
 export default {
   name: "board-details",
-
   data() {
     return {
       group: null,
@@ -32,20 +31,17 @@ export default {
   async created() {
     const boardId = this.$route.params.boardId
     this.$store.dispatch({ type: "loadBoard", boardId });
+    let board = await this.$store.dispatch({ type: "loadBoard", boardId });
+    console.log(board);
+    document.body.style.backgroundColor = board.style || '#ff0000'
     this.getEmptyGroup();
-    //  console.log(board);
-    // this.board = this.$store.getters.board
-    // console.log(this.$store.getters.board.style);
-    // document.body.style.backgroundColor = this.boardStyle || '#ff0000'
-    // console.log(document.body.style.backgroundColor)
-    // if (this.board) {
-    //   console.log(document.body.style)
-    //   console.log(this.board.style)
-    // }
   },
   methods: {
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();
+    },
+    getBackgroundColor() {
+      this.boardStyle()
     },
     async addGroup() {
       const title = prompt("Group title:");
@@ -75,9 +71,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-body {
-  background-color: #ff0000;
-}
-/* this.boardStyle || '#ff0000' */
-</style>

@@ -4,6 +4,11 @@
 	width: 768px;
 	padding: 10px;
 	background-color: #f4f5f7;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
 	a {
 		text-decoration: none;
 	}
@@ -17,6 +22,11 @@
 		display: flex;
 		justify-content: space-between;
 		height: 80px;
+	}
+	.close-btn {
+		align-self: start;
+		border: none;
+		background-color: transparent;
 	}
 	.card-details-main-container {
 		display: flex;

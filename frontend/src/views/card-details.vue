@@ -8,7 +8,8 @@
         <!-- should be input -->
         <p>In list {{group.title}}</p>
       </div>
-      <router-link :to="'/board/'+this.board._id">✖</router-link>
+      <button class="close-btn" @click="closeDetails">✖</button>
+      <!-- <router-link :to="'/board/'+this.board._id">✖</router-link> -->
     </div>
     <div class="card-details-main-container">
       <div class="card-details-main">
@@ -75,6 +76,13 @@ export default {
     cardId() {
       return this.$route.params.cardId;
     },
+  },
+  methods: {
+    closeDetails() {
+      console.log('Here');
+      this.$router.push('/board/'+this.board._id)    
+      document.body.classList.remove('details-open');
+    }
   }
 }
 </script>
