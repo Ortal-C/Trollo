@@ -2,7 +2,7 @@
 // v-for group in groups group-preview, send group prop
 
 <template>
-  <div class="board-details" v-if="board">
+  <div class="board-details" v-if="board" style="boardStyle">
     <board-nav />
     <section class="groups-container">
       <group-preview
@@ -44,6 +44,7 @@ export default {
       const board = { ...this.board, groups: [...this.groups, this.group] }
       //this.$store.dispatch({ type: "addGroup", title });
       await this.$store.dispatch({ type: 'updateBoard', board })
+      this.group =  boardService.getEmptyGroup()
 
     },
   },
@@ -54,6 +55,12 @@ export default {
     groups() {
       return this.$store.getters.board.groups;
     },
+    boardStyle(){
+      return this.$store.getters.board.style
+    }
+  },
+  watch:{
+
   },
   components: {
     boardNav,
