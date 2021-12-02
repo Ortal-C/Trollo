@@ -9,7 +9,15 @@
       <li v-for="card in group.cards" :key="card.id">
         <card-preview :card="card" :group="group" />
       </li>
-      <div class="card-add" @click="addCard()">Add another card</div>
+     <form @submit.prevent="addCard(group.id)">
+        <div class="card-add">
+          <input
+            v-model="card.title"
+            type="text"
+            placeholder="+ Add a card"
+          />
+        </div>
+      </form>
     </ul>
   </div>
 </template>
@@ -20,11 +28,32 @@ import cardPreview from '../card/card-preview.vue'
 export default {
   name: 'group-preview',
   props: ['group'],
+  data(){
+    return{
+      card: {
+        title: "",
+      },
+    }
+  },
+   created() {
+       this.getEmptyCard();
+  },
   methods: {
+      getEmptyCard() {
+      this.card = boardService.getEmptyCard();
+    },
     removeGroup(groupId) {
       this.$emit('removeGroup', groupId)
       console.log('removing from preview', groupId);
-    }
+    },
+    addCard(groupId){
+       const title = this.card.title;
+      if (!title) return;
+       this.$emit('addCard', {groupId, card:this.card})
+       console.log('preview',this.card, groupId)
+       this.getEmptyCard();
+    },
+   
   },
   components: {
     cardPreview

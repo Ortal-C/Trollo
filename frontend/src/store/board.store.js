@@ -41,7 +41,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                // board = await boardService.query(board)
+                    // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -62,7 +62,7 @@ export const boardStore = {
         //GROUP ACTIONS//
         async addGroup(context, { group }) {
             try {
-                const board = await boardService.saveGroup(context.state.board, {...group})
+                const board = await boardService.saveGroup(context.state.board, {...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log(('Issues with addGroup', err));
@@ -70,7 +70,7 @@ export const boardStore = {
             }
         },
         async removeGroup(context, { groupId }) {
-            try{
+            try {
                 const board = await boardService.removeGroup(context.state.board, groupId)
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
@@ -79,7 +79,19 @@ export const boardStore = {
             }
         },
         //CARD ACTIONS//
-
+        async addCard(context, { payload }) {
+            const { groupId, card } = payload
+            console.log('Actions', groupId, card);
+            try {
+                const board = await boardService.saveCard(context.state.board, groupId, card)
+                console.log(context.state.board, groupId, card);
+                context.commit({ type: 'setBoard', board })
+                console.log('actions', card);
+            } catch (err) {
+                console.log(('Issues with addCard', err));
+                throw err
+            }
+        },
 
 
         // async toggleStar(context, { isStarred }) {
