@@ -1,7 +1,7 @@
 // Board nav
 
 <template>
-  <div class="board-nav">
+  <section class="board-nav">
     <section>
       <select>
         <option value="board">Board</option>
@@ -29,27 +29,44 @@
         <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
       </div>
       <button>Invite</button>
-        <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
+      <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
     </section>
-    <select v-model="style" @change="updateStyle">
-      <option v-for="color in colors" :key="color" :value="color">{{color}}</option>
-    </select>
-    <button>Menu</button>
-  </div>
+
+    <!-- <select v-model="style" @change="updateStyle">
+      <option v-for="color in colors" :key="color" :value="color">
+        {{ color }}
+      </option>
+    </select> -->
+    <button @click="toggleMenu" >Menu</button>
+    <board-menu v-if="isMenuOpen" @close="toggleMenu"/>
+  </section>
 </template>
 
 <script>
+import boardMenu from "@/cmps/board/board-menu.vue";
 // @ is an alias to /src
 export default {
   name: 'board-nav',
   props: {},
   data() {
     return {
-      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      //circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       board: null,
+      isMenuOpen: false,
       isStarred: null,
-      style: null, 
-      colors: ['#D29034', '#0179BF ', '#0079bf', '#b04632', '#519839', '#cd5a91', '#89609e', '#00aecc', '#4bbf6b','#838c91']
+      style: null,
+      colors: [
+        '#D29034',
+        '#0179BF',
+        '#0079bf',
+        '#b04632',
+        '#519839',
+        '#cd5a91',
+        '#89609e',
+        '#00aecc',
+        '#4bbf6b',
+        '#838c91',
+      ]
     }
   },
   created() {
@@ -60,17 +77,20 @@ export default {
     this.style = this.board.style
   },
   methods: {
-    console(){
+    console() {
       console.log(this.style)
     },
     async toggleStar() {
       this.isStarred = !this.isStarred
       await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, isStarred: this.isStarred } })
-      // await this.$store.dispatch({ type: 'toggleStar', isStarred: this.isStarred })
     },
     async updateStyle() {
       await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style: this.style } })
     },
+    toggleMenu() {
+      console.log('in toggle');
+      this.isMenuOpen = !this.isMenuOpen
+    }
   },
   computed: {
     isStar() {
@@ -78,6 +98,7 @@ export default {
     },
   },
   components: {
+    boardMenu,
   }
 }
 </script>

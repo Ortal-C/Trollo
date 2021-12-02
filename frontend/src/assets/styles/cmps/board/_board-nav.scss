@@ -1,3 +1,6 @@
+.menu{
+	display:flex;
+}
 .board-nav {
 	display: flex;
 	align-items: center;
@@ -11,7 +14,7 @@
 	h3{
 		margin: 0 20px;
 	}
-	button {
+	button,select {
 		border: none;
 		background-color: transparent;
 		height: 32px;
