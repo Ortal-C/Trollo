@@ -32,12 +32,8 @@
         <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
     </section>
     <select v-model="style" @change="updateStyle">
-        <option value="#264653">#264653</option>
-        <option value="#2A9D8F">#2A9D8F</option>
-        <option value="#E9C46A">#E9C46A</option>
-        <option value="#F4A261">#F4A261</option>
-        <option value="#E76F51">#E76F51</option>
-      </select> 
+      <option v-for="color in colors" :key="color" :value="color">{{color}}</option>
+    </select>
     <button>Menu</button>
   </div>
 </template>
@@ -52,13 +48,13 @@ export default {
       circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       board: null,
       isStarred: null,
-      style: null,
-      colors: ['#D29034', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51']
+      style: null, 
+      colors: ['#D29034', '#0179BF ', '#0079bf', '#b04632', '#519839', '#cd5a91', '#89609e', '#00aecc', '#4bbf6b','#838c91']
     }
   },
   created() {
     // const boardId = this.$route.params.boardId
-    const boardId = 'b101'
+    // const boardId = 'b101'
     this.board = this.$store.getters.board
     this.isStarred = this.board.isStarred
     this.style = this.board.style
