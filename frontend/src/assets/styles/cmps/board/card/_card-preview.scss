@@ -1,4 +1,5 @@
 .card-preview {
+	cursor: pointer;
 	list-style: none;
 	padding: 1px;
 	word-wrap: break-word;
@@ -11,4 +12,8 @@
 	border-radius: 3px;
 	margin: 5px;
 	padding: 6px 8px;
+}
+
+.card-preview:hover {
+	background-color: #f7f5f5;
 }

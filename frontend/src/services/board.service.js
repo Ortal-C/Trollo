@@ -29,16 +29,16 @@ async function getById(boardId) {
 
 function remove(boardId) {
     // return httpService.delete(`board/${boardId}`)
-    return storageService.delete(KEY, boardId)
+    return storageService.remove(KEY, boardId)
 }
 
 function save(board) {
     return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
 }
 
-function getEmptyGroup(title='') {
+function getEmptyGroup(id = utilService.makeId(), title = '') {
     return {
-        id: utilService.makeId(),
+        id,
         title,
     }
 }
