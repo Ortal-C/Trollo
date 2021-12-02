@@ -51,10 +51,9 @@ export default {
       this.getEmptyGroup();
     },
     removeGroup(groupId) {
-      const idx = this.board.groups.findIndex((group) => group.id === groupId);
-      this.board.groups.splice(idx, 1);
-      this.$store.dispatch({ type: "removeGroup", groups:board.groups });
-      console.log(this.board.groups);
+      const groups = this.groups.filter((group) => group.id !== groupId);
+      this.$store.dispatch({ type: "removeGroup", groups });
+      console.log(groups);
     },
   },
   computed: {

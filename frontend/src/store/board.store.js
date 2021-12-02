@@ -72,8 +72,8 @@ export const boardStore = {
         },
         async removeGroup(context, { groups }) {
             try {
-                await boardService.save(context.state.board)
-                context({ type: 'removeGroup', groups })
+                await boardService.save({...context.state.board, groups })
+                context.commit({ type: 'removeGroup', groups })
             } catch (err) {
                 console.log(('Issues with removing group', err));
                 throw err
