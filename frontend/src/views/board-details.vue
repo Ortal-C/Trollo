@@ -11,7 +11,16 @@
         :key="group.id"
         :group="group"
       />
-      <div class="group-add" @click="addGroup()">Add another list</div>
+      <form @submit.prevent="addGroup()">
+        <div class="group-add">
+          <input
+            v-model="group.title"
+            type="text"
+            placeholder="Add another list"
+          />
+        </div>
+      </form>
+      <!-- <div class="group-add" @click="addGroup()">Add another list</div> -->
     </section>
   </div>
 </template>
@@ -26,11 +35,13 @@ export default {
 
   data() {
     return {
-      group: null,
+      group: {
+        title: '',
+      },
     };
   },
   async created() {
-    const boardId = this.$route.params.boardId
+    const boardId = this.$route.params.boardId;
     this.$store.dispatch({ type: "loadBoard", boardId });
     this.getEmptyGroup();
     //  console.log(board);
@@ -48,8 +59,9 @@ export default {
       this.group = boardService.getEmptyGroup();
     },
     async addGroup() {
-      const title = prompt("Group title:");
-      this.group.title = title;
+      // const title = prompt("Group title:");
+      const title = this.group.title
+      // this.group.title = this.title;
       if (!title) return;
       await this.$store.dispatch({ type: "addGroup", group: this.group });
       this.getEmptyGroup();
@@ -66,8 +78,8 @@ export default {
       return this.$store.getters.board.groups;
     },
     boardStyle() {
-      return this.$store.getters.board.style
-    }
+      return this.$store.getters.board.style;
+    },
   },
   components: {
     boardNav,
