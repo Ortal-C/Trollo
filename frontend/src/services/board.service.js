@@ -7,9 +7,13 @@ const KEY = 'boardsDB'
 export const boardService = {
     query,
     remove,
-    save,
+    saveBoard,
     getById,
-    getEmptyGroup
+    
+    // GROUP FUNCTIONS //
+    getEmptyGroup,
+    saveGroup,
+    removeGroup,
 }
 
 // Debug technique
@@ -26,21 +30,38 @@ async function getById(boardId) {
     // gWatchedUser = board;
     return board;
 }
-
 function remove(boardId) {
     // return httpService.delete(`board/${boardId}`)
     return storageService.remove(KEY, boardId)
 }
 
-function save(board) {
+function saveBoard(board) {
     return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
 }
 
-function getEmptyGroup(id = utilService.makeId(), title = '') {
+function getEmptyGroup() {
     return {
-        id,
-        title,
+        id: '',
+        title: '',
     }
+}
+
+function saveGroup(board, group) {
+    let newBoard = JSON.parse(JSON.stringify(board))
+    if (group.id) {
+        const idx = newBoard.groups.findIndex(currGroup => currGroup.id === group.id)
+        newBoard.groups.splice(idx, 1, group)
+    } else {
+        group.id = utilService.makeId()
+        newBoard.groups.push(group)
+    }
+    return saveBoard(newBoard)
+}
+
+function removeGroup(board, groupId) {
+    let newBoard = JSON.parse(JSON.stringify(board))
+    newBoard.groups = newBoard.groups.filter((group) => group.id !== groupId)
+    return saveBoard(newBoard)
 }
 
 // function query() {

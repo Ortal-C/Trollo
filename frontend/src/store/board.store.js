@@ -19,13 +19,13 @@ export const boardStore = {
         setBoard(state, { board }) {
             state.board = board;
         },
-        addGroup(state, { group }) {
-            state.board.groups.push(group)
-            console.log(state.board.groups);
-        },
-        removeGroup(state, { groups }) {
-            state.board.groups = groups
-        },
+        // addGroup(state, { group }) {
+        //     state.board.groups.push(group)
+        //     console.log(state.board.groups);
+        // },
+        // removeGroup(state, { groups }) {
+        //     state.board.groups = groups
+        // },
     },
     actions: {
         async loadBoards(context) {
@@ -41,7 +41,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                    // board = await boardService.query(board)
+                // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -49,20 +49,9 @@ export const boardStore = {
                 throw err
             }
         },
-        async addGroup(context, { title }) {
-            try {
-                const group = await boardService.getEmptyGroup(title)
-                boardService.save(context.state.board)
-
-                context.commit({ type: 'addGroup', group })
-            } catch (err) {
-                console.log(('Issues with creating a new group', err));
-                throw err
-            }
-        },
         async updateBoard(context, { board }) {
             try {
-                const updatedBoard = await boardService.save(board)
+                const updatedBoard = await boardService.saveBoard(board)
                 context.commit({ type: 'setBoard', board: updatedBoard })
                 return updatedBoard;
             } catch (err) {
@@ -70,15 +59,29 @@ export const boardStore = {
                 throw err
             }
         },
-        async removeGroup(context, { groups }) {
+        //GROUP ACTIONS//
+        async addGroup(context, { group }) {
             try {
-                await boardService.save({...context.state.board, groups })
-                context.commit({ type: 'removeGroup', groups })
+                const board = await boardService.saveGroup(context.state.board, {...group})
+                context.commit({ type: 'setBoard', board })
+            } catch (err) {
+                console.log(('Issues with addGroup', err));
+                throw err
+            }
+        },
+        async removeGroup(context, { groupId }) {
+            try{
+                const board = await boardService.removeGroup(context.state.board, groupId)
+                context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log(('Issues with removing group', err));
                 throw err
             }
         },
+        //CARD ACTIONS//
+
+
+
         // async toggleStar(context, { isStarred }) {
         //     try {
         //         const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
