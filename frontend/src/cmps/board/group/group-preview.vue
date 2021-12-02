@@ -6,7 +6,7 @@
     <h2>{{group.title}}</h2>
     <ul>
       <li v-for="card in group.cards" :key="card.id">
-        <card-preview :card="card" />
+        <card-preview :card="card" :group="group" />
       </li>
     </ul>
   </div>

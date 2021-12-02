@@ -29,11 +29,8 @@ export default {
     }
   },
   created() {
-    // const boardId = this.$route.params.boardId
-    const boardId = 'b101'
+    const boardId = this.$route.params.boardId
     this.group = boardService.getEmptyGroup();
-    // console.log(this.group);
-    // console.log(boardId);
     this.$store.dispatch({ type: "loadBoard", boardId });
   },
   methods: {
@@ -44,7 +41,6 @@ export default {
       const board = { ...this.board, groups: [...this.groups, this.group] }
       //this.$store.dispatch({ type: "addGroup", title });
       await this.$store.dispatch({ type: 'updateBoard', board })
-
     },
   },
   computed: {
