@@ -9,11 +9,15 @@ export const boardService = {
     remove,
     saveBoard,
     getById,
-    
+
     // GROUP FUNCTIONS //
     getEmptyGroup,
     saveGroup,
     removeGroup,
+
+    //CARD FUNCTIONS//
+    getEmptyCard,
+    saveCard
 }
 
 // Debug technique
@@ -27,9 +31,10 @@ function query() {
 async function getById(boardId) {
     // const board = await httpService.get(`board/${boardId}`)
     const board = await storageService.get(KEY, boardId)
-    // gWatchedUser = board;
+        // gWatchedUser = board;
     return board;
 }
+
 function remove(boardId) {
     // return httpService.delete(`board/${boardId}`)
     return storageService.remove(KEY, boardId)
@@ -64,6 +69,28 @@ function removeGroup(board, groupId) {
     return saveBoard(newBoard)
 }
 
+function getEmptyCard() {
+    return {
+        id: '',
+        title: '',
+    }
+}
+
+function saveCard(board, groupId, card) {
+    let newBoard = JSON.parse(JSON.stringify(board))
+    const idx = newBoard.groups.findIndex(group => group.id === groupId)
+    if (card.id) {
+        const idx = newBoard.groups.cards.findIndex(currCard => currCard.id === card.id)
+        newBoard.groups[idx].cards.splice(idx, 1, card)
+        console.log(card);
+    } else {
+        card.id = utilService.makeId()
+        newBoard.groups[idx].cards.push(card)
+
+        console.log(card);
+    }
+    return saveBoard(newBoard)
+}
 // function query() {
 //     return storageService.query(KEY)
 // }
