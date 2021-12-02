@@ -23,22 +23,22 @@ function query() {
 async function getById(boardId) {
     // const board = await httpService.get(`board/${boardId}`)
     const board = await storageService.get(KEY, boardId)
-    // gWatchedUser = board;
+        // gWatchedUser = board;
     return board;
 }
 
 function remove(boardId) {
     // return httpService.delete(`board/${boardId}`)
-    return storageService.delete(KEY, boardId)
+    return storageService.remove(KEY, boardId)
 }
 
 function save(board) {
     return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
 }
 
-function getEmptyGroup(title='') {
+function getEmptyGroup(id = utilService.makeId(), title = '') {
     return {
-        id: utilService.makeId(),
+        id,
         title,
     }
 }

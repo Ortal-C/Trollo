@@ -6,6 +6,7 @@
     <board-nav />
     <section class="groups-container">
       <group-preview
+        @removeGroup="removeGroup"
         v-for="group in board.groups"
         :key="group.id"
         :group="group"
@@ -17,7 +18,7 @@
 
 <script>
 // @ is an alias to /src
-import { boardService } from '@/services/board.service.js';
+import { boardService } from "@/services/board.service.js";
 import boardNav from "@/cmps/board/board-nav.vue";
 import groupPreview from "@/cmps/board/group/group-preview.vue";
 export default {
@@ -26,25 +27,32 @@ export default {
   data() {
     return {
       group: null,
-    }
+    };
   },
   created() {
     // const boardId = this.$route.params.boardId
-    const boardId = 'b101'
-    this.group = boardService.getEmptyGroup();
-    // console.log(this.group);
-    // console.log(boardId);
+    const boardId = "b101";
+    this.getEmptyGroup();
     this.$store.dispatch({ type: "loadBoard", boardId });
   },
   methods: {
+    getEmptyGroup() {
+      this.group = boardService.getEmptyGroup();
+    },
     async addGroup() {
       const title = prompt("Group title:");
       this.group.title = title;
-      if (!title) return
-      const board = { ...this.board, groups: [...this.groups, this.group] }
+      if (!title) return;
+      const board = { ...this.board, groups: [...this.groups, this.group] };
       //this.$store.dispatch({ type: "addGroup", title });
-      await this.$store.dispatch({ type: 'updateBoard', board })
-
+      await this.$store.dispatch({ type: "updateBoard", board });
+      this.getEmptyGroup();
+    },
+    removeGroup(groupId) {
+      const idx = this.board.groups.findIndex((group) => group.id === groupId);
+      this.board.groups.splice(idx, 1);
+      this.$store.dispatch({ type: "removeGroup", groups:board.groups });
+      console.log(this.board.groups);
     },
   },
   computed: {
@@ -59,6 +67,5 @@ export default {
     boardNav,
     groupPreview,
   },
-
 };
 </script>
