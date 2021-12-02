@@ -6,19 +6,16 @@
     <board-nav />
     <section class="groups-container">
       <group-preview
+        @addCard="addCard"
         @removeGroup="removeGroup"
         v-for="group in board.groups"
         :key="group.id"
         :group="group"
       />
-     <router-view></router-view>
+      <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
-          <input
-            v-model="group.title"
-            type="text"
-            placeholder="Add another list"
-          />
+          <input v-model="group.title" type="text" placeholder="Add list" />
         </div>
       </form>
     </section>
@@ -34,7 +31,7 @@ export default {
   data() {
     return {
       group: {
-        title: '',
+        title: "",
       },
     };
   },
@@ -42,8 +39,7 @@ export default {
     const boardId = this.$route.params.boardId;
     this.$store.dispatch({ type: "loadBoard", boardId });
     let board = await this.$store.dispatch({ type: "loadBoard", boardId });
-    console.log(board);
-    document.body.style.backgroundColor = board.style || '#ff0000'
+    document.body.style.backgroundColor = board.style || "#ff0000";
     this.getEmptyGroup();
   },
   methods: {
@@ -51,11 +47,11 @@ export default {
       this.group = boardService.getEmptyGroup();
     },
     getBackgroundColor() {
-      this.boardStyle()
+      this.boardStyle();
     },
     async addGroup() {
       // const title = prompt("Group title:");
-      const title = this.group.title
+      const title = this.group.title;
       // this.group.title = this.title;
       if (!title) return;
       await this.$store.dispatch({ type: "addGroup", group: this.group });
@@ -63,6 +59,10 @@ export default {
     },
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
+    },
+    addCard({groupId, card}) {
+      this.$store.dispatch({ type: "addCard", payload:{groupId, card} });
+      console.log('details', groupId, card);
     },
   },
   computed: {
