@@ -2,7 +2,7 @@
 // v-for group in groups group-preview, send group prop
 
 <template>
-  <div class="board-details" v-if="board" style="boardStyle">
+  <div class="board-details" v-if="board">
     <board-nav />
     <section class="groups-container">
       <group-preview
@@ -29,13 +29,19 @@ export default {
       group: null,
     };
   },
-  created() {
+  async created() {
     const boardId = this.$route.params.boardId
-    // this.group = boardService.getEmptyGroup();
-    // const boardId = this.$route.params.boardId
-    // const boardId = "b101";
-    this.getEmptyGroup();
     this.$store.dispatch({ type: "loadBoard", boardId });
+    //  console.log(board);
+    // this.board = this.$store.getters.board
+    // console.log(this.$store.getters.board.style);
+    this.getEmptyGroup();
+    document.body.style.backgroundColor = this.boardStyle || '#ff0000'
+    console.log(document.body.style.backgroundColor)
+    // if (this.board) {
+    //   console.log(document.body.style)
+    //   console.log(this.board.style)
+    // }
   },
   methods: {
     getEmptyGroup() {
@@ -45,31 +51,23 @@ export default {
       const title = prompt("Group title:");
       this.group.title = title;
       if (!title) return;
-      const board = { ...this.board, groups: [...this.groups, this.group] };
-      //this.$store.dispatch({ type: "addGroup", title });
-      await this.$store.dispatch({ type: "updateBoard", board });
+      await this.$store.dispatch({ type: "addGroup", group: this.group });
       this.getEmptyGroup();
     },
     removeGroup(groupId) {
-      const idx = this.board.groups.findIndex((group) => group.id === groupId);
-      this.board.groups.splice(idx, 1);
-      this.$store.dispatch({ type: "removeGroup", groups:board.groups });
-      console.log(this.board.groups);
+      this.$store.dispatch({ type: "removeGroup", groupId });
     },
   },
   computed: {
     board() {
-      return this.$store.getters.board;
+      return this.$store.getters.board || null;
     },
     groups() {
       return this.$store.getters.board.groups;
     },
-    boardStyle(){
+    boardStyle() {
       return this.$store.getters.board.style
     }
-  },
-  watch:{
-
   },
   components: {
     boardNav,
@@ -77,3 +75,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+body {
+  background-color: #ff0000;
+}
+/* this.boardStyle || '#ff0000' */
+</style>

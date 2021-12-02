@@ -53,7 +53,7 @@ export default {
       board: null,
       isStarred: null,
       style: null,
-      colors: ['#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51']
+      colors: ['#D29034', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51']
     }
   },
   created() {
@@ -73,11 +73,7 @@ export default {
       // await this.$store.dispatch({ type: 'toggleStar', isStarred: this.isStarred })
     },
     async updateStyle() {
-      // const theme = `{background-color: ${this.style};}`;
-      const theme = `backgroundColor: ${this.style};`;
-      await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style: theme } })
-      // await this.$store.dispatch({ type: 'toggleStar', isStarred: this.isStarred })
-      console.log('change color in model');
+      await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style: this.style } })
     },
   },
   computed: {
