@@ -32,12 +32,12 @@ export default {
   async created() {
     const boardId = this.$route.params.boardId
     this.$store.dispatch({ type: "loadBoard", boardId });
+    this.getEmptyGroup();
     //  console.log(board);
     // this.board = this.$store.getters.board
     // console.log(this.$store.getters.board.style);
-    this.getEmptyGroup();
-    document.body.style.backgroundColor = this.boardStyle || '#ff0000'
-    console.log(document.body.style.backgroundColor)
+    // document.body.style.backgroundColor = this.boardStyle || '#ff0000'
+    // console.log(document.body.style.backgroundColor)
     // if (this.board) {
     //   console.log(document.body.style)
     //   console.log(this.board.style)
