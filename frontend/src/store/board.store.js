@@ -1,4 +1,5 @@
 import { boardService } from "../services/board.service";
+import { utilService } from "../services/util.service";
 
 export const boardStore = {
     state: {
@@ -22,12 +23,9 @@ export const boardStore = {
             state.board.groups.push(group)
             console.log(state.board.groups);
         },
-        // addBoard(state, { board }) 
-        //     state.boards.push(board)
-        // },
-        // removeBoard(state, { reviewId }) {
-        //     state.boards = state.boards.filter(board => board._id !== reviewId)
-        // },
+        removeGroup(state, { groups }) {
+            state.board.groups = groups
+        },
     },
     actions: {
         async loadBoards(context) {
@@ -43,11 +41,11 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                // board = await boardService.query(board)
+                    // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
-                console.log('boardStore: Error in loadBoard', err)
+                console.log('BoardStore: Error in loadBoard', err)
                 throw err
             }
         },
@@ -55,10 +53,10 @@ export const boardStore = {
             try {
                 const group = await boardService.getEmptyGroup(title)
                 boardService.save(context.state.board)
-                console.log({ ...context.state.board });
+
                 context.commit({ type: 'addGroup', group })
             } catch (err) {
-                console.log(('issues with creating a new group', err));
+                console.log(('Issues with creating a new group', err));
                 throw err
             }
         },
@@ -68,7 +66,16 @@ export const boardStore = {
                 context.commit({ type: 'setBoard', board: updatedBoard })
                 return updatedBoard;
             } catch (err) {
-                console.log(('issues with updateBoard', err));
+                console.log(('Issues with updateBoard', err));
+                throw err
+            }
+        },
+        async removeGroup(context, { groups }) {
+            try {
+                await boardService.save(context.state.board)
+                context({ type: 'removeGroup', groups })
+            } catch (err) {
+                console.log(('Issues with removing group', err));
                 throw err
             }
         },

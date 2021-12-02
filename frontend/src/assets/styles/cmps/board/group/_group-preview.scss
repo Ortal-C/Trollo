@@ -1,12 +1,16 @@
 .group-preview {
-	// max-height: 100%;
-	border-radius: 3px;
-	min-width: 272px;
-	max-width: 272px;
-	background-color: #ebecf0;
-	margin: 0 4px;
-	padding: 0 4px;
-	h2 {
-		font-size: 1rem;
-	}
+    // max-height: 100%;
+    border-radius: 3px;
+    min-width: 272px;
+    max-width: 272px;
+    background-color: #ebecf0;
+    margin: 0 4px;
+    padding: 0 4px;
+    h2 {
+        font-size: 1rem;
+    }
+    .remove-btn {
+        border: none;
+        direction: ltr;
+    }
 }
