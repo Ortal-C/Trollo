@@ -48,6 +48,7 @@ function getEmptyGroup() {
     return {
         id: '',
         title: '',
+        cards: [],
     }
 }
 
