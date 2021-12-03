@@ -18,15 +18,29 @@
     <button class="remove-btn" @click="removeGroup(group.id)">X</button>
     </div>
     <ul>
-      <Container group-name="trollo" @drag-start="handleDragStart" @drop="handleDrop" :get-child-payload="getChildPayload">
+      <Container
+        group-name="trollo"
+        @drag-start="handleDragStart"
+        @drop="handleDrop"
+        :get-child-payload="getChildPayload"
+      >
         <Draggable v-for="card in group.cards" :key="card.id">
           <card-preview :card="card" :group="group" />
         </Draggable>
       </Container>
-      <form @submit.prevent="addCard(group.id)">
-        <div class="card-add">
-          <input v-model="card.title" type="text" placeholder="+ Add a card" />
-        </div>
+      <p class="card-add" @click="isClicked = !isClicked" v-if="!isClicked">
+        + Add a card
+      </p>
+      <form @submit.prevent="addCard(group.id)" v-else>
+        <textarea
+          v-model="card.title"
+          name=""
+          id=""
+          cols="36.5"
+          rows="3"
+          placeholder="Enter a title fot this card"
+        ></textarea>
+        <button>Add card</button>
       </form>
     </ul>
   </div>
@@ -44,6 +58,7 @@ export default {
       card: {
         title: "",
       },
+      isClicked: false,
       draggingCard: {
         lane: "",
         index: -1,
@@ -72,13 +87,14 @@ export default {
       this.card = boardService.getEmptyCard();
     },
     removeGroup(groupId) {
-      this.$emit('removeGroup', groupId)
+      this.$emit("removeGroup", groupId);
     },
     addCard(groupId) {
       const title = this.card.title;
       if (!title) return;
-       this.$emit('addCard', {groupId, card:this.card})
-       this.getEmptyCard();
+      this.$emit("addCard", { groupId, card: this.card });
+      this.getEmptyCard();
+      this.isClicked=false
     },
     toggleMenu() {
       console.log('Toggle menu');

@@ -53,4 +53,17 @@
 			top: 0;
 		}
 	}
+	.card-add {
+		cursor: pointer;
+	}
+	textarea {
+		resize: none;
+		font-family: inherit;
+		border: none;
+		outline: none;
+		margin: 5px;
+		border-radius: 3px;
+		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+		padding: 0 8px 0 0;
+	}
 }
