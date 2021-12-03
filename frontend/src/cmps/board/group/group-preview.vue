@@ -101,7 +101,8 @@
           rows="3"
           placeholder="Enter a title fot this card"
         ></textarea>
-        <button>Add card</button>
+        <button class="btn-add">Add card</button>
+        <button class="btn-close" @click.prevent="closeTextarea()">✖</button>
       </form>
     </ul>
   </div>
@@ -149,6 +150,9 @@ export default {
       this.$emit('addCard', { groupId, card: this.card })
       this.getEmptyCard();
       this.isClicked = false
+    },
+    closeTextarea(){
+       this.isClicked = false 
     },
     toggleMenu() {
       console.log('Toggle menu');

@@ -1,72 +1,81 @@
 .group-preview {
-	// max-height: 100%;
-	border-radius: 3px;
-	min-width: 272px;
-	max-width: 272px;
-	background-color: #ebecf0;
-	margin: 0 4px;
-	padding: 0 4px;
-	h2 {
-		font-size: 1rem;
-	}
-	.group-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.remove-btn {
-		border: none;
-		direction: ltr;
-	}
-	.menu-btn {
-		background-color: transparent;
-		border: none;
-	}
-	.group-menu {
-		position: absolute;
-		width: 304px;
-		border-radius: 3px;
-		box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
-		background-color: #fff;
-		z-index: 10;
-		h3 {
-			padding-bottom: 10px;
-			font-size: 14px;
-			color: #5e6c84;
-			margin: 0;
-			align-items: center;
-			text-align: center;
-			color: #5e6c84;
-			display: block;
-			line-height: 40px;
-			border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-			margin: 0 0 12px;
-			overflow: hidden;
-			padding: 0 32px;
-			position: relative;
-			text-overflow: ellipsis;
-		}
-		.close-svg {
-			padding: 5px;
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
-		.archive-group {
-			cursor: pointer;
-		}
-	}
-	.card-add {
-		cursor: pointer;
-	}
-	textarea {
-		resize: none;
-		font-family: inherit;
-		border: none;
-		outline: none;
-		margin: 5px;
-		border-radius: 3px;
-		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
-		padding: 0 8px 0 0;
-	}
+    // max-height: 100%;
+    border-radius: 3px;
+    min-width: 272px;
+    max-width: 272px;
+    background-color: #ebecf0;
+    margin: 0 4px;
+    padding: 0 4px;
+    h2 {
+        font-size: 1rem;
+    }
+    .group-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .remove-btn {
+        border: none;
+        direction: ltr;
+    }
+    .menu-btn {
+        background-color: transparent;
+        border: none;
+    }
+    .group-menu {
+        position: absolute;
+        width: 304px;
+        border-radius: 3px;
+        box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+        background-color: #fff;
+        z-index: 10;
+        h3 {
+            padding-bottom: 10px;
+            font-size: 14px;
+            color: #5e6c84;
+            margin: 0;
+            align-items: center;
+            text-align: center;
+            color: #5e6c84;
+            display: block;
+            line-height: 40px;
+            border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+            margin: 0 0 12px;
+            overflow: hidden;
+            padding: 0 32px;
+            position: relative;
+            text-overflow: ellipsis;
+        }
+        .close-svg {
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .archive-group {
+            cursor: pointer;
+        }
+    }
+    .card-add {
+        cursor: pointer;
+    }
+    textarea {
+        resize: none;
+        font-family: inherit;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+        padding-left: 8px;
+    }
+    .btn-add {
+        margin: 5px;
+    }
+    .btn-close {
+        border: none;
+        margin-left: 10px;
+        font-size: 20px;
+        background: transparent;
+    }
 }
