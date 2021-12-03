@@ -3,8 +3,13 @@
 
 <template>
   <div class="group-preview">
+    <div class="group-header">
+    <h2 contenteditable="true">{{ group.title }}</h2>
+    <button class="menu-btn" @click="openMenu">
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"></path></svg>
+    </button>
     <button class="remove-btn" @click="removeGroup(group.id)">X</button>
-    <h2>{{ group.title }}</h2>
+    </div>
     <ul>
       <Container group-name="trollo" @drag-start="handleDragStart" @drop="handleDrop" :get-child-payload="getChildPayload">
         <Draggable v-for="card in group.cards" :key="card.id">
@@ -60,16 +65,17 @@ export default {
     },
     removeGroup(groupId) {
       this.$emit('removeGroup', groupId)
-      console.log('removing from preview', groupId);
     },
     addCard(groupId) {
       const title = this.card.title;
       if (!title) return;
-      this.$emit('addCard', { groupId, card: this.card })
-      console.log('preview', this.card, groupId)
-      this.getEmptyCard();
+       this.$emit('addCard', {groupId, card:this.card})
+       this.getEmptyCard();
     },
-
+    openMenu() {
+      console.log('Open menu');
+    }
+   
   },
   components: {
     cardPreview,

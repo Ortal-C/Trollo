@@ -65,9 +65,8 @@ export default {
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
-    addCard({ groupId, card }) {
-      this.$store.dispatch({ type: "addCard", payload: { groupId, card } });
-      console.log('details', groupId, card);
+    addCard({groupId, card}) {
+      this.$store.dispatch({ type: "addCard", payload:{groupId, card} });
     },
   },
   computed: {
