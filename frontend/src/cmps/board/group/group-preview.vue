@@ -84,12 +84,11 @@
       </div>
     </div>
     <ul>
-      <Container
-        :group-name="group.title"
+      <Container :group-name="dndName"
         @drag-start="handleDragStart(group.title, $event)"
         @drop="handleDrop(group.title, $event)"
-        :get-child-payload="getChildPayload"
-      >
+        :drop-placeholder="{className: 'placeholder'}"
+        :get-child-payload="getChildPayload" >
         <Draggable v-for="card in group.cards" :key="card.id">
           <card-preview :card="card" :group="group" />
         </Draggable>
@@ -114,11 +113,12 @@
 
 <script>
 // @ is an alias to /src
-import cardPreview from "../card/card-preview.vue";
-import { Container, Draggable } from "vue-smooth-dnd";
+import cardPreview from '../card/card-preview.vue'
+import { Container, Draggable } from 'vue-smooth-dnd';
+import { applyDrag } from '@/services/util.service.js';
 export default {
-  name: "group-preview",
-  props: ["group"],
+  name: 'group-preview',
+  props: ['group', 'dndName'],
   data() {
     return {
       tmpGroup: {},
@@ -130,22 +130,21 @@ export default {
       isTitleClicked: false,
       isOpen: false,
       draggingCard: {
-        groupTitle: "",
+        lane: '',
         index: -1,
         cardData: {},
       },
     };
   },
   created() {
-    this.groupCopy();
     this.getEmptyCard();
   },
   methods: {
     getEmptyCard() {
       this.card = boardService.getEmptyCard();
     },
-    saveGroup(groupId) {
-      this.$emit("saveGroup", groupId);
+    saveGroup(group) {
+      this.$emit('saveGroup', group)
     },
     removeGroup(groupId) {
       this.$emit("removeGroup", groupId);
@@ -174,27 +173,24 @@ export default {
     },
     // DND
     groupCopy() {
-      return JSON.parse(JSON.stringify(this.group));
+      return JSON.parse(JSON.stringify(this.group))
     },
-    handleDragStart(groupTitle, dragResult) {
-      this.groupCopy();
-      const { payload, isSource } = dragResult;
+    handleDragStart(lane, dragResult) {
+      this.tmpGroup = this.groupCopy();
+      const { payload, isSource } = dragResult
       if (isSource) {
         this.draggingCard = {
-          groupTitle,
+          lane,
           index: payload.index,
-          cardData: { ...this.tmpGroup.cards[payload.index] },
-        };
+          cardData: this.tmpGroup.cards[payload.index],
+        }
       }
     },
-    handleDrop(groupTitle, dropResult) {
+    handleDrop(lane, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (
-        groupTitle === this.draggingCard.groupTitle &&
-        removedIndex === addedIndex
-      )
-        return;
-      else {
+      if (lane === this.draggingCard.lane && removedIndex === addedIndex) return;
+      else if(removedIndex || addedIndex){
+      console.log('inside the else if at handledrop:', lane, removedIndex, addedIndex );
         if (removedIndex !== null) {
           this.tmpGroup.cards.splice(removedIndex, 1);
         }
@@ -204,10 +200,10 @@ export default {
         this.saveGroup(this.tmpGroup);
       }
     },
-    getChildPayload(index) {
-      return {
+    getChildPayload(index) { 
+      return{
         index,
-      };
+        }
     },
   },
   components: {
