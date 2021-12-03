@@ -89,20 +89,19 @@
           <card-preview :card="card" :group="group" />
         </Draggable>
       </Container>
-      <p class="card-add" @click="isClicked = !isClicked" v-if="!isClicked">
-        + Add a card
-      </p>
+      <div class="card-add-container" @click="isClicked = !isClicked" v-if="!isClicked">
+      <svg width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C11.4477 3 11 3.44772 11 4V11L4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11L13 11V4C13 3.44772 12.5523 3 12 3Z" fill="currentColor"></path></svg>
+      <p class="card-add">Add a card</p>
+      </div>
       <form @submit.prevent="addCard(group.id)" v-else>
         <textarea
           v-model="card.title"
-          name=""
-          id=""
-          cols="36.5"
-          rows="3"
-          placeholder="Enter a title fot this card"
+          placeholder="Enter a title fot this card..."
         ></textarea>
+        <div class="actions-container">
         <button class="btn-add">Add card</button>
-        <button class="btn-close" @click.prevent="closeTextarea()">✖</button>
+        <svg class="btn-close icon" @click.prevent="closeTextarea()" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center;"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path></svg>
+        </div>
       </form>
     </ul>
   </div>

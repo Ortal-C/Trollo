@@ -43,7 +43,7 @@ export default {
   },
   async created() {
     const boardId = this.$route.params.boardId;
-    this.$store.dispatch({ type: "loadBoard", boardId });
+    // this.$store.dispatch({ type: "loadBoard", boardId });
     let board = await this.$store.dispatch({ type: "loadBoard", boardId });
     document.body.style.backgroundColor = board.style || "#ff0000";
     this.getEmptyGroup();
@@ -82,6 +82,11 @@ export default {
     },
     boardStyle() {
       return this.$store.getters.board.style;
+    },
+  },
+  watch: {
+    boardStyle() {
+      document.body.style.backgroundColor = this.boardStyle;
     },
   },
   components: {
