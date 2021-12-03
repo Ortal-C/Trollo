@@ -10,6 +10,7 @@
     <board-nav />
     <section class="groups-container">
       <group-preview
+      @addGroup="addGroup"
         @addCard="addCard"
         @removeGroup="removeGroup"
         @saveGroup="saveGroup"
