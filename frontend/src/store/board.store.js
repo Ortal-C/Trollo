@@ -60,12 +60,12 @@ export const boardStore = {
             }
         },
         //GROUP ACTIONS//
-        async addGroup(context, { group }) {
+        async saveGroup(context, { group }) {
             try {
                 const board = await boardService.saveGroup(context.state.board, {...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log(('Issues with addGroup', err));
+                console.log(('Issues with saveGroup', err));
                 throw err
             }
         },

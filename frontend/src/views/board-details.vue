@@ -9,13 +9,14 @@
   </Container> -->
     <board-nav />
     <section class="groups-container">
-        <group-preview
-          @addCard="addCard"
-          @removeGroup="removeGroup"
-          v-for="group in board.groups"
-          :key="group.id"
-          :group="group"
-        />
+      <group-preview
+        @addCard="addCard"
+        @removeGroup="removeGroup"
+        @saveGroup="saveGroup"
+        v-for="group in board.groups"
+        :key="group.id"
+        :group="group"
+      />
       <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
@@ -59,14 +60,17 @@ export default {
       const title = this.group.title;
       // this.group.title = this.title;
       if (!title) return;
-      await this.$store.dispatch({ type: "addGroup", group: this.group });
+      await this.$store.dispatch({ type: "saveGroup", group: this.group });
       this.getEmptyGroup();
     },
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
-    addCard({groupId, card}) {
-      this.$store.dispatch({ type: "addCard", payload:{groupId, card} });
+    saveGroup(group) {
+      this.$store.dispatch({ type: "saveGroup", group })
+    },
+    addCard({ groupId, card }) {
+      this.$store.dispatch({ type: "addCard", payload: { groupId, card } });
     },
   },
   computed: {
