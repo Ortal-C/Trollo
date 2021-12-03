@@ -3,15 +3,19 @@
 
 <template>
   <div class="board-details" v-if="board">
+    <Container>
+      <Draggable>
+      </Draggable>
+  </Container>
     <board-nav />
     <section class="groups-container">
-      <group-preview
-        @addCard="addCard"
-        @removeGroup="removeGroup"
-        v-for="group in board.groups"
-        :key="group.id"
-        :group="group"
-      />
+        <group-preview
+          @addCard="addCard"
+          @removeGroup="removeGroup"
+          v-for="group in board.groups"
+          :key="group.id"
+          :group="group"
+        />
       <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
@@ -26,6 +30,7 @@
 import { boardService } from "@/services/board.service.js";
 import boardNav from "@/cmps/board/board-nav.vue";
 import groupPreview from "@/cmps/board/group/group-preview.vue";
+import { Container, Draggable } from "vue-smooth-dnd";
 export default {
   name: "board-details",
   data() {
@@ -60,8 +65,8 @@ export default {
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
-    addCard({groupId, card}) {
-      this.$store.dispatch({ type: "addCard", payload:{groupId, card} });
+    addCard({ groupId, card }) {
+      this.$store.dispatch({ type: "addCard", payload: { groupId, card } });
       console.log('details', groupId, card);
     },
   },
@@ -79,6 +84,8 @@ export default {
   components: {
     boardNav,
     groupPreview,
+    Container,
+    Draggable
   },
 };
 </script>
