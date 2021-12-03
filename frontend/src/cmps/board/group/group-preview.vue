@@ -59,7 +59,7 @@
             </g>
           </g>
         </svg>
-        <div>
+        <div class="archive-group" @click="removeGroup(group.id)">
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -77,7 +77,6 @@
           Archive
         </div>
       </div>
-      <button class="remove-btn" @click="removeGroup(group.id)">X</button>
     </div>
     <ul>
       <Container
