@@ -2,9 +2,10 @@
 
 <template>
   <div class="board-app">
-    <h1>Board app</h1>
     <ul v-for="board in boards" :key="board._id">
-      <router-link :to="'/board/'+board._id">{{board.title}}</router-link>
+      <li class="board-preview" @click="openBoard(board._id)">
+        <p>{{board.title}}</p>
+      </li>
     </ul>
   </div>
 </template>
@@ -22,5 +23,10 @@ export default {
       return this.$store.getters.boards;
     }
   },
+  methods: {
+    openBoard(boardId) {
+      this.$router.push('/board/'+boardId)
+    }
+  }
 }
 </script>
