@@ -4,7 +4,12 @@
 <template>
   <div class="group-preview">
     <div class="group-header">
-      <h2 contenteditable="true">{{ group.title }}</h2>
+      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">
+        {{ group.title }}
+      </h2>
+      <form action="" v-else @submit.prevent="editTitle()">
+        <input type="text" v-model="title" :placeholder="group.title" />
+      </form>
       <button class="menu-btn" @click="toggleMenu">
         <svg
           stroke="currentColor"
@@ -109,25 +114,27 @@
 
 <script>
 // @ is an alias to /src
-import cardPreview from '../card/card-preview.vue'
+import cardPreview from "../card/card-preview.vue";
 import { Container, Draggable } from "vue-smooth-dnd";
 export default {
-  name: 'group-preview',
-  props: ['group'],
+  name: "group-preview",
+  props: ["group"],
   data() {
     return {
       tmpGroup: {},
       card: {
         title: "",
       },
-      isClicked: false,
+      title:'',
+      isAddClicked: false,
+      isTitleClicked: false,
       isOpen: false,
       draggingCard: {
         groupTitle: "",
         index: -1,
         cardData: {},
       },
-    }
+    };
   },
   created() {
     this.groupCopy();
@@ -138,7 +145,7 @@ export default {
       this.card = boardService.getEmptyCard();
     },
     saveGroup(groupId) {
-      this.$emit('saveGroup', groupId)
+      this.$emit("saveGroup", groupId);
     },
     removeGroup(groupId) {
       this.$emit("removeGroup", groupId);
@@ -146,35 +153,47 @@ export default {
     addCard(groupId) {
       const title = this.card.title;
       if (!title) return;
-      this.$emit('addCard', { groupId, card: this.card })
+      this.$emit("addCard", { groupId, card: this.card });
       this.getEmptyCard();
-      this.isClicked = false
+      this.isAddClicked = false;
     },
-    closeTextarea(){
-       this.isClicked = false 
+    closeTextarea() {
+      this.isAddClicked = false;
+    },
+    editTitle() {
+      let group = this.groupCopy();
+      group.title= this.title
+      if(!group.title)return
+      console.log(group.title);
+      this.$emit("saveGroup", group);
+      this.isTitleClicked = false;
     },
     toggleMenu() {
-      console.log('Toggle menu');
-      this.isOpen = !this.isOpen
+      console.log("Toggle menu");
+      this.isOpen = !this.isOpen;
     },
     // DND
     groupCopy() {
-      this.tmpGroup = JSON.parse(JSON.stringify(this.group))
+      return JSON.parse(JSON.stringify(this.group));
     },
     handleDragStart(groupTitle, dragResult) {
       this.groupCopy();
-      const { payload, isSource } = dragResult
+      const { payload, isSource } = dragResult;
       if (isSource) {
         this.draggingCard = {
           groupTitle,
           index: payload.index,
           cardData: { ...this.tmpGroup.cards[payload.index] },
-        }
+        };
       }
     },
     handleDrop(groupTitle, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (groupTitle === this.draggingCard.groupTitle && removedIndex === addedIndex) return;
+      if (
+        groupTitle === this.draggingCard.groupTitle &&
+        removedIndex === addedIndex
+      )
+        return;
       else {
         if (removedIndex !== null) {
           this.tmpGroup.cards.splice(removedIndex, 1);
@@ -182,20 +201,19 @@ export default {
         if (addedIndex !== null) {
           this.tmpGroup.cards.splice(addedIndex, 0, this.draggingCard.cardData);
         }
-        this.saveGroup(this.tmpGroup)
+        this.saveGroup(this.tmpGroup);
       }
     },
     getChildPayload(index) {
       return {
         index,
-      }
+      };
     },
-
   },
   components: {
     cardPreview,
     Container,
-    Draggable
-  }
-}
+    Draggable,
+  },
+};
 </script>
