@@ -31,12 +31,11 @@
       <button>Invite</button>
       <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
     </section>
-
-    <!-- <select v-model="style" @change="updateStyle">
+    <select v-model="style" @change="updateStyle">
       <option v-for="color in colors" :key="color" :value="color">
         {{ color }}
       </option>
-    </select> -->
+    </select>
     <button @click="toggleMenu">Menu</button>
     <transition name="fade">
       <board-menu v-if="isMenuOpen" @close="toggleMenu" />
