@@ -37,8 +37,10 @@
         {{ color }}
       </option>
     </select> -->
-    <button @click="toggleMenu" >Menu</button>
-    <board-menu v-if="isMenuOpen" @close="toggleMenu"/>
+    <button @click="toggleMenu">Menu</button>
+    <transition name="fade">
+      <board-menu v-if="isMenuOpen" @close="toggleMenu" />
+    </transition>
   </section>
 </template>
 
@@ -88,7 +90,6 @@ export default {
       await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style: this.style } })
     },
     toggleMenu() {
-      console.log('in toggle');
       this.isMenuOpen = !this.isMenuOpen
     }
   },

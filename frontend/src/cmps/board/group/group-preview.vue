@@ -25,13 +25,29 @@
       <button class="remove-btn" @click="removeGroup(group.id)">X</button>
     </div>
     <ul>
-      <li v-for="card in group.cards" :key="card.id">
-        <card-preview :card="card" :group="group" />
-      </li>
-       <p class="card-add" @click="isClicked=!isClicked" v-if="!isClicked"> + Add a card</p>
+      <Container
+        group-name="trollo"
+        @drag-start="handleDragStart"
+        @drop="handleDrop"
+        :get-child-payload="getChildPayload"
+      >
+        <Draggable v-for="card in group.cards" :key="card.id">
+          <card-preview :card="card" :group="group" />
+        </Draggable>
+      </Container>
+      <p class="card-add" @click="isClicked = !isClicked" v-if="!isClicked">
+        + Add a card
+      </p>
       <form @submit.prevent="addCard(group.id)" v-else>
-           <textarea v-model="card.title" name="" id="" cols="36.5" rows="3" placeholder="Enter a title fot this card"></textarea>
-           <button>Add card</button>
+        <textarea
+          v-model="card.title"
+          name=""
+          id=""
+          cols="36.5"
+          rows="3"
+          placeholder="Enter a title fot this card"
+        ></textarea>
+        <button>Add card</button>
       </form>
     </ul>
   </div>
@@ -39,22 +55,40 @@
 
 <script>
 // @ is an alias to /src
-import cardPreview from "../card/card-preview.vue";
+import cardPreview from '../card/card-preview.vue'
+import { Container, Draggable } from "vue-smooth-dnd";
 export default {
-  name: "group-preview",
-  props: ["group"],
+  name: 'group-preview',
+  props: ['group'],
   data() {
     return {
       card: {
         title: "",
       },
       isClicked: false,
-    };
+      draggingCard: {
+        lane: "",
+        index: -1,
+        cardData: {},
+      },
+    }
   },
   created() {
     this.getEmptyCard();
   },
   methods: {
+    handleDragStart(dragResult){
+      const {payload, isSource} = dragResult
+      console.log(payload.index);
+    },
+    handleDrop(){
+
+    },
+    getChildPayload(index){
+      return{
+        index,
+      }
+    },
     getEmptyCard() {
       this.card = boardService.getEmptyCard();
     },
@@ -74,6 +108,8 @@ export default {
   },
   components: {
     cardPreview,
-  },
-};
+    Container,
+    Draggable
+  }
+}
 </script>
