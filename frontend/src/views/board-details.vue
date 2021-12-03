@@ -3,10 +3,10 @@
 
 <template>
   <div class="board-details" v-if="board">
-    <Container>
+    <!-- <Container>
       <Draggable>
       </Draggable>
-  </Container>
+  </Container> -->
     <board-nav />
     <section class="groups-container">
         <group-preview
