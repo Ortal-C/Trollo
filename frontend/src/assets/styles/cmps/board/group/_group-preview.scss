@@ -78,4 +78,14 @@
         font-size: 20px;
         background: transparent;
     }
+    .placeholder{
+                
+        //  background-color: rgba(150, 150, 200, 0.1);
+        //  margin: 1rem 2rem 1rem 0.3rem;
+
+        background-color:rgba(33,33,33,0.08);
+        border-radius: 4px;
+        transform: scaleY(0.85);
+        transform-origin: 0% 0%;
+    }
 }
