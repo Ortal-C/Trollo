@@ -25,11 +25,11 @@
 		justify-content: space-between;
 		height: 80px;
 	}
-	.card-details-header svg {
-		position: absolute;
-		left: 28px;
-		top: 26px;
-	}
+	// .card-details-header svg {
+	// 	position: absolute;
+	// 	left: 28px;
+	// 	top: 26px;
+	// }
 	.card-details-header h2 {
 		margin: 0px 0px 0.1em;
 	}
@@ -61,11 +61,11 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 90%;
-		svg {
-			position: absolute;
-			left: 18px;
-			top: 130px;
-		}
+		// svg {
+		// position: absolute;
+		// left: 18px;
+		// top: 130px;
+		// }
 	}
 	.card-details-desc {
 		margin-bottom: 30px;
@@ -85,13 +85,12 @@
 		textarea:focus {
 			background-color: #fff;
 			box-shadow: inset 0 0 0 2px #0079bf;
-			height: 100px;
 		}
-		svg {
-			position: absolute;
-			left: 18px;
-			top: 4px;
-		}
+		// svg {
+		// 	position: absolute;
+		// 	left: 18px;
+		// 	top: 4px;
+		// }
 	}
 	.card-details-sidebar {
 		width: 30%;
