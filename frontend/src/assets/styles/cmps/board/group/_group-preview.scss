@@ -1,25 +1,38 @@
 .group-preview {
-	// max-height: 100%;
-	border-radius: 3px;
-	min-width: 272px;
-	max-width: 272px;
-	background-color: #ebecf0;
-	margin: 0 4px;
-	padding: 0 4px;
-	h2 {
-		font-size: 1rem;
-	}
-	.group-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.remove-btn {
-		border: none;
-		direction: ltr;
-	}
-	.menu-btn {
-		background-color: transparent;
-		border: none;
-	}
+    // max-height: 100%;
+    border-radius: 3px;
+    min-width: 272px;
+    max-width: 272px;
+    background-color: #ebecf0;
+    margin: 0 4px;
+    padding: 0 4px;
+    h2 {
+        font-size: 1rem;
+    }
+    .group-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .remove-btn {
+        border: none;
+        direction: ltr;
+    }
+    .menu-btn {
+        background-color: transparent;
+        border: none;
+    }
+    .card-add {
+        cursor: pointer;
+    }
+    textarea {
+        resize: none;
+        font-family: inherit;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+        padding: 0 8px 0 0;
+    }
 }
