@@ -17,7 +17,8 @@ export const boardService = {
 
     //CARD FUNCTIONS//
     getEmptyCard,
-    saveCard
+    saveCard,
+    removeCard,
 }
 
 // Debug technique
@@ -83,13 +84,17 @@ function saveCard(board, groupId, card) {
     if (card.id) {
         const idx = newBoard.groups.cards.findIndex(currCard => currCard.id === card.id)
         newBoard.groups[idx].cards.splice(idx, 1, card)
-        console.log(card);
     } else {
         card.id = utilService.makeId()
         newBoard.groups[idx].cards.push(card)
-
-        console.log(card);
     }
+    return saveBoard(newBoard)
+}
+
+function removeCard(board, groupId, cardId) {
+    let newBoard = JSON.parse(JSON.stringify(board))
+    const idx = newBoard.groups.findIndex(group => group.id === groupId)
+    newBoard.groups[idx].cards = newBoard.groups[idx].cards.filter((card) => card.id !== cardId)
     return saveBoard(newBoard)
 }
 // function query() {

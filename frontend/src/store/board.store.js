@@ -81,17 +81,24 @@ export const boardStore = {
         //CARD ACTIONS//
         async addCard(context, { payload }) {
             const { groupId, card } = payload
-            console.log('Actions', groupId, card);
             try {
                 const board = await boardService.saveCard(context.state.board, groupId, card)
-                console.log(context.state.board, groupId, card);
                 context.commit({ type: 'setBoard', board })
-                console.log('actions', card);
             } catch (err) {
-                console.log(('Issues with addCard', err));
+                console.log(('Issues with adding card', err));
                 throw err
             }
         },
+        async removeCard(context, { payload }) {
+            const { groupId, cardId } = payload;
+            try {
+                const board = await boardService.removeCard(context.state.board, groupId, cardId)
+                context.commit({ type: 'setBoard', board })
+            } catch (err) {
+                console.log(('Issues with removing card', err));
+                throw err
+            }
+        }
 
 
         // async toggleStar(context, { isStarred }) {

@@ -10,6 +10,7 @@
     </button>
     <button class="remove-btn" @click="removeGroup(group.id)">X</button>
     </div>
+    <h2 contenteditable="true">{{ group.title }}</h2>
     <ul>
       <li v-for="card in group.cards" :key="card.id">
         <card-preview :card="card" :group="group" />
@@ -49,13 +50,11 @@ export default {
     },
     removeGroup(groupId) {
       this.$emit('removeGroup', groupId)
-      console.log('removing from preview', groupId);
     },
     addCard(groupId){
        const title = this.card.title;
       if (!title) return;
        this.$emit('addCard', {groupId, card:this.card})
-       console.log('preview',this.card, groupId)
        this.getEmptyCard();
     },
     openMenu() {

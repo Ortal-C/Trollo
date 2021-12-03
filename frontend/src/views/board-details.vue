@@ -62,7 +62,6 @@ export default {
     },
     addCard({groupId, card}) {
       this.$store.dispatch({ type: "addCard", payload:{groupId, card} });
-      console.log('details', groupId, card);
     },
   },
   computed: {
