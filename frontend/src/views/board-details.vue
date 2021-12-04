@@ -45,7 +45,7 @@ export default {
       },
       tmpBoard: null,
       dragging: {
-        data:null
+        data: null
       }
     };
   },
@@ -77,7 +77,7 @@ export default {
     saveGroup(group) {
       this.$store.dispatch({ type: "saveGroup", group });
     },
-    saveCard({groupId, card}) {
+    saveCard({ groupId, card }) {
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
 
@@ -96,16 +96,16 @@ export default {
       }
     },
     async handleDrop({ lane, dropResult }) {
-      const { removedIndex, addedIndex } = dropResult
+      const { removedIndex, addedIndex, payload } = dropResult
       if (removedIndex || addedIndex) {
         const group = JSON.parse(JSON.stringify(this.groups))[lane]
         if (removedIndex !== null) {
-          this.dragging.data = group.cards.splice(removedIndex, 1)[0];
-          console.log(this.dragging.data);
+          group.cards.splice(removedIndex, 1);
         }
         if (addedIndex !== null) {
-          group.cards.splice(addedIndex, 0,  this.dragging.data );
+          group.cards.splice(addedIndex, 0, payload);
         }
+        console.log(`in boardDetails, group #${lane}`, group);
         await this.$store.dispatch({ type: "saveGroup", group })
       }
     },

@@ -85,11 +85,11 @@
     </div>
     <ul>
       <Container
-        :get-child-payload="getChildPayload"
-        group-name="1"
+        :group-name="dndName"
         @drag-start="handleDragStart(idx, $event)"
-        @drop="handleDrop(idx, $event)"
-      >
+        @drop="handleDrop(idx, $event)" 
+        :get-child-payload="getChildPayload">
+      <!--  -->
         <!-- <Container
         :group-name="dndName"
         @drag-start="handleDragStart(group.title, $event)"
@@ -178,7 +178,7 @@ export default {
         lane: this.idx,
         index: -1,
         data: {
-          id:'id'
+          // id:'id'
         }
       }
     };
@@ -225,25 +225,26 @@ export default {
       return JSON.parse(JSON.stringify(this.group))
     },
     handleDragStart(lane, dragResult) {
-      const { payload, isSource } = dragResult
+      // console.log(dragResult);
+      let { payload, isSource } = dragResult
       if (isSource) {
         this.draggingCard = {
-          lane,
-          index: payload.index,
+          lane, //group index
+          index: payload.index, //card index in group
           data: this.group.cards[payload.index]
         }
+        // payload = this.group.cards[this.draggingCard.index]
+        // console.log('payload', payload);
       }
     },
     handleDrop(lane, dropResult) {
-      const { removedIndex, addedIndex } = dropResult;
+      const { removedIndex, addedIndex, } = dropResult;
       if (removedIndex!== null ||addedIndex !== null) {
         this.$emit('handleDrop', { lane, dropResult });
       }
     },
     getChildPayload(index) {
-      return {
-        index,
-      }
+      return this.group.cards[index]
     },
   },
   components: {
