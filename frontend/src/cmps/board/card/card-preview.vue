@@ -7,7 +7,7 @@
         <p>{{ card.title }}</p>
       <!-- ADD NEW CARD -->
     </div>
-    <form action="" v-else @submit.prevent="editCard(group.id)">
+    <form action="" v-else @change="editCard(group.id)">
       <input  type="text" v-model="title" :placeholder="card.title" />
     </form>
   </div>
