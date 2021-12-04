@@ -31,14 +31,18 @@
       <button>Invite</button>
       <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
     </section>
-    <select v-model="style" @change="updateStyle">
+    <!-- <select v-model="style" @change="updateStyle">
       <option v-for="color in colors" :key="color" :value="color">
         {{ color }}
       </option>
-    </select>
+    </select> -->
     <button @click="toggleMenu">Menu</button>
     <transition name="fade">
-      <board-menu v-if="isMenuOpen" @close="toggleMenu" @updateStyle="updateStyle" />
+      <board-menu
+        v-if="isMenuOpen"
+        @close="toggleMenu"
+        @updateStyle="updateStyle"
+      />
     </transition>
   </section>
 </template>
@@ -79,10 +83,10 @@ export default {
   methods: {
     toggleStar() {
       this.isStarred = !this.isStarred
-      this.$emit('toggleStar', { ...this.board, isStarred: this.isStarred } )
+      this.$emit('toggleStar', { ...this.board, isStarred: this.isStarred })
     },
-    updateStyle(style=null) {
-      this.$emit('updateStyle', { ...this.board, style: (style)? style :this.style  } )
+    async updateStyle(color) {
+      this.$emit('updateStyle', color)
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen

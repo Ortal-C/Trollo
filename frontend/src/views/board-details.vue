@@ -56,8 +56,8 @@ export default {
     async toggleStar(board){
       await this.$store.dispatch({ type: 'updateBoard', board})
     },
-    async updateStyle(board){
-      await this.$store.dispatch({ type: 'updateBoard', board})
+    async updateStyle(style){
+      await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style } })
     },
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();

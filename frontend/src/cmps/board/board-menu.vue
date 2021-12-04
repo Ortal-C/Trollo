@@ -86,7 +86,6 @@ export default {
   data() {
     return {
       currAction: 'menu',
-      actions: ['menu', 'bgc', 'archive'],
       changeBg: false,
       colors: [
         '#cc0033',
@@ -105,8 +104,8 @@ export default {
     closeMenu() {
       this.$emit('close')
     },
-    updateStyle(style) {
-      this.$emit('updateStyle', style )
+    updateStyle(color) {
+      this.$emit('updateStyle',color )
     },
   },
 }
