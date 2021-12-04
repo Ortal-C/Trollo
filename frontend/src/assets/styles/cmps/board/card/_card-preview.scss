@@ -1,33 +1,49 @@
 .card-container {
-    input {
-        color: #172b4d;
-    }
-    form {
-        border: solid rgb(47, 47, 128)
-    }
-    .edit-card {
-        border: none;
-        background: transparent;
-    }
+	input {
+		color: #172b4d;
+	}
+	form {
+		border: solid rgb(47, 47, 128);
+	}
+	.edit-card {
+		border: none;
+		background: transparent;
+	}
 }
-
+.card-preview {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	button {
+		color: transparent;
+		height: 25px;
+		width: 25px;
+		border-radius: 3px;
+	}
+}
 .card-preview,
 .card-container form {
-    cursor: pointer;
-    list-style: none;
-    padding: 1px;
-    word-wrap: break-word;
-    max-width: 300px;
-    min-height: 20px;
-    position: relative;
-    flex-direction: column;
-    background-color: #fff;
-    box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
-    border-radius: 3px;
-    margin: 4px 7px;
-    padding: 6px 8px;
+	cursor: pointer;
+	list-style: none;
+	padding: 1px;
+	word-wrap: break-word;
+	max-width: 300px;
+	min-height: 20px;
+	position: relative;
+	// flex-direction: column;
+	background-color: #fff;
+	box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+	border-radius: 3px;
+	margin: 4px 7px;
+	padding: 6px 8px;
 }
 
 .card-preview:hover {
-    background-color: #f7f5f5;
+	background-color: #f7f5f5;
+	button {
+		color: black;
+	}
+	button:hover {
+		background-color: #eeeeee;
+	}
 }

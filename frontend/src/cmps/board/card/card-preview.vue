@@ -2,9 +2,9 @@
 
 <template>
   <div class="card-container">
-    <button class="edit-card" @click="isEdit = !isEdit">🖊</button>
     <div v-if="!isEdit" class="card-preview" @click="cardDetails">
         <p>{{ card.title }}</p>
+        <button class="edit-card" @click.stop="isEdit = !isEdit">🖊</button>
       <!-- ADD NEW CARD -->
     </div>
     <form action="" v-else @change="editCard(group.id)">
