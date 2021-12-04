@@ -44,9 +44,6 @@ export default {
         title: "",
       },
       tmpBoard: null,
-      dragging: {
-        data: null
-      }
     };
   },
   async created() {
