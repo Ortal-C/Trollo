@@ -97,7 +97,7 @@
         :drop-placeholder="{ className: 'placeholder' }"
         :get-child-payload="getChildPayload"
       > -->
-        <Draggable v-for="card in group.cards" :key="card.id">
+        <Draggable v-for="card in group.cards" :key="card.title">
           <card-preview :card="card" :group="group" @saveCard="saveCard" />
         </Draggable>
       </Container>
