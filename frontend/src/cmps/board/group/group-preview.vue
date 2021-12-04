@@ -5,7 +5,7 @@
   <div class="group-preview">
     <div class="group-header">
       <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2>
-      <form action="" v-else @submit.prevent="editGroup()" >
+      <form action="" v-else @change="editGroup()" >
         <input type="text" v-model="title" :placeholder="group.title"/>
       </form>
       <button class="menu-btn" @click="toggleMenu">

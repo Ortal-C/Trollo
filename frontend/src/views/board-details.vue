@@ -62,9 +62,6 @@ export default {
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();
     },
-    getBackgroundColor() {
-      this.boardStyle();
-    },
     async addGroup() {
       const title = this.group.title;
       if (!title) return;
@@ -122,16 +119,13 @@ export default {
     groups() {
       return this.$store.getters.board.groups;
     },
-    boardStyle() {
-      return (this.board)? this.$store.getters.board.style : '#222';
-    },
     dndName() {
       return 'Trollo';
     },
   },
   watch: {
-    boardStyle() {
-      document.body.style.backgroundColor = this.boardStyle;
+    board() {
+      document.body.style.backgroundColor = this.board.style;
     },
   },
   components: {
