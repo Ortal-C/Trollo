@@ -61,22 +61,20 @@
 			cursor: pointer;
 		}
 		.color:hover {
-            background-color: rgb(0, 0, 0);
-	}
-	.activity-preview {
-		padding: 8px 0;
-		display: flex;
-		justify-content: space-around;
-		margin-bottom: 16px;
-		img {
-			height: 32px;
-			border-radius: 50%;
+			background-color: rgb(0, 0, 0);
 		}
-		.activity-preview-content {
+		.activity-preview {
+			padding: 8px 0;
 			display: flex;
+			justify-content: space-around;
+			margin-bottom: 16px;
+			img {
+				height: 32px;
+				border-radius: 50%;
+			}
+			.activity-preview-content {
+				display: flex;
+			}
 		}
 	}
-	// 	line-height: 3rem;
-
-	// }
 }
