@@ -9,12 +9,16 @@
         :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
         :get-child-payload="getChildPayload" >
         <Draggable> -->
-          <group-preview
-            v-for="group in board.groups" :key="group.id"
-            @addCard="addCard"
-            @removeGroup="removeGroup" @saveGroup="saveGroup"
-            :group="group" :dndName="dndName"/>
-        <!-- </Draggable> -->
+      <group-preview
+        v-for="group in board.groups"
+        :key="group.id"
+        @saveCard="saveCard"
+        @removeGroup="removeGroup"
+        @saveGroup="saveGroup"
+        :group="group"
+        :dndName="dndName"
+      />
+      <!-- </Draggable> -->
       <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
@@ -22,7 +26,7 @@
         </div>
       </form>
     </section>
-      <!-- </Container> -->
+    <!-- </Container> -->
   </div>
 </template>
 
@@ -38,12 +42,12 @@ export default {
       group: {
         title: "",
       },
-      tmpBoard:null,
+      tmpBoard: null,
       draggingGroup: {
-          lane:'',
-          index: -1,
-          groupData: {},
-        }
+        lane: "",
+        index: -1,
+        groupData: {},
+      },
     };
   },
   async created() {
@@ -72,46 +76,56 @@ export default {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
     saveGroup(group) {
-      this.$store.dispatch({ type: "saveGroup", group })
+      this.$store.dispatch({ type: "saveGroup", group });
     },
-    addCard({ groupId, card }) {
-      this.$store.dispatch({ type: "addCard", payload: { groupId, card } });
+    saveCard({groupId, card}) {
+      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
 
     // DND
     boardCopy() {
-      this.tmpBoard = JSON.parse(JSON.stringify(this.board))
+      this.tmpBoard = JSON.parse(JSON.stringify(this.board));
     },
     handleDragStart(dragResult) {
       this.boardCopy();
-      const { payload, isSource } = dragResult
+      const { payload, isSource } = dragResult;
       if (isSource) {
         this.draggingGroup = {
           lane: this.dndName,
           index: payload.index,
           groupData: { ...this.tmpBoard.groups[payload.index] },
-        }
+        };
       }
     },
     async handleDrop(dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (this.dndName === this.draggingGroup.lane && removedIndex === addedIndex) return;
+      if (
+        this.dndName === this.draggingGroup.lane &&
+        removedIndex === addedIndex
+      )
+        return;
       else {
         if (removedIndex !== null) {
           this.tmpBoard.groups.splice(removedIndex, 1);
         }
         if (addedIndex !== null) {
-          this.tmpBoard.groups.splice(addedIndex, 0, this.draggingGroup.groupData);
+          this.tmpBoard.groups.splice(
+            addedIndex,
+            0,
+            this.draggingGroup.groupData
+          );
         }
-      await this.$store.dispatch({ type: "updateBoard", board: this.tmpBoard });
+        await this.$store.dispatch({
+          type: "updateBoard",
+          board: this.tmpBoard,
+        });
       }
     },
     getChildPayload(index) {
       return {
         index,
-      }
+      };
     },
-
   },
   computed: {
     board() {
@@ -123,8 +137,8 @@ export default {
     boardStyle() {
       return this.$store.getters.board.style;
     },
-    dndName(){
-      return 'Trollo';
+    dndName() {
+      return "Trollo";
     },
   },
   watch: {
@@ -136,13 +150,13 @@ export default {
     boardNav,
     groupPreview,
     Container,
-    Draggable
+    Draggable,
   },
 };
 </script>
 
 <style>
-  .group-container1{
-    display: flex;
-  }
+.group-container1 {
+  display: flex;
+}
 </style>
