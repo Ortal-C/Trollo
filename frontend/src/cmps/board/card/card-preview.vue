@@ -8,7 +8,7 @@
       <!-- ADD NEW CARD -->
     </div>
     <form action="" v-else @submit.prevent="editCard(group.id)">
-      <input @change="changeEdit()" type="text" v-model="title" :placeholder="card.title" />
+      <input  type="text" v-model="title" :placeholder="card.title" />
     </form>
   </div>
 </template>
@@ -40,9 +40,7 @@ export default {
       if (!card.title) return;
       this.$emit("saveCard", groupId, card);
     },
-    changeEdit(){
-      this.isEdit=!this.isEdit
-    }
+   
   },
 };
 </script>
