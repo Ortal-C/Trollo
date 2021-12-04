@@ -14,6 +14,7 @@
         :key="group.id"
         @removeGroup="removeGroup"
         @saveGroup="saveGroup"
+        @saveCard="saveCard"
         @handleDrop="handleDrop"
         :group="group"
         :idx="idx"
