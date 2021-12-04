@@ -3,7 +3,7 @@
 
 <template>
   <div class="board-details" v-if="board">
-    <board-nav />
+    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle"/>
     <section class="groups-container">
       <!-- <Container class="groups-container"
         :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
@@ -14,7 +14,6 @@
         :key="group.id"
         @removeGroup="removeGroup"
         @saveGroup="saveGroup"
-        @saveCard="saveCard"
         @handleDrop="handleDrop"
         :group="group"
         :idx="idx"
@@ -49,17 +48,19 @@ export default {
   },
   async created() {
     const boardId = this.$route.params.boardId;
-    // this.$store.dispatch({ type: "loadBoard", boardId });
     let board = await this.$store.dispatch({ type: "loadBoard", boardId });
-    document.body.style.backgroundColor = board.style || "#ff0000";
+    document.body.style.backgroundColor = board.style;
     this.getEmptyGroup();
   },
   methods: {
+    async toggleStar(board){
+      await this.$store.dispatch({ type: 'updateBoard', board})
+    },
+    async updateStyle(style){
+      await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style } })
+    },
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();
-    },
-    getBackgroundColor() {
-      this.boardStyle();
     },
     async addGroup() {
       const title = this.group.title;

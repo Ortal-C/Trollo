@@ -29,6 +29,7 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
+		cursor: pointer;
 		.icon{
 			margin: 10px;
 			&.bgc{
@@ -47,6 +48,19 @@
 		border-radius: 3px;
 		background-color: rgba(226,228,233,255)
 
+	}
+	.color-palette{
+		margin-top: 50px;
+		display: flex;
+		flex-wrap:wrap;
+		width:330px;
+		.color{
+			width: 100px;
+			height: 75px;
+			margin: 3px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 	}
 	// 	line-height: 3rem;
 
