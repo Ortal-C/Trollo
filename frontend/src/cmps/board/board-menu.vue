@@ -73,7 +73,6 @@
       <div
         class="color" v-for="color in colors" :key="color"
         :value="color" :style="`background-color:${color}`" @click="updateStyle(color)">
-        {{ color }}
       </div>
     </main>
   </div>
