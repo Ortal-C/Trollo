@@ -5,7 +5,7 @@
   <div class="group-preview">
     <div class="group-header">
       <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2>
-      <form action="" v-else @submit.prevent="editTitle()" >
+      <form action="" v-else @submit.prevent="editGroup()" >
         <input type="text" v-model="title" :placeholder="group.title"/>
       </form>
       <button class="menu-btn" @click="toggleMenu">
@@ -85,18 +85,10 @@
     </div>
     <ul>
       <Container
-        :get-child-payload="getChildPayload"
-        group-name="1"
-        @drag-start="handleDragStart(idx, $event)"
-        @drop="handleDrop(idx, $event)"
-      >
-        <!-- <Container
         :group-name="dndName"
-        @drag-start="handleDragStart(group.title, $event)"
-        @drop="handleDrop(group.title, $event)"
-        :drop-placeholder="{ className: 'placeholder' }"
-        :get-child-payload="getChildPayload"
-      > -->
+        @drag-start="handleDragStart(idx, $event)"
+        @drop="handleDrop(idx, $event)" 
+        :get-child-payload="getChildPayload">
         <Draggable v-for="card in group.cards" :key="card.id">
           <card-preview :card="card" :group="group" @saveCard="saveCard" />
         </Draggable>
@@ -160,14 +152,13 @@
 // @ is an alias to /src
 import cardPreview from '../card/card-preview.vue'
 import { Container, Draggable } from 'vue-smooth-dnd';
-// import { applyDrag } from '@/services/util.service.js';
 export default {
   name: 'group-preview',
   props: ['group', 'dndName', 'idx'],
   data() {
     return {
       card: {
-        title: "",
+        title: '',
       },
       title: '',
       isAddClicked: false,
@@ -177,9 +168,7 @@ export default {
       draggingCard: {
         lane: this.idx,
         index: -1,
-        data: {
-          id:'id'
-        }
+        data: {}
       }
     };
   },
@@ -214,7 +203,6 @@ export default {
       this.isTitleClicked = false;
     },
     toggleMenu() {
-      console.log("Toggle menu");
       this.isOpen = !this.isOpen;
     },
     saveCard(groupId, card){
@@ -225,11 +213,11 @@ export default {
       return JSON.parse(JSON.stringify(this.group))
     },
     handleDragStart(lane, dragResult) {
-      const { payload, isSource } = dragResult
+      let { payload, isSource } = dragResult
       if (isSource) {
         this.draggingCard = {
-          lane,
-          index: payload.index,
+          lane, 
+          index: payload.index, 
           data: this.group.cards[payload.index]
         }
       }
@@ -241,9 +229,7 @@ export default {
       }
     },
     getChildPayload(index) {
-      return {
-        index,
-      }
+      return this.group.cards[index]
     },
   },
   components: {

@@ -55,7 +55,7 @@ export const boardStore = {
                 context.commit({ type: 'setBoard', board: updatedBoard })
                 return updatedBoard;
             } catch (err) {
-                console.log(('Issues with updateBoard', err));
+                console.log('Issues with updateBoard', err);
                 throw err
             }
         },
@@ -65,7 +65,7 @@ export const boardStore = {
                 const board = await boardService.saveGroup(context.state.board, { ...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log(('Issues with saveGroup', err));
+                console.log('Issues with saveGroup', err);
                 throw err
             }
         },

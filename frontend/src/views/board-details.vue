@@ -45,7 +45,7 @@ export default {
       },
       tmpBoard: null,
       dragging: {
-        data:null
+        data: null
       }
     };
   },
@@ -64,9 +64,7 @@ export default {
       this.boardStyle();
     },
     async addGroup() {
-      // const title = prompt("Group title:");
       const title = this.group.title;
-      // this.group.title = this.title;
       if (!title) return;
       await this.$store.dispatch({ type: "saveGroup", group: this.group });
       this.getEmptyGroup();
@@ -77,7 +75,7 @@ export default {
     saveGroup(group) {
       this.$store.dispatch({ type: "saveGroup", group });
     },
-    saveCard({groupId, card}) {
+    saveCard({ groupId, card }) {
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
 
@@ -86,26 +84,27 @@ export default {
       this.tmpBoard = JSON.parse(JSON.stringify(this.board));
     },
     handleDragStart(dragResult) {
-      const { payload, isSource } = dragResult
-      if (isSource) {
-        this.draggingGroup = {
-          lane: this.dndName,
-          index: payload.index,
-          groupData: { ...this.tmpBoard.groups[payload.index] },
-        };
-      }
+      // const { payload, isSource } = dragResult
+      // if (isSource) {
+      //   this.draggingGroup = {
+      //     lane: this.dndName,
+      //     index: payload.index,
+      //     groupData: { ...this.tmpBoard.groups[payload.index] },
+      //   };
+      // }
     },
     async handleDrop({ lane, dropResult }) {
-      const { removedIndex, addedIndex } = dropResult
-      if (removedIndex || addedIndex) {
-        const group = JSON.parse(JSON.stringify(this.groups))[lane]
+      const { removedIndex, addedIndex, payload } = dropResult
+      if (removedIndex !== null || addedIndex != null) {
+        if (!this.tmpBoard) this.boardCopy();
         if (removedIndex !== null) {
-          this.dragging.data = group.cards.splice(removedIndex, 1)[0];
+          this.tmpBoard.groups[lane].cards.splice(removedIndex, 1);
         }
         if (addedIndex !== null) {
-          group.cards.splice(addedIndex, 0, this.dragging.data);
+          this.tmpBoard.groups[lane].cards.splice(addedIndex, 0, payload);
+          await this.$store.dispatch({ type: "updateBoard", board: this.tmpBoard })
+          this.tmpBoard = null;
         }
-        await this.$store.dispatch({ type: "saveGroup", group })
       }
     },
     getChildPayload(index) {
@@ -141,9 +140,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.group-container1 {
-  display: flex;
-}
-</style>
