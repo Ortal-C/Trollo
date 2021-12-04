@@ -211,15 +211,29 @@ export const boardData = {
         {
             "id": "a101",
             "txt": "Changed Color",
-            "createdAt": 154514,
+            "createdAt": Date.now(),
             "byMember": {
                 "_id": "u101",
                 "fullname": "Michal Ozeri",
-                "imgUrl": "http://some-img"
+                "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
             },
             "card": {
                 "id": "c101",
                 "title": "Data structure planning"
+            }
+        },
+        {
+            "id": "a102",
+            "txt": "Changed Title",
+            "createdAt": Date.now(),
+            "byMember": {
+                "_id": "u407",
+                "fullname": "Lihi Sered",
+                "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+            },
+            "card": {
+                "id": "c103",
+                "title": "Backend"
             }
         }
     ]

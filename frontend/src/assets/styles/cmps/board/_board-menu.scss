@@ -41,12 +41,12 @@
         }
         h4 {
             width: 100%;
-            margin: 0
+            margin: 0;
         }
     }
     li:hover {
         border-radius: 3px;
-        background-color: rgba(226, 228, 233, 255)
+        background-color: rgba(226, 228, 233, 255);
     }
     .color-palette {
         margin-top: 50px;
@@ -64,6 +64,17 @@
             opacity: 0.5;
         }
     }
-    // 	line-height: 3rem;
-    // }
+    .activity-preview {
+        padding: 8px 0;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 16px;
+        img {
+            height: 32px;
+            border-radius: 50%;
+        }
+        .activity-preview-content {
+            display: flex;
+        }
+    }
 }

@@ -42,6 +42,7 @@
         v-if="isMenuOpen"
         @close="toggleMenu"
         @updateStyle="updateStyle"
+        :board="board"
       />
     </transition>
   </section>
