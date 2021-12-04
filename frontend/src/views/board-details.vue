@@ -3,7 +3,7 @@
 
 <template>
   <div class="board-details" v-if="board">
-    <board-nav />
+    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle"/>
     <section class="groups-container">
       <!-- <Container class="groups-container"
         :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
@@ -14,7 +14,6 @@
         :key="group.id"
         @removeGroup="removeGroup"
         @saveGroup="saveGroup"
-        @saveCard="saveCard"
         @handleDrop="handleDrop"
         :group="group"
         :idx="idx"
@@ -49,12 +48,17 @@ export default {
   },
   async created() {
     const boardId = this.$route.params.boardId;
-    // this.$store.dispatch({ type: "loadBoard", boardId });
     let board = await this.$store.dispatch({ type: "loadBoard", boardId });
-    document.body.style.backgroundColor = board.style || "#ff0000";
+    document.body.style.backgroundColor = (board)? board.style : "#ff0000";
     this.getEmptyGroup();
   },
   methods: {
+    async toggleStar(board){
+      await this.$store.dispatch({ type: 'updateBoard', board})
+    },
+    async updateStyle(board){
+      await this.$store.dispatch({ type: 'updateBoard', board})
+    },
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();
     },
@@ -119,7 +123,7 @@ export default {
       return this.$store.getters.board.groups;
     },
     boardStyle() {
-      return this.$store.getters.board.style;
+      return (this.board)? this.$store.getters.board.style : '#222';
     },
     dndName() {
       return 'Trollo';
