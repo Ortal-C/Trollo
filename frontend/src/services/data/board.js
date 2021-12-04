@@ -8,7 +8,7 @@ export const boardData = {
         "imgUrl": "http://some-img"
     },
     "isStarred": true,
-    "style": '#ebe4ff',
+    "style": {},
     "labels": [
         {
             "id": "l101",
