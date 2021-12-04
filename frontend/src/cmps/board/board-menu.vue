@@ -106,10 +106,7 @@ export default {
       this.$emit('close')
     },
     updateStyle(style) {
-      this.$emit('updateStyle', { ...this.board, style } )
-    },
-    changeBg() {
-      console.log('changeBg')
+      this.$emit('updateStyle', style )
     },
   },
 }

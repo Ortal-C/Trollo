@@ -49,7 +49,7 @@ export default {
   async created() {
     const boardId = this.$route.params.boardId;
     let board = await this.$store.dispatch({ type: "loadBoard", boardId });
-    document.body.style.backgroundColor = (board)? board.style : "#ff0000";
+    document.body.style.backgroundColor = board.style;
     this.getEmptyGroup();
   },
   methods: {
