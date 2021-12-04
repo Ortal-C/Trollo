@@ -76,15 +76,15 @@ export default {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
     saveGroup(group) {
-      this.$store.dispatch({ type: "saveGroup", group })
+      this.$store.dispatch({ type: "saveGroup", group });
     },
-    addCard({ groupId, card }) {
-      this.$store.dispatch({ type: "addCard", payload: { groupId, card } });
+    saveCard({groupId, card}) {
+      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
 
     // DND
     boardCopy() {
-      this.tmpBoard = JSON.parse(JSON.stringify(this.board))
+      this.tmpBoard = JSON.parse(JSON.stringify(this.board));
     },
     handleDragStart(dragResult) {
       const { payload, isSource } = dragResult
@@ -93,7 +93,7 @@ export default {
           lane: this.dndName,
           index: payload.index,
           groupData: { ...this.tmpBoard.groups[payload.index] },
-        }
+        };
       }
     },
     async handleDrop({ lane, dropResult }) {
@@ -113,9 +113,8 @@ export default {
     getChildPayload(index) {
       return {
         index,
-      }
+      };
     },
-
   },
   computed: {
     board() {
@@ -140,7 +139,7 @@ export default {
     boardNav,
     groupPreview,
     Container,
-    Draggable
+    Draggable,
   },
 };
 </script>

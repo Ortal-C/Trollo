@@ -79,7 +79,7 @@ export const boardStore = {
             }
         },
         //CARD ACTIONS//
-        async addCard(context, { payload }) {
+        async saveCard(context, { payload }) {
             const { groupId, card } = payload
             try {
                 const board = await boardService.saveCard(context.state.board, groupId, card)

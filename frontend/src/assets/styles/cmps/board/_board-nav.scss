@@ -1,28 +1,39 @@
-.menu{
-	display:flex;
+.menu {
+	display: flex;
 }
 .board-nav {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	height: 50px;
-	padding:5px;
-	
+	padding: 5px;
+	@media (max-width: $mobile-breakpoint) {
+		// display: flow-root;
+		.el-avatar,
+		h3 {
+			display: none;
+		}
+		select {
+			margin: 0 1px;
+		}
+	}
 	.fade-enter-active,
 	.fade-leave-active {
-		transition: opacity .5s ;
+		transition: opacity 0.5s;
 	}
-	.fade-enter, .fade-leave-to{
-  		opacity: 0;
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
 	}
 	section {
 		display: flex;
 		justify-content: space-between;
 	}
-	h3{
+	h3 {
 		margin: 0 20px;
 	}
-	button,select {
+	button,
+	select {
 		border: none;
 		background-color: transparent;
 		height: 32px;
@@ -52,8 +63,7 @@
 		margin: 0 5px;
 		line-height: 25px;
 	}
-	.el-avatar{
+	.el-avatar {
 		margin: 0 5px;
 	}
-
 }

@@ -82,12 +82,13 @@ function saveCard(board, groupId, card) {
     let newBoard = JSON.parse(JSON.stringify(board))
     const idx = newBoard.groups.findIndex(group => group.id === groupId)
     if (card.id) {
-        const idx = newBoard.groups.cards.findIndex(currCard => currCard.id === card.id)
-        newBoard.groups[idx].cards.splice(idx, 1, card)
+        const cardIdx = newBoard.groups[idx].cards.findIndex(currCard => currCard.id === card.id)
+        newBoard.groups[idx].cards.splice(cardIdx, 1, card)
     } else {
         card.id = utilService.makeId()
         newBoard.groups[idx].cards.push(card)
     }
+    console.log('service-newBoard', newBoard);
     return saveBoard(newBoard)
 }
 

@@ -4,11 +4,9 @@
 <template>
   <div class="group-preview">
     <div class="group-header">
-      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">
-        {{ group.title }}
-      </h2>
-      <form action="" v-else @submit.prevent="editTitle()">
-        <input type="text" v-model="title" :placeholder="group.title" />
+      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2>
+      <form action="" v-else @submit.prevent="editTitle()" >
+        <input type="text" v-model="title" :placeholder="group.title"/>
       </form>
       <button class="menu-btn" @click="toggleMenu">
         <svg
@@ -27,10 +25,12 @@
           ></path>
         </svg>
       </button>
-      <div v-if="isOpen" class="group-menu">
+      <div v-if="isOpen" class="dynamic-popover">
+        <div class="popover-header">
         <h3>List actions</h3>
+        </div>
         <svg
-          class="close-svg"
+          class="close-popover"
           @click="toggleMenu"
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -98,7 +98,7 @@
         :get-child-payload="getChildPayload"
       > -->
         <Draggable v-for="card in group.cards" :key="card.id">
-          <card-preview :card="card" :group="group" />
+          <card-preview :card="card" :group="group" @saveCard="saveCard" />
         </Draggable>
       </Container>
       <div
@@ -199,24 +199,26 @@ export default {
     addCard(groupId) {
       const title = this.card.title;
       if (!title) return;
-      this.$emit("addCard", { groupId, card: this.card });
+      this.$emit("saveCard", { groupId, card: this.card });
       this.getEmptyCard();
       this.isAddClicked = false;
     },
     closeTextarea() {
       this.isAddClicked = false;
     },
-    editTitle() {
+    editGroup() {
       let group = this.groupCopy();
-      group.title = this.title
-      if (!group.title) return
-      console.log(group.title);
+      group.title= this.title
+      if(!group.title)return
       this.$emit("saveGroup", group);
       this.isTitleClicked = false;
     },
     toggleMenu() {
       console.log("Toggle menu");
       this.isOpen = !this.isOpen;
+    },
+    saveCard(groupId, card){
+      this.$emit("saveCard", {groupId, card} );
     },
     // DND
     groupCopy() {
