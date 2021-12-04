@@ -7,7 +7,7 @@
       <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">
         {{ group.title }}
       </h2>
-      <form action="" v-else @submit.prevent="editTitle()">
+      <form action="" v-else @submit.prevent="editGroup()">
         <input type="text" v-model="title" :placeholder="group.title" />
       </form>
       <button class="menu-btn" @click="toggleMenu">
@@ -90,7 +90,7 @@
         :drop-placeholder="{className: 'placeholder'}"
         :get-child-payload="getChildPayload" >
         <Draggable v-for="card in group.cards" :key="card.id">
-          <card-preview :card="card" :group="group" />
+          <card-preview :card="card" :group="group" @saveCard="saveCard" />
         </Draggable>
       </Container>
       <div class="card-add-container" @click="isAddClicked = !isAddClicked" v-if="!isAddClicked">
@@ -152,24 +152,26 @@ export default {
     addCard(groupId) {
       const title = this.card.title;
       if (!title) return;
-      this.$emit("addCard", { groupId, card: this.card });
+      this.$emit("saveCard", { groupId, card: this.card });
       this.getEmptyCard();
       this.isAddClicked = false;
     },
     closeTextarea() {
       this.isAddClicked = false;
     },
-    editTitle() {
+    editGroup() {
       let group = this.groupCopy();
       group.title= this.title
       if(!group.title)return
-      console.log(group.title);
       this.$emit("saveGroup", group);
       this.isTitleClicked = false;
     },
     toggleMenu() {
       console.log("Toggle menu");
       this.isOpen = !this.isOpen;
+    },
+    saveCard(groupId, card){
+      this.$emit("saveCard", {groupId, card} );
     },
     // DND
     groupCopy() {
