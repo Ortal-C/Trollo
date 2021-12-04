@@ -4,11 +4,9 @@
 <template>
   <div class="group-preview">
     <div class="group-header">
-      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">
-        {{ group.title }}
-      </h2>
-      <form action="" v-else @submit.prevent="editTitle()">
-        <input type="text" v-model="title" :placeholder="group.title" />
+      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2>
+      <form action="" v-else @submit.prevent="editTitle()" >
+        <input type="text" v-model="title" :placeholder="group.title"/>
       </form>
       <button class="menu-btn" @click="toggleMenu">
         <svg
@@ -27,10 +25,12 @@
           ></path>
         </svg>
       </button>
-      <div v-if="isOpen" class="group-menu">
+      <div v-if="isOpen" class="dynamic-popover">
+        <div class="popover-header">
         <h3>List actions</h3>
+        </div>
         <svg
-          class="close-svg"
+          class="close-popover"
           @click="toggleMenu"
           xmlns="http://www.w3.org/2000/svg"
           x="0px"

@@ -2,7 +2,7 @@
 	width: 100vw;
 	height: calc(100vh - 40px);
 	// background-color: #ebe4ff;
-	.groups-container{
+	.groups-container {
 		display: flex;
 		align-items: start;
 		overflow-x: auto;
@@ -22,7 +22,6 @@
 		transition: background-color 85ms ease-in;
 	}
 	input {
-		color: white;
 		outline: none;
 		border: none;
 		background-color: transparent;
