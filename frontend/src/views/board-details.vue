@@ -12,8 +12,9 @@
       <group-preview
         v-for="(group, idx) in board.groups"
         :key="group.id"
-        @removeGroup="removeGroup"
+        @saveCard="saveCard"
         @saveGroup="saveGroup"
+        @removeGroup="removeGroup"
         @handleDrop="handleDrop"
         :group="group"
         :idx="idx"
