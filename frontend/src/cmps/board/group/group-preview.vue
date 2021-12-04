@@ -236,7 +236,7 @@ export default {
     },
     handleDrop(lane, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (removedIndex!== null ||addedIndex !== null) {
+      if (removedIndex !== null ||addedIndex !== null) {
         this.$emit('handleDrop', { lane, dropResult });
       }
     },

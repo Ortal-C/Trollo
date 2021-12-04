@@ -101,10 +101,9 @@ export default {
         const group = JSON.parse(JSON.stringify(this.groups))[lane]
         if (removedIndex !== null) {
           this.dragging.data = group.cards.splice(removedIndex, 1)[0];
-          console.log(this.dragging.data);
         }
         if (addedIndex !== null) {
-          group.cards.splice(addedIndex, 0,  this.dragging.data );
+          group.cards.splice(addedIndex, 0, this.dragging.data);
         }
         await this.$store.dispatch({ type: "saveGroup", group })
       }
