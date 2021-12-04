@@ -89,14 +89,6 @@
         @drag-start="handleDragStart(idx, $event)"
         @drop="handleDrop(idx, $event)" 
         :get-child-payload="getChildPayload">
-      <!--  -->
-        <!-- <Container
-        :group-name="dndName"
-        @drag-start="handleDragStart(group.title, $event)"
-        @drop="handleDrop(group.title, $event)"
-        :drop-placeholder="{ className: 'placeholder' }"
-        :get-child-payload="getChildPayload"
-      > -->
         <Draggable v-for="card in group.cards" :key="card.id">
           <card-preview :card="card" :group="group" @saveCard="saveCard" />
         </Draggable>
@@ -160,14 +152,13 @@
 // @ is an alias to /src
 import cardPreview from '../card/card-preview.vue'
 import { Container, Draggable } from 'vue-smooth-dnd';
-// import { applyDrag } from '@/services/util.service.js';
 export default {
   name: 'group-preview',
   props: ['group', 'dndName', 'idx'],
   data() {
     return {
       card: {
-        title: "",
+        title: '',
       },
       title: '',
       isAddClicked: false,
@@ -177,9 +168,7 @@ export default {
       draggingCard: {
         lane: this.idx,
         index: -1,
-        data: {
-          // id:'id'
-        }
+        data: {}
       }
     };
   },
@@ -214,7 +203,6 @@ export default {
       this.isTitleClicked = false;
     },
     toggleMenu() {
-      console.log("Toggle menu");
       this.isOpen = !this.isOpen;
     },
     saveCard(groupId, card){
@@ -225,16 +213,13 @@ export default {
       return JSON.parse(JSON.stringify(this.group))
     },
     handleDragStart(lane, dragResult) {
-      // console.log(dragResult);
       let { payload, isSource } = dragResult
       if (isSource) {
         this.draggingCard = {
-          lane, //group index
-          index: payload.index, //card index in group
+          lane, 
+          index: payload.index, 
           data: this.group.cards[payload.index]
         }
-        // payload = this.group.cards[this.draggingCard.index]
-        // console.log('payload', payload);
       }
     },
     handleDrop(lane, dropResult) {
