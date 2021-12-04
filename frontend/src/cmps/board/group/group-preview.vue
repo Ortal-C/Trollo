@@ -84,18 +84,42 @@
       </div>
     </div>
     <ul>
-      <Container :group-name="dndName"
+      <Container
+        :get-child-payload="getChildPayload"
+        group-name="1"
+        @drag-start="handleDragStart(idx, $event)"
+        @drop="handleDrop(idx, $event)"
+      >
+        <!-- <Container
+        :group-name="dndName"
         @drag-start="handleDragStart(group.title, $event)"
         @drop="handleDrop(group.title, $event)"
-        :drop-placeholder="{className: 'placeholder'}"
-        :get-child-payload="getChildPayload" >
+        :drop-placeholder="{ className: 'placeholder' }"
+        :get-child-payload="getChildPayload"
+      > -->
         <Draggable v-for="card in group.cards" :key="card.id">
           <card-preview :card="card" :group="group" />
         </Draggable>
       </Container>
-      <div class="card-add-container" @click="isAddClicked = !isAddClicked" v-if="!isAddClicked">
-      <svg width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C11.4477 3 11 3.44772 11 4V11L4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11L13 11V4C13 3.44772 12.5523 3 12 3Z" fill="currentColor"></path></svg>
-      <p class="card-add">Add a card</p>
+      <div
+        class="card-add-container"
+        @click="isAddClicked = !isAddClicked"
+        v-if="!isAddClicked"
+      >
+        <svg
+          width="16"
+          height="16"
+          role="presentation"
+          focusable="false"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 3C11.4477 3 11 3.44772 11 4V11L4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11L13 11V4C13 3.44772 12.5523 3 12 3Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        <p class="card-add">Add a card</p>
       </div>
       <form @submit.prevent="addCard(group.id)" v-else>
         <textarea
@@ -103,8 +127,29 @@
           placeholder="Enter a title fot this card..."
         ></textarea>
         <div class="actions-container">
-        <button class="btn-add">Add card</button>
-        <svg class="btn-close icon" @click.prevent="closeTextarea()" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center;"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path></svg>
+          <button class="btn-add">Add card</button>
+          <svg
+            class="btn-close icon"
+            @click.prevent="closeTextarea()"
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+              color: rgb(66, 82, 110);
+              font-size: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <path
+              d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+            ></path>
+          </svg>
         </div>
       </form>
     </ul>
@@ -115,25 +160,27 @@
 // @ is an alias to /src
 import cardPreview from '../card/card-preview.vue'
 import { Container, Draggable } from 'vue-smooth-dnd';
-import { applyDrag } from '@/services/util.service.js';
+// import { applyDrag } from '@/services/util.service.js';
 export default {
   name: 'group-preview',
-  props: ['group', 'dndName'],
+  props: ['group', 'dndName', 'idx'],
   data() {
     return {
-      tmpGroup: {},
       card: {
         title: "",
       },
-      title:'',
+      title: '',
       isAddClicked: false,
       isTitleClicked: false,
       isOpen: false,
+      tmpGroup: {},
       draggingCard: {
-        lane: '',
+        lane: this.idx,
         index: -1,
-        cardData: {},
-      },
+        data: {
+          id:'id'
+        }
+      }
     };
   },
   created() {
@@ -161,8 +208,8 @@ export default {
     },
     editTitle() {
       let group = this.groupCopy();
-      group.title= this.title
-      if(!group.title)return
+      group.title = this.title
+      if (!group.title) return
       console.log(group.title);
       this.$emit("saveGroup", group);
       this.isTitleClicked = false;
@@ -176,34 +223,25 @@ export default {
       return JSON.parse(JSON.stringify(this.group))
     },
     handleDragStart(lane, dragResult) {
-      this.tmpGroup = this.groupCopy();
       const { payload, isSource } = dragResult
       if (isSource) {
         this.draggingCard = {
           lane,
           index: payload.index,
-          cardData: this.tmpGroup.cards[payload.index],
+          data: this.group.cards[payload.index]
         }
       }
     },
     handleDrop(lane, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (lane === this.draggingCard.lane && removedIndex === addedIndex) return;
-      else if(removedIndex || addedIndex){
-      console.log('inside the else if at handledrop:', lane, removedIndex, addedIndex );
-        if (removedIndex !== null) {
-          this.tmpGroup.cards.splice(removedIndex, 1);
-        }
-        if (addedIndex !== null) {
-          this.tmpGroup.cards.splice(addedIndex, 0, this.draggingCard.cardData);
-        }
-        this.saveGroup(this.tmpGroup);
+      if (removedIndex!== null ||addedIndex !== null) {
+        this.$emit('handleDrop', { lane, dropResult });
       }
     },
-    getChildPayload(index) { 
-      return{
+    getChildPayload(index) {
+      return {
         index,
-        }
+      }
     },
   },
   components: {

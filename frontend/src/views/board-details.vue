@@ -9,12 +9,18 @@
         :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
         :get-child-payload="getChildPayload" >
         <Draggable> -->
-          <group-preview
-            v-for="group in board.groups" :key="group.id"
-            @addCard="addCard"
-            @removeGroup="removeGroup" @saveGroup="saveGroup"
-            :group="group" :dndName="dndName"/>
-        <!-- </Draggable> -->
+      <group-preview
+        v-for="(group, idx) in board.groups"
+        :key="group.id"
+        @addCard="addCard"
+        @removeGroup="removeGroup"
+        @saveGroup="saveGroup"
+        @handleDrop="handleDrop"
+        :group="group"
+        :idx="idx"
+        :dndName="dndName"
+      />
+      <!-- </Draggable> -->
       <router-view></router-view>
       <form @submit.prevent="addGroup()">
         <div class="group-add">
@@ -22,7 +28,7 @@
         </div>
       </form>
     </section>
-      <!-- </Container> -->
+    <!-- </Container> -->
   </div>
 </template>
 
@@ -38,12 +44,10 @@ export default {
       group: {
         title: "",
       },
-      tmpBoard:null,
-      draggingGroup: {
-          lane:'',
-          index: -1,
-          groupData: {},
-        }
+      tmpBoard: null,
+      dragging: {
+        data:null
+      }
     };
   },
   async created() {
@@ -83,7 +87,6 @@ export default {
       this.tmpBoard = JSON.parse(JSON.stringify(this.board))
     },
     handleDragStart(dragResult) {
-      this.boardCopy();
       const { payload, isSource } = dragResult
       if (isSource) {
         this.draggingGroup = {
@@ -93,17 +96,18 @@ export default {
         }
       }
     },
-    async handleDrop(dropResult) {
-      const { removedIndex, addedIndex } = dropResult;
-      if (this.dndName === this.draggingGroup.lane && removedIndex === addedIndex) return;
-      else {
+    async handleDrop({ lane, dropResult }) {
+      const { removedIndex, addedIndex } = dropResult
+      if (removedIndex || addedIndex) {
+        const group = JSON.parse(JSON.stringify(this.groups))[lane]
         if (removedIndex !== null) {
-          this.tmpBoard.groups.splice(removedIndex, 1);
+          this.dragging.data = group.cards.splice(removedIndex, 1)[0];
+          console.log(this.dragging.data);
         }
         if (addedIndex !== null) {
-          this.tmpBoard.groups.splice(addedIndex, 0, this.draggingGroup.groupData);
+          group.cards.splice(addedIndex, 0,  this.dragging.data );
         }
-      await this.$store.dispatch({ type: "updateBoard", board: this.tmpBoard });
+        await this.$store.dispatch({ type: "saveGroup", group })
       }
     },
     getChildPayload(index) {
@@ -123,7 +127,7 @@ export default {
     boardStyle() {
       return this.$store.getters.board.style;
     },
-    dndName(){
+    dndName() {
       return 'Trollo';
     },
   },
@@ -142,7 +146,7 @@ export default {
 </script>
 
 <style>
-  .group-container1{
-    display: flex;
-  }
+.group-container1 {
+  display: flex;
+}
 </style>
