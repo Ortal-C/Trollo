@@ -1,69 +1,69 @@
 .menu {
-	display: flex;
+    display: flex;
 }
+
 .board-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 50px;
-	padding: 5px;
-	@media (max-width: $mobile-breakpoint) {
-		// display: flow-root;
-		.el-avatar,
-		h3 {
-			display: none;
-		}
-		select {
-			margin: 0 1px;
-		}
-	}
-	.fade-enter-active,
-	.fade-leave-active {
-		transition: opacity 0.5s;
-	}
-	.fade-enter,
-	.fade-leave-to {
-		opacity: 0;
-	}
-	section {
-		display: flex;
-		justify-content: space-between;
-	}
-	h3 {
-		margin: 0 20px;
-	}
-	button,
-	select {
-		border: none;
-		background-color: transparent;
-		height: 32px;
-		min-width: 32px;
-		padding: 4px;
-		background-color: hsla(0, 0%, 100%, 0.3);
-		border-radius: 3px;
-		border: none;
-		align-items: center;
-		align-self: center;
-		color: #fff;
-		display: -webkit-flex;
-		display: flex;
-		font-weight: 700;
-		height: 32px;
-		line-height: 32px;
-		margin: 0 5px;
-		padding: 0 6px;
-		white-space: nowrap;
-		transition: 0.15s;
-		cursor: pointer;
-	}
-	.starred {
-		color: gold;
-	}
-	.board-title {
-		margin: 0 5px;
-		line-height: 25px;
-	}
-	.el-avatar {
-		margin: 0 5px;
-	}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 5px;
+    @media (max-width: $mobile-breakpoint) {
+        // display: flow-root;
+        .el-avatar, h3 {
+            display: none;
+        }
+        select {
+            margin: 0 1px;
+        }
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+    .fade-enter,
+    .fade-leave-to {
+        opacity: 0;
+    }
+    section {
+        display: flex;
+        justify-content: space-between;
+    }
+    h3 {
+        margin: 0 20px;
+    }
+    button,
+    select {
+        border: none;
+        background-color: transparent;
+        height: 32px;
+        min-width: 32px;
+        padding: 4px;
+        background-color: hsla(0, 0%, 100%, 0.3);
+        border-radius: 3px;
+        border: none;
+        align-items: center;
+        align-self: center;
+        color: #fff;
+        display: -webkit-flex;
+        display: flex;
+        font-weight: 700;
+        height: 32px;
+        line-height: 32px;
+        margin: 0 5px;
+        padding: 0 6px;
+        white-space: nowrap;
+        transition: 0.15s;
+        cursor: pointer;
+    }
+    .starred {
+        color: gold;
+    }
+    .board-title {
+        margin: 0 5px;
+        line-height: 25px;
+    }
+    .el-avatar {
+        margin: 0 5px;
+    }
 }
