@@ -68,6 +68,14 @@
         </div>
         <h4>Activity</h4>
       </li>
+        <div class="activity-preview" v-for="activity in board.activities" :key="activity.id">
+          <img :src="activity.byMember.imgUrl">
+          <div class="activity-preview-content">
+            <span class="member-name">{{activity.byMember.fullname}}</span> 
+            <p> {{activity.txt}}</p>
+          </div>
+            <span class="activity-time">{{activity.createdAt}}</span>
+        </div>
     </ul>
     <main class="color-palette" v-if="changeBg">
       <div
@@ -82,6 +90,7 @@
 // @ is an alias to /src
 export default {
   name: 'board-menu',
+  props: ['board'],
   data() {
     return {
       currAction: 'menu',
