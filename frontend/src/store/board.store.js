@@ -15,7 +15,6 @@ export const boardStore = {
         currEdit(state) { return state.currEdit },
         currGroup(state) { return state.currGroup },
         currCard(state) { return state.currCard },
-        // groups(state) { return state.board.groups },
     },
     mutations: {
         setBoards(state, { boards }) {
@@ -27,21 +26,12 @@ export const boardStore = {
         setCurrEdit(state, { currEdit }) {
             state.currEdit = currEdit;
         },
-        setCurrGroup(state, { currGroup }) {
-            state.currGroup = currGroup;
+        setCurrGroup(state, { group }) {
+            state.currGroup = group;
         },
         setCurrCard(state, { card }) {
-            console.log(card, 'card');
             state.currCard = card;
-            console.log(state.currCard, 'setCurr');
         }
-        // addGroup(state, { group }) {
-        //     state.board.groups.push(group)
-        //     console.log(state.board.groups);
-        // },
-        // removeGroup(state, { groups }) {
-        //     state.board.groups = groups
-        // },
     },
     actions: {
         async loadBoards(context) {
@@ -57,7 +47,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                    // board = await boardService.query(board)
+                // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -78,7 +68,7 @@ export const boardStore = {
         //GROUP ACTIONS//
         async saveGroup(context, { group }) {
             try {
-                const board = await boardService.saveGroup(context.state.board, {...group })
+                const board = await boardService.saveGroup(context.state.board, { ...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log('Issues with saveGroup', err);
@@ -98,9 +88,7 @@ export const boardStore = {
         async saveCard(context, { payload }) {
             const { groupId, card } = payload
             try {
-                console.log('Store', card);
                 const board = await boardService.saveCard(context.state.board, groupId, card)
-                console.log('Store after', board);
                 context.commit({ type: 'setCurrCard', card })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
