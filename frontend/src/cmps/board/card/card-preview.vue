@@ -2,14 +2,15 @@
 
 <template>
   <div class="card-container">
+    <span v-for="labelId in card.labelsIds" :key="labelId" style="color: lightgray;">{{ labelId }}, </span>
     <div v-if="!isEdit" class="card-preview" @click="cardDetails">
-        <p>{{ card.title }}</p>
-        <button class="edit-card" @click.stop="openEditCard">🖊</button>
-        <div class="card-icons">
-          <div v-for="member in card.members" :key="member._id">
-              <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
-            </div>
+      <p>{{ card.title }}</p>
+      <button class="edit-card" @click.stop="openEditCard">🖊</button>
+      <div class="card-icons">
+        <div v-for="member in card.members" :key="member._id">
+          <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
         </div>
+      </div>
     </div>
     <div class="card-edit-container" v-else>
       <form @change="editCard(group.id)">
