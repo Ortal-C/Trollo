@@ -30,7 +30,8 @@
         align-items: center;
     }
     button,
-    select {
+    select,
+    h3 {
         height: 32px;
         min-width: 32px;
         padding: 4px;
@@ -52,7 +53,8 @@
         cursor: pointer;
     }
     button:hover,
-    select:hover {
+    select:hover,
+    h3:hover {
         background-color: hsla(0, 0%, 100%, 0.459);
     }
     .starred {
