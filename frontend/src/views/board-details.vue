@@ -2,9 +2,9 @@
 // v-for group in groups group-preview, send group prop
 
 <template>
-  <div class="board-details" v-if="board">
-    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle" @editBoardTitle="editBoardTitle"/>
-    <section class="groups-container">
+  <div class="board-details" v-if="board" >
+    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle" @editBoardTitle="editBoardTitle" />
+    <section class="groups-container" v-dragscroll.x="true">
       <!-- <Container class="groups-container"
         :group-name='dndName' @drop="handleDrop"
         :get-child-payload="getChildPayload" > -->

@@ -75,23 +75,40 @@
       >
         <img :src="activity.byMember.imgUrl" />
         <div class="activity-preview-content">
-          <p><b>{{activity.byMember.fullname}}</b>&#160;{{activity.txt}}</p>
-          <p>{{activity.createdAt}}</p>
+          <p>
+            <b>{{ activity.byMember.fullname }}</b
+            >&#160;{{ activity.txt }}
+          </p>
+          <p>{{ activity.createdAt }}</p>
           <!-- <span class="member-name">{{ activity.byMember.fullname}}</span>
           <p>{{activity.txt}}</p> -->
         </div>
         <!-- <span class="activity-time">{{activity.createdAt}}</span> -->
       </div>
     </ul>
-    <main class="color-palette" v-if="changeBg">
-      <div
-        class="color"
-        v-for="color in colors"
-        :key="color"
-        :value="color"
-        :style="`background-color:${color}`"
-        @click="updateStyle(color)"
-      ></div>
+    <hr />
+    <main v-if="changeBg">
+      <section  class="bg-img">
+        <input type="text" />
+        <div
+          class="color"
+          v-for="color in colors"
+          :key="color"
+          :value="color"
+          :style="`background-color:${color}`"
+          @click="updateStyle(color)"
+        ></div>
+      </section>
+      <section class="color-palette">
+        <div
+          class="color"
+          v-for="color in colors"
+          :key="color"
+          :value="color"
+          :style="`background-color:${color}`"
+          @click="updateStyle(color)"
+        ></div>
+      </section>
     </main>
   </div>
 </template>
