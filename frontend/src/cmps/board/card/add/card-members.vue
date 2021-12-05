@@ -8,7 +8,6 @@
         <span class="member-name">{{member.fullname}}</span>
       </li>
     </ul>
-    <pre v-if="card">{{card.members}}</pre>
   </section>
 </template>
 

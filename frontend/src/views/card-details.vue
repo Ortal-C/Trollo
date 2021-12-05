@@ -15,6 +15,15 @@
       </div>
       <button class="close-btn" @click="closeDetails">✖</button>
     </div>
+       <!-- members  -->
+        <div class="members-container" v-if="card.members.length">
+            <h5>Members</h5>
+            <div v-for="member in card.members" :key="member._id">
+              <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+            </div>
+              <span>➕</span>
+        </div>
+       <!-- members  -->
     <div class="card-details-main-container">
       <div class="card-details-main">
         <div class="card-details-desc">
@@ -87,7 +96,7 @@
       <div class="card-details-sidebar">
         <div class="add-to-card">
           <h3 class="add-to-card-title">Add to card</h3>
-          <div v-for="action in actions" :key="action.type" >
+          <div v-for="action in actions" :key="action.type">
             <div class="action-div" @click="action.isOpen = !action.isOpen">
               <span v-html="action.svg"></span>
               {{action.title}}
@@ -120,12 +129,11 @@ export default {
   name: 'card-details',
   data() {
     return {
-      card: null,
-      group: null,
+      // group: null,
       board: null,
       rows: 3,
-      isDesc:false,
-      desc:'',
+      isDesc: false,
+      desc: '',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -177,18 +185,25 @@ export default {
   },
   created() {
     if (this.cardId) {
+      console.log('Created');
       boardService.getById(this.boardId)
         .then(board => {
           this.board = board
           const group = board.groups.find(group => group.id === this.groupId)
-          this.group = group
+          // this.group = group
+          this.$store.commit({type: 'setCurrGroup', group})
           const card = group.cards.find(card => card.id === this.cardId)
-          this.card = card
           this.$store.commit({type: 'setCurrCard', card})
         })
     }
   },
   computed: {
+    card() {
+      return this.$store.getters.currCard
+    },
+    group() {
+      return this.$store.getters.currGroup
+    },
     boardId() {
       return this.$route.params.boardId;
     },
