@@ -2,9 +2,21 @@
 
 <template>
   <div class="card-container">
-    <span v-for="labelId in card.labelsIds" :key="labelId" style="color: lightgray;">{{ labelId }}, </span>
+    <span
+      v-for="labelId in card.labelsIds"
+      :key="labelId"
+      style="color: lightgray"
+      >{{ labelId }},
+    </span>
     <div v-if="!isEdit" class="card-preview" @click="cardDetails">
+      <!-- card.style.size === 'header' :style="`background-color:${card.style.color}`" -->
+      <div
+        class="cover-preview"
+        v-if="card.style.size === 'header'"
+        :style="`background-color:${card.style.color}`"
+      ></div>
       <p>{{ card.title }}</p>
+      <span>{{ desc }}</span>
       <button class="edit-card" @click.stop="openEditCard">🖊</button>
       <div class="card-icons">
         <div v-for="member in card.members" :key="member._id">
@@ -52,7 +64,12 @@ export default {
       if (!card.title) return;
       this.$emit('saveCard', groupId, card);
     },
-   
   },
+  computed: {
+    desc() {
+      if (this.card.description) return '🍔'
+      else return ''
+    }
+  }
 };
 </script>

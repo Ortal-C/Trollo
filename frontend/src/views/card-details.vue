@@ -2,6 +2,7 @@
 
 <template>
   <div class="card-details" v-if="card">
+    <div v-if="card.style.color" :style="`background-color:${card.style.color}`" class="card-details-cover"></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
@@ -101,17 +102,15 @@
           <main>
             <h2>Description</h2>
             <section class="description-container">
-              <div v-if="!isDesc" @click="isDesc = !isDesc">
-                Add a more detailed description...
-              </div>
+              <div v-if="!isDesc" @click="isDesc = !isDesc">{{ desc }}</div>
               <form
                 action=""
                 v-else
-                @change="addDesc(group.id, card.id)"
-                @submit.prevent="addDesc(group.id, card.id)"
+                @change="addDesc(group.id)"
+                @submit.prevent="addDesc(group.id)"
               >
                 <textarea
-                  v-model="desc"
+                  v-model="card.description"
                   name=""
                   id=""
                   cols="30"
@@ -140,7 +139,10 @@
           </svg>
           <main>
             <h2>Activity</h2>
-            <textarea placeholder="Write a comment..."></textarea>
+            <div>
+              <textarea placeholder="Write a comment..."></textarea>
+              <button>Save</button>
+            </div>
           </main>
         </div>
       </div>
@@ -202,23 +204,23 @@
 </template>
 
 <script>
-import { boardService } from '../services/board.service.js';
-import cardMembers from '@/cmps/board/card/add/card-members.vue';
-import cardLabels from '@/cmps/board/card/add/card-labels.vue';
-import cardChecklist from '@/cmps/board/card/add/card-checklist.vue';
-import cardDates from '@/cmps/board/card/add/card-dates.vue';
-import cardAttachment from '@/cmps/board/card/add/card-attachment.vue';
-import cardCover from '@/cmps/board/card/add/card-cover.vue';
+import { boardService } from "../services/board.service.js";
+import cardMembers from "@/cmps/board/card/add/card-members.vue";
+import cardLabels from "@/cmps/board/card/add/card-labels.vue";
+import cardChecklist from "@/cmps/board/card/add/card-checklist.vue";
+import cardDates from "@/cmps/board/card/add/card-dates.vue";
+import cardAttachment from "@/cmps/board/card/add/card-attachment.vue";
+import cardCover from "@/cmps/board/card/add/card-cover.vue";
 
 export default {
-  name: 'card-details',
+  name: "card-details",
   data() {
     return {
       // group: null,
       board: null,
       rows: 3,
       isDesc: false,
-      desc: '',
+      // desc: '',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -231,7 +233,7 @@ export default {
           title: 'Labels',
           type: 'labels',
           isOpen: false,
-          svg: ` <svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path   d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z" ></path> </svg>`
+          svg: ` <svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path   d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z" ></path> </svg>`,
         },
         {
           title: 'CheckList',
@@ -243,49 +245,48 @@ export default {
           title: 'Dates',
           type: 'dates',
           isOpen: false,
-          svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path   fill-rule="evenodd"   d="M8 15A7 7 0 108 1a7 7 0 000 14zm8-7A8 8 0 110 8a8 8 0 0116 0z"   clip-rule="evenodd" ></path> <path   fill-rule="evenodd"   d="M7.5 3a.5.5 0 01.5.5v5.21l3.248 1.856a.5.5 0 01-.496.868l-3.5-2A.5.5 0 017 9V3.5a.5.5 0 01.5-.5z"   clip-rule="evenodd" ></path> </svg>`
+          svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path   fill-rule="evenodd"   d="M8 15A7 7 0 108 1a7 7 0 000 14zm8-7A8 8 0 110 8a8 8 0 0116 0z"   clip-rule="evenodd" ></path> <path   fill-rule="evenodd"   d="M7.5 3a.5.5 0 01.5.5v5.21l3.248 1.856a.5.5 0 01-.496.868l-3.5-2A.5.5 0 017 9V3.5a.5.5 0 01.5-.5z"   clip-rule="evenodd" ></path> </svg>`,
         },
         {
           title: 'Attachment',
           type: 'attachment',
           isOpen: false,
-          svg: `<svg class="action-svg" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"> <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>`
+          svg: `<svg class="action-svg" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"> <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>`,
         },
         {
           title: 'Cover',
           type: 'cover',
           isOpen: false,
-          svg: `<svg class="action-svg" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path d="M4 9C4 8.44772 4.44772 8 5 8H9C9.55228 8 10 8.44772 10 9C10 9.55228 9.55228 10 9 10H5C4.44772 10 4 9.55228 4 9Z" fill="currentColor" ></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C1.79086 3 0 4.79086 0 7V17C0 19.2091 1.79086 21 4 21H20C22.2091 21 24 19.2091 24 17V7C24 4.79086 22.2091 3 20 3H4ZM20 5H4C2.89543 5 2 5.89543 2 7V14H22V7C22 5.89543 21.1046 5 20 5ZM22 16H2V17C2 18.1046 2.89543 19 4 19H20C21.1046 19 22 18.1046 22 17V16Z" fill="currentColor" ></path></svg>`
+          svg: `<svg class="action-svg" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path d="M4 9C4 8.44772 4.44772 8 5 8H9C9.55228 8 10 8.44772 10 9C10 9.55228 9.55228 10 9 10H5C4.44772 10 4 9.55228 4 9Z" fill="currentColor" ></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C1.79086 3 0 4.79086 0 7V17C0 19.2091 1.79086 21 4 21H20C22.2091 21 24 19.2091 24 17V7C24 4.79086 22.2091 3 20 3H4ZM20 5H4C2.89543 5 2 5.89543 2 7V14H22V7C22 5.89543 21.1046 5 20 5ZM22 16H2V17C2 18.1046 2.89543 19 4 19H20C21.1046 19 22 18.1046 22 17V16Z" fill="currentColor" ></path></svg>`,
         },
         {
           title: 'Archieve',
           type: 'archieve',
           isOpen: false,
-          svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`
+          svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`,
         },
-      ]
-    }
+      ],
+    };
   },
+  components: {},
   created() {
     if (this.cardId) {
-      console.log('Created');
-      boardService.getById(this.boardId)
-        .then(board => {
-          this.board = board
-          const group = board.groups.find(group => group.id === this.groupId)
-          // this.group = group
-          this.$store.commit({ type: 'setCurrGroup', group })
-          const card = group.cards.find(card => card.id === this.cardId)
-          this.$store.commit({ type: 'setCurrCard', card })
-        })
+      boardService.getById(this.boardId).then((board) => {
+        this.board = board;
+        const group = board.groups.find((group) => group.id === this.groupId);
+        // this.group = group
+        this.$store.commit({ type: "setCurrGroup", group });
+        const card = group.cards.find((card) => card.id === this.cardId);
+        this.$store.commit({ type: "setCurrCard", card });
+      });
     }
   },
   computed: {
     card() {
-      return this.$store.getters.currCard
+      return this.$store.getters.currCard;
     },
     group() {
-      return this.$store.getters.currGroup
+      return this.$store.getters.currGroup;
     },
     boardId() {
       return this.$route.params.boardId;
@@ -296,19 +297,35 @@ export default {
     cardId() {
       return this.$route.params.cardId;
     },
+    desc() {
+      console.log("desc", this.card.description);
+      if (!this.card.description) return "Add a more detailed description...";
+      else return this.card.description;
+    },
   },
   methods: {
     closeDetails() {
-      this.$router.push('/board/' + this.board._id)
-      document.body.classList.remove('details-open');
+      this.$router.push("/board/" + this.board._id);
+      document.body.classList.remove("details-open");
     },
     changeRowCount() {
-      if (this.rows === 3) this.rows = 6
-      else this.rows = 3
+      if (this.rows === 3) this.rows = 6;
+      else this.rows = 3;
     },
     removeCard(groupId, cardId) {
-      this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId } })
-      this.closeDetails()
+      this.$store.dispatch({
+        type: "removeCard",
+        payload: { groupId, cardId },
+      });
+      this.closeDetails();
+    },
+    cardCopy() {
+      return JSON.parse(JSON.stringify(this.card));
+    },
+    addDesc(groupId) {
+      this.isDesc = false;
+      let card = this.cardCopy();
+      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     addDesc(groupId, cardId) {
       console.log('card-details', this.desc, groupId, cardId);
@@ -324,6 +341,6 @@ export default {
     cardDates,
     cardAttachment,
     cardCover,
-  }
-}
+  },
+};
 </script>
