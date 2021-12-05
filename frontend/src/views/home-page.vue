@@ -1,14 +1,16 @@
 <template>
   <div class="home-page">
-    <h1>Home page</h1>
+    <h1>Trollo</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 export default {
   name: 'home-page',
   components: {
-  }
+  },
+  created() {
+    document.body.style.backgroundColor = '#ffffff';
+  },
 }
 </script>

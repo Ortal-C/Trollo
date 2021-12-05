@@ -96,8 +96,7 @@
       <div
         class="card-add-container"
         @click="isAddClicked = !isAddClicked"
-        v-if="!isAddClicked"
-      >
+        v-if="!isAddClicked">
         <svg
           width="16"
           height="16"
@@ -115,6 +114,7 @@
       </div>
       <form @submit.prevent="addCard(group.id)" v-else>
         <textarea
+          class="card-add-textarea"
           v-model="card.title"
           placeholder="Enter a title for this card..."
         ></textarea>
@@ -160,7 +160,7 @@ export default {
       card: {
         title: '',
       },
-      title: '',
+      title: this.group.title,
       isAddClicked: false,
       isTitleClicked: false,
       isOpen: false,

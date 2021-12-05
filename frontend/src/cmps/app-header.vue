@@ -1,5 +1,5 @@
 <template>
-  <div class="app-header">
+  <div class="app-header" ref="header">
     <div class="btn-header-container">
       <button class="btn-header" @click="homePage">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;">
@@ -33,6 +33,9 @@
 export default {
   name: 'app-header',
   components: {
+  },
+  mounted() {
+    console.log(this.$refs);
   },
   methods: {
     homePage() {

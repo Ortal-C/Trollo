@@ -12,6 +12,7 @@
 		// width: auto;
 	}
 	.group-add {
+		margin: 0 4px;
 		min-width: 272px;
 		max-width: 272px;
 		color: #fff;
@@ -52,15 +53,12 @@
 			margin-bottom: 3px;
 		}
 		.btn-add {
-			color: #fff;
-			font-family: inherit;
-			width: 80px;
+			// width: 80px;
 			height: 32px;
 			border: none;
 			margin: 1px 5px;
 			border-radius: 3px;
 			line-height: 30px;
-			background-color: #0079bf;
 		}
 		.btn-add:hover {
 			background-color: #0070b1;

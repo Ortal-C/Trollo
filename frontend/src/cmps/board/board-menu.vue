@@ -99,22 +99,22 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: "board-menu",
-  props: ["board"],
+  name: 'board-menu',
+  props: ['board'],
   data() {
     return {
-      currAction: "menu",
+      currAction: 'menu',
       changeBg: false,
       colors: [
-        "#cc0033",
-        "#ff8000",
-        "#ffbf00",
-        "#00cc00",
-        "#66d9ff",
-        "#0099cc",
-        "#bf80ff",
-        "#ff66ff",
-        "#ff4da6",
+        '#cc0033',
+        '#ff8000',
+        '#ffbf00',
+        '#00cc00',
+        '#0099cc',
+        '#66d9ff',
+        '#bf80ff',
+        '#ff66ff',
+        '#ff4da6',
       ],
     };
   },

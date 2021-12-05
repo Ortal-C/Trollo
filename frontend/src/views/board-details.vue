@@ -72,16 +72,16 @@
 </template>
 
 <script>
-import { boardService } from "@/services/board.service.js";
-import boardNav from "@/cmps/board/board-nav.vue";
-import groupPreview from "@/cmps/board/group/group-preview.vue";
-import { Container, Draggable } from "vue-smooth-dnd";
+import { boardService } from '@/services/board.service.js';
+import boardNav from '@/cmps/board/board-nav.vue';
+import groupPreview from '@/cmps/board/group/group-preview.vue';
+import { Container, Draggable } from 'vue-smooth-dnd';
 export default {
-  name: "board-details",
+  name: 'board-details',
   data() {
     return {
       group: {
-        title: "",
+        title: '',
       },
       tmpBoard: null,
       isAddGroup: false
@@ -89,7 +89,7 @@ export default {
   },
   async created() {
     const boardId = this.$route.params.boardId;
-    let board = await this.$store.dispatch({ type: "loadBoard", boardId });
+    let board = await this.$store.dispatch({ type: 'loadBoard', boardId });
     document.body.style.backgroundColor = board.style;
     this.getEmptyGroup();
   },
@@ -108,6 +108,7 @@ export default {
       if (!title) return;
       await this.$store.dispatch({ type: "saveGroup", group: this.group });
       this.getEmptyGroup();
+      this.isAddGroup = false
     },
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
