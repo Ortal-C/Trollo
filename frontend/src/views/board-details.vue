@@ -3,7 +3,7 @@
 
 <template>
   <div class="board-details" v-if="board">
-    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle"/>
+    <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle" @editBoardTitle="editBoardTitle"/>
     <section class="groups-container">
       <!-- <Container class="groups-container"
         :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
@@ -121,6 +121,9 @@ export default {
     },
     closeInput() {
       this.isAddGroup = false;
+    },
+    editBoardTitle(board){
+      this.$store.dispatch({type: 'updateBoard', board})
     },
     // DND
     boardCopy() {
