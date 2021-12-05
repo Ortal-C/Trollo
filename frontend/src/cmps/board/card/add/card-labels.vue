@@ -31,6 +31,9 @@ export default {
     }
   },
   methods: {
+    cardCopy() {
+      return JSON.parse(JSON.stringify(this.card));
+    },
     toggleLabel(labelId) {
       let cardLabelIds = this.card.labelsIds.slice()
       if (this.card.labelsIds.length === 0 || !this.card.labelsIds.includes(labelId)) {
@@ -45,10 +48,30 @@ export default {
       // this.$emit("toggleStar", { ...this.board, isStarred: this.isStarred });
     },
   },
+    async toggleMember(currMember) {
+      let card = this.cardCopy()
+      const member = card.members.find(member => {
+        return member._id === currMember._id
+      })
+      if (!member) card.members.push(currMember)
+      else {
+        const memberIdx = card.members.findIndex(member => {
+        return member === currMember
+        })
+      card.members.splice(memberIdx, 1)
+      }
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+    },
   computed: {
     board() {
       return this.$store.getters.board || null;
     },
+    groupId() {
+      return this.$route.params.groupId;
+    },
+    card() {
+      return this.$store.getters.currCard
+    }
   }
 }
 </script>
