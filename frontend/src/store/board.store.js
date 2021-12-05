@@ -6,10 +6,12 @@ export const boardStore = {
         boards: [],
         board: null,
         currGroup: null,
+        currEdit: ''
     },
     getters: {
         boards(state) { return state.boards },
         board(state) { return state.board },
+        currEdit(state) { return state.currEdit }
         // groups(state) { return state.board.groups },
     },
     mutations: {
@@ -19,6 +21,9 @@ export const boardStore = {
         setBoard(state, { board }) {
             state.board = board;
         },
+        setCurrEdit(state, { currEdit }) {
+            state.currEdit = currEdit;
+        }
         // addGroup(state, { group }) {
         //     state.board.groups.push(group)
         //     console.log(state.board.groups);
@@ -41,7 +46,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                    // board = await boardService.query(board)
+                // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -62,7 +67,7 @@ export const boardStore = {
         //GROUP ACTIONS//
         async saveGroup(context, { group }) {
             try {
-                const board = await boardService.saveGroup(context.state.board, {...group })
+                const board = await boardService.saveGroup(context.state.board, { ...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log('Issues with saveGroup', err);
