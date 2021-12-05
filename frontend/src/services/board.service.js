@@ -75,7 +75,6 @@ function saveCard(board, groupId, card) {
         card.id = utilService.makeId()
         newBoard.groups[idx].cards.push(card)
     }
-    console.log('service-newBoard', newBoard);
     return saveBoard(newBoard)
 }
 
@@ -102,9 +101,9 @@ function getEmptyCard() {
         id: '',
         title: '',
         description: '',
-        byMember:{},
-        members:[],
-        labelsIds:[],
+        byMember: {},
+        members: [],
+        labelsIds: [],
         checklists: [],
         attachmens: [],
         comments: [],

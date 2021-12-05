@@ -65,6 +65,7 @@
             </g>
           </g>
         </svg>
+        <div class="add-card-group" @click="addCard(group.id)">Add a card...</div>
         <div class="archive-group" @click="removeGroup(group.id)">
           <!-- <svg
             stroke="currentColor"
@@ -189,11 +190,13 @@ export default {
       this.$emit("removeGroup", groupId);
     },
     addCard(groupId) {
+      this.isOpen=false
+      this.isAddClicked = !this.isAddClicked
       const title = this.card.title;
       if (!title) return;
       this.$emit("saveCard", { groupId, card: this.card });
       this.getEmptyCard();
-      this.isAddClicked = false;
+      // this.isAddClicked = false;
     },
     closeTextarea() {
       this.isAddClicked = false;

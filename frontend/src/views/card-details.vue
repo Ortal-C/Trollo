@@ -53,7 +53,15 @@
           </svg>
           <main>
             <h2>Description</h2>
-            <textarea :rows="rows" placeholder="Add a more detailed description..." @click="changeRowCount" ></textarea>
+            <section class="description-container" >
+              <div v-if="!isDesc" @click="isDesc=!isDesc">Add a more detailed description...</div>
+          <form action="" v-else @change="addDesc(group.id, card.id)" @submit.prevent="addDesc(group.id, card.id)">
+            <textarea v-model="desc" name="" id="" cols="30" rows="6" placeholder="Add a more detailed description..."></textarea>
+            <button>Save</button>
+            <button @click="isDesc=!isDesc">✖</button>
+          </form>
+            </section>
+          
           </main>
         </div>
         <div class="card-details-activity">
@@ -116,6 +124,8 @@ export default {
       group: null,
       board: null,
       rows: 3,
+      isDesc:false,
+      desc:'',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -166,7 +176,6 @@ export default {
   components: {
   },
   created() {
-    console.log(this.boardId, this.groupId, this.cardId);
     if (this.cardId) {
       boardService.getById(this.boardId)
         .then(board => {
@@ -202,6 +211,9 @@ export default {
       this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId } })
       this.closeDetails()
     },
+    addDesc(groupId, cardId){
+      console.log('card-details',this.desc, groupId, cardId);
+    }
   },
   components:{
     cardMembers,
