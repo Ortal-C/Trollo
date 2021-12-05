@@ -13,11 +13,8 @@ export const boardStore = {
         boards(state) { return state.boards },
         board(state) { return state.board },
         currEdit(state) { return state.currEdit },
-<<<<<<< HEAD
-=======
         currGroup(state) { return state.currGroup },
         currCard(state) { return state.currCard },
->>>>>>> 7dfcfd6301c82da73798d288a8e08cc0647d32f9
         // groups(state) { return state.board.groups },
     },
     mutations: {
