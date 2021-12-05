@@ -4,8 +4,9 @@
 <template>
   <div class="group-preview">
     <div class="group-header">
-      <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2>
-      <form action="" v-else @change="editGroup()" >
+      <!-- <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2> -->
+      <h2 v-if="!currEdit" @click="changeCurrEdit">{{ group.title }}</h2>
+      <form action="" v-else @change="editGroup()" @submit.prevent="editGroup()" >
         <input type="text" v-model="title" :placeholder="group.title"/>
       </form>
       <button class="menu-btn" @click="toggleMenu">
@@ -162,7 +163,7 @@ export default {
       },
       title: this.group.title,
       isAddClicked: false,
-      isTitleClicked: false,
+      // isTitleClicked: false,
       isOpen: false,
       tmpGroup: {},
       draggingCard: {
@@ -176,6 +177,9 @@ export default {
     this.getEmptyCard();
   },
   methods: {
+    changeCurrEdit(){
+      this.$store.commit({type: 'setCurrEdit', currEdit:this.group.id})
+    },
     getEmptyCard() {
       this.card = boardService.getEmptyCard();
     },
@@ -200,7 +204,7 @@ export default {
       group.title= this.title
       if(!group.title)return
       this.$emit("saveGroup", group);
-      this.isTitleClicked = false;
+    this.$store.commit({type: 'setCurrEdit', currEdit:null})
     },
     toggleMenu() {
       this.isOpen = !this.isOpen;
@@ -231,6 +235,11 @@ export default {
     getChildPayload(index) {
       return this.group.cards[index]
     },
+  },
+  computed:{
+    currEdit(){
+      return this.group.id === this.$store.getters.currEdit
+    }
   },
   components: {
     cardPreview,
