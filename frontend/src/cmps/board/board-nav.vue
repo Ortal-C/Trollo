@@ -1,14 +1,17 @@
 // Board nav
 
 <template>
-  <section class="board-nav">
+  <section class="board-nav" v-if="board">
     <section>
       <select>
         <option value="board">Board</option>
         <option value="dashboard">Dashboard</option>
       </select>
       <div class="board-title">
-        <h3>{{ board.title }}</h3>
+        <h3 v-if="!isEdit" @click="isEdit = !isEdit">{{ board.title }}</h3>
+        <form v-else @change="editBoardTitle()" action="">
+          <input type="text" v-model="title" :placeholder="board.title" />
+        </form>
       </div>
       <button :class="isStar" @click="toggleStar">
         <svg
@@ -52,54 +55,69 @@
 import boardMenu from "@/cmps/board/board-menu.vue";
 // @ is an alias to /src
 export default {
-  name: 'board-nav',
+  name: "board-nav",
   props: {},
   data() {
     return {
       //circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-      board: null,
+      // board: null,
       isMenuOpen: false,
       isStarred: null,
+      isEdit: false,
+      title: '',
       style: null,
       colors: [
-        '#cc0033',
-        '#ff8000',
-        '#ffbf00',
-        '#00cc00',
-        '#66d9ff',
-        '#0099cc',
-        '#bf80ff',
-        '#ff66ff',
-        '#ff4da6',
-      ]
-    }
+        "#cc0033",
+        "#ff8000",
+        "#ffbf00",
+        "#00cc00",
+        "#66d9ff",
+        "#0099cc",
+        "#bf80ff",
+        "#ff66ff",
+        "#ff4da6",
+      ],
+    };
   },
   created() {
     // const boardId = this.$route.params.boardId
     // const boardId = 'b101'
-    this.board = this.$store.getters.board
-    this.isStarred = this.board.isStarred
-    this.style = this.board.style
+    // this.board = this.$store.getters.board;
+    this.isStarred = this.board.isStarred;
+    this.style = this.board.style;
   },
   methods: {
     toggleStar() {
-      this.isStarred = !this.isStarred
-      this.$emit('toggleStar', { ...this.board, isStarred: this.isStarred })
+      this.isStarred = !this.isStarred;
+      this.$emit("toggleStar", { ...this.board, isStarred: this.isStarred });
     },
     async updateStyle(color) {
-      this.$emit('updateStyle', color)
+      this.$emit("updateStyle", color);
     },
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen
+      this.isMenuOpen = !this.isMenuOpen;
+    }, 
+      editBoardTitle() {
+      let board = this.boardCopy();
+      board.title = this.title;
+      if (!board.title) return;
+      this.$emit("editBoardTitle", board);
+      this.isEdit = false;
+    },
+     boardCopy(){
+         return JSON.parse(JSON.stringify(this.board))
     }
   },
   computed: {
     isStar() {
-      return { "starred": this.isStarred }
+      return { starred: this.isStarred };
     },
+    board(){
+  return this.$store.getters.board;
+    }
   },
   components: {
     boardMenu,
-  }
-}
+  },
+};
 </script>
