@@ -1,6 +1,7 @@
 <template>
 <section>
-  <h1>Hello members</h1>
+  <input type="text" placeholder="Search members">
+  <h4>Board members</h4>
   <pre>{{board.members}}</pre>
 </section>
 </template>
@@ -11,7 +12,6 @@ export default {
   props: ['card'],
   data(){
     return{
-
     }
   },
   computed:{
@@ -21,7 +21,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
