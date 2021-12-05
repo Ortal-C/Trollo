@@ -84,7 +84,7 @@ export const boardData = {
                         "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
                     },
                 ],
-                "labelsIds": ['l101', 'l102'],
+                "labelsIds": ['l101', 'l102', 'l103', 'l104'],
                 "checklists": [],
                 "attachmens": [],
                 "createdAt": 1590999730348,
@@ -126,7 +126,7 @@ export const boardData = {
                 "title": "Do this",
                 "description": "nice in here",
                 "members": [],
-                "labelsIds": [],
+                "labelsIds": ['l104', 'l105'],
                 "checklists": [],
                 "attachmens": [],
                 "createdAt": 1590999730348,
