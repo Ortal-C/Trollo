@@ -184,6 +184,7 @@ export default {
           this.group = group
           const card = group.cards.find(card => card.id === this.cardId)
           this.card = card
+          this.$store.commit({type: 'setCurrCard', card})
         })
     }
   },

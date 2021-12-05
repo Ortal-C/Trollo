@@ -1,23 +1,58 @@
 <template>
-<section>
-  <input type="text" placeholder="Search members">
-  <h4>Board members</h4>
-  <pre>{{board.members}}</pre>
-</section>
+  <section class="card-members" v-if="board">
+    <input type="text" placeholder="Search members">
+    <h4>Board members</h4>
+    <ul v-for="member in board.members" :key="member._id">
+      <li :title="member.fullname" @click="toggleMember(member)">
+        <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
+        <span class="member-name">{{member.fullname}}</span>
+      </li>
+    </ul>
+    <pre v-if="card">{{card.members}}</pre>
+  </section>
 </template>
 
 <script>
 export default {
   name:'card-members',
-  props: ['card'],
-  data(){
-    return{
+  data() {
+    return {
     }
   },
-  computed:{
+  computed: {
     board() {
       return this.$store.getters.board || null;
     },
-  }
+    groupId() {
+      return this.$route.params.groupId;
+    },
+    card() {
+      return this.$store.getters.currCard
+    }
+  },
+  methods: {
+    cardCopy() {
+      return JSON.parse(JSON.stringify(this.card));
+    },
+    async toggleMember(currMember) {
+      let card = this.cardCopy()
+      const member = card.members.find(member => {
+        return member._id === currMember._id
+      })
+      if (!member) card.members.push(currMember)
+      else {
+        const memberIdx = card.members.findIndex(member => {
+        return member === currMember
+        })
+      card.members.splice(memberIdx, 1)
+      }
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+    },
+  },
+  watch: {
+    card() {
+      console.log('Card changed');
+    },
+  },
 }
 </script>

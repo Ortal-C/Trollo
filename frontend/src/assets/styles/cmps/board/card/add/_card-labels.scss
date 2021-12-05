@@ -1,0 +1,44 @@
+.card-labels{
+    .labels-preview{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        margin: 5px;
+    
+    .label-preview{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        cursor: pointer;
+        height: 37px;
+        width: 83%;
+        border-radius: 5px;
+        padding: 10px;
+        h4{
+            color: white;
+            text-shadow: 0.2px 0.2px 4px #00000091;
+            margin:0;
+        }
+        button{
+            color:white
+        }
+        .btn-check-lable:hover{
+            background-color: transparent;
+        }
+        
+    }
+    .label-preview:hover{
+        box-shadow:-8px 0 var(--custom_color);   
+    }
+    button{
+        height: 37px;
+        width: 37px;
+        background-color: transparent;
+        border: none;
+    }
+    button:hover {
+        border-radius: 5px ;
+        background-color: #eeeeee;
+    }
+}
+}

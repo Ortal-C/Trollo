@@ -6,12 +6,18 @@ export const boardStore = {
         boards: [],
         board: null,
         currGroup: null,
+        currCard: null,
         currEdit: ''
     },
     getters: {
         boards(state) { return state.boards },
         board(state) { return state.board },
         currEdit(state) { return state.currEdit },
+<<<<<<< HEAD
+=======
+        currGroup(state) { return state.currGroup },
+        currCard(state) { return state.currCard },
+>>>>>>> 7dfcfd6301c82da73798d288a8e08cc0647d32f9
         // groups(state) { return state.board.groups },
     },
     mutations: {
@@ -23,6 +29,14 @@ export const boardStore = {
         },
         setCurrEdit(state, { currEdit }) {
             state.currEdit = currEdit;
+        },
+        setCurrGroup(state, { currGroup }) {
+            state.currGroup = currGroup;
+        },
+        setCurrCard(state, { card }) {
+            console.log(card, 'card');
+            state.currCard = card;
+            console.log(state.currCard, 'setCurr');
         }
         // addGroup(state, { group }) {
         //     state.board.groups.push(group)
@@ -87,7 +101,10 @@ export const boardStore = {
         async saveCard(context, { payload }) {
             const { groupId, card } = payload
             try {
+                console.log('Store', card);
                 const board = await boardService.saveCard(context.state.board, groupId, card)
+                console.log('Store after', board);
+                context.commit({ type: 'setCurrCard', card })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log(('Issues with adding card', err));
