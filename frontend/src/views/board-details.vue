@@ -6,9 +6,9 @@
     <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle" @editBoardTitle="editBoardTitle"/>
     <section class="groups-container">
       <!-- <Container class="groups-container"
-        :group-name='dndName' @drag-start="handleDragStart" @drop="handleDrop"
-        :get-child-payload="getChildPayload" >
-        <Draggable> -->
+        :group-name='dndName' @drop="handleDrop"
+        :get-child-payload="getChildPayload" > -->
+        <!-- <Draggable> -->
       <group-preview
         v-for="(group, idx) in board.groups"
         :key="group.id"
@@ -68,8 +68,8 @@
         </div>
       </form>
       </div>
-    </section>
     <!-- </Container> -->
+    </section>
   </div>
 </template>
 
@@ -130,16 +130,6 @@ export default {
     // DND
     boardCopy() {
       this.tmpBoard = JSON.parse(JSON.stringify(this.board));
-    },
-    handleDragStart(dragResult) {
-      // const { payload, isSource } = dragResult
-      // if (isSource) {
-      //   this.draggingGroup = {
-      //     lane: this.dndName,
-      //     index: payload.index,
-      //     groupData: { ...this.tmpBoard.groups[payload.index] },
-      //   };
-      // }
     },
     async handleDrop({ lane, dropResult }) {
       const { removedIndex, addedIndex, payload } = dropResult

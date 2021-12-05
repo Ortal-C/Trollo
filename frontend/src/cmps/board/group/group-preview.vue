@@ -86,7 +86,6 @@
     <ul>
       <Container
         :group-name="dndName"
-        @drag-start="handleDragStart(idx, $event)"
         @drop="handleDrop(idx, $event)" 
         :get-child-payload="getChildPayload">
         <Draggable v-for="card in group.cards" :key="card.id">
@@ -211,16 +210,6 @@ export default {
     // DND
     groupCopy() {
       return JSON.parse(JSON.stringify(this.group))
-    },
-    handleDragStart(lane, dragResult) {
-      let { payload, isSource } = dragResult
-      if (isSource) {
-        this.draggingCard = {
-          lane, 
-          index: payload.index, 
-          data: this.group.cards[payload.index]
-        }
-      }
     },
     handleDrop(lane, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
