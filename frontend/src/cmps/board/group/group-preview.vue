@@ -116,7 +116,7 @@
       <form @submit.prevent="addCard(group.id)" v-else>
         <textarea
           v-model="card.title"
-          placeholder="Enter a title fot this card..."
+          placeholder="Enter a title for this card..."
         ></textarea>
         <div class="actions-container">
           <button class="btn-add">Add card</button>

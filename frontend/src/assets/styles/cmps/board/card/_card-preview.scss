@@ -25,19 +25,16 @@
 .card-container form {
 	cursor: pointer;
 	list-style: none;
-	padding: 1px;
 	word-wrap: break-word;
 	max-width: 300px;
 	min-height: 20px;
 	position: relative;
-	// flex-direction: column;
 	background-color: #fff;
 	box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
 	border-radius: 3px;
-	margin: 4px 7px;
+	margin: 7px 7px;
 	padding: 6px 8px;
 }
-
 .card-preview:hover {
 	background-color: #f7f5f5;
 	button {

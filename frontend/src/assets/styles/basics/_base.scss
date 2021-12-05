@@ -40,7 +40,9 @@ button {
 	cursor: pointer;
 }
 
-select {
+select,
+input,
+textarea {
 	outline: none;
 }
 
