@@ -4,6 +4,7 @@
   <div class="card-container">
     <div v-if="!isEdit" class="card-preview" @click="cardDetails">
         <p>{{ card.title }}</p>
+    <span>{{desc}}</span>
         <button class="edit-card" @click.stop="openEditCard">🖊</button>
     </div>
     <div class="card-edit-container" v-else>
@@ -46,7 +47,12 @@ export default {
       if (!card.title) return;
       this.$emit('saveCard', groupId, card);
     },
-   
   },
+  computed:{
+    desc(){
+      if(this.card.description) return '🍔'
+      else return ''
+    }
+  }
 };
 </script>

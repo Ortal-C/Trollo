@@ -212,6 +212,7 @@ export default {
       this.isOpen = !this.isOpen;
     },
     saveCard(groupId, card){
+      console.log('preview', groupId, card);
       this.$emit("saveCard", {groupId, card} );
     },
     // DND
