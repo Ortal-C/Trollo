@@ -1,13 +1,12 @@
 <template>
-<section>
-  <h1>Hello members</h1>
-  <pre>{{board.members}}</pre>
-</section>
+  <h1>Hello cover</h1>
+  
 </template>
 
 <script>
 export default {
-  name:'card-members',
+
+  name:'card-cover',
   props: ['card'],
   data(){
     return{

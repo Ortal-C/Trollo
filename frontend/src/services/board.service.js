@@ -45,13 +45,6 @@ function saveBoard(board) {
     return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
 }
 
-function getEmptyGroup() {
-    return {
-        id: '',
-        title: '',
-        cards: [],
-    }
-}
 
 function saveGroup(board, group) {
     let newBoard = JSON.parse(JSON.stringify(board))
@@ -71,12 +64,6 @@ function removeGroup(board, groupId) {
     return saveBoard(newBoard)
 }
 
-function getEmptyCard() {
-    return {
-        id: '',
-        title: '',
-    }
-}
 
 function saveCard(board, groupId, card) {
     let newBoard = JSON.parse(JSON.stringify(board))
@@ -98,6 +85,35 @@ function removeCard(board, groupId, cardId) {
     newBoard.groups[idx].cards = newBoard.groups[idx].cards.filter((card) => card.id !== cardId)
     return saveBoard(newBoard)
 }
+
+
+//-------------------------- GET EMPTY ITEM --------------------------//
+
+function getEmptyGroup() {
+    return {
+        id: '',
+        title: '',
+        cards: [],
+    }
+}
+
+function getEmptyCard() {
+    return {
+        id: '',
+        title: '',
+        description: '',
+        byMember:{},
+        members:[],
+        labelsIds:[],
+        checklists: [],
+        attachmens: [],
+        comments: [],
+        createdAt: Date.now(),
+        dueDate: Date.now(),
+        style: {},
+    }
+}
+
 // function query() {
 //     return storageService.query(KEY)
 // }
