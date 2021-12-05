@@ -10,6 +10,10 @@
 	transform: translate(-50%, -50%);
 	border-radius: 5px;
 	z-index: 10;
+	.card-details-cover {
+		height: 100px;
+		width: 100%;
+	}
 	svg {
 		display: flex;
 		justify-content: center;
@@ -46,9 +50,9 @@
 		align-self: start;
 		border: none;
 		background-color: transparent;
-		position: absolute;
-		right: 10px;
-		top: 10px;
+		// position: absolute;
+		// right: 10px;
+		// top: 10px;
 	}
 	.close-btn:hover {
 		background-color: rgba(9, 30, 66, 0.212);

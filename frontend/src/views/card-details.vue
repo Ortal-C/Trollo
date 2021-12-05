@@ -2,6 +2,7 @@
 
 <template>
   <div class="card-details" v-if="card">
+    <div v-if="card.style.color" :style="`background-color:${card.style.color}`" class="card-details-cover"></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>

@@ -3,6 +3,8 @@
 <template>
   <div class="card-container">
     <div v-if="!isEdit" class="card-preview" @click="cardDetails">
+      <!-- card.style.size === 'header' :style="`background-color:${card.style.color}`" -->
+    <div class="cover-preview" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
         <p>{{ card.title }}</p>
         <button class="edit-card" @click.stop="openEditCard">🖊</button>
         <div class="card-icons">
