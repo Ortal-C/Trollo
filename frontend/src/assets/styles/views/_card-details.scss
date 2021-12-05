@@ -46,6 +46,13 @@
         align-self: start;
         border: none;
         background-color: transparent;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .close-btn:hover {
+        background-color: rgba(9, 30, 66, 0.212);
+        border-radius: 50%;
     }
     .card-details-main-container {
         display: flex;
