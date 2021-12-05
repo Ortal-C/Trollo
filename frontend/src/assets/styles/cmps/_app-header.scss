@@ -10,7 +10,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
 	.logo {
 		font-family: Charlie, sans-serif;
 		font-size: 25px;
@@ -19,12 +18,10 @@
 		color: #fff;
 		text-shadow: 0.5px 0.5px 2px black;
 	}
-
 	.btn-header-container {
 		display: flex;
 		align-items: center;
 	}
-
 	.btn-header {
 		height: 32px;
 		width: 32px;
@@ -46,11 +43,12 @@
 		transition: 0.15s;
 		cursor: pointer;
 	}
-
+	.btn-header:hover {
+		background-color: hsla(0, 0%, 100%, 0.459);
+	}
 	.boards-btn {
 		width: auto;
 	}
-
 	.profile-avatar {
 		display: inline-flex;
 	}

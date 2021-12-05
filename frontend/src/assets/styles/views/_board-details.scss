@@ -26,6 +26,9 @@
 			margin-right: 5px;
 		}
 	}
+	.group-add:hover {
+		background-color: hsla(0, 0%, 100%, 0.459);
+	}
 	form {
 		width: 272px;
 		background-color: #ebecf0;
@@ -77,11 +80,11 @@
 	::-webkit-scrollbar-track {
 		margin: 0 3px;
 		border-radius: 8px;
-		background-color: #6f777b;
+		background-color: hsla(0, 0%, 100%, 0.459);
 	}
 	::-webkit-scrollbar-thumb {
 		border-radius: 8px;
-		background-color: #a9adb0;
+		background-color: hsla(0, 0%, 100%, 0.459);
 	}
 	.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
 		overflow: unset;

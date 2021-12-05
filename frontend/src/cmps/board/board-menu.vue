@@ -68,20 +68,30 @@
         </div>
         <h4>Activity</h4>
       </li>
-        <div class="activity-preview" v-for="activity in board.activities" :key="activity.id">
-          <img :src="activity.byMember.imgUrl">
-          <div class="activity-preview-content">
-            <span class="member-name">{{activity.byMember.fullname}}</span> 
-            <p> {{activity.txt}}</p>
-          </div>
-            <span class="activity-time">{{activity.createdAt}}</span>
+      <div
+        class="activity-preview"
+        v-for="activity in board.activities"
+        :key="activity.id"
+      >
+        <img :src="activity.byMember.imgUrl" />
+        <div class="activity-preview-content">
+          <p><b>{{activity.byMember.fullname}}</b>&#160;{{activity.txt}}</p>
+          <p>{{activity.createdAt}}</p>
+          <!-- <span class="member-name">{{ activity.byMember.fullname}}</span>
+          <p>{{activity.txt}}</p> -->
         </div>
+        <!-- <span class="activity-time">{{activity.createdAt}}</span> -->
+      </div>
     </ul>
     <main class="color-palette" v-if="changeBg">
       <div
-        class="color" v-for="color in colors" :key="color"
-        :value="color" :style="`background-color:${color}`" @click="updateStyle(color)">
-      </div>
+        class="color"
+        v-for="color in colors"
+        :key="color"
+        :value="color"
+        :style="`background-color:${color}`"
+        @click="updateStyle(color)"
+      ></div>
     </main>
   </div>
 </template>
@@ -89,32 +99,32 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: 'board-menu',
-  props: ['board'],
+  name: "board-menu",
+  props: ["board"],
   data() {
     return {
-      currAction: 'menu',
+      currAction: "menu",
       changeBg: false,
       colors: [
-        '#cc0033',
-        '#ff8000',
-        '#ffbf00',
-        '#00cc00',
-        '#66d9ff',
-        '#0099cc',
-        '#bf80ff',
-        '#ff66ff',
-        '#ff4da6',
-      ]
-    }
+        "#cc0033",
+        "#ff8000",
+        "#ffbf00",
+        "#00cc00",
+        "#66d9ff",
+        "#0099cc",
+        "#bf80ff",
+        "#ff66ff",
+        "#ff4da6",
+      ],
+    };
   },
   methods: {
     closeMenu() {
-      this.$emit('close')
+      this.$emit("close");
     },
     updateStyle(color) {
-      this.$emit('updateStyle',color )
+      this.$emit("updateStyle", color);
     },
   },
-}
+};
 </script>
