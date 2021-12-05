@@ -32,7 +32,7 @@ function query() {
 async function getById(boardId) {
     // const board = await httpService.get(`board/${boardId}`)
     const board = await storageService.get(KEY, boardId)
-        // gWatchedUser = board;
+    // gWatchedUser = board;
     return board;
 }
 
@@ -102,9 +102,9 @@ function getEmptyCard() {
         id: '',
         title: '',
         description: '',
-        byMember:{},
-        members:[],
-        labelsIds:[],
+        byMember: {},
+        members: [],
+        labelsIds: [],
         checklists: [],
         attachmens: [],
         comments: [],
