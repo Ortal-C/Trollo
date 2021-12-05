@@ -38,7 +38,8 @@
         </svg>
         <p>Add another list</p>
       </div>
-      <form @submit.prevent="addGroup" v-else>
+      <div class="add-group-container" v-else>
+      <form @submit.prevent="addGroup">
         <input v-model="group.title" placeholder="Enter list title..." />
         <div class="actions-container">
           <button class="btn-add">Add List</button>
@@ -66,6 +67,7 @@
           </svg>
         </div>
       </form>
+      </div>
     </section>
     <!-- </Container> -->
   </div>

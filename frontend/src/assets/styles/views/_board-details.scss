@@ -30,9 +30,33 @@
 	.group-add:hover {
 		background-color: hsla(0, 0%, 100%, 0.459);
 	}
+	.add-group-container {
+		form {
+			background-color: #ebecf0;
+		}
+		.actions-container {
+			display: flex;
+			align-items: center;
+			margin-bottom: 3px;
+		}
+		.btn-add {
+			color: #fff;
+			font-family: inherit;
+			padding-right: 24px;
+			padding-left: 24px;
+			height: 32px;
+			border: none;
+			margin-bottom: 4px;
+			border-radius: 3px;
+			line-height: 30px;
+			background-color: #0079bf;
+		}
+		.btn-add:hover {
+			background-color: #0070b1;
+		}
+	}
 	form {
 		width: 272px;
-		// background-color: #ebecf0;
 		border-radius: 3px;
 		input {
 			padding: 4px 8px 2px;
