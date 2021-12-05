@@ -65,7 +65,7 @@
             </g>
           </g>
         </svg>
-        <div class="add-card-group" @click="addCard(group.id)">Add a card...</div>
+        <div class="add-card-group" @click="addCard(group.id)">Add card...</div>
         <div class="archive-group" @click="removeGroup(group.id)">
           <!-- <svg
             stroke="currentColor"
