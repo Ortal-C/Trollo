@@ -15,14 +15,9 @@
 <script>
 export default {
   name:'card-members',
-  // props: ['card'],
   data() {
     return {
-      tmpCard: null
     }
-  },
-  created() {
-    // this.$store.commit({type: 'setCurrCard', currCard: this.card})
   },
   computed: {
     board() {
