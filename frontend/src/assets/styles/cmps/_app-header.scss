@@ -1,56 +1,54 @@
 .app-header {
-	position: relative;
-	padding: 5px;
-	z-index: 1;
-	width: 100%;
-	height: 40px;
-	background-color: $clr4;
-	background-color: rgba(0, 0, 0, 0.192);
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	.logo {
-		font-family: Charlie, sans-serif;
-		font-size: 25px;
-		font-weight: 600;
-		letter-spacing: em(4px);
-		color: #fff;
-		text-shadow: 0.5px 0.5px 2px black;
-	}
-
-	.btn-header-container {
-		display: flex;
-		align-items: center;
-	}
-
-	.btn-header {
-		height: 32px;
-		width: 32px;
-		padding: 4px;
-		background-color: hsla(0, 0%, 100%, 0.3);
-		border-radius: 3px;
-		border: none;
-		align-items: center;
-		align-self: center;
-		color: #fff;
-		display: -webkit-flex;
-		display: flex;
-		font-weight: 700;
-		height: 32px;
-		line-height: 32px;
-		margin: 0 4px 0 0;
-		padding: 0 6px;
-		white-space: nowrap;
-		transition: 0.15s;
-		cursor: pointer;
-	}
-
-	.boards-btn {
-		width: auto;
-	}
-
-	.profile-avatar {
-		display: inline-flex;
-	}
+    position: relative;
+    padding: 5px;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    background-color: $clr4;
+    background-color: rgba(0, 0, 0, 0.192);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+        font-family: Charlie, sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+        letter-spacing: em(4px);
+        color: #fff;
+        text-shadow: 0.5px 0.5px 2px black;
+    }
+    .btn-header-container {
+        display: flex;
+        align-items: center;
+    }
+    .btn-header {
+        height: 32px;
+        width: 32px;
+        padding: 4px;
+        background-color: hsla(0, 0%, 100%, 0.3);
+        border-radius: 3px;
+        border: none;
+        align-items: center;
+        align-self: center;
+        color: #fff;
+        display: -webkit-flex;
+        display: flex;
+        font-weight: 700;
+        height: 32px;
+        line-height: 32px;
+        margin: 0 4px 0 0;
+        padding: 0 6px;
+        white-space: nowrap;
+        transition: 0.15s;
+        cursor: pointer;
+    }
+    .btn-header:hover {
+        background-color: hsla(0, 0%, 100%, 0.459);
+    }
+    .boards-btn {
+        width: auto;
+    }
+    .profile-avatar {
+        display: inline-flex;
+    }
 }

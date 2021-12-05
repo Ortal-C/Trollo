@@ -33,8 +33,6 @@
     }
     button,
     select {
-        border: none;
-        background-color: transparent;
         height: 32px;
         min-width: 32px;
         padding: 4px;
@@ -55,6 +53,10 @@
         transition: 0.15s;
         cursor: pointer;
     }
+    button:hover,
+    select:hover {
+        background-color: hsla(0, 0%, 100%, 0.459);
+    }
     .starred {
         color: gold;
     }
@@ -64,5 +66,8 @@
     }
     .el-avatar {
         margin: 0 5px;
+        img:hover {
+            opacity: 0.7;
+        }
     }
 }

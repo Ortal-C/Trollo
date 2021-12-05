@@ -1,46 +1,51 @@
 .board-details {
-	width: 100vw;
-	height: calc(100vh - 40px);
-	// background-color: #ebe4ff;
-	.groups-container {
-		display: flex;
-		align-items: start;
-		overflow-x: auto;
-		height: calc(100vh - 95px);
-		// width: auto;
-	}
-	.group-add {
-		min-width: 272px;
-		max-width: 272px;
-		color: #fff;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		border-radius: 3px;
-		background-color: hsla(0, 0%, 100%, 0.24);
-		padding: 10px 12px;
-		transition: background-color 85ms ease-in;
-	}
-	input {
-		outline: none;
-		border: none;
-		background-color: transparent;
-	}
-	::-webkit-scrollbar {
-		width: 15px;
-		height: 12px;
-	}
-	::-webkit-scrollbar-track {
-		margin: 0 3px;
-		border-radius: 8px;
-		background-color: #6f777b;
-	}
-	::-webkit-scrollbar-thumb {
-		border-radius: 8px;
-		background-color: #a9adb0;
-	}
-	.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
-		overflow: unset;
-		display: block;
-	}
+    width: 100vw;
+    height: calc(100vh - 40px);
+    // background-color: #ebe4ff;
+    .groups-container {
+        display: flex;
+        align-items: start;
+        overflow-x: auto;
+        height: calc(100vh - 95px);
+        // width: auto;
+    }
+    .group-add {
+        min-width: 272px;
+        max-width: 272px;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        background-color: hsla(0, 0%, 100%, 0.24);
+        padding: 10px 12px;
+        transition: background-color 85ms ease-in;
+    }
+    .group-add:hover {
+        background-color: hsla(0, 0%, 100%, 0.459);
+    }
+    input {
+        outline: none;
+        border: none;
+        background-color: transparent;
+    }
+     ::-webkit-scrollbar {
+        width: 15px;
+        height: 12px;
+    }
+     ::-webkit-scrollbar-track {
+        margin: 0 3px;
+        border-radius: 8px;
+        // background-color: #6f777b;
+        background-color: hsla(0, 0%, 100%, 0.459);
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        // background-color: #a9adb0;
+        background-color: hsla(0, 0%, 100%, 0.459);
+    }
+    .smooth-dnd-container.vertical>.smooth-dnd-draggable-wrapper {
+        overflow: unset;
+        display: block;
+    }
 }
