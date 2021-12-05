@@ -116,9 +116,10 @@
   </div>
       <div class="card-details-sidebar">
         <div class="add-to-card">
-          <h3>Add to card</h3>
-          <div>
+          <h3 class="add-to-card-title">Add to card</h3>
+          <div class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -134,8 +135,9 @@
             </svg>
             Members
           </div>
-          <div>
+          <div @click="isLabelsMenuOpen = !isLabelsMenuOpen" class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -150,8 +152,50 @@
             </svg>
             Labels
           </div>
-          <div>
+          <div v-if="isLabelsMenuOpen" class="dynamic-popover">
+            <div class="popover-header">
+            <span class="popover-title">Labels</span>
+            </div>
             <svg
+          class="close-popover"
+          @click="isLabelsMenuOpen = !isLabelsMenuOpen"
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="24"
+          height="24"
+          viewBox="0 0 172 172"
+          style="fill: #000000"
+        >
+          <g
+            fill="none"
+            fill-rule="nonzero"
+            stroke="none"
+            stroke-width="1"
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            stroke-miterlimit="10"
+            stroke-dasharray=""
+            stroke-dashoffset="0"
+            font-family="none"
+            font-weight="none"
+            font-size="none"
+            text-anchor="none"
+            style="mix-blend-mode: normal"
+          >
+            <path d="M0,172v-172h172v172z" fill="none"></path>
+            <g fill="#666666">
+              <path
+                d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z"
+              ></path>
+            </g>
+          </g>
+            </svg>
+            <!-- <component :card="card" is="card-labels"></component> -->
+          </div>
+          <div class="action-div">
+            <svg
+              class="action-svg"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -173,8 +217,9 @@
             </svg>
             Checklist
           </div>
-          <div>
+          <div class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -196,8 +241,9 @@
             </svg>
             Dates
           </div>
-          <div>
+          <div class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="none"
               stroke-width="2"
@@ -214,8 +260,9 @@
             </svg>
             Attachment
           </div>
-          <div>
+          <div class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="none"
               stroke-width="0"
@@ -237,8 +284,9 @@
             </svg>
             Cover
           </div>
-          <div @click="removeCard(group.id, card.id)">
+          <div @click="removeCard(group.id, card.id)" class="action-div">
             <svg
+              class="action-svg"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -269,7 +317,8 @@ export default {
       card: null,
       group: null,
       board: null,
-      rows: 3
+      rows: 3,
+      isLabelsMenuOpen: false
     }
   },
   components: {
@@ -310,7 +359,7 @@ export default {
     removeCard(groupId, cardId) {
       this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId } })
       this.closeDetails()
-    }
+    },
   }
 }
 </script>
