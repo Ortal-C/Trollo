@@ -1,12 +1,12 @@
 <template>
-  <div class="block">
-    <span class="demonstration">Picker with quick options</span>
+  <div class="block" v-if="card">
     <el-date-picker
       v-model="value"
       type="date"
       placeholder="Pick a day"
       :picker-options="pickerOptions"
-      @change="dueDateChange">
+      @change="dueDateChange"
+    >
     </el-date-picker>
   </div>
 </template>
@@ -14,7 +14,6 @@
 <script>
 export default {
   name: 'card-dates',
-  props: ['card'],
   data() {
     return {
       value: '',
@@ -57,22 +56,35 @@ export default {
       },
     }
   },
-  methods:{
+  created() {
+    this.value = Date(this.card.dueDate) || ''
+  },
+  methods: {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
     async dueDateChange() {
-      console.log(this.value);
-      // let card = this.cardCopy()
-      // card.dueDate = new Date(this.value)
-      // console.log('card.dueDate', card.dueDate);
-      // await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+      let tmpCard = this.cardCopy()
+      tmpCard.dueDate = this.value
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card: tmpCard } });
     },
   },
   computed: {
     board() {
       return this.$store.getters.board || null;
     },
-  }
+    groupId() {
+      return this.$route.params.groupId;
+    },
+    card() {
+      return this.$store.getters.currCard
+    },
+  },
+  watch: {
+    value(newVal, oldVal) {
+      console.log('value has changed!');
+
+    },
+  },
 }
 </script>

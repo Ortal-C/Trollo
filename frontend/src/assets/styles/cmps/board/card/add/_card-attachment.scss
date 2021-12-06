@@ -1,0 +1,10 @@
+.card-attachment{
+    label{
+        display: block;
+    }
+    .upload-preview{
+        width: 100px;
+        height: 100px;
+        object-fit: fill;
+    }
+}
