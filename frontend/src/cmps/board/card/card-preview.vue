@@ -138,7 +138,16 @@ export default {
       ],
     };
   },
-  components: {},
+  watch: {
+    "card.labelsIds"() {
+      this.getLabels()
+    }
+  },
+  created() {
+    if (this.card){
+      this.getLabels()
+    }
+  },
   methods: {
     cardDetails() {
       if (this.isEdit = true) this.isEdit = false
@@ -173,14 +182,6 @@ export default {
       this.openLabels = !this.openLabels
       console.log(this.openLabels);
     },
-  },
-  watch: {
-    "card.labelsIds"() {
-      this.getLabels()
-    }
-  },
-  created() {
-    this.getLabels()
   },
   computed: {
     desc() {

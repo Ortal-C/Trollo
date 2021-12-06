@@ -105,7 +105,7 @@ function getEmptyCard() {
         members: [],
         labelsIds: [],
         checklists: [],
-        attachmens: [],
+        attachments: [],
         comments: [],
         createdAt: Date.now(),
         dueDate: Date.now(),
