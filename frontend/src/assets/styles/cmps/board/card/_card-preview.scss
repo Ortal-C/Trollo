@@ -91,11 +91,32 @@
 			border-radius: 3px;
 			line-height: 30px;
 			background-color: #0079bf;
-			button:hover {
-				background-color: #0070b1;
+		}
+		button:hover {
+			background-color: #0070b1;
+		}
+	}
+	.card-actions {
+		position: absolute;
+		z-index: 10;
+		left: 100%;
+		width: auto;
+		button {
+			margin: 5px;
+			color: #e6e6e6;
+			display: flex;
+			border: none;
+			background-color: rgba(0, 0, 0, 0.6);
+			align-items: center;
+			border-radius: 3px;
+			height: 34px;
+			width: max-content;
+			transform: translateX(0);
+			transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+			svg {
+				margin-left: 3px;
 			}
 		}
-
 	}
 }
 .open {
