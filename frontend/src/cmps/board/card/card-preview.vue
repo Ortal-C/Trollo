@@ -179,9 +179,7 @@ export default {
       }
     },
     toggleLabels() {
-      console.log('Toggle');
       this.openLabels = !this.openLabels
-      console.log(this.openLabels);
     },
   },
   computed: {
@@ -193,9 +191,7 @@ export default {
       if (this.card.style.size === 'full') return this.card.style.color
     },
     classLabel() {
-      // if (this.openLabels) return 'red'
       return { 'open': this.openLabels, 'close': !this.openLabels }
-      // else return 'blue'
     },
   }
 };
