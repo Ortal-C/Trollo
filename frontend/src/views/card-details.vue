@@ -121,7 +121,6 @@ export default {
       board: null,
       rows: 3,
       isDesc: false,
-      // desc: '',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -177,7 +176,7 @@ export default {
         const group = board.groups.find((group) => group.id === this.groupId);
         // this.group = group
         this.$store.commit({ type: "setCurrGroup", group });
-        const card = group.cards.find((card) => card.id === this.cardId);
+        const card = group.cards.find((card) => card.id === this.cardId)
         this.$store.commit({ type: "setCurrCard", card });
       });
     }
@@ -237,7 +236,7 @@ export default {
     },
     addDesc(groupId) {
       this.isDesc = false;
-      let card = this.cardCopy();
+      let card = this.cardCopy()
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId){
