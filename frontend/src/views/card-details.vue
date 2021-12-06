@@ -213,13 +213,8 @@ export default {
       rows: 3,
       activities: "",
       isDesc: false,
-<<<<<<< HEAD
       isActivity: false,
       description: "",
-=======
-      isEdit: false,
-      description:'',
->>>>>>> dc73790515d81fe882be10f8eee483e8b3e3cac9
       isLabelsMenuOpen: false,
       actions: [
         {
