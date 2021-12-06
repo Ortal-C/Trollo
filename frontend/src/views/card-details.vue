@@ -2,11 +2,7 @@
 
 <template>
   <div class="card-details" v-if="card && group">
-    <div
-      class="card-details-cover"
-      v-if="card.style.color"
-      :style="`background-color:${card.style.color}`"
-    ></div>
+    <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`" ></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
@@ -20,33 +16,36 @@
       </div>
       <button class="close-btn" @click="closeDetails">✖</button>
     </div>
-    <!-- members  -->
-    <div class="data-preview" v-if="card.members.length">
-      <h5>Members</h5>
-      <main class="members-container" >
-        <div v-for="member in card.members" :key="member._id">
-          <span ><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
-        </div>
-        <span @click="openMemberModal">➕</span>
-      </main>
-    </div>
-    <div class="data-preview" v-if="labels && card.labelsIds" >
-      <h5>Labels</h5>
-      <main class="labels-container" >
-        <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`" >
-          <span :title="label.title">{{ label.title }}</span>
-        </div>
-      </main>
-    </div>
-    <div class="data-preview due-date-container" v-if="card.dueDate">
-      <h5>Due date</h5>
-      <!-- fix! -->
-      <span>{{ new Date(card.dueDate).toLocaleString("HEB") }}</span>
-      <!-- <card-dates /> -->
-    </div>
-    <!-- members  -->
     <div class="card-details-main-container">
       <div class="card-details-main">
+        <!-- members  -->
+        <div class="data-preview" v-if="card.members.length">
+          <h5>Members</h5>
+          <main class="members-container">
+            <div v-for="member in card.members" :key="member._id">
+              <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+            </div>
+            <span @click="openMemberModal">➕</span>
+          </main>
+        </div>
+        <div class="data-preview" v-if="labels && card.labelsIds">
+          <h5>Labels</h5>
+          <main class="labels-container">
+            <div
+              class="card-label"
+              v-for="label in labels"
+              :key="label.id"
+              :style="`background-color:${label.color}`"
+            >
+              <span :title="label.title">{{ label.title }}</span>
+            </div>
+          </main>
+        </div>
+        <div class="data-preview due-date-container" v-if="card.dueDate">
+          <h5>Due date</h5>
+          <!-- fix! -->
+          <span>{{ new Date(card.dueDate).toLocaleString("HEB") }}</span>
+        </div>
         <div class="card-details-desc">
           <span v-html="getDescriptionSvg"></span>
           <main>
@@ -104,16 +103,34 @@
           </main>
         </div>
         <div class="card-details-attachment" v-if="card.attachments.length">
-            <span v-html="getAttachmentSvg"></span>
+          <span v-html="getAttachmentSvg"></span>
           <main>
             <h2>Attachment</h2>
-            <div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.url">
-              <img :src="attachment.url" v-if="attachment.type === 'upload' && attachment.url">
+            <div
+              class="card-attachment"
+              v-for="(attachment, idx) in card.attachments"
+              :key="attachment.url"
+            >
+              <img
+                :src="attachment.url"
+                v-if="attachment.type === 'upload' && attachment.url"
+              />
               <div class="attachment-details">
-                <span class="attachment-title" v-if="attachment.title">{{attachment.title}}</span>
+                <span class="attachment-title" v-if="attachment.title">{{
+                  attachment.title
+                }}</span>
                 <div class="attachment-actions">
-                  <span v-if="attachment.createdAt">{{attachment.createdAt}}</span> -
-                  <span class="attachment-action" @click="removeAttachment(idx)"> Delete</span> -
+                  <span v-if="attachment.createdAt">{{
+                    attachment.createdAt
+                  }}</span>
+                  -
+                  <span
+                    class="attachment-action"
+                    @click="removeAttachment(idx)"
+                  >
+                    Delete</span
+                  >
+                  -
                   <span class="attachment-action"> Edit</span>
 
                   <!-- <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
@@ -184,10 +201,10 @@
               </div>
               <component :card="card" :is="`card-${action.type}`"></component>
             </div>
-
           </div>
-            <div class="action-div" @click="removeCard(groupId, cardId)">
-            <span v-html="getArchiveSvg"></span>Archive</div>
+          <div class="action-div" @click="removeCard(groupId, cardId)">
+            <span v-html="getArchiveSvg"></span>Archive
+          </div>
         </div>
       </div>
     </div>
@@ -316,8 +333,8 @@ export default {
     },
   },
   methods: {
-    openMemberModal(){
-      const idx = this.actions.findIndex((action)=>action.type === 'members')
+    openMemberModal() {
+      const idx = this.actions.findIndex((action) => action.type === 'members')
       this.actions[idx].isOpen = true
     },
     closeDetails() {
@@ -366,7 +383,7 @@ export default {
   },
   watch: {
     "card.labelsIds"() {
-        this.getLabels;
+      this.getLabels;
     }
   },
   components: {
