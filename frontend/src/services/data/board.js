@@ -233,11 +233,11 @@ export const boardData = {
     ],
     "activities": [{
             "id": "a101",
-            "txt": "changed color",
+            "txt": " changed color ",
             "createdAt": new Date(Date.now()).toLocaleString(),
             "byMember": {
                 "_id": "u101",
-                "fullname": "Michal Ozeri",
+                "fullname": "Michal Ozeri ",
                 "imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
             },
             "card": {

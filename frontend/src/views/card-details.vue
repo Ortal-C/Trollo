@@ -108,13 +108,35 @@
           <span v-html="getActivitySvg"></span>
           <main>
             <h2>Activity</h2>
-            <div>
+            <div
+              v-if="!isActivity"
+              @click="isActivity = !isActivity"
+              class="activity-area"
+            >
               <textarea
                 class="activity-txtarea"
                 placeholder="Write a comment..."
+                rows="1"
               ></textarea>
-              <button>Save</button>
             </div>
+            <div v-else class="activity-area" @change="addActivity()">
+              <form action="" @submit.prevent="addActivity()">
+                <textarea
+                  class="activity-txtarea"
+                  placeholder="Write a comment..."
+                  rows="1"
+                ></textarea>
+                <button>Save</button>
+              </form>
+            </div>
+            <section class="activities">
+              <ul v-for="activity in board.activities" :key="activity.id">
+                <li>
+                  <b>{{ activity.byMember.fullname }}</b> {{ activity.txt }}
+                  {{ activity.createdAt }}
+                </li>
+              </ul>
+            </section>
           </main>
         </div>
       </div>
@@ -160,8 +182,10 @@ export default {
       board: null,
       labels: [],
       rows: 3,
+      activities: "",
       isDesc: false,
-      description:'',
+      isActivity: false,
+      description: "",
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -216,7 +240,7 @@ export default {
         this.board = board;
         const group = board.groups.find((group) => group.id === this.groupId);
         this.$store.commit({ type: "setCurrGroup", group });
-        const card = group.cards.find((card) => card.id === this.cardId)
+        const card = group.cards.find((card) => card.id === this.cardId);
         this.$store.commit({ type: "setCurrCard", card });
         this.description = card.description;
       });
@@ -285,11 +309,15 @@ export default {
     addDesc(groupId) {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
-      card.description = this.description
+      card.description = this.description;
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId) {
-      return this.board.labels.find(id => id === labelId)
+      return this.board.labels.find((id) => id === labelId);
+    },
+    addActivity() {
+      this.isActivity = !this.isActivity;
+      console.log("New activity was added!");
     },
   },
   watch: {
