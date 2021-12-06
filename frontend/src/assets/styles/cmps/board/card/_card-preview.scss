@@ -1,7 +1,57 @@
-.card-container {
-	.edit-card {
-		border: none;
-		background: transparent;
+.card-preview-container {
+	.card-preview {
+		min-height: 32px;
+		cursor: pointer;
+		word-wrap: break-word;
+		margin: 7px 7px;
+		// padding: 6px 8px;
+		border-radius: 3px;
+		background-color: #fff;
+		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+		.edit-card {
+			display: none;
+		}
+		.card-cover {
+			width: 100%;
+			min-height: 32px;
+			border-radius: 3px;
+		}
+		.card-labels {
+			flex-wrap: wrap;
+			grid-gap: 4px;
+			gap: 4px;
+			margin-bottom: 5px;
+			display: flex;
+			.card-label {
+				border-radius: 4px;
+			}
+		}
+		.card-content {
+			width: 100%;
+			min-height: 32px;
+		}
+		.card-icons {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+	.card-preview:hover {
+		// Change
+		background-color: #ebebeb5d;
+		.edit-card {
+			display: block;
+			border: none;
+			background: transparent;
+			position: absolute;
+			right: 10px;
+			padding: 5px;
+			border-radius: 3px;
+			width: 27px;
+		}
+		.edit-card:hover {
+			background-color: #d6d6d6;
+		}
 	}
 	.card-edit-container {
 		position: absolute;
@@ -41,45 +91,16 @@
 			}
 		}
 	}
-	.card-preview {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		.cover-preview {
-			height: 50px;
-			width: 100%;
-		}
-		button {
-			color: transparent;
-			height: 25px;
-			width: 25px;
-			border-radius: 3px;
-		}
-		.card-icons {
-			display: flex;
-		}
-	}
-	.card-preview {
-		line-height: 24px;
-		cursor: pointer;
-		list-style: none;
-		word-wrap: break-word;
-		max-width: 300px;
-		min-height: 20px;
-		position: relative;
-		background-color: #fff;
-		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
-		border-radius: 3px;
-		margin: 7px 7px;
-		padding: 6px 8px;
-	}
-	.card-preview:hover {
-		background-color: #f7f5f5;
-		button {
-			color: black;
-		}
-		button:hover {
-			background-color: #eeeeee;
-		}
-	}
+}
+.open {
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	height: 12px;
+	width: auto;
+	line-height: 12px;
+}
+.close {
+	width: 40px;
+	height: 8px;
 }
