@@ -21,25 +21,24 @@
       <button class="close-btn" @click="closeDetails">✖</button>
     </div>
     <!-- members  -->
-    <div class="members-container" v-if="card.members.length">
+    <div class="data-preview" v-if="card.members.length">
       <h5>Members</h5>
-      <div v-for="member in card.members" :key="member._id">
-        <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
-      </div>
-      <span @click="openMemberModal">➕</span>
+      <main class="members-container" >
+        <div v-for="member in card.members" :key="member._id">
+          <span ><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+        </div>
+        <span @click="openMemberModal">➕</span>
+      </main>
     </div>
-    <!-- <div class="card-labels" v-if="labels && card.labelsIds" @click.stop="toggleLabels" >
-      <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
-        <span v-if="openLabels">{{ label.title }}</span>
-      </div>
-    </div> -->
-    <!-- <div class="labels-container" v-if="card.labelsIds.length">
+    <div class="data-preview" v-if="labels && card.labelsIds" >
       <h5>Labels</h5>
-      <span v-for="labelId in card.labelsIds" :key="labelId">
-        <span v-if="board.labels.findIndex(id => id === labelId) < 0">{{ labelId }},</span>
-      </span>
-    </div> -->
-    <div class="due-date-container" v-if="card.dueDate">
+      <main class="labels-container" >
+        <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`" >
+          <span :title="label.title">{{ label.title }}</span>
+        </div>
+      </main>
+    </div>
+    <div class="data-preview due-date-container" v-if="card.dueDate">
       <h5>Due date</h5>
       <!-- fix! -->
       <span>{{ new Date(card.dueDate).toLocaleString("HEB") }}</span>
@@ -258,7 +257,6 @@ export default {
   },
   created() {
     if (this.cardId) {
-      // this.getLabels()
       boardService.getById(this.boardId).then((board) => {
         this.board = board;
         const group = board.groups.find((group) => group.id === this.groupId);
@@ -266,6 +264,7 @@ export default {
         const card = group.cards.find((card) => card.id === this.cardId);
         this.$store.commit({ type: "setCurrCard", card });
         this.description = card.description;
+        this.getLabels;
       });
     }
   },
@@ -306,15 +305,15 @@ export default {
     },
     getArchiveSvg() {
       return `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`
-    }
-    // getLabels() {
-    //   if (this.card.labelsIds) {
-    //     const labels = this.$store.getters.board.labels
-    //     this.labels = labels.filter(label => {
-    //       return this.card.labelsIds.includes(label.id)
-    //     });
-    //   }
-    // },
+    },
+    getLabels() {
+      if (this.$store.getters.currCard.labelsIds.length > 0) {
+        const labels = this.$store.getters.board.labels
+        this.labels = labels.filter(label => {
+          return this.card.labelsIds.includes(label.id)
+        });
+      }
+    },
   },
   methods: {
     openMemberModal(){
@@ -346,7 +345,8 @@ export default {
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId) {
-      return this.board.labels.find((id) => id === labelId);
+      const label = this.board.labels.find(id => id === labelId);
+      return label ? label : null
     },
     addActivity() {
       this.isActivity = !this.isActivity;
@@ -364,9 +364,9 @@ export default {
     }
   },
   watch: {
-    // "card.labelsIds"() {
-    //   this.getLabels()
-    // }
+    "card.labelsIds"() {
+        this.getLabels;
+    }
   },
   components: {
     cardMembers,
