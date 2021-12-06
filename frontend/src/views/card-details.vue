@@ -154,8 +154,8 @@
                 <button>Save</button>
               </form>
             </div>
-            <section class="activities">
-              <ul v-for="activity in board.activities" :key="activity.id">
+            <section class="activities" v-if="card.activities.length">
+              <ul v-for="activity in card.activities" :key="activity.id">
                 <li>
                   <b>{{ activity.byMember.fullname }}</b> {{ activity.txt }}
                   {{ activity.createdAt }}
