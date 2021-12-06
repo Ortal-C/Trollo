@@ -50,7 +50,7 @@ export default {
       }
       else {
         const res = await utilService.upload(ev);
-        tmpCard.attachments.push({ type:res.type, url: res.url })
+        tmpCard.attachments.push({ type:res.type, url: res.url, title: 'Attachment', createdAt: Date.now(), isEdit: false })
       }
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card: tmpCard } });
     }
