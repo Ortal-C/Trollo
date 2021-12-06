@@ -46,7 +46,7 @@ export default {
     async onUpload(type, ev) {
       let tmpCard = this.cardCopy()
       if (type === 'link') {
-        tmpCard.attachmens.push({ type, url: this.linkUrl })
+        tmpCard.attachments.push({ type, url: this.linkUrl })
       }
       else {
 
