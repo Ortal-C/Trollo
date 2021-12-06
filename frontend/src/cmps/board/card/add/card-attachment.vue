@@ -49,8 +49,6 @@ export default {
         tmpCard.attachments.push({ type, url: this.linkUrl })
       }
       else {
-
-        console.log(ev);
         const res = await utilService.upload(ev);
         tmpCard.attachments.push({ type:res.type, url: res.url })
       }
