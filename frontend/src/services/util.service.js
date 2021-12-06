@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 export const utilService = {
     makeId,
-    applyDrag
+    upload,
 }
 
 function makeId(length = 5) {
@@ -12,16 +14,20 @@ function makeId(length = 5) {
     return text
 }
 
-export const applyDrag = (arr, dragResult) => {
-    const { removedIndex, addedIndex, payload } = dragResult;
-    if (removedIndex === null && addedIndex === null) return arr;
-    const result = [...arr];
-    let itemToAdd = payload;
-    if (removedIndex !== null) {
-        itemToAdd = result.splice(removedIndex, 1)[0];
+// AXIOS
+async function upload(ev){
+    const type = ev.target.files[0].type.substring(0, ev.target.files[0].type.indexOf('/'))
+    const UPLOAD_PRESET = 'trollo'
+    const CLOUD_NAME = 'trollo'
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/trollo/${type}/upload`
+    const FORM_DATA = new FormData();
+    FORM_DATA.append('file', ev.target.files[0])
+    FORM_DATA.append('upload_preset',UPLOAD_PRESET)
+    try {
+        const res = await axios.post(UPLOAD_URL, FORM_DATA)
+        console.log(res.data);
+        return res.data;
+    } catch(err) {
+        console.error('ERROR!', err)
     }
-    if (addedIndex !== null) {
-        result.splice(addedIndex, 0, itemToAdd);
-    }
-    return result;
-};
+}
