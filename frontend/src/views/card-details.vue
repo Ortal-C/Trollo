@@ -2,15 +2,17 @@
 
 <template>
   <div class="card-details" v-if="card && group">
-    <div class="card-details-cover"
+    <div
+      class="card-details-cover"
       v-if="card.style.color"
-      :style="`background-color:${card.style.color}`" ></div>
+      :style="`background-color:${card.style.color}`"
+    ></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
           <span v-html="getHeaderSvg"></span>
           <div>
-        <!-- should be input -->
+            <!-- should be input -->
             <h2>{{ card.title }}</h2>
             <p>In list {{ group.title }}</p>
           </div>
@@ -26,16 +28,21 @@
       </div>
       <span>➕</span>
     </div>
-    <div class="labels-container" v-if="card.labelsIds.length">
+    <!-- <div class="card-labels" v-if="labels && card.labelsIds" @click.stop="toggleLabels" >
+      <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
+        <span v-if="openLabels">{{ label.title }}</span>
+      </div>
+    </div> -->
+    <!-- <div class="labels-container" v-if="card.labelsIds.length">
       <h5>Labels</h5>
       <span v-for="labelId in card.labelsIds" :key="labelId">
-        <span v-if="board.labels.findIndex((id) => id === labelId) < 0">{{ labelId }},</span>
+        <span v-if="board.labels.findIndex(id => id === labelId) < 0">{{ labelId }},</span>
       </span>
-    </div>
+    </div> -->
     <div class="due-date-container" v-if="card.dueDate">
       <h5>Due date</h5>
       <!-- fix! -->
-      <span>{{new Date(card.dueDate).toLocaleString('HEB')}}</span>
+      <span>{{ new Date(card.dueDate).toLocaleString("HEB") }}</span>
       <!-- <card-dates /> -->
     </div>
     <!-- members  -->
@@ -117,11 +124,10 @@ export default {
   name: "card-details",
   data() {
     return {
-      // group: null,
       board: null,
+      labels: [],
       rows: 3,
       isDesc: false,
-      // desc: '',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -169,13 +175,12 @@ export default {
       ],
     };
   },
-  components: {},
   created() {
     if (this.cardId) {
+      this.getLabels()
       boardService.getById(this.boardId).then((board) => {
         this.board = board;
         const group = board.groups.find((group) => group.id === this.groupId);
-        // this.group = group
         this.$store.commit({ type: "setCurrGroup", group });
         const card = group.cards.find((card) => card.id === this.cardId);
         this.$store.commit({ type: "setCurrCard", card });
@@ -215,6 +220,14 @@ export default {
     getCloseSvg() {
       return `<svg class="close-popover" @click="action.isOpen = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#666666"> <path d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z" ></path> </g> </g> </svg>`
     },
+    getLabels() {
+      if (this.card.labelsIds) {
+        const labels = this.$store.getters.board.labels
+        this.labels = labels.filter(label => {
+          return this.card.labelsIds.includes(label.id)
+        });
+      }
+    },
   },
   methods: {
     closeDetails() {
@@ -240,9 +253,14 @@ export default {
       let card = this.cardCopy();
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
-    getLabel(labelId){
-      return this.board.labels.find(id=> id===labelId)
+    getLabel(labelId) {
+      return this.board.labels.find(id => id === labelId)
     },
+  },
+  watch: {
+    "card.labelsIds"() {
+      this.getLabels()
+    }
   },
   components: {
     cardMembers,

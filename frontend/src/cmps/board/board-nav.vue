@@ -59,8 +59,6 @@ export default {
   props: {},
   data() {
     return {
-      //circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-      // board: null,
       isMenuOpen: false,
       isStarred: null,
       isEdit: false,
@@ -80,9 +78,6 @@ export default {
     };
   },
   created() {
-    // const boardId = this.$route.params.boardId
-    // const boardId = 'b101'
-    // this.board = this.$store.getters.board;
     this.isStarred = this.board.isStarred;
     this.style = this.board.style;
   },

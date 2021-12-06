@@ -22,8 +22,13 @@
 			gap: 4px;
 			margin-bottom: 5px;
 			display: flex;
+			min-width: 10px;
 			.card-label {
 				border-radius: 4px;
+			}
+			.fade-enter-active,
+			.fade-leave-active {
+				transition: opacity 0.5s;
 			}
 		}
 		.card-content {
@@ -90,17 +95,18 @@
 				background-color: #0070b1;
 			}
 		}
+
 	}
 }
 .open {
 	color: #fff;
 	font-size: 12px;
 	font-weight: 700;
-	height: 12px;
-	width: auto;
+	height: 16px;
+	padding: 2px 8px;
 	line-height: 12px;
 }
 .close {
 	width: 40px;
-	height: 8px;
+	height: 10px;
 }
