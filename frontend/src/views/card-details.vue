@@ -36,13 +36,7 @@
     <!-- <div class="labels-container" v-if="card.labelsIds.length">
       <h5>Labels</h5>
       <span v-for="labelId in card.labelsIds" :key="labelId">
-<<<<<<< HEAD
         <span v-if="board.labels.findIndex(id => id === labelId) < 0">{{ labelId }},</span>
-=======
-        <span v-if="board.labels.findIndex((id) => id === labelId) < 0"
-          >{{ labelId }},</span
-        >
->>>>>>> 751db4827752d380fc698c6cd864184bb4bfb0cd
       </span>
     </div> -->
     <div class="due-date-container" v-if="card.dueDate">
@@ -217,7 +211,7 @@ export default {
   },
   created() {
     if (this.cardId) {
-      this.getLabels()
+      // this.getLabels()
       boardService.getById(this.boardId).then((board) => {
         this.board = board;
         const group = board.groups.find((group) => group.id === this.groupId);
@@ -260,14 +254,14 @@ export default {
     getCloseSvg() {
       return `<svg class="close-popover" @click="action.isOpen = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#666666"> <path d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z" ></path> </g> </g> </svg>`;
     },
-    getLabels() {
-      if (this.card.labelsIds) {
-        const labels = this.$store.getters.board.labels
-        this.labels = labels.filter(label => {
-          return this.card.labelsIds.includes(label.id)
-        });
-      }
-    },
+    // getLabels() {
+    //   if (this.card.labelsIds) {
+    //     const labels = this.$store.getters.board.labels
+    //     this.labels = labels.filter(label => {
+    //       return this.card.labelsIds.includes(label.id)
+    //     });
+    //   }
+    // },
   },
   methods: {
     closeDetails() {
@@ -299,9 +293,9 @@ export default {
     },
   },
   watch: {
-    "card.labelsIds"() {
-      this.getLabels()
-    }
+    // "card.labelsIds"() {
+    //   this.getLabels()
+    // }
   },
   components: {
     cardMembers,
