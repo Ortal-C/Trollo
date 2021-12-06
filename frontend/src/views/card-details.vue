@@ -224,14 +224,6 @@ export default {
   name: "card-details",
   data() {
     return {
-      board: null,
-      labels: [],
-      rows: 3,
-      activities: "",
-      isDesc: false,
-      isActivity: false,
-      description: "",
-      isLabelsMenuOpen: false,
       actions: [
         {
           title: "Members",
@@ -270,6 +262,15 @@ export default {
           svg: `<svg class="action-svg" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path d="M4 9C4 8.44772 4.44772 8 5 8H9C9.55228 8 10 8.44772 10 9C10 9.55228 9.55228 10 9 10H5C4.44772 10 4 9.55228 4 9Z" fill="currentColor" ></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C1.79086 3 0 4.79086 0 7V17C0 19.2091 1.79086 21 4 21H20C22.2091 21 24 19.2091 24 17V7C24 4.79086 22.2091 3 20 3H4ZM20 5H4C2.89543 5 2 5.89543 2 7V14H22V7C22 5.89543 21.1046 5 20 5ZM22 16H2V17C2 18.1046 2.89543 19 4 19H20C21.1046 19 22 18.1046 22 17V16Z" fill="currentColor" ></path></svg>`,
         },
       ],
+      board: null,
+      labels: [],
+      description: "",
+      activities: [],
+      //is item opens
+      isDesc: false,
+      isActivity: false,
+      // isLabelsMenuOpen: false,
+      
     };
   },
   created() {
@@ -301,9 +302,8 @@ export default {
     cardId() {
       return this.$route.params.cardId;
     },
-    desc() {
-      if (!this.card.description) return "Add a more detailed description...";
-      else return this.card.description;
+    desc() { 
+      return (!this.card.description) ? 'Add a more detailed description...' : this.card.description;
     },
     getHeaderSvg() {
       return `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#34495e"> <path d="M28.66667,28.66667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v14.33333v21.5v50.16667c0,7.91917 6.41417,14.33333 14.33333,14.33333h114.66667c7.91917,0 14.33333,-6.41417 14.33333,-14.33333v-50.16667v-21.5v-14.33333c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333zM28.66667,43h114.66667v14.33333h-114.66667zM28.66667,78.83333h114.66667v50.16667h-114.66667z" ></path> </g> </g> </svg>`;
@@ -341,10 +341,6 @@ export default {
       this.$router.push("/board/" + this.board._id);
       document.body.classList.remove("details-open");
     },
-    changeRowCount() {
-      if (this.rows === 3) this.rows = 6;
-      else this.rows = 3;
-    },
     removeCard(groupId, cardId) {
       this.$store.dispatch({
         type: "removeCard",
@@ -377,7 +373,6 @@ export default {
     },
     editAttachment(attachment) {
       console.log(attachment);
-
     }
   },
   watch: {
