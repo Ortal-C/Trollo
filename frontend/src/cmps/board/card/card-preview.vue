@@ -8,8 +8,7 @@
       style="color: lightgray"
       >{{ labelId }},
     </span>
-    <div v-if="!isEdit" class="card-preview" @click="cardDetails">
-      <!-- card.style.size === 'header' :style="`background-color:${card.style.color}`" -->
+    <div v-if="!isEdit" class="card-preview" @click="cardDetails" :style="{backgroundColor}">
       <div
         class="cover-preview"
         v-if="card.style.size === 'header'"
@@ -69,7 +68,10 @@ export default {
     desc() {
       if (this.card.description) return '🍔'
       else return ''
-    }
+    },
+    backgroundColor() {
+      if (this.card.style.size === 'full') return this.card.style.color
+    },
   }
 };
 </script>

@@ -35,22 +35,13 @@ export default {
     },
     async toggleMember(currMember) {
       let card = this.cardCopy()
-      const member = card.members.find(member => {
-        return member._id === currMember._id
-      })
+      const member = card.members.find(member => member._id === currMember._id)
       if (!member) card.members.push(currMember)
       else {
-        const memberIdx = card.members.findIndex(member => {
-        return member === currMember
-        })
-      card.members.splice(memberIdx, 1)
+        const memberIdx = card.members.findIndex(member => member._id === currMember._id)
+        card.members.splice(memberIdx, 1)
       }
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
-    },
-  },
-  watch: {
-    card() {
-      console.log('Card changed');
     },
   },
 }
