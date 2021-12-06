@@ -65,8 +65,9 @@
             </g>
           </g>
         </svg>
-        <div class="add-card-group" @click="addCard(group.id)">Add card...</div>
-        <div class="archive-group" @click="removeGroup(group.id)">
+        <div class="list-action" @click="copyGroup(group)">Copy list...</div>
+        <div class="list-action" @click="addCard(group.id)">Add card...</div>
+        <div class="list-action" @click="removeGroup(group.id)">
           <!-- <svg
             stroke="currentColor"
             fill="currentColor"
@@ -188,6 +189,11 @@ export default {
     },
     removeGroup(groupId) {
       this.$emit("removeGroup", groupId);
+    },
+    copyGroup(group) {
+      let copiedGroup = this.groupCopy()
+      copiedGroup.id = ''
+      this.$emit('copyGroup', copiedGroup)
     },
     addCard(groupId) {
       this.isOpen=false

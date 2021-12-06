@@ -1,0 +1,85 @@
+.card-container {
+	.edit-card {
+		border: none;
+		background: transparent;
+	}
+	.card-edit-container {
+		position: absolute;
+		z-index: 10;
+		form {
+			background-color: #fff;
+			border-radius: 3px;
+			margin: 7px 7px;
+			padding: 6px 8px;
+			margin-top: 0;
+			width: 258px;
+		}
+		textarea {
+			overflow: hidden;
+			overflow-wrap: break-word;
+			resize: none;
+			height: 90px;
+			font-family: inherit;
+			border: none;
+			outline: none;
+			border-radius: 3px;
+			width: 100%;
+		}
+		button {
+			color: #fff;
+			font-family: inherit;
+			padding-right: 24px;
+			padding-left: 24px;
+			height: 32px;
+			border: none;
+			margin: 1px 8px;
+			border-radius: 3px;
+			line-height: 30px;
+			background-color: #0079bf;
+			button:hover {
+				background-color: #0070b1;
+			}
+		}
+	}
+	.card-preview {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.cover-preview {
+			height: 50px;
+			width: 100%;
+		}
+		button {
+			color: transparent;
+			height: 25px;
+			width: 25px;
+			border-radius: 3px;
+		}
+		.card-icons {
+			display: flex;
+		}
+	}
+	.card-preview {
+		line-height: 24px;
+		cursor: pointer;
+		list-style: none;
+		word-wrap: break-word;
+		max-width: 300px;
+		min-height: 20px;
+		position: relative;
+		background-color: #fff;
+		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+		border-radius: 3px;
+		margin: 7px 7px;
+		padding: 6px 8px;
+	}
+	.card-preview:hover {
+		background-color: #f7f5f5;
+		button {
+			color: black;
+		}
+		button:hover {
+			background-color: #eeeeee;
+		}
+	}
+}

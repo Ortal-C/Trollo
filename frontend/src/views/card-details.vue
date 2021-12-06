@@ -240,11 +240,8 @@ export default {
       let card = this.cardCopy();
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
-    addDesc(groupId, cardId) {
-      console.log('card-details', this.desc, groupId, cardId);
-    },
-    getLabel(labelId) {
-      return (this.board) ? this.board.labels.find(id => id === labelId) : null
+    getLabel(labelId){
+      return this.board.labels.find(id=> id===labelId)
     },
   },
   components: {

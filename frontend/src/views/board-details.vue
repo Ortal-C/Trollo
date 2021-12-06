@@ -15,6 +15,7 @@
         @saveCard="saveCard"
         @saveGroup="saveGroup"
         @removeGroup="removeGroup"
+        @copyGroup="copyGroup"
         @handleDrop="handleDrop"
         :group="group"
         :idx="idx"
@@ -116,6 +117,10 @@ export default {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
     saveGroup(group) {
+      this.$store.dispatch({ type: "saveGroup", group });
+    },
+    copyGroup(group) {
+      console.log(group);
       this.$store.dispatch({ type: "saveGroup", group });
     },
     saveCard({ groupId, card }) {
