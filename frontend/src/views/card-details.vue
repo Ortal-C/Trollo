@@ -355,6 +355,7 @@ export default {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
       card.description = this.description;
+      console.log(card.description);
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId) {
