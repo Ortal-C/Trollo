@@ -84,8 +84,9 @@
           <button @click="editCard(group.id)">Save</button>
         </div>
         <div class="card-actions">
-          <button v-for="action in actions" :key="action.type" @click="action.isOpen = !action.isOpen"><span v-html="action.svg"></span> <p>{{action.title}}</p></button>
-         <!-- <div v-if="action.isOpen" class="dynamic-popover">
+          <button @click="cardDetails">Open card</button>
+          <button v-for="action in actions" :key="action.type" @click="action.isOpen = !action.isOpen"><span v-html="action.svg"></span> <p>{{action.title}}</p>
+            <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title"> {{ action.title }} </span>
                 <span
@@ -94,7 +95,8 @@
                 ></span>
               </div>
               <component :card="card" :is="`card-${action.type}`"></component>
-          </div> -->
+            </div>
+          </button>
         </div>
     </section>
   </section>
@@ -111,12 +113,12 @@ export default {
       title: this.card.title,
       labels: [],
       actions: [
-        {
-          title: 'Open card',
-          type: 'open',
-          isOpen: false,
-          svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <circle fill="none" cx="12" cy="7" r="3"></circle> <path   d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" ></path> </svg>`,
-        },
+        // {
+        //   title: 'Open card',
+        //   type: 'open',
+        //   isOpen: false,
+        //   svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <circle fill="none" cx="12" cy="7" r="3"></circle> <path   d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" ></path> </svg>`,
+        // },
         {
           title: 'Edit labels',
           type: 'labels',
@@ -154,8 +156,8 @@ export default {
           svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path   fill-rule="evenodd"   d="M8 15A7 7 0 108 1a7 7 0 000 14zm8-7A8 8 0 110 8a8 8 0 0116 0z"   clip-rule="evenodd" ></path> <path   fill-rule="evenodd"   d="M7.5 3a.5.5 0 01.5.5v5.21l3.248 1.856a.5.5 0 01-.496.868l-3.5-2A.5.5 0 017 9V3.5a.5.5 0 01.5-.5z"   clip-rule="evenodd" ></path> </svg>`,
         },
         {
-          title: 'Archieve',
-          type: 'archieve',
+          title: 'Archive',
+          type: 'archive',
           isOpen: false,
           svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`,
         },
@@ -165,6 +167,7 @@ export default {
   components: {},
   methods: {
     cardDetails() {
+      if (this.isEdit = true) this.isEdit = false
       this.$router.push('/board/b101/' + this.group.id + '/' + this.card.id);
       document.body.classList.add('details-open');
     },
