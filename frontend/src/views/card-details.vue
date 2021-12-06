@@ -21,25 +21,24 @@
       <button class="close-btn" @click="closeDetails">✖</button>
     </div>
     <!-- members  -->
-    <div class="members-container" v-if="card.members.length">
+    <div class="data-preview" v-if="card.members.length">
       <h5>Members</h5>
-      <div v-for="member in card.members" :key="member._id">
-        <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
-      </div>
-      <span>➕</span>
+      <main class="members-container" >
+        <div v-for="member in card.members" :key="member._id">
+          <span ><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+        </div>
+        <span>➕</span>
+      </main>
     </div>
-    <!-- <div class="card-labels" v-if="labels && card.labelsIds" @click.stop="toggleLabels" >
-      <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
-        <span v-if="openLabels">{{ label.title }}</span>
-      </div>
-    </div> -->
-    <!-- <div class="labels-container" v-if="card.labelsIds.length">
+    <div class="data-preview" v-if="labels && card.labelsIds" >
       <h5>Labels</h5>
-      <span v-for="labelId in card.labelsIds" :key="labelId">
-        <span v-if="board.labels.findIndex(id => id === labelId) < 0">{{ labelId }},</span>
-      </span>
-    </div> -->
-    <div class="due-date-container" v-if="card.dueDate">
+      <main class="labels-container" >
+        <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`" >
+          <span :title="label.title">{{ label.title }}</span>
+        </div>
+      </main>
+    </div>
+    <div class="data-preview due-date-container" v-if="card.dueDate">
       <h5>Due date</h5>
       <!-- fix! -->
       <span>{{ new Date(card.dueDate).toLocaleString("HEB") }}</span>
@@ -161,7 +160,7 @@ export default {
       labels: [],
       rows: 3,
       isDesc: false,
-      description:'',
+      description: '',
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -211,7 +210,6 @@ export default {
   },
   created() {
     if (this.cardId) {
-      // this.getLabels()
       boardService.getById(this.boardId).then((board) => {
         this.board = board;
         const group = board.groups.find((group) => group.id === this.groupId);
@@ -219,6 +217,7 @@ export default {
         const card = group.cards.find((card) => card.id === this.cardId)
         this.$store.commit({ type: "setCurrCard", card });
         this.description = card.description;
+        this.getLabels;
       });
     }
   },
@@ -254,14 +253,14 @@ export default {
     getCloseSvg() {
       return `<svg class="close-popover" @click="action.isOpen = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#666666"> <path d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z" ></path> </g> </g> </svg>`;
     },
-    // getLabels() {
-    //   if (this.card.labelsIds) {
-    //     const labels = this.$store.getters.board.labels
-    //     this.labels = labels.filter(label => {
-    //       return this.card.labelsIds.includes(label.id)
-    //     });
-    //   }
-    // },
+    getLabels() {
+      if (this.$store.getters.currCard.labelsIds.length > 0) {
+        const labels = this.$store.getters.board.labels
+        this.labels = labels.filter(label => {
+          return this.card.labelsIds.includes(label.id)
+        });
+      }
+    },
   },
   methods: {
     closeDetails() {
@@ -289,13 +288,14 @@ export default {
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId) {
-      return this.board.labels.find(id => id === labelId)
+      const label = this.board.labels.find(id => id === labelId);
+      return label ? label : null
     },
   },
   watch: {
-    // "card.labelsIds"() {
-    //   this.getLabels()
-    // }
+    "card.labelsIds"() {
+        this.getLabels;
+    }
   },
   components: {
     cardMembers,
