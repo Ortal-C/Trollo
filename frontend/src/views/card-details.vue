@@ -275,6 +275,7 @@ export default {
         this.$store.commit({ type: "setCurrCard", card });
         this.description = card.description;
         this.getLabels;
+        this.title = card.title
       });
     }
   },
