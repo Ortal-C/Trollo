@@ -152,16 +152,16 @@
 
 <script>
 // @ is an alias to /src
-import cardPreview from "../card/card-preview.vue";
-import boardService from "../../../services/board.service";
-import { Container, Draggable } from "vue-smooth-dnd";
+import cardPreview from '../card/card-preview.vue'
+import {boardService} from '@/services/board.service.js'
+import { Container, Draggable } from 'vue-smooth-dnd';
 export default {
-  name: "group-preview",
-  props: ["group", "dndName", "idx"],
+  name: 'group-preview',
+  props: ['group', 'dndName', 'idx'],
   data() {
     return {
       card: {
-        title: "",
+        title: '',
       },
       title: this.group.title,
       isAddClicked: false,
@@ -171,34 +171,34 @@ export default {
       draggingCard: {
         lane: this.idx,
         index: -1,
-        data: {},
-      },
+        data: {}
+      }
     };
   },
   created() {
-    // this.getEmptyCard();
+    this.getEmptyCard();
   },
   methods: {
-    changeCurrEdit() {
-      this.$store.commit({ type: "setCurrEdit", currEdit: this.group.id });
+    changeCurrEdit(){
+      this.$store.commit({type: 'setCurrEdit', currEdit:this.group.id})
     },
     getEmptyCard() {
       this.card = boardService.getEmptyCard();
     },
     saveGroup(group) {
-      this.$emit("saveGroup", group);
+      this.$emit('saveGroup', group)
     },
     removeGroup(groupId) {
       this.$emit("removeGroup", groupId);
     },
     copyGroup(group) {
-      let copiedGroup = this.groupCopy();
-      copiedGroup.id = "";
-      this.$emit("copyGroup", copiedGroup);
+      let copiedGroup = this.groupCopy()
+      copiedGroup.id = ''
+      this.$emit('copyGroup', copiedGroup)
     },
     addCard(groupId) {
-      this.isOpen = false;
-      this.isAddClicked = !this.isAddClicked;
+      this.isOpen=false
+      this.isAddClicked = !this.isAddClicked
       const title = this.card.title;
       if (!title) return;
       this.$emit("saveCard", { groupId, card: this.card });
@@ -210,36 +210,36 @@ export default {
     },
     editGroup() {
       let group = this.groupCopy();
-      group.title = this.title;
-      if (!group.title) return;
+      group.title= this.title
+      if(!group.title)return
       this.$emit("saveGroup", group);
-      this.$store.commit({ type: "setCurrEdit", currEdit: null });
+    this.$store.commit({type: 'setCurrEdit', currEdit:null})
     },
     toggleMenu() {
       this.isOpen = !this.isOpen;
     },
-    saveCard(groupId, card) {
-      console.log("preview", groupId, card);
-      this.$emit("saveCard", { groupId, card });
+    saveCard(groupId, card){
+      console.log('preview', groupId, card);
+      this.$emit("saveCard", {groupId, card} );
     },
     // DND
     groupCopy() {
-      return JSON.parse(JSON.stringify(this.group));
+      return JSON.parse(JSON.stringify(this.group))
     },
     handleDrop(lane, dropResult) {
       const { removedIndex, addedIndex } = dropResult;
-      if (removedIndex !== null || addedIndex !== null) {
-        this.$emit("handleDrop", { lane, dropResult });
+      if (removedIndex !== null ||addedIndex !== null) {
+        this.$emit('handleDrop', { lane, dropResult });
       }
     },
     getChildPayload(index) {
-      return this.group.cards[index];
+      return this.group.cards[index]
     },
   },
-  computed: {
-    currEdit() {
-      return this.group.id === this.$store.getters.currEdit;
-    },
+  computed:{
+    currEdit(){
+      return this.group.id === this.$store.getters.currEdit
+    }
   },
   components: {
     cardPreview,

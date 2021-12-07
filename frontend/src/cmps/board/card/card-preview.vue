@@ -4,11 +4,7 @@
   <section class="card-preview-container" v-if="card">
     <section class="card-preview" v-if="!isEdit" :style="{ backgroundColor }" @click="cardDetails">
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
-      <div
-        class="card-cover"
-        v-if="card.style.size === 'header'"
-        :style="`background-color:${card.style.color}`"
-      ></div>
+      <div class="card-cover" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
       <div class="card-content">
         <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
@@ -143,8 +139,6 @@ export default {
     },
   },
   async created() {
-    // const board = await boardService.getById(this.boardId);
-    // this.board = board;
     if (this.card) {
       this.getLabels();
     }
@@ -187,14 +181,6 @@ export default {
   computed: {
     board() {
       return this.$store.getters.board;
-    },
-    desc() {
-      return this.card.description
-        ? `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#34495e"> <path d="M26.875,32.25c-1.93842,-0.02741 -3.74144,0.99102 -4.71865,2.66532c-0.97721,1.6743 -0.97721,3.74507 0,5.41937c0.97721,1.6743 2.78023,2.69273 4.71865,2.66532h118.25c1.93842,0.02741 3.74144,-0.99102 4.71865,-2.66532c0.97721,-1.6743 0.97721,-3.74507 0,-5.41937c-0.97721,-1.6743 -2.78023,-2.69273 -4.71865,-2.66532zM26.875,57.33333c-1.93842,-0.02741 -3.74144,0.99102 -4.71865,2.66532c-0.97721,1.6743 -0.97721,3.74507 0,5.41937c0.97721,1.6743 2.78023,2.69273 4.71865,2.66532h118.25c1.93842,0.02741 3.74144,-0.99102 4.71865,-2.66532c0.97721,-1.6743 0.97721,-3.74507 0,-5.41937c-0.97721,-1.6743 -2.78023,-2.69273 -4.71865,-2.66532zM26.875,82.41667c-1.93842,-0.02741 -3.74144,0.99102 -4.71865,2.66532c-0.97721,1.6743 -0.97721,3.74507 0,5.41937c0.97721,1.6743 2.78023,2.69273 4.71865,2.66532h118.25c1.93842,0.02741 3.74144,-0.99102 4.71865,-2.66532c0.97721,-1.6743 0.97721,-3.74507 0,-5.41937c-0.97721,-1.6743 -2.78023,-2.69273 -4.71865,-2.66532zM26.875,107.5c-1.93842,-0.02741 -3.74144,0.99102 -4.71865,2.66532c-0.97721,1.6743 -0.97721,3.74507 0,5.41937c0.97721,1.6743 2.78023,2.69273 4.71865,2.66532h118.25c1.93842,0.02741 3.74144,-0.99102 4.71865,-2.66532c0.97721,-1.6743 0.97721,-3.74507 0,-5.41937c-0.97721,-1.6743 -2.78023,-2.69273 -4.71865,-2.66532zM26.875,132.58333c-1.93842,-0.02741 -3.74144,0.99102 -4.71865,2.66532c-0.97721,1.6743 -0.97721,3.74507 0,5.41937c0.97721,1.6743 2.78023,2.69273 4.71865,2.66532h78.83333c1.93842,0.02741 3.74144,-0.99102 4.71865,-2.66532c0.97721,-1.6743 0.97721,-3.74507 0,-5.41937c-0.97721,-1.6743 -2.78023,-2.69273 -4.71865,-2.66532z" ></path> </g> </g> </svg>`
-        : "";
-    },
-    comment() {
-      return this.card.comments.length ? "💬" : "";
     },
     backgroundColor() {
       if (this.card.style.size === "full") return this.card.style.color;

@@ -1,0 +1,70 @@
+{
+	"title": "",
+	"isStarred": false,
+	"style": "#cc0033",
+	"createdBy": {},
+	"labels": [
+		{
+			"id": "l101",
+			"title": "Copy Request",
+			"color": "#cc0033"
+		},
+		{
+			"id": "l102",
+			"title": "One more step",
+			"color": "#ff8000"
+		},
+		{
+			"id": "l103",
+			"title": "Priority",
+			"color": "#ffbf00"
+		},
+		{
+			"id": "l104",
+			"title": "Design team",
+			"color": "#00cc00"
+		},
+		{
+			"id": "l105",
+			"title": "Product marketing",
+			"color": "#0099cc"
+		},
+		{
+			"id": "l106",
+			"title": "Waiting for feedback",
+			"color": "#66d9ff"
+		},
+		{
+			"id": "l107",
+			"title": "Halp",
+			"color": "#bf80ff"
+		},
+		{
+			"id": "l108",
+			"title": "Important",
+			"color": "#ff66ff"
+		}
+	],
+	"members": [],
+	"groups": [
+		{
+			"id": "g101",
+			"title": "Todos",
+			"cards": [],
+			"style": {}
+		},
+		{
+			"id": "g102",
+			"title": "In progress",
+			"cards": [],
+			"style": {}
+		},
+		{
+			"id": "g103",
+			"title": "Done!",
+			"cards": [],
+			"style": {}
+		}
+	],
+	"activities": []
+}
