@@ -33,7 +33,7 @@
 	}
 	.card-details-header {
 		padding: 10px;
-		margin: 12px 40px 8px 0px;
+		margin: 12px 40px 0px 0px;
 		display: flex;
 		justify-content: space-between;
 		height: 80px;
@@ -41,6 +41,12 @@
 			display: flex;
 			div {
 				margin-left: 10px;
+				input{
+					width: 450px;
+				}
+				form:focus-visible{
+					border: none;
+				}
 			}
 		}
 		h2 {
