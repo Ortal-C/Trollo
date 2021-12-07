@@ -2,9 +2,9 @@
   <div class="card-dates" v-if="card">
     <form @submit.prevent="onDueDate()">
       <el-calendar v-model="value" :first-day-of-week="firstDayOfTheWeek"> </el-calendar>
-      <el-button type="primary" title="Save changes" @click="onDueDate()"
-        >Save</el-button
-      >
+      <el-button type="primary" title="Save changes" @click="onDueDate()">
+        Save
+      </el-button>
       <el-button type="info" title="Discard" @click="discardChanges()" >Discard</el-button>
     </form>
   </div>
@@ -69,6 +69,10 @@ export default {
       let tmpCard = this.cardCopy()
       tmpCard.dueDate = this.value
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card: tmpCard } });
+      // setTimeout(()=>{
+        this.$notify({ title: 'Saved!', type: 'success' })
+        this.$emit('closeActionModal', 'dates')
+      // }, 1500)
     },
   },
   computed: {
@@ -87,7 +91,7 @@ export default {
   },
   watch: {
     value(newVal, oldVal) {
-      console.log('value has changed!');
+      // console.log('value has changed!');
 
     },
   },

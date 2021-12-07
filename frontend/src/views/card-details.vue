@@ -11,14 +11,9 @@
       <div class="card-details-header-content">
         <header>
           <span v-html="getHeaderSvg"></span>
-          <div>
+          <div class="title">
             <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-            <form
-              v-else
-              @submit.prevent="editTitle(group.id)"
-              @change="editTitle(group.id)"
-              action=""
-            >
+            <form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="" >
               <input type="text" v-model="title" :placeholder="card.title" />
             </form>
             <p>In list {{ group.title }}</p>
