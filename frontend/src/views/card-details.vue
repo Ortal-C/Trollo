@@ -18,7 +18,6 @@
     </div>
     <div class="card-details-main-container">
       <div class="card-details-main">
-        <!-- members  -->
         <div class="data-preview" v-if="card.members.length">
           <h5>Members</h5>
           <main class="members-container">
@@ -31,12 +30,7 @@
         <div class="data-preview" v-if="labels && card.labelsIds">
           <h5>Labels</h5>
           <main class="labels-container">
-            <div
-              class="card-label"
-              v-for="label in labels"
-              :key="label.id"
-              :style="`background-color:${label.color}`"
-            >
+            <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`">
               <span :title="label.title">{{ label.title }}</span>
             </div>
           </main>
@@ -105,32 +99,16 @@
         <div class="card-details-attachment" v-if="card.attachments.length">
           <span v-html="getAttachmentSvg"></span>
           <main>
-            <h2>Attachment</h2>
-            <div
-              class="card-attachment"
-              v-for="(attachment, idx) in card.attachments"
-              :key="attachment.url"
-            >
-              <img
-                :src="attachment.url"
-                v-if="attachment.type === 'upload' && attachment.url"
-              />
+            <h2>Attachments</h2>
+            <div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.url">
+              <a :href="attachment.url" target="_blank">
+                <img :src="attachment.url" v-if="attachment.type === 'upload' && attachment.url"/>
+              </a>
               <div class="attachment-details">
-                <span class="attachment-title" v-if="attachment.title">{{
-                  attachment.title
-                }}</span>
+                <span class="attachment-title" v-if="attachment.title">{{attachment.title}}</span>
                 <div class="attachment-actions">
-                  <span v-if="attachment.createdAt">{{
-                    attachment.createdAt
-                  }}</span>
-                  -
-                  <span
-                    class="attachment-action"
-                    @click="removeAttachment(idx)"
-                  >
-                    Delete</span
-                  >
-                  -
+                  <span v-if="attachment.createdAt">{{ new Date(attachment.createdAt).toLocaleString('HEB')}}</span>
+                  <span class="attachment-action" @click="removeAttachment(idx)" >Delete</span>
                   <span class="attachment-action"> Edit</span>
 
                   <!-- <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
@@ -199,7 +177,7 @@
                   @click="action.isOpen = false"
                 ></span>
               </div>
-              <component :card="card" :is="`card-${action.type}`"></component>
+              <component :card="card" :is="`card-${action.type}`" @closeActionModal="closeActionModal"></component>
             </div>
           </div>
           <div class="action-div" @click="removeCard(groupId, cardId)">
@@ -340,6 +318,10 @@ export default {
     closeDetails() {
       this.$router.push("/board/" + this.board._id);
       document.body.classList.remove("details-open");
+    },
+    closeActionModal(type){
+      let action = this.actions.find(action => action.type === type)
+      if (action) action.isOpen = false
     },
     removeCard(groupId, cardId) {
       this.$store.dispatch({
