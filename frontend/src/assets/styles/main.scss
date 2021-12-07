@@ -2,19 +2,17 @@
 @import 'setup/variables';
 @import 'setup/typography';
 @import 'setup/functions';
-
 // Helpers
 @import 'helpers/dynamic-popover';
-
 // Basics
 @import 'basics/base';
-
 // Views
 @import 'views/board-details';
 @import 'views/card-details';
 @import 'views/board-app';
 @import 'views/home-page';
-
+@import 'views/login-page';
+@import 'views/sign-up-page';
 // Cmps
 @import 'cmps/app-header';
 @import 'cmps/board/board-nav';
