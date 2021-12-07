@@ -11,7 +11,7 @@
       <li :title="member.fullname" @click="toggleMember(member)">
         <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
         <span class="member-name">{{ member.fullname }}</span>
-        <span v-if="card.members.includes(member)">✔</span>
+        <span v-if="card.members.includes(member)"><i class="fas fa-check"></i></span>
       </li>
     </ul>
   </section>
