@@ -21,12 +21,11 @@
 
 <script>
 export default {
-  name: 'board-app',
-  components: {
-  },
+  name: "board-app",
+  components: {},
   created() {
-    this.$store.dispatch({ type: 'loadBoards' });
-    document.body.style.backgroundColor = '#ffffff';
+    this.$store.dispatch({ type: "loadBoards" });
+    document.body.style.backgroundColor = "#ffffff";
   },
   computed: {
     boards() {
@@ -35,8 +34,8 @@ export default {
   },
   methods: {
     openBoard(boardId) {
-      this.$router.push('/board/'+boardId)
-    }
-  }
-}
+      this.$router.push("/board/" + boardId);
+    },
+  },
+};
 </script>

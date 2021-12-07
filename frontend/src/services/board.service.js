@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 
 const KEY = 'boardsDB'
@@ -21,30 +21,27 @@ export const boardService = {
     removeCard,
 }
 
-// Debug technique
-window.boardService = boardService
-
 function query() {
-    // return httpService.get(`board${queryStr}`)
-    return storageService.query(KEY)
+    // return storageService.query(KEY)
+    return httpService.get(`board`)
 }
 
 async function getById(boardId) {
-    // const board = await httpService.get(`board/${boardId}`)
-    const board = await storageService.get(KEY, boardId)
-    // gWatchedUser = board;
+    console.log(boardId);
+    // const board = await storageService.get(KEY, boardId)
+    const board = await httpService.get(`board/${boardId}`)
     return board;
 }
 
 function remove(boardId) {
-    // return httpService.delete(`board/${boardId}`)
-    return storageService.remove(KEY, boardId)
+    // return storageService.remove(KEY, boardId)
+    return httpService.delete(`board/${boardId}`)
 }
 
-function saveBoard(board) {
-    return (board._id) ? storageService.put(KEY, board) : storageService.post(KEY, board)
+async function saveBoard(board) {
+    const savedBoard = await httpService.put(`board/${board._id}`, board)
+    return savedBoard;
 }
-
 
 function saveGroup(board, group) {
     let newBoard = JSON.parse(JSON.stringify(board))
@@ -64,8 +61,8 @@ function removeGroup(board, groupId) {
     return saveBoard(newBoard)
 }
 
-
 function saveCard(board, groupId, card) {
+    console.log('saveCard', board._id);
     let newBoard = JSON.parse(JSON.stringify(board))
     const idx = newBoard.groups.findIndex(group => group.id === groupId)
     if (card.id) {
@@ -85,7 +82,6 @@ function removeCard(board, groupId, cardId) {
     return saveBoard(newBoard)
 }
 
-
 //-------------------------- GET EMPTY ITEM --------------------------//
 
 function getEmptyGroup() {
@@ -101,7 +97,7 @@ function getEmptyCard() {
         id: '',
         title: '',
         description: '',
-        isDone:false,
+        isDone: false,
         byMember: {},
         members: [],
         labelsIds: [],

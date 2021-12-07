@@ -255,23 +255,23 @@ export default {
       isActivity: false,
       isEdit: false,
       // isLabelsMenuOpen: false,
-      title: '',
-      description: '',
-      comment: '',
+      title: "",
+      description: "",
+      comment: "",
     };
   },
-  created() {
+  async created() {
     if (this.cardId) {
-      boardService.getById(this.boardId).then((board) => {
-        this.board = board;
-        const group = board.groups.find((group) => group.id === this.groupId);
-        this.$store.commit({ type: "setCurrGroup", group });
-        const card = group.cards.find((card) => card.id === this.cardId);
-        this.$store.commit({ type: "setCurrCard", card });
-        this.description = card.description;
-        this.getLabels;
-        this.title = card.title
-      });
+      const board = await boardService.getById(this.boardId);
+      this.board = board;
+      const group = board.groups.find((group) => group.id === this.groupId);
+      console.log(group);
+      this.$store.commit({ type: "setCurrGroup", group });
+      const card = group.cards.find((card) => card.id === this.cardId);
+      this.$store.commit({ type: "setCurrCard", card });
+      this.description = card.description;
+      this.getLabels;
+      this.title = card.title;
     }
   },
   computed: {
@@ -290,8 +290,10 @@ export default {
     cardId() {
       return this.$route.params.cardId;
     },
-    desc() { 
-      return (!this.card.description) ? 'Add a more detailed description...' : this.card.description;
+    desc() {
+      return !this.card.description
+        ? "Add a more detailed description..."
+        : this.card.description;
     },
     getHeaderSvg() {
       return `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#34495e"> <path d="M28.66667,28.66667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v14.33333v21.5v50.16667c0,7.91917 6.41417,14.33333 14.33333,14.33333h114.66667c7.91917,0 14.33333,-6.41417 14.33333,-14.33333v-50.16667v-21.5v-14.33333c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333zM28.66667,43h114.66667v14.33333h-114.66667zM28.66667,78.83333h114.66667v50.16667h-114.66667z" ></path> </g> </g> </svg>`;
@@ -329,9 +331,9 @@ export default {
       this.$router.push("/board/" + this.board._id);
       document.body.classList.remove("details-open");
     },
-    closeActionModal(type){
-      let action = this.actions.find(action => action.type === type)
-      if (action) action.isOpen = false
+    closeActionModal(type) {
+      let action = this.actions.find((action) => action.type === type);
+      if (action) action.isOpen = false;
     },
     removeCard(groupId, cardId) {
       this.$store.dispatch({
@@ -362,7 +364,7 @@ export default {
     },
     addComment(groupId) {
       this.isActivity = !this.isActivity;
-      if(!this.comment) return
+      if (!this.comment) return;
       let card = this.cardCopy();
       card.comments.unshift(this.comment);
       console.log(
@@ -386,7 +388,7 @@ export default {
     },
     editAttachment(attachment) {
       console.log(attachment);
-    }
+    },
   },
   watch: {
     "card.labelsIds"() {
