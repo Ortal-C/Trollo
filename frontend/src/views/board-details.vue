@@ -2,13 +2,13 @@
 // v-for group in groups group-preview, send group prop
 
 <template>
-  <div class="board-details" v-if="board" >
+  <div class="board-details" v-if="board">
     <board-nav @toggleStar="toggleStar" @updateStyle="updateStyle" @editBoardTitle="editBoardTitle" />
     <section class="groups-container" v-dragscroll.x="true">
       <!-- <Container class="groups-container"
         :group-name='dndName' @drop="handleDrop"
         :get-child-payload="getChildPayload" > -->
-        <!-- <Draggable> -->
+      <!-- <Draggable> -->
       <group-preview
         v-for="(group, idx) in board.groups"
         :key="group.id"
@@ -23,7 +23,7 @@
       />
       <!-- </Draggable> -->
       <router-view></router-view>
-       <div class="group-add" @click="isAddGroup = !isAddGroup" v-if="!isAddGroup">
+      <div class="group-add" @click="isAddGroup = !isAddGroup" v-if="!isAddGroup">
         <svg
           width="16"
           height="16"
@@ -40,68 +40,71 @@
         <p>Add another list</p>
       </div>
       <div class="add-group-container" v-else>
-      <form @submit.prevent="addGroup">
-        <input v-model="group.title" placeholder="Enter list title..." />
-        <div class="actions-container">
-          <button class="btn-add">Add List</button>
-          <svg
-            class="btn-close icon"
-            @click.prevent="closeInput"
-            stroke="currentColor"
-            fill="currentColor"
-            stroke-width="0"
-            viewBox="0 0 512 512"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            style="
-              color: rgb(66, 82, 110);
-              font-size: 24px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <path
-              d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
-            ></path>
-          </svg>
-        </div>
-      </form>
+        <form @submit.prevent="addGroup">
+          <input v-model="group.title" placeholder="Enter list title..." />
+          <div class="actions-container">
+            <button class="btn-add">Add List</button>
+            <svg
+              class="btn-close icon"
+              @click.prevent="closeInput"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              style="
+                color: rgb(66, 82, 110);
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <path
+                d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+              ></path>
+            </svg>
+          </div>
+        </form>
       </div>
-    <!-- </Container> -->
+      <!-- </Container> -->
     </section>
   </div>
 </template>
 
 <script>
-import { boardService } from '@/services/board.service.js';
-import boardNav from '@/cmps/board/board-nav.vue';
-import groupPreview from '@/cmps/board/group/group-preview.vue';
-import { Container, Draggable } from 'vue-smooth-dnd';
+import { boardService } from "@/services/board.service.js";
+import boardNav from "@/cmps/board/board-nav.vue";
+import groupPreview from "@/cmps/board/group/group-preview.vue";
+import { Container, Draggable } from "vue-smooth-dnd";
 export default {
-  name: 'board-details',
+  name: "board-details",
   data() {
     return {
       group: {
-        title: '',
+        title: "",
       },
       tmpBoard: null,
-      isAddGroup: false
+      isAddGroup: false,
     };
   },
   async created() {
     const boardId = this.$route.params.boardId;
-    let board = await this.$store.dispatch({ type: 'loadBoard', boardId });
+    let board = await this.$store.dispatch({ type: "loadBoard", boardId });
     document.body.style.backgroundColor = board.style;
     this.getEmptyGroup();
   },
   methods: {
-    async toggleStar(board){
-      await this.$store.dispatch({ type: 'updateBoard', board})
+    async toggleStar(board) {
+      await this.$store.dispatch({ type: "updateBoard", board });
     },
-    async updateStyle(style){
-      await this.$store.dispatch({ type: 'updateBoard', board: { ...this.board, style } })
+    async updateStyle(style) {
+      await this.$store.dispatch({
+        type: "updateBoard",
+        board: { ...this.board, style },
+      });
     },
     getEmptyGroup() {
       this.group = boardService.getEmptyGroup();
@@ -111,7 +114,7 @@ export default {
       if (!title) return;
       await this.$store.dispatch({ type: "saveGroup", group: this.group });
       this.getEmptyGroup();
-      this.isAddGroup = false
+      this.isAddGroup = false;
     },
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
@@ -128,15 +131,15 @@ export default {
     closeInput() {
       this.isAddGroup = false;
     },
-    editBoardTitle(board){
-      this.$store.dispatch({type: 'updateBoard', board})
+    editBoardTitle(board) {
+      this.$store.dispatch({ type: "updateBoard", board });
     },
     // DND
     boardCopy() {
       this.tmpBoard = JSON.parse(JSON.stringify(this.board));
     },
     async handleDrop({ lane, dropResult }) {
-      const { removedIndex, addedIndex, payload } = dropResult
+      const { removedIndex, addedIndex, payload } = dropResult;
       if (removedIndex !== null || addedIndex != null) {
         if (!this.tmpBoard) this.boardCopy();
         if (removedIndex !== null) {
@@ -144,7 +147,10 @@ export default {
         }
         if (addedIndex !== null) {
           this.tmpBoard.groups[lane].cards.splice(addedIndex, 0, payload);
-          await this.$store.dispatch({ type: "updateBoard", board: this.tmpBoard })
+          await this.$store.dispatch({
+            type: "updateBoard",
+            board: this.tmpBoard,
+          });
           this.tmpBoard = null;
         }
       }
@@ -163,7 +169,7 @@ export default {
       return this.$store.getters.board.groups;
     },
     dndName() {
-      return 'Trollo';
+      return "Trollo";
     },
   },
   watch: {
