@@ -1,13 +1,12 @@
 <template>
-  <div class="block" v-if="card">
-    <el-date-picker
-      v-model="value"
-      type="date"
-      placeholder="Pick a day"
-      :picker-options="pickerOptions"
-      @change="dueDateChange"
-    >
-    </el-date-picker>
+  <div class="card-dates" v-if="card">
+    <form @submit.prevent="onDueDate()">
+      <el-calendar v-model="value" :first-day-of-week="firstDayOfTheWeek"> </el-calendar>
+      <el-button type="primary" title="Save changes" @click="onDueDate()"
+        >Save</el-button
+      >
+      <el-button type="info" title="Discard" @click="discardChanges()" >Discard</el-button>
+    </form>
   </div>
 </template>
 
@@ -63,13 +62,19 @@ export default {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    async dueDateChange() {
+    discardChanges() {
+      this.$emit('closeActionModal', 'dates')
+    },
+    async onDueDate() {
       let tmpCard = this.cardCopy()
       tmpCard.dueDate = this.value
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card: tmpCard } });
     },
   },
   computed: {
+    firstDayOfTheWeek(){
+      return parseInt(7)
+    },
     board() {
       return this.$store.getters.board || null;
     },

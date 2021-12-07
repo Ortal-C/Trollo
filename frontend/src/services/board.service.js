@@ -101,14 +101,16 @@ function getEmptyCard() {
         id: '',
         title: '',
         description: '',
+        isDone:false,
         byMember: {},
         members: [],
         labelsIds: [],
         checklists: [],
         attachments: [],
+        activities: [],
         comments: [],
         createdAt: Date.now(),
-        dueDate: Date.now(),
+        dueDate: '',
         style: {},
     }
 }
