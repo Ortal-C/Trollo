@@ -1,30 +1,20 @@
 <template>
   <div class="card-attachment">
+    <form @submit.prevent="onUpload($event)">
     <label>
       Attach a link
-      <input
-        v-model="linkUrl"
-        type="url"
-        placeholder="Pase any link here..."
-        @keydown.enter="onUpload('link', $event)"
-      />
+      <input v-model="attachment.url" type="url" placeholder="Pase any link here..." @change="attachment.type='link'" />
     </label>
     <label>
       Upload image or video from computer
-      <input type="file" id="upload" @change="onUpload('upload', $event)" />
+      <input type="file" id="upload" @change="attachment.type='upload'" />
     </label>
-    <div>
-      My uploads:
-      <div v-for="(attachment, idx) in card.attachments" :key="idx">
-        <a :href="attachment.url" target="_blank">
-          <img height='100px' width='100px' :src="attachment.url"/>
-          <p>
-            File link
-          </p>
-        </a>
-        <!-- </iframe> -->
-      </div>
-    </div>
+    <label>
+      Attachment name (optional)
+      <input type="text" v-model="attachment.title" />
+    </label>
+    <el-button type="primary" @click="onUpload($event)">Attach</el-button>
+    </form>
   </div>
 </template>
 
@@ -35,7 +25,13 @@ export default {
 
   data() {
     return {
-      linkUrl: '',
+      attachment: {
+        type: '',
+        url: '',
+        title: 'Attachment',
+        createdAt: Date.now(),
+        isEdit: false,
+      },
       isLoading: false
     }
   },
@@ -43,14 +39,15 @@ export default {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    async onUpload(type, ev) {
+    async onUpload(ev) {
       let tmpCard = this.cardCopy()
-      if (type === 'link') {
-        tmpCard.attachments.push({ type, url: this.linkUrl })
+      if (this.attachment.type === 'link') {
+        tmpCard.attachments.push(this.attachment)
       }
       else {
         const res = await utilService.upload(ev);
-        tmpCard.attachments.push({ type:res.type, url: res.url, title: 'Attachment', createdAt: Date.now(), isEdit: false })
+        tmpCard.attachments.push({...this.attachment, type:res.type, url:res.url})
+        this.$notify({ title: 'Finished!', type: 'success' })
       }
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card: tmpCard } });
     }
