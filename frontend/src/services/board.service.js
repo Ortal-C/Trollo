@@ -107,7 +107,7 @@ function getEmptyCard() {
         comments: [],
         createdAt: Date.now(),
         dueDate: '',
-        style: {},
+        style: { size: '', color: '' },
     }
 }
 
