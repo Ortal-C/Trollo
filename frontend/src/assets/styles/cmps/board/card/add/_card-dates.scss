@@ -1,11 +1,11 @@
 .card-dates {
-	max-height: 300px;
+	max-height: 370px;
 	overflow-y: scroll;
+	text-align: center;
 	.el-calendar__header{
-		text-align: center;
 		font-weight: 600;
 		display: block;
-		padding: 0px 20px;
+		padding: 5px 20px;
     	border-bottom: 1px solid #EBEEF5;
 	}
 	.el-button-group{
