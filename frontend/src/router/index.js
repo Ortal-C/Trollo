@@ -6,6 +6,7 @@ import boardDetails from '../views/board-details.vue'
 import cardDetails from '../views/card-details.vue'
 import loginPage from '../views/login-page.vue'
 import signUpPage from '../views/sign-up-page.vue'
+import dashboard from '../views/dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [{
         path: '/board',
         name: 'boardApp',
         component: boardApp
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: dashboard
     },
     {
         path: '/board/:boardId',

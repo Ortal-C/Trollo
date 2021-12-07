@@ -32,6 +32,7 @@
         <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
       </div>
       <button>Invite</button>
+     <button @click="dashboard">Dashboard</button>
       <!-- <el-avatar title="Add new member" :size="30">➕</el-avatar> -->
     </section>
     <!-- <select v-model="style" @change="updateStyle">
@@ -103,6 +104,9 @@ export default {
     boardCopy() {
       return JSON.parse(JSON.stringify(this.board));
     },
+      dashboard(){
+       this.$router.push('/dashboard')
+    }
   },
   computed: {
     isStar() {

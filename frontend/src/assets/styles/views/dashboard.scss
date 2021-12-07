@@ -1,0 +1,19 @@
+.dashboard {
+    background-color: hsla(0, 0%, 100%, 0.609);
+    .charts-container {
+        button {
+            border: none;
+            background-color: transparent;
+            position: absolute;
+            top: 45px;
+            right: 10px;
+            font-size: 2em;
+        }
+        display: flex;
+        justify-content: space-evenly;
+        .chart,
+        .pie-chart {
+            width: 30%
+        }
+    }
+}
