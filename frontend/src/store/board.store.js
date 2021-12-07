@@ -46,7 +46,7 @@ export const boardStore = {
         async loadBoard(context, { boardId }) {
             try {
                 const board = await boardService.getById(boardId)
-                // board = await boardService.query(board)
+                    // board = await boardService.query(board)
                 context.commit({ type: 'setBoard', board })
                 return board;
             } catch (err) {
@@ -67,7 +67,7 @@ export const boardStore = {
         //GROUP ACTIONS//
         async saveGroup(context, { group }) {
             try {
-                const board = await boardService.saveGroup(context.state.board, { ...group })
+                const board = await boardService.saveGroup(context.state.board, {...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
                 console.log('Issues with saveGroup', err);
@@ -90,6 +90,7 @@ export const boardStore = {
                 const board = await boardService.saveCard(context.state.board, groupId, card)
                 context.commit({ type: 'setCurrCard', card })
                 context.commit({ type: 'setBoard', board })
+                console.log(board);
             } catch (err) {
                 console.log(('Issues with adding card', err));
                 throw err

@@ -120,7 +120,6 @@ export default {
       this.$store.dispatch({ type: "saveGroup", group });
     },
     copyGroup(group) {
-      console.log(group);
       this.$store.dispatch({ type: "saveGroup", group });
     },
     saveCard({ groupId, card }) {

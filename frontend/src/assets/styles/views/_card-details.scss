@@ -45,6 +45,21 @@
         h2 {
             margin: 0px 0px 0.1em;
         }
+        input {
+            font-weight: 600;
+            font-size: 1.5em;
+            box-shadow: inset 0 0 0 2px #0079bf;
+            width: 100%;
+            padding: 0;
+            height: 30px;
+        }
+        input::placeholder {
+            color: #172b4d;
+        }
+        input,
+        form {
+            margin: 0;
+        }
     }
     .close-btn {
         align-self: start;
@@ -244,12 +259,23 @@
         border: none;
         width: 100%;
         background-color: #fff;
+        width: 450px;
     }
     .activity-area:hover {
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
     li {
         margin: 5px 0;
+    }
+}
+
+.activities {
+    margin-top: 20px;
+    .comments {
+        padding: 8px 12px;
+        box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
+        width: 450px;
+        background-color: #fff;
     }
 }
 

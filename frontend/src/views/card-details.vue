@@ -2,14 +2,25 @@
 
 <template>
   <div class="card-details" v-if="card && group">
-    <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`" ></div>
+    <div
+      class="card-details-cover"
+      v-if="card.style.color"
+      :style="`background-color:${card.style.color}`"
+    ></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
           <span v-html="getHeaderSvg"></span>
           <div>
-            <!-- should be input -->
-            <h2>{{ card.title }}</h2>
+            <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
+            <form
+              v-else
+              @submit.prevent="editTitle(group.id)"
+              @change="editTitle(group.id)"
+              action=""
+            >
+              <input type="text" v-model="title" :placeholder="card.title" />
+            </form>
             <p>In list {{ group.title }}</p>
           </div>
         </header>
@@ -23,7 +34,9 @@
           <h5>Members</h5>
           <main class="members-container">
             <div v-for="member in card.members" :key="member._id">
-              <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+              <span
+                ><el-avatar :size="30" :src="member.imgUrl"></el-avatar
+              ></span>
             </div>
             <span @click="openMemberModal">➕</span>
           </main>
@@ -161,9 +174,10 @@
                 rows="1"
               ></textarea>
             </div>
-            <div v-else class="activity-area" @change="addActivity()">
-              <form action="" @submit.prevent="addActivity()">
+            <div v-else class="activity-area" @change="addComment(group.id)">
+              <form action="" @submit.prevent="addComment(group.id)">
                 <textarea
+                  v-model="comment"
                   class="activity-txtarea"
                   placeholder="Write a comment..."
                   rows="1"
@@ -171,11 +185,11 @@
                 <button>Save</button>
               </form>
             </div>
-            <section class="activities" v-if="card.activities.length">
-              <ul v-for="activity in card.activities" :key="activity.id">
+            <section class="activities" v-if="card.comments.length">
+              <ul v-for="comment in card.comments" :key="comment.id">
                 <li>
-                  <b>{{ activity.byMember.fullname }}</b> {{ activity.txt }}
-                  {{ activity.createdAt }}
+                  <div class="comments"> {{ comment }}</div>
+                 
                 </li>
               </ul>
             </section>
@@ -227,10 +241,13 @@ export default {
       board: null,
       labels: [],
       rows: 3,
-      activities: "",
       isDesc: false,
+      isEdit: false,
       isActivity: false,
+      activities: "",
+      title: "",
       description: "",
+      comment: "",
       isLabelsMenuOpen: false,
       actions: [
         {
@@ -315,27 +332,27 @@ export default {
       return `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" > <path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z" ></path> </svg>`;
     },
     getAttachmentSvg() {
-      return `<svg stroke="currentColor" fill="none" stroke-width="" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="action-svg"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>`
+      return `<svg stroke="currentColor" fill="none" stroke-width="" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="action-svg"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>`;
     },
     getCloseSvg() {
       return `<svg class="close-popover" @click="action.isOpen = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#666666"> <path d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z" ></path> </g> </g> </svg>`;
     },
     getArchiveSvg() {
-      return `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`
+      return `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`;
     },
     getLabels() {
       if (this.$store.getters.currCard.labelsIds.length > 0) {
-        const labels = this.$store.getters.board.labels
-        this.labels = labels.filter(label => {
-          return this.card.labelsIds.includes(label.id)
+        const labels = this.$store.getters.board.labels;
+        this.labels = labels.filter((label) => {
+          return this.card.labelsIds.includes(label.id);
         });
       }
     },
   },
   methods: {
     openMemberModal() {
-      const idx = this.actions.findIndex((action) => action.type === 'members')
-      this.actions[idx].isOpen = true
+      const idx = this.actions.findIndex((action) => action.type === "members");
+      this.actions[idx].isOpen = true;
     },
     closeDetails() {
       this.$router.push("/board/" + this.board._id);
@@ -359,32 +376,51 @@ export default {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
       card.description = this.description;
-      console.log(card.description);
+      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
+    },
+    editTitle(groupId) {
+      this.isEdit = !this.isEdit;
+      let card = this.cardCopy();
+      if (!card.title) return;
+      card.title = this.title;
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
     getLabel(labelId) {
-      const label = this.board.labels.find(id => id === labelId);
-      return label ? label : null
+      const label = this.board.labels.find((id) => id === labelId);
+      return label ? label : null;
     },
-    addActivity() {
+    addComment(groupId) {
       this.isActivity = !this.isActivity;
-      console.log("New activity was added!");
+      if(!this.comment) return
+      let card = this.cardCopy();
+      card.comments.unshift(this.comment);
+      console.log(
+        "New comment was added!",
+        this.comment,
+        card.comments,
+        card.comments.length,
+        groupId
+      );
+      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
+      this.comment = "";
     },
     removeAttachment(idx) {
       console.log(idx);
       let card = this.cardCopy();
-      card.attachments.splice(idx, 1)
-      this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+      card.attachments.splice(idx, 1);
+      this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
     },
     editAttachment(attachment) {
       console.log(attachment);
-
-    }
+    },
   },
   watch: {
     "card.labelsIds"() {
       this.getLabels;
-    }
+    },
   },
   components: {
     cardMembers,
