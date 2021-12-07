@@ -10,6 +10,7 @@
 		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
 		.edit-card {
 			display: none;
+			color: transparent;
 		}
 		.card-cover {
 			width: 100%;
@@ -34,6 +35,7 @@
 		.card-content {
 			width: 100%;
 			min-height: 32px;
+			padding: 5px;
 		}
 		.card-icons {
 			display: flex;
@@ -43,7 +45,7 @@
 	}
 	.card-preview:hover {
 		// Change
-		background-color: #ebebeb5d;
+		background-color: #e0e0e0;
 		.edit-card {
 			display: block;
 			border: none;

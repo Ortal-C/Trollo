@@ -9,7 +9,7 @@
       </select>
       <div class="board-title">
         <h3 v-if="!isEdit" @click="isEdit = !isEdit">{{ board.title }}</h3>
-        <form v-else @change="editBoardTitle()" action="">
+        <form v-else @change="editBoardTitle">
           <input type="text" v-model="title" :placeholder="board.title" />
         </form>
       </div>
@@ -62,7 +62,7 @@ export default {
       isMenuOpen: false,
       isStarred: null,
       isEdit: false,
-      title: '',
+      title: "",
       style: null,
       colors: [
         "#cc0033",
@@ -80,6 +80,7 @@ export default {
   created() {
     this.isStarred = this.board.isStarred;
     this.style = this.board.style;
+    this.title = this.board.title;
   },
   methods: {
     toggleStar() {
@@ -91,25 +92,25 @@ export default {
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    }, 
-      editBoardTitle() {
+    },
+    editBoardTitle() {
       let board = this.boardCopy();
       board.title = this.title;
       if (!board.title) return;
       this.$emit("editBoardTitle", board);
       this.isEdit = false;
     },
-     boardCopy(){
-         return JSON.parse(JSON.stringify(this.board))
-    }
+    boardCopy() {
+      return JSON.parse(JSON.stringify(this.board));
+    },
   },
   computed: {
     isStar() {
       return { starred: this.isStarred };
     },
-    board(){
-  return this.$store.getters.board;
-    }
+    board() {
+      return this.$store.getters.board;
+    },
   },
   components: {
     boardMenu,

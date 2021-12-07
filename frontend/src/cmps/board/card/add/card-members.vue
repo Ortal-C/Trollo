@@ -1,11 +1,17 @@
 <template>
-  <section class="card-members" v-if="board">
-    <input type="text" placeholder="Search members">
+  <section class="card-members" v-if="board && card">
+    <input
+      type="text"
+      v-model="searchBy"
+      placeholder="Search members"
+      @input="searchMembers"
+    />
     <h4>Board members</h4>
-    <ul v-for="member in board.members" :key="member._id">
+    <ul v-for="member in members" :key="member._id">
       <li :title="member.fullname" @click="toggleMember(member)">
         <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
-        <span class="member-name">{{member.fullname}}</span>
+        <span class="member-name">{{ member.fullname }}</span>
+        <span v-if="card.members.includes(member)">✔</span>
       </li>
     </ul>
   </section>
@@ -13,10 +19,15 @@
 
 <script>
 export default {
-  name:'card-members',
+  name: 'card-members',
   data() {
     return {
-    }
+      searchBy: '',
+      members: null
+    };
+  },
+  created() {
+    this.members = this.board.members
   },
   computed: {
     board() {
@@ -26,23 +37,30 @@ export default {
       return this.$route.params.groupId;
     },
     card() {
-      return this.$store.getters.currCard
-    }
+      return this.$store.getters.currCard;
+    },
   },
   methods: {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
     async toggleMember(currMember) {
-      let card = this.cardCopy()
-      const member = card.members.find(member => member._id === currMember._id)
-      if (!member) card.members.push(currMember)
+      let card = this.cardCopy();
+      const member = card.members.find((member) => member._id === currMember._id);
+      if (!member) card.members.push(currMember);
       else {
-        const memberIdx = card.members.findIndex(member => member._id === currMember._id)
-        card.members.splice(memberIdx, 1)
+        const memberIdx = card.members.findIndex((member) => member._id === currMember._id)
+        card.members.splice(memberIdx, 1);
       }
-      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+      await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }
+      });
+    },
+    searchMembers() {
+      const members = this.board.members.filter((member) =>
+        member.fullname.toLowerCase().includes(this.searchBy.toLowerCase())
+      );
+      this.members = (members) ? members : this.board.members
     },
   },
-}
+};
 </script>

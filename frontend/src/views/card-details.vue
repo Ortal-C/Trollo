@@ -10,7 +10,7 @@
           <div>
             <!-- should be input -->
             <h2>{{ card.title }}</h2>
-            <p>In list {{ group.title }}</p>
+            <p>In list <span class="group-title">{{ group.title }}</span></p>
           </div>
         </header>
       </div>
@@ -23,12 +23,12 @@
           <h5>Members</h5>
           <main class="members-container">
             <div v-for="member in card.members" :key="member._id">
-              <span><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+              <span><el-avatar :size="33" :src="member.imgUrl"></el-avatar></span>
             </div>
-            <span @click="openMemberModal">➕</span>
+            <span @click="openMemberModal" class="add-member"><i class="el-icon-plus"></i></span>
           </main>
         </div>
-        <div class="data-preview" v-if="labels && card.labelsIds">
+        <div class="data-preview" v-if="labels && card.labelsIds.length">
           <h5>Labels</h5>
           <main class="labels-container">
             <div

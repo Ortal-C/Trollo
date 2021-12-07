@@ -8,12 +8,11 @@
       </div>
       <div class="full-cover-preview option" @click="updateSize('full')"></div>
     </div>
-    <button class="remove-cover">Remove cover</button>
+    <button class="remove-cover" @click="removeCover">Remove cover</button>
     <h4>Color</h4>
     <div class="colors-container">
     <div v-for="color in colors" :key="color" :style="`background-color:${color}`" class="color" @click="updateColor(color)"></div>
     </div>
-    <pre>{{card.style}}</pre>
   </section>
 </template>
 
@@ -43,17 +42,19 @@ export default {
       return JSON.parse(JSON.stringify(this.card));
     },
     updateSize(size) {
-       let card = this.cardCopy()
-       card.style.size = size
-      // console.log(size, this.card);
-      console.log(card.style);
+      let card = this.cardCopy()
+      card.style.size = size
       this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
     },
     updateColor(color) {
-      console.log(color);
       let card = this.cardCopy()
       if (!card.style.size) card.style.size = 'header'
       card.style.color = color
+      this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
+    },
+    removeCover() {
+      let card = this.cardCopy()
+      card.style = {size: '', color: ''}
       this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
     }
   }
