@@ -7,8 +7,10 @@ const KEY = 'boardsDB'
 export const boardService = {
     query,
     remove,
+    add,
     saveBoard,
     getById,
+    getEmptyBoard,
 
     // GROUP FUNCTIONS //
     getEmptyGroup,
@@ -35,6 +37,11 @@ async function getById(boardId) {
 function remove(boardId) {
     // return storageService.remove(KEY, boardId)
     return httpService.delete(`board/${boardId}`)
+}
+
+async function add(board) {
+    const addedBoard = await httpService.post(`board`, board)
+    return addedBoard;
 }
 
 async function saveBoard(board) {
@@ -106,6 +113,79 @@ function getEmptyCard() {
         createdAt: Date.now(),
         dueDate: '',
         style: { size: '', color: '' },
+    }
+}
+
+function getEmptyBoard() {
+    return {
+        title: '',
+        isStarred: false,
+        style: "#838c91",
+        createdBy: {},
+        labels: [
+            {
+                id: "l101",
+                title: "Copy Request",
+                color: "#cc0033"
+            },
+            {
+                id: "l102",
+                title: "One more step",
+                color: "#ff8000"
+            },
+            {
+                id: "l103",
+                title: "Priority",
+                color: "#ffbf00"
+            },
+            {
+                id: "l104",
+                title: "Design team",
+                color: "#00cc00"
+            },
+            {
+                id: "l105",
+                title: "Product marketing",
+                color: "#0099cc"
+            },
+            {
+                id: "l106",
+                title: "Waiting for feedback",
+                color: "#66d9ff"
+            },
+            {
+                id: "l107",
+                title: "Halp",
+                color: "#bf80ff"
+            },
+            {
+                id: "l108",
+                title: "Important",
+                color: "#ff66ff"
+            }
+        ],
+        members: [],
+        groups: [
+            {
+                id: "g101",
+                title: "Todos",
+                cards: [],
+                style: {}
+            },
+            {
+                id: "g102",
+                title: "In progress",
+                cards: [],
+                style: {}
+            },
+            {
+                id: "g103",
+                title: "Done!",
+                cards: [],
+                style: {}
+            }
+        ],
+        activities: []
     }
 }
 

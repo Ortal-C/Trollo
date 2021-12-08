@@ -29,7 +29,7 @@
           ></path>
         </svg>
       </button>
-      <div v-for="member in board.members" :key="member.id">
+      <div v-for="member in board.members" :key="member.id" class="member">
         <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
       </div>
       <button>Invite</button>
@@ -105,9 +105,9 @@ export default {
     boardCopy() {
       return JSON.parse(JSON.stringify(this.board));
     },
-      dashboard(){
-       this.$router.push('/dashboard')
-    }
+    dashboard() {
+      this.$router.push("/dashboard");
+    },
   },
   computed: {
     isStar() {
