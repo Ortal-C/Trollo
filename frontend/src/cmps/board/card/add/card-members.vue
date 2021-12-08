@@ -51,9 +51,7 @@ export default {
       // await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }});
     },
     searchMembers() {
-      const members = this.board.members.filter((member) =>
-        member.fullname.toLowerCase().includes(this.searchBy.toLowerCase())
-      );
+      const members = this.board.members.filter((member) => member.fullname.toLowerCase().includes(this.searchBy.toLowerCase()));
       this.members = (members) || this.board.members
     },
   },

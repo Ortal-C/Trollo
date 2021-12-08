@@ -33,7 +33,6 @@ export default {
       }
       this.$emit('updateCard', card);
       // await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
-
     },
   },
   computed: {
@@ -52,6 +51,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

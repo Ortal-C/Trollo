@@ -54,28 +54,28 @@
 </template>
 
 <script>
-import boardMenu from "@/cmps/board/board-menu.vue";
+import boardMenu from '@/cmps/board/board-menu.vue';
 // @ is an alias to /src
 export default {
-  name: "board-nav",
+  name: 'board-nav',
   props: {},
   data() {
     return {
       isMenuOpen: false,
       isStarred: null,
       isEdit: false,
-      title: "",
+      title: '',
       style: null,
       colors: [
-        "#cc0033",
-        "#ff8000",
-        "#ffbf00",
-        "#00cc00",
-        "#66d9ff",
-        "#0099cc",
-        "#bf80ff",
-        "#ff66ff",
-        "#ff4da6",
+        '#cc0033',
+        '#ff8000',
+        '#ffbf00',
+        '#00cc00',
+        '#66d9ff',
+        '#0099cc',
+        '#bf80ff',
+        '#ff66ff',
+        '#ff4da6',
       ],
     };
   },
@@ -87,10 +87,10 @@ export default {
   methods: {
     toggleStar() {
       this.isStarred = !this.isStarred;
-      this.$emit("toggleStar", { ...this.board, isStarred: this.isStarred });
+      this.$emit('toggleStar', { ...this.board, isStarred: this.isStarred });
     },
     async updateStyle(color) {
-      this.$emit("updateStyle", color);
+      this.$emit('updateStyle', color);
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
@@ -99,14 +99,14 @@ export default {
       let board = this.boardCopy();
       board.title = this.title;
       if (!board.title) return;
-      this.$emit("editBoardTitle", board);
+      this.$emit('editBoardTitle', board);
       this.isEdit = false;
     },
     boardCopy() {
       return JSON.parse(JSON.stringify(this.board));
     },
     dashboard() {
-      this.$router.push("/dashboard");
+      this.$router.push('/dashboard');
     },
   },
   computed: {
