@@ -43,11 +43,9 @@ export default {
   },
   components: {},
   created() {
-    this.$store.dispatch({ type: "loadBoards" });
     document.body.style.backgroundColor = "#ffffff";
-    // const topic = 'shocko'
+    this.$store.dispatch({ type: "loadBoards" });
     socketService.on('boards-watch', this.updateBoards)
-    // socketService.on('chat addMsg', this.addMsg)
   },
   computed: {
     boards() {
