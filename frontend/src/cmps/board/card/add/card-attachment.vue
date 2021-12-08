@@ -1,25 +1,25 @@
-// <template>
-// 	<div class="card-attachment">
-// 		<form @submit.prevent="onUpload($event)">
-// 			<label name="link">
-// 				Attach a link
-// 				<input v-model="attachment.url" type="url" placeholder="Pase any link here..." @change="attachment.type = 'link'" />
-// 			</label>
-// 			<label name="media">
-// 				Upload image or video from computer
-// 				<input type="file" id="upload" @change="getUploadUrl($event)" />
-// 			</label>
-// 			<label name="name">
-// 				Attachment name (optional)
-// 				<input type="text" v-model="attachment.title" />
-// 			</label>
-// 			<el-button type="primary" @click="onUpload(event)">Attach</el-button>
-// 			<el-button type="info" title="Discard" @click="discardChanges()">Discard</el-button>
-// 		</form>
-// 	</div>
-// </template>
+<template>
+	<!-- <div class="card-attachment">
+		<form @submit.prevent="onUpload($event)">
+			<label name="link">
+				Attach a link
+				<input v-model="attachment.url" type="url" placeholder="Pase any link here..." @change="attachment.type = 'link'" />
+			</label>
+			<label name="media">
+				Upload image or video from computer
+				<input type="file" id="upload" @change="getUploadUrl($event)" />
+			</label>
+			<label name="name">
+				Attachment name (optional)
+				<input type="text" v-model="attachment.title" />
+			</label>
+			<el-button type="primary" @click="onUpload(event)">Attach</el-button>
+			<el-button type="info" title="Discard" @click="discardChanges()">Discard</el-button>
+		</form>
+	</div> -->
+</template>
 
-// <script>
+<!-- // <script>
 // 	import {utilService} from '@/services/util.service.js'
 // 	export default {
 // 		name: 'card-attachment',
@@ -72,4 +72,4 @@
 // 			},
 // 		},
 // 	}
-// </script>
+// </script> -->

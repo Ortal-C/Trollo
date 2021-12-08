@@ -33,6 +33,17 @@ export const boardStore = {
         }
     },
     actions: {
+        async addBoard({ commit, state }, { board }) {
+            // console.log('context', context);
+            try {
+                const newBoard = await boardService.add(board);
+                const boards = [...state.boards, newBoard]
+                commit({ type: 'setBoards', boards })
+            } catch (err) {
+                console.log('boardStore: Error in loadBoards', err)
+                throw err
+            }
+        },
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()

@@ -2,15 +2,15 @@
 
 <template>
   <div class='board-app' v-if="boards">
-    <div class="starred-boards">
+    <!-- <div class="starred-boards">
       <h2>Starred boards</h2>
         <ul>
-          <!-- v-if="board.isStarred"  -->
+          v-if="board.isStarred" 
           <li v-for='board in boards' :key='board._id' class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
           <p>{{board.title}}</p>
         </li>
       </ul>
-    </div>
+    </div> -->
      <div class="workspace-boards">
       <h2>Workspace</h2>
         <ul>
@@ -65,7 +65,7 @@ export default {
       if (!this.title) return;
       let board = boardService.getEmptyBoard();
       board.title = this.title;
-      await boardService.add(board);
+      await this.$store.dispatch({type:'addBoard',board})
       socketService.emit('boards-watch',this.boards)
       this.isAdd = false;
     },
