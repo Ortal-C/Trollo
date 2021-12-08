@@ -3,10 +3,11 @@
 <template>
   <section class="board-nav" v-if="board">
     <section>
-      <select>
+      
+      <!-- <select>
         <option value="board">Board</option>
         <option value="dashboard">Dashboard</option>
-      </select>
+      </select> -->
       <div class="board-title">
         <h3 v-if="!isEdit" @click="isEdit = !isEdit">{{ board.title }}</h3>
         <form v-else @change="editBoardTitle">
