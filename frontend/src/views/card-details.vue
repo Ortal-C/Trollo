@@ -1,7 +1,6 @@
 // Details and edit, gets cardId from params
 
 <template>
-<<<<<<< HEAD
   <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
     <div
       class="card-details-cover"
@@ -153,83 +152,6 @@
                     >Delete</span
                   >
                   <span class="attachment-action">Edit</span>
-=======
-	<div class="card-details" v-if="card && group"  @keydown.esc="closeDetails">
-		<div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div>
-		<div class="card-details-header">
-			<div class="card-details-header-content">
-				<header>
-					<span v-html="getHeaderSvg"></span>
-					<div class="title">
-						<h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-						<form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="">
-							<input type="text" v-model="title" :placeholder="card.title" />
-						</form>
-						<p>In list <span class="group-title">{{ group.title }}</span></p>
-					</div>
-				</header>
-			</div>
-			<button class="close-btn" @click="closeDetails">✖</button>
-		</div>
-		<div class="card-details-main-container">
-			<div class="card-details-main">
-				<div class="data-preview" v-if="card.members.length">
-					<h5>Members</h5>
-					<main class="members-container">
-						<div v-for="member in card.members" :key="member._id">
-							<span><el-avatar :size="33" :src="member.imgUrl"></el-avatar></span>
-						</div>
-						<span @click="openMemberModal" class="add-member"><i class="el-icon-plus"></i></span>
-					</main>
-				</div>
-				<div class="data-preview" v-if="labels && card.labelsIds.length">
-					<h5>Labels</h5>
-					<main class="labels-container">
-						<div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`">
-							<span :title="label.title">{{ label.title }}</span>
-						</div>
-					</main>
-				</div>
-				<div class="data-preview due-date-container" v-if="card.dueDate">
-					<h5>Due date</h5>
-					<input type="checkbox" :checked="card.isDone" @change="toggleDueDate" />
-					<span>{{ new Date(card.dueDate).toLocaleString('HEB').substring(0, 10) }}</span>
-					<el-tag v-if="card.isDone" type="success">Complete</el-tag>
-				</div>  
-				<div class="card-details-desc">
-					<span v-html="getDescriptionSvg"></span>
-					<main>
-						<h2>Description</h2>
-						<section class="description-container">
-							<!-- <div > -->
-							<textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" @click="isDesc = !isDesc" name="" id="" cols="30" rows="1" :placeholder="desc"></textarea>
-							<form v-else action="" @submit.prevent="addDesc(group.id)">
-								<textarea class="desc-txt-edit" v-model="description" name="" id="" cols="30" rows="6" :placeholder="desc"></textarea>
-								<div class="actions-desc">
-									<button class="add-desc-btn">Save</button>
-									<svg class="close-desc-btn" @click="isDesc = !isDesc" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
-										<path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
-									</svg>
-								</div>
-							</form>
-						</section>
-					</main>
-				</div>
-				<div class="card-details-attachment" v-if="card.attachments.length">
-					<span v-html="getAttachmentSvg"></span>
-					<main>
-						<h2>Attachments</h2>
-						<div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.id">
-							<a :href="attachment.url" target="_blank">
-								<img :src="attachment.url" v-if="attachment.type === 'upload' && attachment.url" />
-							</a>
-							<div class="attachment-details">
-								<span class="attachment-title" v-if="attachment.title">{{ attachment.title }}</span>
-								<div class="attachment-actions">
-									<span v-if="attachment.createdAt">{{ new Date(attachment.createdAt).toLocaleString('HEB') }}</span>
-									<span class="attachment-action" @click="removeAttachment(idx)">Delete</span>
-									<span class="attachment-action">Edit</span>
->>>>>>> 1b543cf3d81d208f61ad028f94223825515132d1
 
                   <!-- <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
                   <pre>{{attachment}}</pre>
