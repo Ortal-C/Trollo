@@ -50,7 +50,8 @@ export default {
       let card = this.cardCopy()
       if (!card.style.size) card.style.size = 'header'
       card.style.color = color
-      this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
+      this.$emit('updateCard', card)
+      // this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
     },
     removeCover() {
       let card = this.cardCopy()

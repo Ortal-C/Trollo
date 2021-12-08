@@ -127,7 +127,7 @@
 								<span class="popover-title">{{ action.title }}</span>
 								<span v-html="getCloseSvg" @click="action.isOpen = false" @keydown.esc="action.isOpen = false"></span>
 							</div>
-							<component :card="card" :is="`card-${action.type}`" @closeActionModal="closeActionModal"></component>
+							<component :card="card" :is="`card-${action.type}`" @closeActionModal="closeActionModal" @updateCard="updateCard"></component>
 						</div>
 					</div>
 					<div class="action-div" @click="removeCard(groupId, cardId)">
@@ -230,11 +230,11 @@ export default {
       let action = this.actions.find((action) => action.type === type);
       if (action) action.isOpen = false;
     },
+    async updateCard(card){
+      await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }});
+    },
     removeCard(groupId, cardId) {
-      this.$store.dispatch({
-        type: "removeCard",
-        payload: { groupId, cardId },
-      });
+      this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId }});
       this.closeDetails();
     },
     cardCopy() {
@@ -255,7 +255,7 @@ export default {
     },
     getLabel(labelId) {
       const label = this.board.labels.find((id) => id === labelId);
-      return label ? label : null;
+      return label || null;
     },
     addComment(groupId) {
       this.isActivity = !this.isActivity;
@@ -316,6 +316,7 @@ export default {
       return this.$route.params.cardId;
     },
     desc() {
+      // return this.card.description ||  "Add a more detailed description..." 
       return !this.card.description
         ? "Add a more detailed description..."
         : this.card.description;

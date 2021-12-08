@@ -39,7 +39,7 @@ export default {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    async toggleMember(currMember) {
+    toggleMember(currMember) {
       let card = this.cardCopy();
       const member = card.members.find((member) => member._id === currMember._id);
       if (!member) card.members.push(currMember);
@@ -47,8 +47,8 @@ export default {
         const memberIdx = card.members.findIndex((member) => member._id === currMember._id)
         card.members.splice(memberIdx, 1);
       }
-      await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }
-      });
+      this.$emit('updateCard', card);
+      // await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }});
     },
     searchMembers() {
       const members = this.board.members.filter((member) =>

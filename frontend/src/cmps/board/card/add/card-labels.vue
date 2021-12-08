@@ -31,7 +31,8 @@ export default {
         const idx = card.labelsIds.findIndex(id=> id===labelId)
         card.labelsIds.splice(idx, 1);
       }
-      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
+      this.$emit('updateCard', card);
+      // await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
 
     },
   },

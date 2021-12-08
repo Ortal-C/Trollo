@@ -48,7 +48,8 @@
 					tmpCard.attachments.push({...this.attachment, type: res.type, url: res.url})
 					this.$notify({title: 'Finished!', type: 'success'})
 				}
-				await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card: tmpCard}})
+      this.$emit('updateCard', tmpCard)
+				// await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card: tmpCard}})
 			},
 		},
 		computed: {
