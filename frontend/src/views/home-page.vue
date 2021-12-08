@@ -11,11 +11,10 @@
 
 <script>
 export default {
-  name: 'home-page',
-  components: {
-  },
+  name: "home-page",
+  components: {},
   created() {
-    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.backgroundColor = "#ffffff";
   },
-}
+};
 </script>

@@ -31,22 +31,26 @@
 
 <script>
 export default {
-  name: 'app-header',
-  components: {
+  name: "app-header",
+  components: {},
+  watch: {
+    "this.$router"() {
+      console.log("change");
+    },
   },
   mounted() {
     console.log(this.$refs);
   },
   methods: {
     homePage() {
-      this.$router.push('/')
+      this.$router.push("/");
     },
     boards() {
-      this.$router.push('/board')
+      this.$router.push("/board");
     },
-    login(){
-       this.$router.push('/login')
+    login() {
+      this.$router.push("/login");
     },
-  }
-}
+  },
+};
 </script>

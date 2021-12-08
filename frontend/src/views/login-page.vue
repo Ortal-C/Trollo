@@ -5,6 +5,7 @@
         <i class="fab fa-trello"></i>
       </div>
       <h1>Trollo</h1>
+      <img src="@/assets/imgs/login-svg.svg" alt="">
     </div>
     <main class="login-container">
       <h3>Log in to Trello</h3>
