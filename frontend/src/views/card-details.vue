@@ -66,7 +66,7 @@
 					<span v-html="getAttachmentSvg"></span>
 					<main>
 						<h2>Attachments</h2>
-						<div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.url">
+						<div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.id">
 							<a :href="attachment.url" target="_blank">
 								<img :src="attachment.url" v-if="attachment.type === 'upload' && attachment.url" />
 							</a>
