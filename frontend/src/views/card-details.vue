@@ -249,7 +249,7 @@ export default {
     editTitle(groupId) {
       this.isEdit = !this.isEdit;
       let card = this.cardCopy();
-      if (!card.title) return;
+      if (!this.title) return;
       card.title = this.title;
       this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
     },
