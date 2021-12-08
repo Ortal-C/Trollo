@@ -66,10 +66,10 @@ export default {
   },
   methods: {
     closeMenu() {
-      this.$emit("close");
+      this.$emit('close');
     },
     updateStyle(color) {
-      this.$emit("updateStyle", color);
+      this.$emit('updateStyle', color);
     },
   },
 };

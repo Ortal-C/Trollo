@@ -115,11 +115,7 @@
         <p class="card-add">Add a card</p>
       </div>
       <form @submit.prevent="addCard(group.id)" v-else>
-        <textarea
-          class="card-add-textarea"
-          v-model="card.title"
-          placeholder="Enter a title for this card..."
-        ></textarea>
+        <textarea class="card-add-textarea" v-model="card.title" placeholder="Enter a title for this card..."></textarea>
         <div class="actions-container">
           <button class="btn-add">Add card</button>
           <svg
@@ -151,9 +147,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import cardPreview from '../card/card-preview.vue'
-import {boardService} from '@/services/board.service.js'
+import { boardService } from '@/services/board.service.js'
 import { Container, Draggable } from 'vue-smooth-dnd';
 export default {
   name: 'group-preview',
@@ -189,7 +184,7 @@ export default {
       this.$emit('saveGroup', group)
     },
     removeGroup(groupId) {
-      this.$emit("removeGroup", groupId);
+      this.$emit('removeGroup', groupId);
     },
     copyGroup(group) {
       let copiedGroup = this.groupCopy()
@@ -201,7 +196,7 @@ export default {
       this.isAddClicked = !this.isAddClicked
       const title = this.card.title;
       if (!title) return;
-      this.$emit("saveCard", { groupId, card: this.card });
+      this.$emit('saveCard', { groupId, card: this.card });
       this.getEmptyCard();
       // this.isAddClicked = false;
     },
@@ -212,7 +207,7 @@ export default {
       let group = this.groupCopy();
       group.title= this.title
       if(!group.title)return
-      this.$emit("saveGroup", group);
+      this.$emit('saveGroup', group);
     this.$store.commit({type: 'setCurrEdit', currEdit:null})
     },
     toggleMenu() {
@@ -220,7 +215,7 @@ export default {
     },
     saveCard(groupId, card){
       console.log('preview', groupId, card);
-      this.$emit("saveCard", {groupId, card} );
+      this.$emit('saveCard', {groupId, card} );
     },
     // DND
     groupCopy() {
