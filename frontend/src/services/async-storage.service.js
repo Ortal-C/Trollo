@@ -9,21 +9,21 @@ export const storageService = {
     postMany
 }
 
-_createBoards()
+// _createBoards()
 
-function _createBoards() {
-    let boards = load('boardsDB')
-    if (!boards || !boards.length) {
-        boards = []
-        boards.push(boardData)
-        _save('boardsDB', boards)
-    }
-}
+// function _createBoards() {
+//     let boards = load('boardsDB')
+//     if (!boards || !boards.length) {
+//         boards = []
+//         boards.push(boardData)
+//         _save('boardsDB', boards)
+//     }
+// }
 
-function load(key) {
-    var val = localStorage.getItem(key)
-    return (val) ? JSON.parse(val) : null;
-}
+// function load(key) {
+//     var val = localStorage.getItem(key)
+//     return (val) ? JSON.parse(val) : null;
+// }
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
@@ -45,7 +45,7 @@ async function post(entityType, newEntity) {
 
 async function postMany(entityType, newEntities) {
     const entities = await query(entityType)
-    newEntities = newEntities.map(entity => ({...entity, _id: _makeId() }))
+    newEntities = newEntities.map(entity => ({ ...entity, _id: _makeId() }))
     entities.push(...newEntities)
     _save(entityType, entities)
     return entities
@@ -64,7 +64,6 @@ async function remove(entityType, entityId) {
     const idx = entities.findIndex(entity => entity._id === entityId)
     entities.splice(idx, 1)
     _save(entityType, entities)
-    console.log('async', entities);
     return entities
 }
 

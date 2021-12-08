@@ -153,6 +153,7 @@
 <script>
 // @ is an alias to /src
 import cardPreview from '../card/card-preview.vue'
+import {boardService} from '@/services/board.service.js'
 import { Container, Draggable } from 'vue-smooth-dnd';
 export default {
   name: 'group-preview',

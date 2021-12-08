@@ -1,11 +1,6 @@
 <template>
   <section class="card-members" v-if="board && card">
-    <input
-      type="text"
-      v-model="searchBy"
-      placeholder="Search members"
-      @input="searchMembers"
-    />
+    <input type="text" v-model="searchBy" placeholder="Search members" @input="searchMembers" />
     <h4>Board members</h4>
     <ul v-for="member in members" :key="member._id">
       <li :title="member.fullname" @click="toggleMember(member)">
@@ -59,7 +54,7 @@ export default {
       const members = this.board.members.filter((member) =>
         member.fullname.toLowerCase().includes(this.searchBy.toLowerCase())
       );
-      this.members = (members) ? members : this.board.members
+      this.members = (members) || this.board.members
     },
   },
 };
