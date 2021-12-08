@@ -9,7 +9,7 @@
       </select>
       <div class="board-title">
         <h3 v-if="!isEdit" @click="isEdit = !isEdit">{{ board.title }}</h3>
-        <form v-else @change="editBoardTitle">
+        <form @submit.prevent="editBoardTitle" v-else @change="editBoardTitle">
           <input type="text" v-model="title" :placeholder="board.title" />
         </form>
       </div>

@@ -217,22 +217,6 @@
 					"style": {"size": "", "color": ""},
 					"byMember": {},
 					"comments": []
-				},
-				{
-					"id": "c302",
-					"title": "Shushu",
-					"description": "description of shushu",
-					"isDone": false,
-					"members": [],
-					"labelsIds": [],
-					"checklists": [],
-					"attachments": [],
-					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": 16156215211,
-					"style": {"size": "", "color": ""},
-					"byMember": {},
-					"comments": []
 				}
 			],
 			"members": [

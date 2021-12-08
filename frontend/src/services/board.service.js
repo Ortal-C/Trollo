@@ -27,7 +27,6 @@ function query() {
 }
 
 async function getById(boardId) {
-    console.log(boardId);
     // const board = await storageService.get(KEY, boardId)
     const board = await httpService.get(`board/${boardId}`)
     return board;
@@ -62,7 +61,6 @@ function removeGroup(board, groupId) {
 }
 
 function saveCard(board, groupId, card) {
-    console.log('saveCard', board._id);
     let newBoard = JSON.parse(JSON.stringify(board))
     const idx = newBoard.groups.findIndex(group => group.id === groupId)
     if (card.id) {

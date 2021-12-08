@@ -60,7 +60,7 @@ export const boardStore = {
                 context.commit({ type: 'setBoard', board: updatedBoard })
                 return updatedBoard;
             } catch (err) {
-                console.log('Issues with updateBoard', err);
+                console.log('BoardStore: Issues with updateBoard', err);
                 throw err
             }
         },
@@ -70,7 +70,7 @@ export const boardStore = {
                 const board = await boardService.saveGroup(context.state.board, { ...group })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log('Issues with saveGroup', err);
+                console.log('BoardStore: Issues with saveGroup', err);
                 throw err
             }
         },
@@ -79,7 +79,7 @@ export const boardStore = {
                 const board = await boardService.removeGroup(context.state.board, groupId)
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log(('Issues with removing group', err));
+                console.log('BoardStore: Issues with removing group', err);
                 throw err
             }
         },
@@ -91,7 +91,7 @@ export const boardStore = {
                 context.commit({ type: 'setCurrCard', card })
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log(('Issues with adding card', err));
+                console.log('BoardStore: Issues with adding card', err);
                 throw err
             }
         },
@@ -101,62 +101,9 @@ export const boardStore = {
                 const board = await boardService.removeCard(context.state.board, groupId, cardId)
                 context.commit({ type: 'setBoard', board })
             } catch (err) {
-                console.log(('Issues with removing card', err));
+                console.log('BoardStore: Issues with removing card', err);
                 throw err
             }
-        }
-
-
-        // async toggleStar(context, { isStarred }) {
-        //     try {
-        //         const updatedBoard = await boardService.save({ ...context.state.board, isStarred })
-        //         context.commit({ type: 'setBoard', board: updatedBoard })
-        //         return updatedBoard;
-        //     } catch (err) {
-        //         console.log(('issues with toggleStar', err));
-        //         throw err
-        //     }
-        // }
-        // async addBoard(context, { board }) {
-        //     try {
-        //         board = await reviewService.add(board)
-        //         context.commit({ type: 'addBoard', board })
-        //         context.dispatch({ type: 'increaseScore' })
-
-        //         return board;
-        //     } catch (err) {
-        //         console.log('reviewStore: Error in addBoard', err)
-        //         throw err
-        //     }
-        // },
-        // async loadBoards(context) {
-        //     try {
-        //         const boards = await reviewService.query();
-        //         context.commit({ type: 'setBoards', boards })
-        //         socketService.off(SOCKET_EVENT_REVIEW_ADDED)
-        //         socketService.on(SOCKET_EVENT_REVIEW_ADDED, board => {
-        //             console.log('Got board from socket', board);
-        //             context.commit({ type: 'addBoard', board })
-        //         })
-        //         socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
-        //         socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, board => {
-        //             console.log('board about me!', board);
-
-        //         })
-
-        //     } catch (err) {
-        //         console.log('reviewStore: Error in loadBoards', err)
-        //         throw err
-        //     }
-        // },
-        // async removeBoard(context, { reviewId }) {
-        //     try {
-        //         await reviewService.remove(reviewId);
-        //         context.commit({ type: 'removeBoard', reviewId })
-        //     } catch (err) {
-        //         console.log('reviewStore: Error in removeBoard', err)
-        //         throw err
-        //     }
-        // },
-    }
+        },
+    },
 }
