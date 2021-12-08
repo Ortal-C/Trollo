@@ -1,83 +1,159 @@
 // Details and edit, gets cardId from params
 
 <template>
-	<div class="card-details" v-if="card && group"  @keydown.esc="closeDetails">
-		<div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div>
-		<div class="card-details-header">
-			<div class="card-details-header-content">
-				<header>
-					<span v-html="getHeaderSvg"></span>
-					<div class="title">
-						<h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-						<form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="">
-							<input type="text" v-model="title" :placeholder="card.title" />
-						</form>
-						<p>In list <span class="group-title">{{ group.title }}</span></p>
-					</div>
-				</header>
-			</div>
-			<button class="close-btn" @click="closeDetails">✖</button>
-		</div>
-		<div class="card-details-main-container">
-			<div class="card-details-main">
-				<div class="data-preview" v-if="card.members.length">
-					<h5>Members</h5>
-					<main class="members-container">
-						<div v-for="member in card.members" :key="member._id">
-							<span><el-avatar :size="33" :src="member.imgUrl"></el-avatar></span>
-						</div>
-						<span @click="openMemberModal" class="add-member"><i class="el-icon-plus"></i></span>
-					</main>
-				</div>
-				<div class="data-preview" v-if="labels && card.labelsIds.length">
-					<h5>Labels</h5>
-					<main class="labels-container">
-						<div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`">
-							<span :title="label.title">{{ label.title }}</span>
-						</div>
-					</main>
-				</div>
-				<div class="data-preview due-date-container" v-if="card.dueDate">
-					<h5>Due date</h5>
-					<input type="checkbox" :checked="card.isDone" @change="toggleDueDate" />
-					<span>{{ new Date(card.dueDate).toLocaleString('HEB').substring(0, 10) }}</span>
-					<el-tag v-if="card.isDone" type="success">Complete</el-tag>
-				</div>  
-				<div class="card-details-desc">
-					<span v-html="getDescriptionSvg"></span>
-					<main>
-						<h2>Description</h2>
-						<section class="description-container">
-							<!-- <div > -->
-							<textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" @click="isDesc = !isDesc" name="" id="" cols="30" rows="1" :placeholder="desc"></textarea>
-							<form v-else action="" @submit.prevent="addDesc(group.id)">
-								<textarea class="desc-txt-edit" v-model="description" name="" id="" cols="30" rows="6" :placeholder="desc"></textarea>
-								<div class="actions-desc">
-									<button class="add-desc-btn">Save</button>
-									<svg class="close-desc-btn" @click="isDesc = !isDesc" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
-										<path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
-									</svg>
-								</div>
-							</form>
-						</section>
-					</main>
-				</div>
-				<div class="card-details-attachment" v-if="card.attachments.length">
-					<span v-html="getAttachmentSvg"></span>
-					<main>
-						<h2>Attachments</h2>
-						<div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.url">
-							<a :href="attachment.url" target="_blank">
-								<img :src="attachment.url" v-if="attachment.type === 'upload' && attachment.url" />
-							</a>
-							<div class="attachment-details">
-								<span class="attachment-title" v-if="attachment.title">{{ attachment.title }}</span>
-								<div class="attachment-actions">
-									<span v-if="attachment.createdAt">{{ new Date(attachment.createdAt).toLocaleString('HEB') }}</span>
-									<span class="attachment-action" @click="removeAttachment(idx)">Delete</span>
-									<span class="attachment-action">Edit</span>
+  <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
+    <div
+      class="card-details-cover"
+      v-if="card.style.color"
+      :style="`background-color:${card.style.color}`"
+    ></div>
+    <div class="card-details-header">
+      <div class="card-details-header-content">
+        <header>
+          <span v-html="getHeaderSvg"></span>
+          <div class="title">
+            <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
+            <form
+              v-else
+              @submit.prevent="editTitle(group.id)"
+              @change="editTitle(group.id)"
+              action=""
+            >
+              <input type="text" v-model="title" :placeholder="card.title" />
+            </form>
+            <p>
+              In list <span class="group-title">{{ group.title }}</span>
+            </p>
+          </div>
+        </header>
+      </div>
+      <button class="close-btn" @click="closeDetails">✖</button>
+    </div>
+    <div class="card-details-main-container">
+      <div class="card-details-main">
+        <div class="data-preview" v-if="card.members.length">
+          <h5>Members</h5>
+          <main class="members-container">
+            <div v-for="member in card.members" :key="member._id">
+              <span
+                ><el-avatar :size="33" :src="member.imgUrl"></el-avatar
+              ></span>
+            </div>
+            <span @click="openMemberModal" class="add-member"
+              ><i class="el-icon-plus"></i
+            ></span>
+          </main>
+        </div>
+        <div class="data-preview" v-if="labels && card.labelsIds.length">
+          <h5>Labels</h5>
+          <main class="labels-container">
+            <div
+              class="card-label"
+              v-for="label in labels"
+              :key="label.id"
+              :style="`background-color:${label.color}`"
+            >
+              <span :title="label.title">{{ label.title }}</span>
+            </div>
+          </main>
+        </div>
+        <div class="data-preview due-date-container" v-if="card.dueDate">
+          <h5>Due date</h5>
+          <input
+            type="checkbox"
+            :checked="card.isDone"
+            @change="toggleDueDate"
+          />
+          <span>{{
+            new Date(card.dueDate).toLocaleString("HEB").substring(0, 10)
+          }}</span>
+          <el-tag v-if="card.isDone" type="success">Complete</el-tag>
+        </div>
+        <div class="card-details-desc">
+          <span v-html="getDescriptionSvg"></span>
+          <main>
+            <h2>Description</h2>
+            <section class="description-container">
+              <!-- <div > -->
+              <textarea
+                @change="addDesc(group.id)"
+                class="desc-txt-show"
+                v-if="!isDesc"
+                @click="isDesc = !isDesc"
+                name=""
+                id=""
+                cols="30"
+                rows="1"
+                :placeholder="desc"
+              ></textarea>
+              <form v-else action="" @submit.prevent="addDesc(group.id)">
+                <textarea
+                  class="desc-txt-edit"
+                  v-model="description"
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="6"
+                  :placeholder="desc"
+                ></textarea>
+                <div class="actions-desc">
+                  <button class="add-desc-btn">Save</button>
+                  <svg
+                    class="close-desc-btn"
+                    @click="isDesc = !isDesc"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="
+                      color: rgb(66, 82, 110);
+                      font-size: 24px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <path
+                      d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+                    ></path>
+                  </svg>
+                </div>
+              </form>
+            </section>
+          </main>
+        </div>
+        <div class="card-details-attachment" v-if="card.attachments.length">
+          <span v-html="getAttachmentSvg"></span>
+          <main>
+            <h2>Attachments</h2>
+            <div
+              class="card-attachment"
+              v-for="(attachment, idx) in card.attachments"
+              :key="attachment.url"
+            >
+              <a :href="attachment.url" target="_blank">
+                <img
+                  :src="attachment.url"
+                  v-if="attachment.type === 'upload' && attachment.url"
+                />
+              </a>
+              <div class="attachment-details">
+                <span class="attachment-title" v-if="attachment.title">{{
+                  attachment.title
+                }}</span>
+                <div class="attachment-actions">
+                  <span v-if="attachment.createdAt">{{
+                    new Date(attachment.createdAt).toLocaleString("HEB")
+                  }}</span>
+                  <span class="attachment-action" @click="removeAttachment(idx)"
+                    >Delete</span
+                  >
+                  <span class="attachment-action">Edit</span>
 
-									<!-- <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
+                  <!-- <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
                   <pre>{{attachment}}</pre>
                    <div v-if="attachment.isEdit" class="dynamic-popover">
                     <div class="popover-header">
@@ -85,59 +161,123 @@
                      <span v-html="getCloseSvg" @click="isEdit = false"></span>
                     </div>
                   </div> -->
-								</div>
-							</div>
-						</div>
-					</main>
-				</div>
-				<div class="card-details-activity">
-					<span v-html="getActivitySvg"></span>
-					<main>
-						<h2>Activity</h2>
-						<div v-if="!isActivity" @click="isActivity = !isActivity" class="activity-area">
-							<textarea class="activity-txtarea" placeholder="Write a comment..." rows="1"></textarea>
-						</div>
-						<div v-else class="activity-area" @change="addComment(group.id)">
-							<form action="" @submit.prevent="addComment(group.id)">
-								<textarea v-model="comment" class="activity-txtarea" placeholder="Write a comment..." rows="1"></textarea>
-								<button>Save</button>
-							</form>
-						</div>
-						<section class="activities" v-if="card.comments.length">
-							<ul v-for="comment in card.comments" :key="comment.id">
-								<li>
-									<div class="comments">{{ comment }}</div>
-								</li>
-							</ul>
-						</section>
-					</main>
-				</div>
-			</div>
-			<div class="card-details-sidebar">
-				<div class="add-to-card">
-					<h3 class="add-to-card-title">Add to card</h3>
-					<div v-for="action in actions" :key="action.type">
-						<div class="action-div" @click="action.isOpen = !action.isOpen">
-							<span v-html="action.svg"></span>
-							{{ action.title }}
-						</div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+        <section class="checklist-container">
+          <div
+            class="checklist"
+            v-for="(checklist, idx) in card.checklists"
+            :key="idx"
+          >
+            <div class="checklist-header">
+              <div class="checklist-desc">
+                <span
+                  ><svg
+                    class="action-svg"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z"
+                      clip-rule="evenodd"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M7 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 11.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0zM7 9.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 01.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0z"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></span>
+                <h2>{{ checklist }}</h2>
+              </div>
+              <button @click="removeCecklist(idx)">Delete</button>
+            </div>
+            <div class="checklist-main">
+              <span>0%</span>
+              <div class="checklist-progress"></div>
+            </div>
+            <button>Add an item</button>
+          </div>
+        </section>
+        <div class="card-details-activity">
+          <span v-html="getActivitySvg"></span>
+          <main>
+            <h2>Activity</h2>
+            <div
+              v-if="!isActivity"
+              @click="isActivity = !isActivity"
+              class="activity-area"
+            >
+              <textarea
+                class="activity-txtarea"
+                placeholder="Write a comment..."
+                rows="1"
+              ></textarea>
+            </div>
+            <div v-else class="activity-area" @change="addComment(group.id)">
+              <form action="" @submit.prevent="addComment(group.id)">
+                <textarea
+                  v-model="comment"
+                  class="activity-txtarea"
+                  placeholder="Write a comment..."
+                  rows="1"
+                ></textarea>
+                <button>Save</button>
+              </form>
+            </div>
+            <section class="activities" v-if="card.comments.length">
+              <ul v-for="comment in card.comments" :key="comment.id">
+                <li>
+                  <div class="comments">{{ comment }}</div>
+                </li>
+              </ul>
+            </section>
+          </main>
+        </div>
+      </div>
+      <div class="card-details-sidebar">
+        <div class="add-to-card">
+          <h3 class="add-to-card-title">Add to card</h3>
+          <div v-for="action in actions" :key="action.type">
+            <div class="action-div" @click="action.isOpen = !action.isOpen">
+              <span v-html="action.svg"></span>
+              {{ action.title }}
+            </div>
 
-						<div v-if="action.isOpen" class="dynamic-popover">
-							<div class="popover-header">
-								<span class="popover-title">{{ action.title }}</span>
-								<span v-html="getCloseSvg" @click="action.isOpen = false" @keydown.esc="action.isOpen = false"></span>
-							</div>
-							<component :card="card" :is="`card-${action.type}`" @closeActionModal="closeActionModal" @updateCard="updateCard"></component>
-						</div>
-					</div>
-					<div class="action-div" @click="removeCard(groupId, cardId)">
-						<span v-html="getArchiveSvg"></span>
-						Archive
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div v-if="action.isOpen" class="dynamic-popover">
+              <div class="popover-header">
+                <span class="popover-title">{{ action.title }}</span>
+                <span
+                  v-html="getCloseSvg"
+                  @click="action.isOpen = false"
+                  @keydown.esc="action.isOpen = false"
+                ></span>
+              </div>
+              <component
+                :card="card"
+                :is="`card-${action.type}`"
+                @addChecklist="closeActionModal"
+                @closeActionModal="closeActionModal"
+                @updateCard="updateCard"
+              ></component>
+            </div>
+          </div>
+          <div class="action-div" @click="removeCard(groupId, cardId)">
+            <span v-html="getArchiveSvg"></span>
+            Archive
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -230,11 +370,17 @@ export default {
       let action = this.actions.find((action) => action.type === type);
       if (action) action.isOpen = false;
     },
-    async updateCard(card){
-      await this.$store.dispatch({type: "saveCard", payload: { groupId: this.groupId, card }});
+    async updateCard(card) {
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
     },
     removeCard(groupId, cardId) {
-      this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId }});
+      this.$store.dispatch({
+        type: "removeCard",
+        payload: { groupId, cardId },
+      });
       this.closeDetails();
     },
     cardCopy() {
@@ -256,6 +402,14 @@ export default {
     getLabel(labelId) {
       const label = this.board.labels.find((id) => id === labelId);
       return label || null;
+    },
+      removeCecklist(idx) {
+      let card = this.cardCopy();
+      card.checklists.splice(idx, 1);
+      this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
     },
     addComment(groupId) {
       this.isActivity = !this.isActivity;
@@ -316,7 +470,7 @@ export default {
       return this.$route.params.cardId;
     },
     desc() {
-      // return this.card.description ||  "Add a more detailed description..." 
+      // return this.card.description ||  "Add a more detailed description..."
       return !this.card.description
         ? "Add a more detailed description..."
         : this.card.description;

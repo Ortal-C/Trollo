@@ -14,6 +14,7 @@
         <p class="card-title">{{ card.title }}</p>
         <div class="card-icons" v-if="card.style.size !== 'full'">
           <div class="card-info">
+            <span v-if="card.checklists.length"><i class="far fa-check-square"></i></span>
             <span v-if="card.description"><i class="fas fa-align-left"></i></span>
              <span v-if="card.comments.length"><i class="far fa-comment-alt"></i></span>
             <span v-if="card.dueDate " :title="`This card is ${card.isDone ? 'complete' : 'due later'}`">

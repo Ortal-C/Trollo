@@ -1,0 +1,51 @@
+.checklist-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    .checklist-header {
+        display: flex;
+        justify-content: space-between;
+        .checklist-desc {
+            display: flex;
+            svg {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                width: 50px;
+                height: 24px;
+                margin-top: 4px;
+            }
+            h2 {
+                font-weight: 600;
+                margin-left: 10px;
+            }
+        }
+    }
+    .checklist-main {
+        display: flex;
+        margin-left: 15px;
+        align-items: center;
+        .checklist-progress {
+            height: 10px;
+            width: 100%;
+            background-color: lightgrey;
+            border-radius: 5px;
+            margin: 15px 10px 15px 30px;
+        }
+    }
+    button {
+        margin: 0 10px 0 60px;
+        border: none;
+        border-radius: 4px;
+        color: #172b4d;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 6px 12px;
+        transition: background-color, border-color, box-shadow 85ms ease;
+        background-color: rgba(9, 30, 66, .0392156862745098);
+    }
+    button:hover {
+        background-color: rgba(9, 30, 66, 0.212);
+    }
+}

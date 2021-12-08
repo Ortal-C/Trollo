@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import chart from "@/cmps/board/chart.vue";
-import pieChart from "@/cmps/board/pie-chart.vue";
+import chart from "@/cmps/board/charts/chart.vue";
+import pieChart from "@/cmps/board/charts/pie-chart.vue";
 export default {
     methods:{
 closeDashboard(){
