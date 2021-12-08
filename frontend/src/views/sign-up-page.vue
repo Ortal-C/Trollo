@@ -1,12 +1,12 @@
 <template>
-  <section class="sign-up">
-    <div class="sign-up-header">
+  <section class="login">
+    <div class="login-header">
       <div class="header-icon">
         <i class="fab fa-trello"></i>
       </div>
       <h1>Trollo</h1>
     </div>
-    <main class="sign-up-container">
+    <main class="login-container">
       <h3>Sign up for your account</h3>
       <form action="">
         <input type="text" placeholder="Enter full name" />
