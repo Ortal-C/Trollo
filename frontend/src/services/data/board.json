@@ -1,8 +1,8 @@
 {
-	"title": "Sprint 4",
+	"title": "SPRINT 4",
 	"createdAt": "",
 	"isStarred": true,
-	"style": "#cc0033",
+	"style": "#bf80ff",
 	"createdBy": {
 		"_id": "u101",
 		"fullname": "Lihi Sered",
@@ -73,8 +73,30 @@
 			"title": "Backlog",
 			"cards": [
 				{
-					"id": "c101",
-					"title": "Go to the beach",
+					"id": "c104",
+					"title": "MongoDB atlas",
+					"description": "Connect to MongoDb Atlas and create all the collections.‏",
+					"isDone": true,
+					"members": [],
+					"labelsIds": [
+						"l103",
+						"l108"
+					],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-07T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "c102",
+					"title": "User management",
 					"description": "nice in here",
 					"isDone": false,
 					"members": [
@@ -84,39 +106,20 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
 						}
 					],
-					"labelsIds": ["l101", "l102", "l103", "l104"],
-					"checklists": [],
-					"attachments": [],
-					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": "",
-					"style": {"size": "", "color": ""},
-					"byMember": {
-						"_id": "u123",
-						"fullname": "Michal Ozeri",
-						"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
-					},
-					"comments": []
-				},
-				{
-					"id": "c102",
-					"title": "Do that",
-					"description": "nice in here",
-					"isDone": false,
-					"members": [
-						{
-							"_id": "u123",
-							"fullname": "Michal Ozeri",
-							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
-						}
+					"labelsIds": [
+						"l103",
+						"l102",
+						"l107"
 					],
-					"labelsIds": ["l103"],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": "",
-					"style": {"size": "", "color": ""},
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-09T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
 					"byMember": {
 						"_id": "u123",
 						"fullname": "Michal Ozeri",
@@ -126,33 +129,31 @@
 				},
 				{
 					"id": "c103",
-					"title": "Do this",
-					"description": "nice in here",
+					"title": "Sockets",
+					"description": "Creating Sockets using Socket.io api.‏",
 					"isDone": false,
-					"members": [],
-					"labelsIds": ["l104", "l105"],
+					"members": [
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": [
+						"l102",
+						"l104",
+						"l101",
+						"l103"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
-					"createdAt": 1590999730348,
+					"createdAt": 1590999730348.0,
 					"dueDate": "",
-					"style": {"size": "", "color": ""},
-					"byMember": {},
-					"comments": []
-				},
-				{
-					"id": "c104",
-					"title": "something to do",
-					"description": "blabla",
-					"isDone": false,
-					"members": [],
-					"labelsIds": [],
-					"checklists": [],
-					"attachments": [],
-					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": "",
-					"style": {"size": "", "color": ""},
+					"style": {
+						"size": "header",
+						"color": "#bf80ff"
+					},
 					"byMember": {},
 					"comments": []
 				}
@@ -161,37 +162,66 @@
 		},
 		{
 			"id": "g102",
-			"title": "In development",
+			"title": "New Features",
 			"cards": [
 				{
 					"id": "c201",
-					"title": "Shocko stuff",
-					"description": "how how",
+					"title": "Drag & Drop",
+					"description": "",
 					"isDone": false,
 					"members": [],
-					"labelsIds": [],
+					"labelsIds": [
+						"l108",
+						"l106",
+						"l105"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": "",
-					"style": {"size": "", "color": ""},
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-31T00:00:00.000Z",
+					"style": {
+						"size": "full",
+						"color": "#66d9ff"
+					},
 					"byMember": {},
 					"comments": []
 				},
 				{
 					"id": "c202",
-					"title": "Help me",
-					"description": "help me 2",
+					"title": "Background API",
+					"description": "https://unsplash.com/developers‏",
 					"isDone": false,
-					"members": [],
-					"labelsIds": [],
+					"members": [
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						},
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": [
+						"l107",
+						"l106",
+						"l105",
+						"l104",
+						"l103",
+						"l102",
+						"l101"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": 16156215211,
-					"style": {"size": "", "color": ""},
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-25T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
 					"byMember": {},
 					"comments": []
 				}
@@ -200,21 +230,55 @@
 		},
 		{
 			"id": "g103",
-			"title": "Done",
+			"title": "Fix & Upgrade",
 			"cards": [
 				{
 					"id": "c301",
-					"title": "Relax!",
-					"description": "Nice to be here",
+					"title": "Clean the scss code for CR",
+					"description": "Before the meeting with Assi",
 					"isDone": false,
 					"members": [],
-					"labelsIds": [],
+					"labelsIds": [
+						"l104"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
-					"createdAt": 1590999730348,
-					"dueDate": 16156215211,
-					"style": {"size": "", "color": ""},
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-10T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "c201",
+					"title": "Insert demo data",
+					"description": "Create templates",
+					"isDone": false,
+					"members": [
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						}
+					],
+					"labelsIds": [
+						"l101",
+						"l102",
+						"l103"
+					],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-25T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
 					"byMember": {},
 					"comments": []
 				}
@@ -227,9 +291,12 @@
 					"imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
 				}
 			],
-			"labelsIds": ["l105", "l109"],
-			"createdAt": 1590988930348,
-			"dueDate": 16156215211,
+			"labelsIds": [
+				"l105",
+				"l109"
+			],
+			"createdAt": 1590988930348.0,
+			"dueDate": 16156215211.0,
 			"byMember": {
 				"_id": "u101",
 				"username": "Lihi",
@@ -237,6 +304,303 @@
 				"imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
 			},
 			"style": {}
+		},
+		{
+			"id": "NJOXZ",
+			"title": "Design",
+			"cards": [
+				{
+					"id": "G8Xrr",
+					"title": "Home page\n",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638957625512.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#ff66ff"
+					}
+				},
+				{
+					"id": "pRee2",
+					"title": "Header",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958419459.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#ff4da6"
+					}
+				},
+				{
+					"id": "HOMVk",
+					"title": "Workspace",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958429167.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#bf80ff"
+					}
+				},
+				{
+					"id": "304Wq",
+					"title": "Login & Signup",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958442880.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#66d9ff"
+					}
+				},
+				{
+					"id": "xDx3n",
+					"title": "Board menu",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958454239.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#0099cc"
+					}
+				},
+				{
+					"id": "SljF5",
+					"title": "Card details features",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958470914.0,
+					"dueDate": "",
+					"style": {
+						"size": "header",
+						"color": "#00cc00"
+					}
+				}
+			]
+		},
+		{
+			"id": "PY5H0",
+			"title": "Done",
+			"cards": [
+				{
+					"id": "LvWD8",
+					"title": "Backend",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638957631341.0,
+					"dueDate": "",
+					"style": {
+						"size": "full",
+						"color": "#ff4da6"
+					}
+				},
+				{
+					"id": "5xJFF",
+					"title": "CRUD",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958629970.0,
+					"dueDate": "",
+					"style": {
+						"size": "full",
+						"color": "#ff66ff"
+					}
+				},
+				{
+					"id": "mElap",
+					"title": "CR with Yaron",
+					"description": "YESSS PASHUT",
+					"isDone": true,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+						},
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						},
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958654779.0,
+					"dueDate": "2021-12-08T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				}
+			]
+		},
+		{
+			"id": "Rw9zT",
+			"title": "In progress",
+			"cards": [
+				{
+					"id": "OeIe6",
+					"title": "Demo 2\n",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [
+						"l104",
+						"l103",
+						"l102",
+						"l106"
+					],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958804591.0,
+					"dueDate": "2021-12-09T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "AJwoK",
+					"title": "Guest mode",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						}
+					],
+					"labelsIds": [
+						"l101",
+						"l102",
+						"l103",
+						"l104"
+					],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638903694452.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "3uhOt",
+					"title": "Pixel perfect",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958816612.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "3MjxF",
+					"title": "Board templates",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958828846.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				}
+			]
 		}
 	],
 	"activities": [
