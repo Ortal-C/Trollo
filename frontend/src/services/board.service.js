@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 import { httpService } from './http.service'
-// import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
+import { socketService, SOCKET_EMIT_BOARDS_WATCH, SOCKET_EMIT_BOARD_WATCH } from './socket.service'
 
 const KEY = 'boardsDB'
 export const boardService = {
@@ -23,14 +23,19 @@ export const boardService = {
     removeCard,
 }
 
-function query() {
+async function query() {
     // return storageService.query(KEY)
-    return httpService.get(`board`)
+    // return await httpService.get(`board`)
+    const boards = await httpService.get(`board`)
+    socketService.emit('boards-watch', boards)
+    console.log('boards', boards);
+    return boards
 }
 
 async function getById(boardId) {
     // const board = await storageService.get(KEY, boardId)
     const board = await httpService.get(`board/${boardId}`)
+    socketService.emit('board-watch', boardId)
     return board;
 }
 
@@ -188,6 +193,24 @@ function getEmptyBoard() {
         activities: []
     }
 }
+
+
+// This IIFE functions for Dev purposes 
+// It allows testing of real time updates (such as sockets) by listening to storage events
+(async () => {
+    var boards = await storageService.query('board')
+    // Dev Helper: Listens to when localStorage changes in OTHER browser
+    window.addEventListener('storage', async () => {
+        console.log('Storage updated');
+        const freshBoards = await storageService.query('review')
+        if (freshBoards.length === boards.length + 1) {
+            console.log('Review Added - localStorage updated from another browser')
+            socketService.emit(SOCKET_EVENT_REVIEW_ADDED, freshBoards[freshBoards.length - 1])
+        }
+        boards = freshBoards
+    });
+})()
+
 
 // function query() {
 //     return storageService.query(KEY)

@@ -2,18 +2,20 @@
 
 <template>
   <div class='board-app' v-if="boards">
-    <div class="starred-boards">
+    <!-- <div class="starred-boards">
       <h2>Starred boards</h2>
         <ul>
-          <li v-for='board in boards' :key='board._id' v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
+          v-if="board.isStarred" 
+          <li v-for='board in boards' :key='board._id' class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
           <p>{{board.title}}</p>
         </li>
       </ul>
-    </div>
+    </div> -->
      <div class="workspace-boards">
       <h2>Workspace</h2>
         <ul>
-          <li v-for='board in boards' :key='board._id' v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
+          <!-- v-if="!board.isStarred" -->
+          <li v-for='board in boards' :key='board._id'  class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
           <p>{{board.title}}</p>
           </li>
           <li v-if="!isAdd" class='board-add board' @click='isAdd = true'>Add new board</li>
@@ -30,6 +32,7 @@
 
 <script>
 import { boardService } from "@/services/board.service.js";
+import {socketService} from '@/services/socket.service.js';
 export default {
   name: "board-app",
   data() {
@@ -40,8 +43,9 @@ export default {
   },
   components: {},
   created() {
-    this.$store.dispatch({ type: "loadBoards" });
     document.body.style.backgroundColor = "#ffffff";
+    this.$store.dispatch({ type: "loadBoards" });
+    socketService.on('boards-watch', this.updateBoards)
   },
   computed: {
     boards() {
@@ -49,6 +53,9 @@ export default {
     },
   },
   methods: {
+    updateBoards(boards){
+      this.$store.commit({type:'setBoards', boards})
+    },
     openBoard(boardId) {
       this.$router.push("/board/" + boardId);
     },
@@ -56,7 +63,8 @@ export default {
       if (!this.title) return;
       let board = boardService.getEmptyBoard();
       board.title = this.title;
-      await boardService.add(board);
+      await this.$store.dispatch({type:'addBoard',board})
+      socketService.emit('boards-watch',this.boards)
       this.isAdd = false;
     },
   },

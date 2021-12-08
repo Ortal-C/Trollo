@@ -33,6 +33,16 @@ export const boardStore = {
         }
     },
     actions: {
+        async addBoard({ commit, state }, { board }) {
+            try {
+                const newBoard = await boardService.add(board);
+                const boards = [...state.boards, newBoard]
+                commit({ type: 'setBoards', boards })
+            } catch (err) {
+                console.log('boardStore: Error in loadBoards', err)
+                throw err
+            }
+        },
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
@@ -69,6 +79,7 @@ export const boardStore = {
             try {
                 const board = await boardService.saveGroup(context.state.board, { ...group })
                 context.commit({ type: 'setBoard', board })
+                return board
             } catch (err) {
                 console.log('BoardStore: Issues with saveGroup', err);
                 throw err
@@ -78,6 +89,7 @@ export const boardStore = {
             try {
                 const board = await boardService.removeGroup(context.state.board, groupId)
                 context.commit({ type: 'setBoard', board })
+                return board
             } catch (err) {
                 console.log('BoardStore: Issues with removing group', err);
                 throw err
