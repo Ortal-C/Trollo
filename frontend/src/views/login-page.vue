@@ -5,7 +5,6 @@
         <i class="fab fa-trello"></i>
       </div>
       <h1>Trollo</h1>
-      <img src="@/assets/imgs/login-svg.svg" alt="">
     </div>
     <main class="login-container">
       <h3>Log in to Trello</h3>
@@ -22,6 +21,12 @@
         <a href="">Sign up for an account</a></router-link
       >
     </main>
+    <div class="left-img">
+      <img src="@/assets/imgs/login-svg-left.svg" alt="" />
+    </div>
+    <div class="right-img">
+      <img src="@/assets/imgs/login-svg.svg" alt="" />
+    </div>
   </section>
 </template>
 

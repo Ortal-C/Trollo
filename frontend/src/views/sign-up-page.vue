@@ -21,6 +21,12 @@
         <a href="">Already have an account? Log In</a></router-link
       >
     </main>
+     <div class="left-img">
+      <img src="@/assets/imgs/login-svg-left.svg" alt="" />
+    </div>
+    <div class="right-img">
+      <img src="@/assets/imgs/login-svg.svg" alt="" />
+    </div>
   </section>
 </template>
 
