@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="card-attachment">
     <form @submit.prevent="onUpload($event)">
       <div class="upload">
@@ -88,7 +87,6 @@ export default {
   },
 };
 </script>
-=======
 	<!-- <div class="card-attachment">
 		<form @submit.prevent="onUpload($event)">
 			<label name="link">
@@ -163,4 +161,3 @@ export default {
 // 		},
 // 	}
 // </script> -->
->>>>>>> 1b543cf3d81d208f61ad028f94223825515132d1
