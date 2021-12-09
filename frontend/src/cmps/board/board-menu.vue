@@ -33,16 +33,16 @@
             <b>{{ activity.byMember.fullname }}</b>&#160;{{ activity.txt }}
           </p>
           <p>{{ activity.createdAt }}</p>
-          <!-- <span class="member-name">{{ activity.byMember.fullname}}</span>
-          <p>{{activity.txt}}</p> -->
+          <span class="member-name">{{ activity.byMember.fullname}}</span>
+          <p>{{activity.txt}}</p>
         </div>
-        <!-- <span class="activity-time">{{activity.createdAt}}</span> -->
+        <span class="activity-time">{{activity.createdAt}}</span>
       </div>
     </ul>
     <hr />
     <main v-if="changeBg">
       <section  class="bg-img">
-        <!-- <input type="text" /> -->
+        <input type="text" />
         <div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
       </section>
       <section class="color-palette">
@@ -54,23 +54,23 @@
 
 <script>
 // @ is an alias to /src
-export default {
-  name: 'board-menu',
-  props: ['board'],
-  data() {
-    return {
-      currAction: 'menu',
-      changeBg: false,
-      colors: [ '#cc0033', '#ff8000', '#ffbf00', '#00cc00', '#0099cc', '#66d9ff', '#bf80ff', '#ff66ff', '#ff4da6',],
-    };
-  },
-  methods: {
-    closeMenu() {
-      this.$emit('close');
-    },
-    updateStyle(color) {
-      this.$emit('updateStyle', color);
-    },
-  },
-};
+// export default {
+//   name: 'board-menu',
+//   props: ['board'],
+//   data() {
+//     return {
+//       currAction: 'menu',
+//       changeBg: false,
+//       colors: [ '#cc0033', '#ff8000', '#ffbf00', '#00cc00', '#0099cc', '#66d9ff', '#bf80ff', '#ff66ff', '#ff4da6',],
+//     };
+//   },
+//   methods: {
+//     closeMenu() {
+//       this.$emit('close');
+//     },
+//     updateStyle(color) {
+//       this.$emit('updateStyle', color);
+//     },
+//   },
+// };
 </script>
