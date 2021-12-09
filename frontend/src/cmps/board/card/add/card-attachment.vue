@@ -1,27 +1,15 @@
 <template>
   <div class="card-attachment">
-    <form @submit.prevent="onUpload($event)">
+    <form @submit.prevent="attach()">
       <div class="upload">
         <label>
           Computer
-          <input
-            hidden
-            class="file"
-            type="file"
-            id="upload"
-            @change="attachment.type = 'upload'"
-          />
+          <input hidden class="file" type="file" id="upload" @change="onUpload($event)" />
         </label>
       </div>
       <label>
         Attach a link
-        <input
-          class="input"
-          v-model="attachment.url"
-          type="url"
-          placeholder="Paste any link here..."
-          @change="attachment.type = 'link'"
-        />
+        <input class="input" v-model="attachment.url" type="url" placeholder="Paste any link here..." @change="attachment.type = 'link'" />
       </label>
       <!-- <label>
 				Upload image or video from computer
@@ -31,7 +19,8 @@
         Attachment name (optional)
         <input class="input" type="text" v-model="attachment.title" />
       </label>
-      <button class="btn-action-list" @click="onUpload($event)">Attach</button>
+      <!-- @click="submit()" -->
+      <button class="btn-action-list">Attach</button>
     </form>
   </div>
 </template>
@@ -44,12 +33,13 @@ export default {
   data() {
     return {
       attachment: {
-        type: "",
-        url: "",
-        title: "Attachment",
+        type: 'link',
+        url: '',
+        title: 'Attachment',
         createdAt: Date.now(),
         isEdit: false,
       },
+      upload: null,
       isLoading: false,
     };
   },
@@ -57,21 +47,21 @@ export default {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    async onUpload(ev) {
+    attach(){
+      const id = utilService.makeId();
       let tmpCard = this.cardCopy();
-      if (this.attachment.type === "link") {
-        tmpCard.attachments.push(this.attachment);
-      } else {
-        const res = await utilService.upload(ev);
-        tmpCard.attachments.push({
-          ...this.attachment,
-          type: res.type,
-          url: res.url,
-        });
-        this.$notify({ title: "Finished!", type: "success" });
+      if (this.upload) {
+        tmpCard.attachments.unshift({ ...this.upload, id, title: this.attachment.title});
+      } 
+      else{
+        tmpCard.attachments.unshift({...this.attachment, id});
       }
       this.$emit("updateCard", tmpCard);
-      // await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card: tmpCard}})
+    },
+    async onUpload(ev) {
+      const res = await utilService.upload(ev);
+      this.upload = {type: res.type, url: res.url, createdAt: Date.now()}
+      this.$notify({ title: "Upload finished successfully", type: "success" });
     },
   },
   computed: {
