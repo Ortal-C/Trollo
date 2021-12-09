@@ -1,23 +1,16 @@
-.smooth-dnd-container {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	cursor: pointer;
-	&.groups-container {
-		flex-direction: row;
-	}
-	&.cards-container {
-		flex: 0 0 40%;
-		justify-content: space-evenly;
-	}
+// .smooth-dnd-container {
+// 	display: flex;
+// 	flex-direction: column;
+// 	height: 100%;
+// 	cursor: pointer;
 
-	.ghost {
-		transition: transform 0.18s ease;
-		transform: rotateZ(5deg);
-		cursor: grab;
-	}
-	.ghost-drop {
-		transition: transform 0.18s ease-in-out;
-		transform: rotateZ(0deg);
-	}
-}
+// 	.ghost {
+// 		transition: transform 0.18s ease;
+// 		transform: rotateZ(5deg);
+// 		cursor: grab;
+// 	}
+// 	.ghost-drop {
+// 		transition: transform 0.18s ease-in-out;
+// 		transform: rotateZ(0deg);
+// 	}
+// }

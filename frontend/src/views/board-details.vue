@@ -4,7 +4,7 @@
 	<div class="board-details" v-if="board">
 		<board-nav @updateBoard="updateBoard" />
 		<section class="groups-container">
-			<Container class="smooth-dnd-container" orientation="horizontal"
+			<Container orientation="horizontal"
 			:group-name="dndName" @drop="handleGroupDrop($event)"
 			:get-child-payload="getChildPayload"
 			drag-class="ghost" drop-class="ghost-drop">
@@ -106,6 +106,8 @@
 					if (!this.tmpBoard) this.boardCopy()
 					if (removedIndex !== null) {
 						this.tmpBoard.groups[lane].cards.splice(removedIndex, 1)
+						await this.$store.dispatch({type: 'updateBoard', board: this.tmpBoard})
+						socketService.emit('board-watch', this.board)
 					}
 					if (addedIndex !== null) {
 						this.tmpBoard.groups[lane].cards.splice(addedIndex, 0, payload)
