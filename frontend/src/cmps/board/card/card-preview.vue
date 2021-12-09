@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import {socketService} from '@/services/socket.service.js'
 export default {
   name: 'card-preview',
   props: ['group', 'card'],
@@ -144,10 +145,8 @@ export default {
   },
   methods: {
     cardDetails() {
-      if ((this.isEdit = true)) this.isEdit = false;
-      this.$router.push(
-        `/board/${this.board._id}/` + this.group.id + '/' + this.card.id
-      );
+      if (this.isEdit = true) this.isEdit = false;
+      this.$router.push(`/board/${this.board._id}/` + this.group.id + '/' + this.card.id);
       document.body.classList.add('details-open');
     },
     cardCopy() {
