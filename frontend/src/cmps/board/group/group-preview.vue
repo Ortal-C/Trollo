@@ -2,7 +2,7 @@
 // v-for card in cards to card-preview, send card prop
 
 <template>
-  <div class="group-preview">
+  <div class="group-preview" v-if="group">
     <div class="group-header">
       <!-- <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2> -->
       <h2 v-if="!currEdit" @click="changeCurrEdit">{{ group.title }}</h2>

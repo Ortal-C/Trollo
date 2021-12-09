@@ -39,6 +39,7 @@ export default {
   components: {},
   created() {
     document.body.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundImage = "none";
   },
   methods: {
     boards() {

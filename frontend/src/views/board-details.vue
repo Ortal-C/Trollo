@@ -8,7 +8,7 @@
         :group-name='dndName' @drop="handleDrop"
         :get-child-payload="getChildPayload" > -->
 			<!-- <Draggable> -->
-			<group-preview v-for="(group, idx) in board.groups" :key="group.id" @saveCard="saveCard" @saveGroup="saveGroup" @removeGroup="removeGroup" @copyGroup="copyGroup" @handleDrop="handleDrop" :group="group" :idx="idx" :dndName="dndName" />
+			<group-preview v-for="(group, idx) in board.groups" :key="idx" @saveCard="saveCard" @saveGroup="saveGroup" @removeGroup="removeGroup" @copyGroup="copyGroup" @handleDrop="handleDrop" :group="group" :idx="idx" :dndName="dndName" />
 			<!-- </Draggable> -->
 			<router-view></router-view>
 			<div class="group-add" @click="isAddGroup = !isAddGroup" v-if="!isAddGroup">
@@ -53,7 +53,8 @@
 			let board = await this.$store.dispatch({type: 'loadBoard', boardId})
 			socketService.emit('board id', boardId)
 			socketService.on('board-watch', this.setBoard)
-			document.body.style.backgroundColor = board.style
+			// document.body.style.backgroundColor = board.style
+			this.updateBackground()
 			this.getEmptyGroup()
 		},
 		methods: {
@@ -117,10 +118,23 @@
 			getChildPayload(index) {
 				return { index }
 			},
+			updateBackground() {
+				if (this.board.style.length > 10) {
+					document.body.style.backgroundImage = `url("${this.board.style}")`
+					document.body.style.backgroundColor = 'none'
+					document.body.style.backgroundPosition = 'center'
+					document.body.style.backgroundRepeat = 'no-repeat'
+					document.body.style.backgroundSize = 'cover'
+				}
+				else {
+					document.body.style.backgroundColor = this.board.style
+					document.body.style.backgroundImage = 'none'
+				}
+			}
 		},
 		computed: {
 			board() {
-				return this.$store.getters.board || null
+				return this.$store.getters.board
 			},
 			groups() {
 				return this.$store.getters.board.groups
@@ -131,7 +145,7 @@
 		},
 		watch: {
 			board() {
-				document.body.style.backgroundColor = this.board.style
+				this.updateBackground()
 			},
 		},
 		components: {
