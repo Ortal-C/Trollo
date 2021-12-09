@@ -56,6 +56,7 @@ export default {
       else{
         tmpCard.attachments.unshift({...this.attachment, id});
       }
+       this.$emit("closeActionModal", "attachment");
       this.$emit("updateCard", tmpCard);
     },
     async onUpload(ev) {

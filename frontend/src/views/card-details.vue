@@ -9,7 +9,12 @@
           <span v-html="getHeaderSvg"></span>
           <div class="title">
             <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-            <form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" >
+            <form
+              v-else
+              @submit.prevent="editTitle(group.id)"
+              @change="editTitle(group.id)"
+              action=""
+            >
               <input type="text" v-model="title" :placeholder="card.title" />
             </form>
             <p>In list <span class="group-title">{{ group.title }}</span></p>
@@ -24,7 +29,9 @@
           <h5>Members</h5>
           <main class="members-container">
             <div v-for="member in card.members" :key="member._id">
-              <span><el-avatar :size="33" :src="member.imgUrl"></el-avatar></span>
+              <span
+                ><el-avatar :size="33" :src="member.imgUrl"></el-avatar
+              ></span>
             </div>
             <span @click="openMemberModal" class="add-member"><i class="el-icon-plus"></i></span>
           </main>
@@ -32,7 +39,12 @@
         <div class="data-preview" v-if="labels && card.labelsIds.length">
           <h5>Labels</h5>
           <main class="labels-container">
-            <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`" >
+            <div
+              class="card-label"
+              v-for="label in labels"
+              :key="label.id"
+              :style="`background-color:${label.color}`"
+            >
               <span :title="label.title">{{ label.title }}</span>
             </div>
           </main>
@@ -49,12 +61,47 @@
             <h2>Description</h2>
             <section class="description-container">
               <!-- <div > -->
-              <textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" @click="isDesc = !isDesc" cols="30" rows="1" :placeholder="desc"></textarea>
+              <textarea
+                @change="addDesc(group.id)"
+                class="desc-txt-show"
+                v-if="!isDesc"
+                @click="isDesc = !isDesc"
+                cols="30"
+                rows="1"
+                :placeholder="desc"
+              ></textarea>
               <form v-else action="" @submit.prevent="addDesc(group.id)">
-                <textarea class="desc-txt-edit" v-model="description"  cols="30" rows="6" :placeholder="desc"></textarea>
+                <textarea
+                  class="desc-txt-edit"
+                  v-model="description"
+                  cols="30"
+                  rows="6"
+                  :placeholder="desc"
+                ></textarea>
                 <div class="actions-desc">
                   <button class="add-desc-btn">Save</button>
-                  <svg class="close-desc-btn" @click="isDesc = !isDesc" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style=" color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center; " > <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z" ></path> </svg>
+                  <svg
+                    class="close-desc-btn"
+                    @click="isDesc = !isDesc"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="
+                      color: rgb(66, 82, 110);
+                      font-size: 24px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <path
+                      d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+                    ></path>
+                  </svg>
                 </div>
               </form>
             </section>
@@ -64,10 +111,16 @@
           <span v-html="getAttachmentSvg"></span>
           <main>
             <h2>Attachments</h2>
-            <div class="card-attachment" v-for="(attachment, idx) in card.attachments"
-              :key="attachment.id" >
+            <div
+              class="card-attachment"
+              v-for="(attachment, idx) in card.attachments"
+              :key="attachment.id"
+            >
               <a :href="attachment.url" target="_blank">
-                <img v-if="attachment.url.includes('cloudinary')" :src="attachment.url" />
+                <img
+                  v-if="attachment.url.includes('cloudinary')"
+                  :src="attachment.url"
+                />
                 <img v-else src="@/assets/imgs/link-thumbnail.png" />
               </a>
               <div class="attachment-details">
@@ -78,11 +131,14 @@
                   <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
                    <div v-if="attachment.isEdit" class="dynamic-popover">
                     <div class="popover-header">
-                     <span class="popover-title"> Edit attachment </span>
-                     <span v-html="getCloseSvg" @click="attachment.isEdit = false"></span>
+                      <span class="popover-title"> Edit attachment </span>
+                      <span
+                        v-html="getCloseSvg"
+                        @click="attachment.isEdit = false"
+                      ></span>
                     </div>
                     <!-- edit still not working -->
-                    Attachment name: 
+                    Attachment name:
                     <input type="url" :value="attachment.title" />
                   </div>
                 </div>
@@ -125,6 +181,40 @@
             </div>
             <button>Add an item</button>
           </div>
+          <div >
+            <!-- <form @submit.prevent="">
+              <textarea
+                class="add-item"
+                v-model="card.title"
+                placeholder="Add an item"
+              ></textarea>
+              <div>
+                <button class="btn-add">Add card</button>
+                <svg
+                  class="btn-close icon"
+                  @click.prevent="closeTextarea()"
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="
+                    color: rgb(66, 82, 110);
+                    font-size: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <path
+                    d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
+                  ></path>
+                </svg>
+              </div>
+            </form> -->
+          </div>
         </section>
         <div class="card-details-activity">
           <span v-html="getActivitySvg"></span>
@@ -165,10 +255,19 @@
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title">{{ action.title }}</span>
-                <span v-html="getCloseSvg" @click="action.isOpen = false" @keydown.esc="action.isOpen = false"
+                <span
+                  v-html="getCloseSvg"
+                  @click="action.isOpen = false"
+                  @keydown.esc="action.isOpen = false"
                 ></span>
               </div>
-              <component :card="card" :is="`card-${action.type}`" @addChecklist="closeActionModal" @closeActionModal="closeActionModal" @updateCard="updateCard"></component>
+              <component
+                :card="card"
+                :is="`card-${action.type}`"
+                @addChecklist="closeActionModal"
+                @closeActionModal="closeActionModal"
+                @updateCard="updateCard"
+              ></component>
             </div>
           </div>
           <div class="action-div" @click="removeCard(groupId, cardId)">
@@ -192,7 +291,7 @@ import cardAttachment from '@/cmps/board/card/add/card-attachment.vue';
 import cardCover from '@/cmps/board/card/add/card-cover.vue';
 
 export default {
-  name: 'card-details',
+  name: "card-details",
   data() {
     return {
       actions: [
@@ -240,9 +339,9 @@ export default {
       isDesc: false,
       isActivity: false,
       isEdit: false,
-      title: '',
-      description: '',
-      comment: '',
+      title: "",
+      description: "",
+      comment: "",
     };
   },
   async created() {
@@ -251,7 +350,7 @@ export default {
       this.board = board;
 			socketService.emit('board-watch', board)
       const group = board.groups.find((group) => group.id === this.groupId);
-      this.$store.commit({ type: 'setCurrGroup', group });
+      this.$store.commit({ type: "setCurrGroup", group });
       const card = group.cards.find((card) => card.id === this.cardId);
       this.$store.commit({ type: 'setCurrCard', card });
       this.description = card.description;
@@ -261,27 +360,33 @@ export default {
   },
   methods: {
     // setBoard(board) {
-		// 	this.$store.commit({type: 'setBoard', board})
-		// },
+    // 	this.$store.commit({type: 'setBoard', board})
+    // },
     openMemberModal() {
-      const idx = this.actions.findIndex((action) => action.type === 'members');
+      const idx = this.actions.findIndex((action) => action.type === "members");
       this.actions[idx].isOpen = true;
     },
     closeDetails() {
       this.$router.back(-1);
       // this.$router.push('/board/' + this.board._id)
-      document.body.classList.remove('details-open');
+      document.body.classList.remove("details-open");
     },
     closeActionModal(type) {
       let action = this.actions.find((action) => action.type === type);
       if (action) action.isOpen = false;
     },
     async updateCard(card) {
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card }});
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     async removeCard(groupId, cardId) {
-      await this.$store.dispatch({ type: 'removeCard', payload: { groupId, cardId }});
+      await this.$store.dispatch({
+        type: "removeCard",
+        payload: { groupId, cardId },
+      });
       // socketService.emit('board-watch', this.board)
       this.closeDetails();
     },
@@ -292,7 +397,10 @@ export default {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
       card.description = this.description;
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     async editTitle(groupId) {
@@ -300,7 +408,10 @@ export default {
       let card = this.cardCopy();
       if (!this.title) return;
       card.title = this.title;
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     getLabel(labelId) {
@@ -310,7 +421,10 @@ export default {
     async removeCecklist(idx) {
       let card = this.cardCopy();
       card.checklists.splice(idx, 1);
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card } });
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     async addComment(groupId) {
@@ -318,15 +432,27 @@ export default {
       if (!this.comment) return;
       let card = this.cardCopy();
       card.comments.unshift(this.comment);
-      console.log( 'New comment was added!', this.comment, card.comments, card.comments.length, groupId );
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      console.log(
+        "New comment was added!",
+        this.comment,
+        card.comments,
+        card.comments.length,
+        groupId
+      );
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
-      this.comment = '';
+      this.comment = "";
     },
     async removeAttachment(idx) {
       let card = this.cardCopy();
       card.attachments.splice(idx, 1);
-      await this.$store.dispatch({ type: 'saveCard',payload: { groupId: this.groupId, card }});
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     editAttachment(attachment) {
@@ -335,7 +461,13 @@ export default {
     },
     async toggleDueDate(ev) {
       let card = this.cardCopy();
-      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card: { ...card, isDone: ev.target.checked }}});
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: {
+          groupId: this.groupId,
+          card: { ...card, isDone: ev.target.checked },
+        },
+      });
       // socketService.emit('board-watch', this.board)
     },
   },
