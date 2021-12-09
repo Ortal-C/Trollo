@@ -9,6 +9,9 @@
             <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
               <p>{{board.title}}</p>
             </li>
+             <!-- <li v-if="board.isStarred && board.style.length > 10" class='board-preview board' @click='openBoard(board._id)' :style='`background-image:${board.style}`'>
+              <p>{{board.title}}</p>
+            </li> -->
           </div>
         </ul>
     </div>
@@ -46,6 +49,7 @@ export default {
   components: {},
   created() {
     document.body.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundImage = "none";
     this.$store.dispatch({ type: "loadBoards" });
     socketService.on('boards-watch', this.updateBoards)
   },

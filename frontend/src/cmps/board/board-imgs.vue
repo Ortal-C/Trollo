@@ -1,0 +1,38 @@
+<template>
+  <section class="board-imgs">
+      <section class="search-container">
+        <form @submit.prevent="searchImgs">
+          <input type="text" v-model="searchBy" placeholder="🔍 Photos">
+          <button>Search</button>
+        </form>
+      </section>
+      <section v-if="imgs" class="imgs-container">
+          <div v-for="img in imgs" :key="img.id" @click="setImg(img)">
+              <img :src="img.smallImg" alt="">
+          </div>
+      </section>
+  </section>
+</template>
+
+<script>
+import { imgService } from '@/services/img.service.js'
+export default {
+    name: 'board-imgs',
+    data() {
+        return {
+            searchBy: '',
+            imgs: null
+        }
+    },
+    methods: {
+        async searchImgs() {
+            if (!this.searchBy) return
+            const imgs = await imgService.getImgs(this.searchBy)
+            this.imgs = imgs
+        },
+        setImg(img) {
+            this.$emit('updateStyle', img.fullImg)
+        }
+    }
+}
+</script>

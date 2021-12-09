@@ -54,7 +54,8 @@
 			let board = await this.$store.dispatch({type: 'loadBoard', boardId})
 			socketService.emit('board id', boardId)
 			socketService.on('board-watch', this.setBoard)
-			document.body.style.backgroundColor = board.style
+			// document.body.style.backgroundColor = board.style
+			this.updateBackground()
 			this.getEmptyGroup()
 		},
 		methods: {
@@ -131,10 +132,23 @@
 					group: this.board.groups[index],
 				}
 			},
+			updateBackground() {
+				if (this.board.style.length > 10) {
+					document.body.style.backgroundImage = `url("${this.board.style}")`
+					document.body.style.backgroundColor = 'none'
+					document.body.style.backgroundPosition = 'center'
+					document.body.style.backgroundRepeat = 'no-repeat'
+					document.body.style.backgroundSize = 'cover'
+				}
+				else {
+					document.body.style.backgroundColor = this.board.style
+					document.body.style.backgroundImage = 'none'
+				}
+			}
 		},
 		computed: {
 			board() {
-				return this.$store.getters.board || null
+				return this.$store.getters.board
 			},
 			groups() {
 				return this.$store.getters.board.groups
@@ -145,7 +159,7 @@
 		},
 		watch: {
 			board() {
-				document.body.style.backgroundColor = this.board.style
+				this.updateBackground()
 			},
 		},
 		components: {

@@ -51,8 +51,8 @@ export default {
       this.isStarred = !this.isStarred;
       this.$emit('updateBoard', { ...this.board, isStarred: this.isStarred });
     },
-    updateStyle(color) {
-      const tmpBoard = {...this.board, style: color}
+    updateStyle(style) {
+      const tmpBoard = {...this.board, style}
       this.$emit('updateBoard', tmpBoard);
     },
     editBoardTitle() {

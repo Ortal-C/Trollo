@@ -28,27 +28,14 @@
 				<div class="list-action" @click="copyGroup(group)">Copy list...</div>
 				<div class="list-action" @click="addCard(group.id)">Add card...</div>
 				<div class="list-action" @click="removeGroup(group.id)">
-					<!-- <svg
-            stroke="currentColor"
-            fill="currentColor"
-            stroke-width="0"
-            viewBox="0 0 14 16"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z"
-            ></path>
-          </svg> -->
+					<!-- <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" >  <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg> -->
 					Archive this list
 				</div>
 			</div>
 		</div>
 		<ul class="smooth-dnd-container">
 			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop" :drop-placeholder="dropPlaceholderOptions" 
-        @drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
+        		@drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
 					<card-preview :card="card" :group="group" @saveCard="saveCard" />
 				</Draggable>

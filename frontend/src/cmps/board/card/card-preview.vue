@@ -6,7 +6,7 @@
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
       <div class="card-cover" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
       <div class="card-content">
-        <div class="card-labels" v-if="labels && card.style.size !== 'full' && card.labelsIds.length" @click.stop="toggleLabels" >
+        <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
             <span v-if="openLabels">{{ label.title }}</span>
           </div>
@@ -56,10 +56,7 @@
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title"> {{ action.title }} </span>
-                <span
-                  v-html="getCloseSvg"
-                  @click="action.isOpen = false"
-                ></span>
+                <span v-html="getCloseSvg" @click="action.isOpen = false"></span>
               </div>
               <component :card="card" :is="`card-${action.type}`"></component>
             </div>
@@ -167,9 +164,7 @@ export default {
     getLabels() {
       if (this.card.labelsIds.length) {
         const labels = this.$store.getters.board.labels;
-        this.labels = labels.filter((label) => {
-          return this.card.labelsIds.includes(label.id);
-        });
+        this.labels = labels.filter(label => this.card.labelsIds.includes(label.id));
       }
     },
     toggleLabels() {
