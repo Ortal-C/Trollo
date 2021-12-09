@@ -6,7 +6,7 @@
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
       <div class="card-cover" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
       <div class="card-content">
-        <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
+        <div class="card-labels" v-if="labels && card.style.size !== 'full' && card.labelsIds.length" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
             <span v-if="openLabels">{{ label.title }}</span>
           </div>
