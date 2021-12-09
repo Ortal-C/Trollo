@@ -42,7 +42,7 @@
     <hr />
     <main v-if="changeBg">
       <section  class="bg-img">
-        <input type="text" />
+        <!-- <input type="text" /> -->
         <div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
       </section>
       <section class="color-palette">

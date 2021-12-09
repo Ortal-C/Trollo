@@ -52,7 +52,7 @@
 			const boardId = this.$route.params.boardId
 			let board = await this.$store.dispatch({type: 'loadBoard', boardId})
 			socketService.emit('board id', boardId)
-			socketService.on('board-watch', this.x)
+			socketService.on('board-watch', this.setBoard)
 			document.body.style.backgroundColor = board.style
 			this.getEmptyGroup()
 		},
@@ -61,17 +61,17 @@
 				await this.$store.dispatch({type: 'updateBoard', board})
 				socketService.emit('board-watch', board)
 			},
-			x(board) {
+			setBoard(board) {
 				this.$store.commit({type: 'setBoard', board})
 			},
 			getEmptyGroup() {
 				this.group = boardService.getEmptyGroup()
-				socketService.emit('board-watch', this.board)
+				// socketService.emit('board-watch', this.board)
 			},
 			async addGroup() {
 				const title = this.group.title
 				if (!title) return
-        await this.$store.dispatch({type: 'saveGroup', group: this.group})
+        		await this.$store.dispatch({type: 'saveGroup', group: this.group})
 				socketService.emit('board-watch', this.board)
 				this.getEmptyGroup()
 				this.isAddGroup = false

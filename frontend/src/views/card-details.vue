@@ -61,12 +61,9 @@
             <h2>Description</h2>
             <section class="description-container">
               <!-- <div > -->
-              <textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" 
-                @click="isDesc = !isDesc" name="" id="" cols="30" rows="1"
-                :placeholder="desc" ></textarea>
+              <textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" @click="isDesc = !isDesc" cols="30" rows="1" :placeholder="desc"></textarea>
               <form v-else action="" @submit.prevent="addDesc(group.id)">
-                <textarea class="desc-txt-edit" v-model="description" name=""
-                  id="" cols="30" rows="6" :placeholder="desc" ></textarea>
+                <textarea class="desc-txt-edit" v-model="description"  cols="30" rows="6" :placeholder="desc"></textarea>
                 <div class="actions-desc">
                   <button class="add-desc-btn">Save</button>
                   <svg class="close-desc-btn" @click="isDesc = !isDesc" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style=" color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center; " > <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z" ></path> </svg>
@@ -216,16 +213,17 @@
 </template>
 
 <script>
-import { boardService } from "../services/board.service.js";
-import cardMembers from "@/cmps/board/card/add/card-members.vue";
-import cardLabels from "@/cmps/board/card/add/card-labels.vue";
-import cardChecklist from "@/cmps/board/card/add/card-checklist.vue";
-import cardDates from "@/cmps/board/card/add/card-dates.vue";
-import cardAttachment from "@/cmps/board/card/add/card-attachment.vue";
-import cardCover from "@/cmps/board/card/add/card-cover.vue";
+import { boardService } from '../services/board.service.js';
+// import {socketService} from '@/services/socket.service.js'
+import cardMembers from '@/cmps/board/card/add/card-members.vue';
+import cardLabels from '@/cmps/board/card/add/card-labels.vue';
+import cardChecklist from '@/cmps/board/card/add/card-checklist.vue';
+import cardDates from '@/cmps/board/card/add/card-dates.vue';
+import cardAttachment from '@/cmps/board/card/add/card-attachment.vue';
+import cardCover from '@/cmps/board/card/add/card-cover.vue';
 
 export default {
-  name: "card-details",
+  name: 'card-details',
   data() {
     return {
       actions: [
@@ -273,17 +271,19 @@ export default {
       isDesc: false,
       isActivity: false,
       isEdit: false,
-      title: "",
-      description: "",
-      comment: "",
+      title: '',
+      description: '',
+      comment: '',
     };
   },
   async created() {
     if (this.cardId) {
       const board = await boardService.getById(this.boardId);
       this.board = board;
+      // socketService.emit('board id', this.boardId)
+			// socketService.on('board-watch', this.setBoard)
       const group = board.groups.find((group) => group.id === this.groupId);
-      this.$store.commit({ type: "setCurrGroup", group });
+      this.$store.commit({ type: 'setCurrGroup', group });
       const card = group.cards.find((card) => card.id === this.cardId);
       this.$store.commit({ type: "setCurrCard", card });
       this.description = card.description;
@@ -292,82 +292,74 @@ export default {
     }
   },
   methods: {
+    // setBoard(board) {
+		// 	this.$store.commit({type: 'setBoard', board})
+		// },
     openMemberModal() {
-      const idx = this.actions.findIndex((action) => action.type === "members");
+      const idx = this.actions.findIndex((action) => action.type === 'members');
       this.actions[idx].isOpen = true;
     },
     closeDetails() {
       this.$router.back(-1);
       // this.$router.push('/board/' + this.board._id)
-      document.body.classList.remove("details-open");
+      document.body.classList.remove('details-open');
     },
     closeActionModal(type) {
       let action = this.actions.find((action) => action.type === type);
       if (action) action.isOpen = false;
     },
     async updateCard(card) {
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card }});
+      // socketService.emit('board-watch', this.board)
     },
-    removeCard(groupId, cardId) {
-      this.$store.dispatch({
-        type: "removeCard",
-        payload: { groupId, cardId },
-      });
+    async removeCard(groupId, cardId) {
+      await this.$store.dispatch({ type: 'removeCard', payload: { groupId, cardId }});
+      // socketService.emit('board-watch', this.board)
       this.closeDetails();
     },
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    addDesc(groupId) {
+    async addDesc(groupId) {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
       card.description = this.description;
-      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      // socketService.emit('board-watch', this.board)
     },
-    editTitle(groupId) {
+    async editTitle(groupId) {
       this.isEdit = !this.isEdit;
       let card = this.cardCopy();
       if (!this.title) return;
       card.title = this.title;
-      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      // socketService.emit('board-watch', this.board)
     },
     getLabel(labelId) {
       const label = this.board.labels.find((id) => id === labelId);
       return label || null;
     },
-      removeCecklist(idx) {
+    async removeCecklist(idx) {
       let card = this.cardCopy();
       card.checklists.splice(idx, 1);
-      this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card } });
+      // socketService.emit('board-watch', this.board)
     },
-    addComment(groupId) {
+    async addComment(groupId) {
       this.isActivity = !this.isActivity;
       if (!this.comment) return;
       let card = this.cardCopy();
       card.comments.unshift(this.comment);
-      console.log(
-        "New comment was added!",
-        this.comment,
-        card.comments,
-        card.comments.length,
-        groupId
-      );
-      this.$store.dispatch({ type: "saveCard", payload: { groupId, card } });
-      this.comment = "";
+      console.log( 'New comment was added!', this.comment, card.comments, card.comments.length, groupId );
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId, card } });
+      // socketService.emit('board-watch', this.board)
+      this.comment = '';
     },
-    removeAttachment(idx) {
+    async removeAttachment(idx) {
       let card = this.cardCopy();
       card.attachments.splice(idx, 1);
-      this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
+      await this.$store.dispatch({ type: 'saveCard',payload: { groupId: this.groupId, card }});
+      // socketService.emit('board-watch', this.board)
     },
     editAttachment(attachment) {
       attachment.isEdit = !attachment.isEdit;
@@ -375,13 +367,8 @@ export default {
     },
     async toggleDueDate(ev) {
       let card = this.cardCopy();
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: {
-          groupId: this.groupId,
-          card: { ...card, isDone: ev.target.checked },
-        },
-      });
+      await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card: { ...card, isDone: ev.target.checked }}});
+      // socketService.emit('board-watch', this.board)
     },
   },
   computed: {
