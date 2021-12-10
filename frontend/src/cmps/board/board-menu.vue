@@ -69,8 +69,6 @@
 			<board-imgs @updateStyle="updateStyle" />
 			</div>
 		</main>
-
-	</div>
 	</section>
 </template>
 
