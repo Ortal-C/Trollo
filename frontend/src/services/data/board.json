@@ -6,7 +6,7 @@
 	"createdBy": {
 		"_id": "u101",
 		"fullname": "Lihi Sered",
-		"imgUrl": "http://some-img"
+		"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
 	},
 	"labels": [
 		{
@@ -54,7 +54,7 @@
 		{
 			"_id": "u407",
 			"fullname": "Lihi Sered",
-			"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+			"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
 		},
 		{
 			"_id": "u123",
@@ -477,7 +477,7 @@
 						{
 							"_id": "u407",
 							"fullname": "Lihi Sered",
-							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
 						},
 						{
 							"_id": "u123",
@@ -625,7 +625,7 @@
 			"byMember": {
 				"_id": "u407",
 				"fullname": "Lihi Sered",
-				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
 			},
 			"card": {
 				"id": "c103",
@@ -695,7 +695,7 @@
 			"byMember": {
 				"_id": "u407",
 				"fullname": "Lihi Sered",
-				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
 			},
 			"card": {
 				"id": "c103",

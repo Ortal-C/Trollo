@@ -84,7 +84,8 @@ import boardImgs from './board-imgs.vue'
 			return {
 				currAction: 'menu',
 				changeBg: false,
-				colors: ['#cc0033', '#ff8000', '#ffbf00', '#00cc00', '#0099cc', '#66d9ff', '#bf80ff', '#ff66ff', '#ff4da6'],
+      			colors: ['#eb3b5a', '#fa8231', '#f7b731', '#20bf6b', '#0fb9b1', '#45aaf2', '#4b7bec', '#a55eea', '#4b6584']
+				// colors: ['#cc0033', '#ff8000', '#ffbf00', '#00cc00', '#0099cc', '#66d9ff', '#bf80ff', '#ff66ff', '#ff4da6'],
 			}
 		},
 		methods: {

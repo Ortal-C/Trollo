@@ -33,7 +33,6 @@ export default {
             if (!this.searchBy) return
             const imgs = await imgService.getImgs(this.searchBy)
             this.imgs = imgs
-            console.log(imgs);
         },
         setImg(img) {
             this.$emit('updateStyle', img.fullImg)
