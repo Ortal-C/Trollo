@@ -56,7 +56,7 @@ export default {
   computed: {
     boards() {
       return this.$store.getters.boards;
-    },
+    }
   },
   methods: {
     updateBoards(boards){

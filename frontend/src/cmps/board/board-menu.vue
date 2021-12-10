@@ -1,7 +1,8 @@
 // Board nav
 
 <template>
-	<div class="board-menu">
+	<section class="board-menu-container">
+	<div class="board-menu" v-if="!changeBg">
 		<header>
 			<h3 class="title">Menu</h3>
 			<a @click="closeMenu">
@@ -45,17 +46,32 @@
 			</div>
 		</ul>
 		<hr />
-		<main v-if="changeBg">
-			<board-imgs @updateStyle="updateStyle" />
-			<section class="bg-img">
-				<!-- <input type="text" /> -->
+			</div>
+		<main v-else>
+			<div class="board-menu">
+			<header>
+			<i class="fas fa-arrow-left" @click="changeBg = false"></i>
+			<h3>Change background</h3>
+			<a @click="closeMenu">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24" style="fill: #2d2d2d">
+					<path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"></path>
+				</svg>
+			</a>
+			</header>
+			<!-- <section class="bg-img">
 				<div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
-			</section>
+			</section> -->
+			<h4>Colors</h4>
 			<section class="color-palette">
 				<div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
 			</section>
+			<h4>Images</h4>
+			<board-imgs @updateStyle="updateStyle" />
+			</div>
 		</main>
+
 	</div>
+	</section>
 </template>
 
 <script>
