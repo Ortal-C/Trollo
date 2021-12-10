@@ -4,6 +4,7 @@
     height: calc(100vh - 40px);
     // background-color: #ebe4ff;
     .groups-container {
+        padding: 4px;
         display: flex;
         align-items: start;
         overflow-x: auto;
