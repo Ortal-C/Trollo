@@ -1,6 +1,6 @@
 .dashboard {
     background-color: hsla(0, 0%, 100%, 0.459);
-    min-height: 100vh;
+    height: calc(100vh - 40px);
     button {
         border: none;
         background-color: transparent;
