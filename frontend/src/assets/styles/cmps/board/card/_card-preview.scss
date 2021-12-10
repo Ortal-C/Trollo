@@ -131,9 +131,19 @@
 			width: max-content;
 			transform: translateX(0);
 			transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+			.fas, .far {
+				color: #e6e6e6;
+				margin-left: 3px;
+				margin-right: 10px;
+			}
 			svg {
 				margin-left: 3px;
+				margin-right: 10px;
 			}
+		}
+		button:hover {
+			background-color: rgba(0, 0, 0, 0.9);
+			transition: 0.3s;
 		}
 	}
 }

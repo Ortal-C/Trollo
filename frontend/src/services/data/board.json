@@ -11,43 +11,43 @@
 	"labels": [
 		{
 			"id": "l101",
-			"title": "Copy Request",
-			"color": "#cc0033"
+			"title": "Done",
+			"color": "#20bf6b"
 		},
 		{
 			"id": "l102",
 			"title": "One more step",
-			"color": "#ff8000"
+			"color": "#f7b731"
 		},
 		{
 			"id": "l103",
 			"title": "Priority",
-			"color": "#ffbf00"
+			"color": "#eb3b5a"
 		},
 		{
 			"id": "l104",
 			"title": "Design team",
-			"color": "#00cc00"
+			"color": "#a55eea"
 		},
 		{
 			"id": "l105",
-			"title": "Product marketing",
-			"color": "#0099cc"
+			"title": "Has to be discussed",
+			"color": "#45aaf2"
 		},
 		{
 			"id": "l106",
 			"title": "Waiting for feedback",
-			"color": "#66d9ff"
+			"color": "#4b7bec"
 		},
 		{
 			"id": "l107",
-			"title": "Halp",
-			"color": "#bf80ff"
+			"title": "Optinal",
+			"color": "#778ca3"
 		},
 		{
 			"id": "l108",
 			"title": "Important",
-			"color": "#ff66ff"
+			"color": "#fa8231"
 		}
 	],
 	"members": [
@@ -75,7 +75,7 @@
 				{
 					"id": "c104",
 					"title": "MongoDB atlas",
-					"description": "Connect to MongoDb Atlas and create all the collections.‏",
+					"description": "Connect to MongoDb Atlas and create all the collections.",
 					"isDone": true,
 					"members": [],
 					"labelsIds": [

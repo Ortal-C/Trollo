@@ -31,17 +31,26 @@
 		transition-duration: 85ms;
 		transition-property: background-color, border-color, box-shadow;
 		transition-timing-function: ease;
+		margin-bottom: 5px;
 	}
 	.remove-cover:hover {
 		background-color: #091e421c;
 	}
+	.color-title {
+		margin: 0 0 0.3em;
+	}
 	.colors-container {
 		display: flex;
+		// justify-content: space-between;
+		justify-content: center;
 		flex-wrap: wrap;
 		.color {
+			cursor: pointer;
 			height: 32px;
 			width: 50px;
 			border-radius: 3px;
+			margin: 3px;
+			// margin-top: 0;
 		}
 	}
 }
