@@ -78,7 +78,10 @@
 					"description": "Connect to MongoDb Atlas and create all the collections.",
 					"isDone": true,
 					"members": [],
-					"labelsIds": ["l103", "l108"],
+					"labelsIds": [
+						"l103",
+						"l108"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -103,7 +106,11 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
 						}
 					],
-					"labelsIds": ["l103", "l102", "l107"],
+					"labelsIds": [
+						"l103",
+						"l102",
+						"l107"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -132,7 +139,12 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
 						}
 					],
-					"labelsIds": ["l102", "l104", "l101", "l103"],
+					"labelsIds": [
+						"l102",
+						"l104",
+						"l101",
+						"l103"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -158,7 +170,11 @@
 					"description": "",
 					"isDone": false,
 					"members": [],
-					"labelsIds": ["l108", "l106", "l105"],
+					"labelsIds": [
+						"l108",
+						"l106",
+						"l105"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -174,7 +190,7 @@
 				{
 					"id": "c202",
 					"title": "Background API",
-					"description": "https://unsplash.com/developers‏",
+					"description": "https://unsplash.com/developers",
 					"isDone": false,
 					"members": [
 						{
@@ -188,7 +204,15 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
 						}
 					],
-					"labelsIds": ["l107", "l106", "l105", "l104", "l103", "l102", "l101"],
+					"labelsIds": [
+						"l107",
+						"l106",
+						"l105",
+						"l104",
+						"l103",
+						"l102",
+						"l101"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -214,7 +238,9 @@
 					"description": "Before the meeting with Assi",
 					"isDone": false,
 					"members": [],
-					"labelsIds": ["l104"],
+					"labelsIds": [
+						"l104"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -239,7 +265,11 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
 						}
 					],
-					"labelsIds": ["l101", "l102", "l103"],
+					"labelsIds": [
+						"l101",
+						"l102",
+						"l103"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -261,7 +291,10 @@
 					"imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
 				}
 			],
-			"labelsIds": ["l105", "l109"],
+			"labelsIds": [
+				"l105",
+				"l109"
+			],
 			"createdAt": 1590988930348.0,
 			"dueDate": 16156215211.0,
 			"byMember": {
@@ -482,7 +515,12 @@
 					"isDone": false,
 					"byMember": {},
 					"members": [],
-					"labelsIds": ["l104", "l103", "l102", "l106"],
+					"labelsIds": [
+						"l104",
+						"l103",
+						"l102",
+						"l106"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -507,7 +545,12 @@
 							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
 						}
 					],
-					"labelsIds": ["l101", "l102", "l103", "l104"],
+					"labelsIds": [
+						"l101",
+						"l102",
+						"l103",
+						"l104"
+					],
 					"checklists": [],
 					"attachments": [],
 					"activities": [],
@@ -563,11 +606,11 @@
 	"activities": [
 		{
 			"id": "a101",
-			"txt": " changed color ",
+			"txt": "changed color",
 			"createdAt": "",
 			"byMember": {
 				"_id": "u101",
-				"fullname": "Michal Ozeri ",
+				"fullname": "Michal Ozeri",
 				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
 			},
 			"card": {
@@ -583,6 +626,118 @@
 				"_id": "u407",
 				"fullname": "Lihi Sered",
 				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a103",
+			"txt": "Added list",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a104",
+			"txt": "Removed card",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a105",
+			"txt": "Changed cover",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a106",
+			"txt": "Changed description",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c101",
+				"title": "Data structure planning"
+			}
+		},
+		{
+			"id": "a107",
+			"txt": "Added attachment",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u407",
+				"fullname": "Lihi Sered",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a108",
+			"txt": "Changed background image",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a109",
+			"txt": "Changed card labels",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a110",
+			"txt": "Updated due date",
+			"createdAt": "",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
 			},
 			"card": {
 				"id": "c103",
