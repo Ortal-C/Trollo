@@ -3,6 +3,7 @@ import axios from 'axios';
 export const utilService = {
     makeId,
     upload,
+    debounce
 }
 
 function makeId(length = 5) {
@@ -21,12 +22,26 @@ async function upload(ev) {
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/trollo/${type}/upload`
     const FORM_DATA = new FormData();
     FORM_DATA.append('file', ev.target.files[0])
-    FORM_DATA.append('upload_preset',UPLOAD_PRESET)
+    FORM_DATA.append('upload_preset', UPLOAD_PRESET)
     try {
         const res = await axios.post(UPLOAD_URL, FORM_DATA)
         console.log(res.data);
         return res.data;
-    } catch(err) {
+    } catch (err) {
         console.error('ERROR!', err)
     }
 }
+
+function debounce(func, wait) {
+    let timeout;
+
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
