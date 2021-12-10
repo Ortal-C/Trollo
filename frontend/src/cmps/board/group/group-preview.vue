@@ -3,10 +3,9 @@
 <template>
 	<div class="group-preview">
 		<div class="group-header">
-			<!-- <h2 v-if="!isTitleClicked" @click="isTitleClicked = !isTitleClicked">{{ group.title }}</h2> -->
 			<h2 v-if="!currEdit" @click="changeCurrEdit">{{ group.title }}</h2>
-			<form action="" v-else @change="editGroup()" @submit.prevent="editGroup()">
-				<input type="text" v-model="title" :placeholder="group.title" />
+			<form v-else @submit.prevent="editGroup()" @keydown.esc="editGroup()">
+				<input type="text" v-model="title" :placeholder="group.title" autofocus/>
 			</form>
 			<button class="menu-btn" @click="toggleMenu">
 				<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -34,17 +33,20 @@
 			</div>
 		</div>
 		<ul class="smooth-dnd-container">
-			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop" :drop-placeholder="dropPlaceholderOptions" 
-        		@drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
+			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop"
+			:drop-placeholder="dropPlaceholderOptions" @drop="handleCardDrop(idx, $event)"
+			:get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
 					<card-preview :card="card" :group="group" @saveCard="saveCard" />
 				</Draggable>
 			</Container>
 			<div class="card-add-container" @click="isAddClicked = !isAddClicked" v-if="!isAddClicked">
-				<svg width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-					<path d="M12 3C11.4477 3 11 3.44772 11 4V11L4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11L13 11V4C13 3.44772 12.5523 3 12 3Z" fill="currentColor"></path>
-				</svg>
-				<p class="card-add">Add a card</p>
+				<button>
+					<svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 3C11.4477 3 11 3.44772 11 4V11L4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11V20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20V13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11L13 11V4C13 3.44772 12.5523 3 12 3Z" fill="currentColor"></path>
+					</svg>
+					<p class="card-add">Add a card</p>
+				</button>
 			</div>
 			<form @submit.prevent="addCard(group.id)" v-else>
 				<textarea class="card-add-textarea" v-model="card.title" placeholder="Enter a title for this card..."></textarea>

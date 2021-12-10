@@ -31,11 +31,6 @@ const routes = [{
         component: boardApp
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: dashboard
-    },
-    {
         path: '/board/:boardId',
         name: 'boardDetails',
         component: boardDetails,
@@ -44,6 +39,11 @@ const routes = [{
             name: 'cardDetails',
             component: cardDetails
         }, ]
+    },
+    {
+        path: '/board/:boardId/dashboard',
+        name: 'dashboard',
+        component: dashboard
     },
 ]
 

@@ -1,20 +1,66 @@
 .dashboard {
-    background-color: hsla(0, 0%, 100%, 0.609);
-    .charts-container {
-        button {
-            border: none;
-            background-color: transparent;
-            position: absolute;
-            top: 43px;
-            right: 0;
-            font-size: 1.4em;
-            color: #404040
+    background-color: hsla(0, 0%, 100%, 0.425);
+    height: 100vh;
+    button {
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 43px;
+        right: 0;
+        font-size: 1.4em;
+        color: #404040
+    }
+    .data-container {
+        .data-topic {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            .stats {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, 0.5);
+                margin: 50px 15px 20px;
+                border-radius: 15px;
+                width: 300px;
+                padding: 15px 0;
+                .title {
+                    display: flex;
+                    justify-content: center;
+                    padding: 10px;
+                    font-size: 2em;
+                    line-height: 0.5;
+                    h1 {
+                        margin: 0 10px;
+                    }
+                }
+                span {
+                    display: flex;
+                    justify-content: center;
+                    font-weight: bolder;
+                    font-size: 4em;
+                }
+            }
+            .stats:hover {
+                background-color: rgba(255, 255, 255, 0.664);
+            }
         }
-        display: flex;
-        justify-content: space-evenly;
-        .chart,
-        .pie-chart {
-            width: 30%
+        .charts-container {
+            display: flex;
+            justify-content: center;
+            min-width: 500px;
+            .chart-container,
+            .pie-chart-container {
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 1px 1px 13px -1px rgb(0 0 0 / 25%);
+                border-radius: 3px;
+                margin: 0 50px;
+                .chart,
+                .pie-chart {
+                    width: 30%;
+                }
+            }
         }
     }
 }
