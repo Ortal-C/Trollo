@@ -6,7 +6,7 @@ export default {
   mounted() {
     // Overwriting base render method with actual data.
     this.renderChart({
-         labels: [
+      labels: [
         "Copy Request",
         "One more step",
         "priority",
@@ -18,11 +18,22 @@ export default {
       ],
       datasets: [
         {
-          label: "GitHub Commits",
-                    backgroundColor: ["#f87979","#ffb12a", "#16c440", "#5da9ff" ,"#f8ff5d" ,"#9100af",'#C85C5C','#96C7C1'],
+          label: "Label",
+          backgroundColor: [
+            "#f87979",
+            "#ffb12a",
+            "#16c440",
+            "#5da9ff",
+            "#f8ff5d",
+            "#9100af",
+            "#C85C5C",
+            "#96C7C1",
+          ],
           data: [40, 33, 24, 39, 45, 40, 39, 60],
         },
       ],
+    },{
+      legend:{display:false}
     });
   },
 };

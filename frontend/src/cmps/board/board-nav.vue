@@ -69,7 +69,7 @@ export default {
       return JSON.parse(JSON.stringify(this.board));
     },
     dashboard() {
-      this.$router.push('/dashboard');
+      this.$router.push(`/board/${this.board._id}/dashboard`);
     },
   },
   computed: {
