@@ -2,7 +2,7 @@
 
 <template>
   <section class="card-preview-container" v-if="card">
-    <section class="card-preview" v-if="!isEdit" :style="{ backgroundColor }" @click="cardDetails">
+    <section class="card-preview" v-if="!isEdit" :style="backgroundColor" @click="cardDetails">
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
       <div class="card-cover" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
       <div class="card-content">
@@ -183,7 +183,8 @@ export default {
       return this.$store.getters.board;
     },
     backgroundColor() {
-      if (this.card.style.size === 'full') return this.card.style.color;
+      // if (this.card.style.size === 'full') return this.card.style.color;
+      if (this.card.style.size === 'full') return `background-color: ${this.card.style.color}; height: 52px; padding-top: 18px; font-weight: 600;`
     },
     classLabel() {
       return { open: this.openLabels, close: !this.openLabels };
