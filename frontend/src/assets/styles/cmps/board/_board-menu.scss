@@ -1,7 +1,7 @@
 .board-menu {
 	position: absolute;
 	top: 40px;
-	right: 0px;
+	right: -10px;
 	background-color: #f4f5f7;
 	height: calc(100vh - 40px);
 	width: 350px;
@@ -9,6 +9,9 @@
 	border-left: 1px solid #dcdfe5;
 	color: #172b4d;
 	z-index: 1;
+	hr {
+		border-top: 0.5px solid #dcdfe5;
+	}
 	header {
 		display: flex;
 		justify-content: center;
@@ -28,17 +31,8 @@
 		h3 {
 			color: #a1a8ab;
 			background-color: transparent;
+			margin: 0;
 		}
-	}
-	h4 {
-		color: #5e6c84;
-		font-size: 12px;
-		font-weight: 500;
-		letter-spacing: .04em;
-		line-height: 16px;
-		margin-top: 16px;
-		text-transform: uppercase;
-		margin-bottom: 4px;
 	}
 	li {
 		display: flex;

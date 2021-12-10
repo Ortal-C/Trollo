@@ -63,9 +63,8 @@
 			display: block;
 			border: none;
 			background: transparent;
-			position: absolute;
+			position:absolute;
 			right: 0px;
-			top: -1px;
 			padding: 5px;
 			margin: 3px;
 			border-radius: 3px;
@@ -113,6 +112,21 @@
 		button:hover {
 			background-color: #0070b1;
 		}
+		.card-labels {
+			flex-wrap: wrap;
+			grid-gap: 4px;
+			gap: 4px;
+			margin-bottom: 5px;
+			display: flex;
+			min-width: 10px;
+			.card-label {
+				border-radius: 4px;
+			}
+			.fade-enter-active,
+			.fade-leave-active {
+				transition: opacity 0.5s;
+			}
+		}
 	}
 	.card-actions {
 		position: absolute;
@@ -131,9 +145,21 @@
 			width: max-content;
 			transform: translateX(0);
 			transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
-			svg {
+			.fas, .far {
+				color: #e6e6e6;
 				margin-left: 3px;
+				margin-right: 10px;
 			}
+			svg {
+				color: #e6e6e6;
+				margin-left: 3px;
+				margin-right: 10px;
+			}
+		}
+		button:hover {
+			background-color: rgba(0, 0, 0, 0.9);
+			margin-left: 15px;
+			transition: 0.1s;
 		}
 	}
 }

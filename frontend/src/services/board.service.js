@@ -28,7 +28,6 @@ async function query() {
     // return await httpService.get(`board`)
     const boards = await httpService.get(`board`)
     socketService.emit('boards-watch', boards)
-    console.log('boards', boards);
     return boards
 }
 

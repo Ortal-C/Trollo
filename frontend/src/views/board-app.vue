@@ -6,12 +6,10 @@
       <h2>Starred boards</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
-            <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
+            <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)'
+            :style="board.style.includes('unsplash') ? `background: url(${board.style}); background-size: cover; ` : `background-color:${board.style}`">
               <p>{{board.title}}</p>
             </li>
-             <!-- <li v-if="board.isStarred && board.style.length > 10" class='board-preview board' @click='openBoard(board._id)' :style='`background-image:${board.style}`'>
-              <p>{{board.title}}</p>
-            </li> -->
           </div>
         </ul>
     </div>
@@ -19,7 +17,8 @@
       <h2>Workspace</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
-            <li v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)' :style='`background-color:${board.style}`'>
+              <li v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)'
+            :style="board.style.includes('unsplash') ? `background: url(${board.style}); background-size: cover; ` : `background-color:${board.style}`">
               <p>{{board.title}}</p>
             </li>
           </div>
@@ -56,6 +55,9 @@ export default {
   computed: {
     boards() {
       return this.$store.getters.boards;
+    },
+    boardStyle(){
+
     }
   },
   methods: {

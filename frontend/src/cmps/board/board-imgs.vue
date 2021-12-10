@@ -7,7 +7,7 @@
         </form>
       </section>
       <section v-if="imgs" class="imgs-container">
-          <div v-for="img in imgs" :key="img.id" @click="setImg(img)">
+          <div class="img-container" v-for="img in imgs" :key="img.id" @click="setImg(img)">
               <img :src="img.smallImg" alt="">
           </div>
       </section>
@@ -33,7 +33,6 @@ export default {
             if (!this.searchBy) return
             const imgs = await imgService.getImgs(this.searchBy)
             this.imgs = imgs
-            console.log(imgs);
         },
         setImg(img) {
             this.$emit('updateStyle', img.fullImg)
