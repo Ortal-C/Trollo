@@ -61,11 +61,11 @@
 			<!-- <section class="bg-img">
 				<div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
 			</section> -->
-			<h4>Colors</h4>
+			<h4 class="title">Colors</h4>
 			<section class="color-palette">
 				<div class="color" v-for="color in colors" :key="color" :value="color" :style="`background-color:${color}`" @click="updateStyle(color)"></div>
 			</section>
-			<h4>Images</h4>
+			<h4 class="title">Images</h4>
 			<board-imgs @updateStyle="updateStyle" />
 			</div>
 		</main>

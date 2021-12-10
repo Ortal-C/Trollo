@@ -9,27 +9,27 @@ export default {
     this.renderChart(
       {
         labels: [
-          "Copy Request",
+          "Done",
           "One more step",
-          "priority",
+          "Priority",
           "Design team",
-          "Product marketing",
+          "Has to be discussed",
           "Waiting for feedback",
-          "Halp",
+          "Optional",
           "Important",
         ],
         datasets: [
           {
             label: "Label",
             backgroundColor: [
-              "#2bcbba",
-              "#26de81",
-              "#fed330",
-              "#fd9644",
-              "#fc5c65",
+              "#20bf6b",
+              "#f7b731",
+              "#eb3b5a",
               "#a55eea",
-              "#4b7bec",
               "#45aaf2",
+              "#4b7bec",
+              "#778ca3",
+              "#fa8231",
             ],
 
             data: this.data,
