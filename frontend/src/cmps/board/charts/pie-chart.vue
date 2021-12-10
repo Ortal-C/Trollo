@@ -15,7 +15,7 @@ export default {
       ],
       datasets: [
         {
-          backgroundColor: ["#f87979","#ffb12a",'#96C7C1'],
+          backgroundColor: ["#45aaf2","#26de81",'#fc5c65'],
           data: this.data,
         },
       ],

@@ -34,7 +34,18 @@
       <section class="info-container"></section>
       <section class="charts-container">
         <div class="chart-container">
-          <chart />
+          <chart
+            :data="[
+              label1,
+              label2,
+              label3,
+              label4,
+              label5,
+              label6,
+              label7,
+              label8,
+            ]"
+          />
         </div>
         <div class="pie-chart-container">
           <pie-chart :data="[member1, member2, member3]" />
@@ -79,42 +90,130 @@ export default {
       return this.board.members.length;
     },
     member1() {
-      let countMember = 0;
+      let memberCount = 0;
       this.board.groups.forEach((group) => {
         group.cards.forEach((card) => {
           card.members.filter((member) => {
-            if (member.fullname.includes("Ortal")) countMember++;
+            if (member.fullname.includes("Ortal")) memberCount++;
           });
         });
       });
-      return countMember;
+      return memberCount;
     },
     member2() {
-         let countMember = 0;
+      let memberCount = 0;
       this.board.groups.forEach((group) => {
         group.cards.forEach((card) => {
           card.members.filter((member) => {
-            if (member.fullname.includes("Lihi")) countMember++;
+            if (member.fullname.includes("Lihi")) memberCount++;
           });
         });
       });
-      return countMember;
+
+      return memberCount;
     },
     member3() {
-      let countMember = 0;
+      let memberCount = 0;
       this.board.groups.forEach((group) => {
-   
         group.cards.forEach((card) => {
-    
           card.members.filter((member) => {
-      
-            if (member.fullname.includes("Michal")) countMember++;
-         
+            if (member.fullname.includes("Michal")) memberCount++;
           });
         });
       });
-    
-      return countMember;
+      return memberCount;
+    },
+    label1() {
+      let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l101")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label2() {
+       let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l102")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label3() {
+   let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l103")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label4() {
+    let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l104")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+
+    label5() {
+  let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l105")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label6() {
+      let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l106")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label7() {
+  let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        group.cards.forEach((card) => {
+          if (card.labelsIds.includes("l107")) labelCount++;
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
+    },
+    label8() {
+  let labelCount = 0;
+      this.board.groups.forEach((group) => {
+        console.log('group', group);
+        group.cards.forEach((card) => {
+          console.log('card', card);
+          if (card.labelsIds.includes("l108")) labelCount++;
+         console.log( card.labelsIds);
+        });
+      });
+
+      console.log(labelCount);
+      return labelCount;
     },
   },
   components: {

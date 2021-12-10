@@ -1,6 +1,6 @@
 .dashboard {
-    background-color: hsla(0, 0%, 100%, 0.425);
-    height: 100vh;
+    background-color: hsla(0, 0%, 100%, 0.459);
+    min-height: 100vh;
     button {
         border: none;
         background-color: transparent;
@@ -19,7 +19,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                background-color: rgba(255, 255, 255, 0.5);
+                background-color: hsla(0, 0%, 100%, 0.671);
                 margin: 50px 15px 20px;
                 border-radius: 15px;
                 width: 300px;
@@ -42,7 +42,7 @@
                 }
             }
             .stats:hover {
-                background-color: rgba(255, 255, 255, 0.664);
+                background-color: hsla(0, 0%, 100%, 0.425);
             }
         }
         .charts-container {
@@ -51,7 +51,7 @@
             min-width: 500px;
             .chart-container,
             .pie-chart-container {
-                background-color: #fff;
+                background-color: hsla(0, 0%, 100%, 0.671);
                 padding: 20px;
                 box-shadow: 1px 1px 13px -1px rgb(0 0 0 / 25%);
                 border-radius: 3px;
@@ -60,6 +60,10 @@
                 .pie-chart {
                     width: 30%;
                 }
+            }
+            .chart-container:hover,
+            .pie-chart-container:hover {
+                background-color: hsla(0, 0%, 100%, 0.425);
             }
         }
     }
