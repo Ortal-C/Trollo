@@ -37,10 +37,15 @@
     <section v-else>
        <div class="card-edit-container">
           <form @change="editCard(group.id)">
+            <div class="card-labels" v-if=" card.style.size === 'full' && card.labelsIds.length" @click.stop="toggleLabels" >
+              <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
+               <span v-if="openLabels">{{ label.title }}</span>
+              </div>
+            </div>
             <textarea type="text" v-model="title" :placeholder="card.title" />
              <div class="card-icons" v-if=" card.style.size === 'full'">
               <div class="card-info">
-               <span title="This card has a description">{{desc}}</span>
+               <span v-if="card.description"><i class="fas fa-align-left"></i></span>
               </div>
               <div class="card-members">
                 <span v-for="member in card.members" :key="member._id">
@@ -52,7 +57,10 @@
           <button @click="editCard(group.id)">Save</button>
         </div>
         <div class="card-actions">
-          <button @click="cardDetails">Open card</button>
+          <button @click="cardDetails">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M28.66667,28.66667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v14.33333v21.5v50.16667c0,7.91917 6.41417,14.33333 14.33333,14.33333h114.66667c7.91917,0 14.33333,-6.41417 14.33333,-14.33333v-50.16667v-21.5v-14.33333c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333zM28.66667,43h114.66667v14.33333h-114.66667zM28.66667,78.83333h114.66667v50.16667h-114.66667z"></path></g></g></svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 172 172" style="fill: #ffffff"> <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"> <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#34495e"> <path d="M28.66667,28.66667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v14.33333v21.5v50.16667c0,7.91917 6.41417,14.33333 14.33333,14.33333h114.66667c7.91917,0 14.33333,-6.41417 14.33333,-14.33333v-50.16667v-21.5v-14.33333c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333zM28.66667,43h114.66667v14.33333h-114.66667zM28.66667,78.83333h114.66667v50.16667h-114.66667z"></path> </g> </g> </svg> -->
+            Open card</button>
           <button v-for="action in actions" :key="action.type" @click="action.isOpen = !action.isOpen"><span v-html="action.fa"></span> <p>{{action.title}}</p>
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
@@ -183,7 +191,6 @@ export default {
       return this.$store.getters.board;
     },
     backgroundColor() {
-      // if (this.card.style.size === 'full') return this.card.style.color;
       if (this.card.style.size === 'full') return `background-color: ${this.card.style.color}; height: 52px; padding-top: 18px; font-weight: 600;`
     },
     classLabel() {
