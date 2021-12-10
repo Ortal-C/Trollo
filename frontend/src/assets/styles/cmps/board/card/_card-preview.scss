@@ -1,4 +1,5 @@
 .card-preview-container {
+	margin-bottom: 8px;
 	.far,
 	.fas {
 		color: #6b778c;
@@ -6,14 +7,12 @@
 		font-size: 12px;
 	}
 	.card-preview {
-		min-height: 32px;
-		cursor: pointer;
-		word-wrap: break-word;
-		margin: 7px 7px;
-		// padding: 6px 8px;
+		cursor:pointer;
 		border-radius: 3px;
 		background-color: #fff;
-		box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+		box-shadow: 0 1px 0 #091e4240;
+		min-height: 32px;
+		word-wrap: break-word;
 		.edit-card {
 			display: none;
 			color: transparent;
@@ -21,7 +20,7 @@
 		.card-cover {
 			width: 100%;
 			min-height: 32px;
-			border-radius: 3px;
+			border-radius: 3px 3px 0 0;
 		}
 		.card-labels {
 			flex-wrap: wrap;
@@ -40,13 +39,21 @@
 		}
 		.card-content {
 			width: 100%;
-			min-height: 32px;
-			padding: 5px;
+			padding: 6px 8px;
+			p{
+				font-size: 14px;
+				margin-bottom: 4px;
+				line-height: 1.5;
+			}
 		}
 		.card-icons {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			.card-info span{
+				padding-inline-end:8px;
+				
+			}
 		}
 	}
 	.card-preview:hover {
@@ -57,7 +64,8 @@
 			border: none;
 			background: transparent;
 			position: absolute;
-			right: 7px;
+			right: 0px;
+			top: -1px;
 			padding: 5px;
 			margin: 3px;
 			border-radius: 3px;
@@ -109,7 +117,7 @@
 	.card-actions {
 		position: absolute;
 		z-index: 10;
-		left: 100%;
+		left: 104%;
 		width: auto;
 		button {
 			margin: 5px;

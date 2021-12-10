@@ -1,0 +1,16 @@
+.board-imgs {
+    display: flex;
+    flex-direction: column;
+    .imgs-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    img {
+        cursor: pointer;
+        object-fit: cover;
+        height: 100px;
+        width: 150px;
+        border-radius: 5px;
+    }
+}

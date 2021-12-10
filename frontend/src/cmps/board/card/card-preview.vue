@@ -22,13 +22,12 @@
             </span>
                   
             <span v-if="card.attachments.length" title="Attachments">
-               <span><i class="fas fa-paperclip"></i></span>
-               {{card.attachments.length}}
+              <i class="fas fa-paperclip"></i>{{card.attachments.length}}
             </span>
           </div>
           <div class="card-members">
             <span v-for="member in card.members" :key="member._id">
-              <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
+              <el-avatar :size="28" :src="member.imgUrl"></el-avatar>
             </span>
           </div>
         </div>
@@ -44,7 +43,9 @@
                <span title="This card has a description">{{desc}}</span>
               </div>
               <div class="card-members">
-                <span v-for="member in card.members" :key="member._id"><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+                <span v-for="member in card.members" :key="member._id">
+                  <el-avatar :size="28" :src="member.imgUrl"></el-avatar>
+                </span>
               </div>
              </div>
           </form>
@@ -56,10 +57,7 @@
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title"> {{ action.title }} </span>
-                <span
-                  v-html="getCloseSvg"
-                  @click="action.isOpen = false"
-                ></span>
+                <span v-html="getCloseSvg" @click="action.isOpen = false"></span>
               </div>
               <component :card="card" :is="`card-${action.type}`"></component>
             </div>
@@ -167,9 +165,7 @@ export default {
     getLabels() {
       if (this.card.labelsIds.length) {
         const labels = this.$store.getters.board.labels;
-        this.labels = labels.filter((label) => {
-          return this.card.labelsIds.includes(label.id);
-        });
+        this.labels = labels.filter(label => this.card.labelsIds.includes(label.id));
       }
     },
     toggleLabels() {
