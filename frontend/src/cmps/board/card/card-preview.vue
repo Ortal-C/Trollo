@@ -22,13 +22,12 @@
             </span>
                   
             <span v-if="card.attachments.length" title="Attachments">
-               <span><i class="fas fa-paperclip"></i></span>
-               {{card.attachments.length}}
+              <i class="fas fa-paperclip"></i>{{card.attachments.length}}
             </span>
           </div>
           <div class="card-members">
             <span v-for="member in card.members" :key="member._id">
-              <el-avatar :size="30" :src="member.imgUrl"></el-avatar>
+              <el-avatar :size="28" :src="member.imgUrl"></el-avatar>
             </span>
           </div>
         </div>
@@ -44,7 +43,9 @@
                <span title="This card has a description">{{desc}}</span>
               </div>
               <div class="card-members">
-                <span v-for="member in card.members" :key="member._id"><el-avatar :size="30" :src="member.imgUrl"></el-avatar></span>
+                <span v-for="member in card.members" :key="member._id">
+                  <el-avatar :size="28" :src="member.imgUrl"></el-avatar>
+                </span>
               </div>
              </div>
           </form>
