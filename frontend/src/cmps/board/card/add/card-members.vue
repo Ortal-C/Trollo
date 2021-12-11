@@ -43,10 +43,7 @@ export default {
     toggleMember(currMember) {
       let card = this.cardCopy();
       const member = card.members.find(member => member._id === currMember._id);
-      if (!member){
-        card.members.push(currMember);
-
-      }
+      if (!member) card.members.push(currMember);
       else {
         const memberIdx = card.members.findIndex((member) => member._id === currMember._id)
         card.members.splice(memberIdx, 1);
