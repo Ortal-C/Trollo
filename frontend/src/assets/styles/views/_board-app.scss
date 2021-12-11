@@ -2,6 +2,11 @@
 	margin: auto;
 	max-width: 1000px;
 	padding: 10px;
+	padding-top: 0;
+	h2 {
+		padding-left: 5px;
+		margin-top: 10px;
+	}
 	ul {
 		display: flex;
 		flex-wrap: wrap;
@@ -12,6 +17,11 @@
 		height: 100px;
 		width: 235px;
 		border-radius: 5px;
+	}
+	@media (max-width: 400px) {
+		.board {
+			width: 345px;
+		}
 	}
 	.board-preview {
 		font-size: 16px;
