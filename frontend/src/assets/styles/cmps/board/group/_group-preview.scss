@@ -1,121 +1,136 @@
 .group-preview {
     border-radius: 3px;
     max-height: 100%;
-	width: 272px;
-	background-color: hsl(228, 14%, 93%);
-	margin-inline-end: 8px;
-	padding: 0 8px 8px;
-	// overflow-y: scroll;
-	max-height: calc(100vh - 110px);
-	h2 {
-		font-size: 1rem;
-	}
-	.group-header {
-		color: #172b4d;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		min-height: 20px;
-		padding: 6px 2px 6px 8px;
-		h2 {
-			margin: 0;
-			padding: 4px 0px;
-			cursor: pointer;
-			width: 230px;
-			height: 28px;
-			line-height: 1.333;
-			font-size: rem(18px);
-			font-weight: 600;
-		}
-		input {
+    width: 272px;
+    background-color: hsl(228, 14%, 93%);
+    margin-inline-end: 8px;
+    padding: 0 8px 8px;
+    // overflow-y: scroll;
+    max-height: calc(100vh - 110px);
+    h2 {
+        font-size: 1rem;
+    }
+    .group-header {
+        color: #172b4d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 20px;
+        padding: 6px 2px 6px 8px;
+        h2 {
+            margin: 0;
+            padding: 4px 0px;
+            cursor: pointer;
+            width: 230px;
+            height: 28px;
+            line-height: 1.333;
+            font-size: rem(18px);
+            font-weight: 600;
+        }
+        input {
             padding: 0px;
             margin: 0px;
-			color: #172b4d;
-			width: 200px;
-            border: 2px  solid #0079bf;
-			font-size: rem(18px);
-			font-weight: 600;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			background-color: #fff;
-			box-shadow: none;
-			border-radius: 3px;
-			height: 27px;
-		}
+            color: #172b4d;
+            width: 200px;
+            border: 2px solid #0079bf;
+            font-size: rem(18px);
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            box-shadow: none;
+            border-radius: 3px;
+            height: 27px;
+        }
         .menu-btn {
             color: #6b778c;
             background-color: transparent;
             border: none;
             padding: 10px 0px 0 10px;
         }
-	}
-	.remove-btn {
-		border: none;
-		direction: ltr;
-	}
-	.dynamic-popover {
-		top: 40px;
-		// ASK
-		margin-left: 230px;
-		h3 {
-			margin: 2px;
-		}
-		.close-svg {
-			padding: 5px;
-			position: absolute;
-			right: 0;
-			top: 0;
-			cursor: pointer;
-		}
-		.list-action {
-			padding: 10px;
-			cursor: pointer;
-		}
-		.list-action:hover {
+    }
+    // .smooth-dnd-container {
+    //     max-height: 1000px;
+    //     overflow-y: auto;
+    //      ::-webkit-scrollbar {
+    //         width: 15px;
+    //         height: 12px;
+    //     }
+    //      ::-webkit-scrollbar-track {
+    //         margin: 0 3px;
+    //         border-radius: 8px;
+    //         background-color: hsla(0, 0%, 100%, 0.746);
+    //     }
+    //      ::-webkit-scrollbar-thumb {
+    //         border-radius: 8px;
+    //         background-color: hsla(0, 0%, 100%, 0.746);
+    //     }
+    // }
+    .remove-btn {
+        border: none;
+        direction: ltr;
+    }
+    .dynamic-popover {
+        top: 40px;
+        // ASK
+        margin-left: 230px;
+        h3 {
+            margin: 2px;
+        }
+        .close-svg {
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+        .list-action {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .list-action:hover {
             border-radius: 3px;
-			background-color: #f0f0f0a2;
-		}
-	}
-	.card-add-container {
-		border-radius: 3px;
-		display: block;
-		display: flex;
-		align-items: center;
-		flex: 1 0 auto;
-		position: relative;
-		cursor: pointer;
-		max-width: 300px;
-		button {
-			color: #5e6c84;
-			display: flex;
-			align-items: center;
-			width: 100%;
-			background-color: transparent;
-			border: none;
-		}
-		button:hover {
-			border-radius: 3px;
-			background-color: #dddddf;
-		}
-		svg {
-			padding: 4px;
-		}
-	}
-	.card-add-textarea {
-		resize: none;
-		font-family: inherit;
-		border: none;
-		outline: none;
-		border-radius: 3px;
-		height: 66px;
+            background-color: #f0f0f0a2;
+        }
+    }
+    .card-add-container {
+        border-radius: 3px;
+        display: block;
+        display: flex;
+        align-items: center;
+        flex: 1 0 auto;
+        position: relative;
+        cursor: pointer;
+        max-width: 300px;
+        button {
+            color: #5e6c84;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+        }
+        button:hover {
+            border-radius: 3px;
+            background-color: #dddddf;
+        }
+        svg {
+            padding: 4px;
+        }
+    }
+    .card-add-textarea {
+        resize: none;
+        font-family: inherit;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        height: 66px;
         width: 256px;
         margin-bottom: 8px;
         padding: 8px;
-	}
-    
-    
-	.actions-container {
-		display: flex;
-		align-items: center;
+    }
+    .actions-container {
+        display: flex;
+        align-items: center;
         margin-bottom: 8px;
         width: 256px;
         .btn-add {
@@ -137,15 +152,15 @@
             cursor: pointer;
         }
         .btn-close:hover {
-            color:#172b4d;
+            color: #172b4d;
         }
     }
-	.placeholder {
-		//  background-color: rgba(150, 150, 200, 0.1);
-		//  margin: 1rem 2rem 1rem 0.3rem;
-		background-color: rgba(33, 33, 33, 0.08);
-		border-radius: 4px;
-		transform: scaleY(0.85);
-		transform-origin: 0% 0%;
-	}
+    .placeholder {
+        //  background-color: rgba(150, 150, 200, 0.1);
+        //  margin: 1rem 2rem 1rem 0.3rem;
+        background-color: rgba(33, 33, 33, 0.08);
+        border-radius: 4px;
+        transform: scaleY(0.85);
+        transform-origin: 0% 0%;
+    }
 }

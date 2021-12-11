@@ -1,56 +1,57 @@
 .board-imgs {
-	height: 360px;
-	display: flex;
-	flex-direction: column;
-	padding: 0;
-	h4 {
-		color: #5e6c84;
-		font-size: 12px;
-		font-weight: 500;
-		letter-spacing: 0.04em;
-		line-height: 16px;
-		margin-top: 16px;
-		text-transform: uppercase;
-		margin-bottom: 4px;
-	}
-	.search-container {
-		width: 100%;
-		margin: 0;
-		form {
-			width: 100%;
-		}
-		.imgs-input {
-			margin: 4px 0 12px;
-			width: 100%;
-			outline: none;
-			border: none;
-			box-shadow: inset 0 0 0 2px #dfe1e6;
-			background-color: #fafbfc;
-			border-radius: 3px;
-			display: block;
-			line-height: 20px;
-			padding-inline-start: 12px;
-			color: #172b4d;
-			font-size: 14px;
-		}
-	}
-	.imgs-container {
-		scroll-margin-inline-end: -10px;
-		overflow-y: scroll;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 6px;
-		margin-inline-end: 0;
-	}
-	.img-container {
-		margin: 0;
-	}
-	img {
-		cursor: pointer;
-		object-fit: cover;
-		height: 100px;
-		width: 147.5px;
-		border-radius: 5px;
-	}
+    height: 490px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    h4 {
+        color: #5e6c84;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        line-height: 16px;
+        margin-top: 16px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+    .search-container {
+        width: 100%;
+        margin: 0;
+        form {
+            width: 100%;
+        }
+        .imgs-input {
+            margin: 4px 0 12px;
+            width: 100%;
+            outline: none;
+            border: none;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            background-color: #fafbfc;
+            border-radius: 3px;
+            display: block;
+            line-height: 20px;
+            padding-inline-start: 12px;
+            color: #172b4d;
+            font-size: 14px;
+        }
+    }
+    .imgs-container {
+        scroll-margin-inline-end: -10px;
+        overflow-y: scroll;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-inline-end: 0;
+    }
+    .img-container {
+        margin: 0;
+    }
+    img {
+        cursor: pointer;
+        object-fit: cover;
+        height: 100px;
+        width: 145px;
+        border-radius: 5px;
+    }
 }
