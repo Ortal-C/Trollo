@@ -5,7 +5,7 @@
 		<div class="group-header">
 			<h2 v-if="!currEdit" @click="changeCurrEdit">{{ group.title }}</h2>
 			<form v-else @submit.prevent="editGroup()" @keydown.esc="editGroup()">
-				<input type="text" v-model="title" :placeholder="group.title" autofocus/>
+				<input type="text" v-model="title" :placeholder="group.title" autofocus />
 			</form>
 			<button class="menu-btn" @click="toggleMenu">
 				<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -33,9 +33,7 @@
 			</div>
 		</div>
 		<ul class="smooth-dnd-container">
-			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop"
-			:drop-placeholder="dropPlaceholderOptions" @drop="handleCardDrop(idx, $event)"
-			:get-child-payload="getChildPayload">
+			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop" :drop-placeholder="dropPlaceholderOptions" @drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
 					<card-preview :card="card" :group="group" @saveCard="saveCard" />
 				</Draggable>
@@ -62,123 +60,97 @@
 </template>
 
 <script>
-	import cardPreview from '../card/card-preview.vue'
-	import {boardService} from '@/services/board.service.js'
-	import {Container, Draggable} from 'vue-smooth-dnd'
-	export default {
-		name: 'group-preview',
-		props: ['group', 'dndName', 'idx'],
-		data() {
-			return {
-				card: {
-					title: '',
-				},
-				title: this.group.title,
-				isAddClicked: false,
-				// isTitleClicked: false,
-				isOpen: false,
-				tmpGroup: {},
-        dropPlaceholderOptions: {
-					className: 'drop-preview',
-					animationDuration: '150',
-					showOnTop: false,
-				},
-			}
+import cardPreview from '../card/card-preview.vue'
+import {boardService} from '@/services/board.service.js'
+import {Container, Draggable} from 'vue-smooth-dnd'
+export default {
+	name: 'group-preview',
+	props: ['group', 'dndName', 'idx'],
+	data() {
+		return {
+			card: {
+			title: '',
+			},
+			title: this.group.title,
+			isAddClicked: false,
+			isOpen: false,
+			tmpGroup: {},
+			dropPlaceholderOptions: {
+				className: 'drop-preview',
+				animationDuration: '150',
+				showOnTop: false,
+			},
+		}
+	},
+	created() {
+		this.getEmptyCard()
+	},
+	methods: {
+		changeCurrEdit() {
+			this.$store.commit({type: 'setCurrEdit', currEdit: this.group.id})
 		},
-		created() {
+		getEmptyCard() {
+			this.card = boardService.getEmptyCard()
+		},
+		saveGroup(group) {
+			this.$emit('saveGroup', group)
+		},
+		removeGroup(groupId) {
+			this.$emit('removeGroup', groupId)
+		},
+		copyGroup(group) {
+			let copiedGroup = this.groupCopy()
+			copiedGroup.id = ''
+			this.$emit('copyGroup', copiedGroup)
+		},
+		addCard(groupId) {
+			this.isOpen = false
+			this.isAddClicked = !this.isAddClicked
+			const title = this.card.title
+			if (!title) return
+			this.$emit('saveCard', {groupId, card: this.card})
 			this.getEmptyCard()
 		},
-		methods: {
-			changeCurrEdit() {
-				this.$store.commit({type: 'setCurrEdit', currEdit: this.group.id})
-			},
-			getEmptyCard() {
-				this.card = boardService.getEmptyCard()
-			},
-			saveGroup(group) {
-				this.$emit('saveGroup', group)
-			},
-			removeGroup(groupId) {
-				this.$emit('removeGroup', groupId)
-			},
-			copyGroup(group) {
-				let copiedGroup = this.groupCopy()
-				copiedGroup.id = ''
-				this.$emit('copyGroup', copiedGroup)
-			},
-			addCard(groupId) {
-				this.isOpen = false
-				this.isAddClicked = !this.isAddClicked
-				const title = this.card.title
-				if (!title) return
-				this.$emit('saveCard', {groupId, card: this.card})
-				this.getEmptyCard()
-				// this.isAddClicked = false;
-			},
-			closeTextarea() {
-				this.isAddClicked = false
-			},
-			editGroup() {
-				let group = this.groupCopy()
-				group.title = this.title
-				if (!group.title) return
-				this.$emit('saveGroup', group)
-				this.$store.commit({type: 'setCurrEdit', currEdit: null})
-			},
-			toggleMenu() {
-				this.isOpen = !this.isOpen
-			},
-			saveCard(groupId, card) {
-				console.log('preview', groupId, card)
-				this.$emit('saveCard', {groupId, card})
-			},
-			// DND
-			groupCopy() {
-				return JSON.parse(JSON.stringify(this.group))
-			},
-			handleCardDrop(lane, dropResult) {
-				const {removedIndex, addedIndex} = dropResult
-				if (removedIndex !== null || addedIndex !== null) {
-					this.$emit('handleCardDrop', {lane, dropResult})
-				}
-			},
-			getChildPayload(index) {
-				return this.group.cards[index]
-			},
+		closeTextarea() {
+			this.isAddClicked = false
 		},
-		computed: {
-			currEdit() {
-				return this.group.id === this.$store.getters.currEdit
-			},
+		editGroup() {
+			let group = this.groupCopy()
+			group.title = this.title
+			if (!group.title) return
+			this.$emit('saveGroup', group)
+			this.$store.commit({type: 'setCurrEdit', currEdit: null})
 		},
-		components: {
-			cardPreview,
-			Container,
-			Draggable,
+		toggleMenu() {
+			this.isOpen = !this.isOpen
 		},
-	}
+		saveCard(groupId, card) {
+			// console.log('preview', groupId, card)
+			this.$emit('saveCard', {groupId, card})
+		},
+		// DND
+		groupCopy() {
+			return JSON.parse(JSON.stringify(this.group))
+		},
+		handleCardDrop(lane, dropResult) {
+			const {removedIndex, addedIndex} = dropResult
+			if (removedIndex !== null || addedIndex !== null) {
+				this.$emit('handleCardDrop', {lane, dropResult})
+			}
+		},
+		getChildPayload(index) {
+			return this.group.cards[index]
+		},
+		},
+	computed: {
+		currEdit() {
+			return this.group.id === this.$store.getters.currEdit
+		},
+	},
+	components: {
+		cardPreview,
+		Container,
+		Draggable,
+	},
+}
 </script>
-<style scoped>
-	/* .card-list-container {
-		display: flex;
-		justify-content: space-evenly;
-	} */
-	/* .smooth-dnd-container {
-		display: flex;
-		flex-direction: column;
-		flex: 0 0 40%;
-		height: 100%;
-		border: 1px solid #dcebf4;
-		border-radius: 6px;
-    cursor: pointer;
-	} */
-	/* .card-ghost {
-		transition: transform 0.18s ease;
-		transform: rotateZ(5deg);
-    cursor: grab;
-	} */
-	/* .card-ghost-drop {
-		transition: transform 0.18s ease-in-out;
-		transform: rotateZ(0deg);
-	} */
-</style>
