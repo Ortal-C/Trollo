@@ -3,7 +3,6 @@
       <section class="search-container">
         <form @submit.prevent="searchImgs">
           <input type="text" v-model="searchBy" placeholder="Search" class="imgs-input">
-          <!-- <button>Search</button> -->
         </form>
       </section>
       <section v-if="imgs" class="imgs-container">

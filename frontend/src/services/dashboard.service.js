@@ -33,7 +33,7 @@ function setLabelsNames(map, board) {
     for (let i = 0; i < namedKeys.length; i++) {
         res[namedKeys[i]] = values[i]
     }
-    console.log('res', res);
+    // console.log('res', res);
     return res
 }
 

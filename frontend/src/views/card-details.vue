@@ -10,11 +10,7 @@
           <span v-html="getHeaderSvg"></span>
           <div class="title">
             <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-            <form v-else
-              @submit.prevent="editTitle(group.id)"
-              @change="editTitle(group.id)"
-              action=""
-            >
+            <form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="" >
               <input type="text" v-model="title" :placeholder="card.title" />
             </form>
             <p>In list <span class="group-title">{{ group.title }}</span></p>
@@ -61,47 +57,12 @@
             <h2>Description</h2>
             <section class="description-container">
               <!-- <div > -->
-              <textarea
-                @change="addDesc(group.id)"
-                class="desc-txt-show"
-                v-if="!isDesc"
-                @click="isDesc = !isDesc"
-                cols="30"
-                rows="1"
-                :placeholder="desc"
-              ></textarea>
+              <textarea @change="addDesc(group.id)" class="desc-txt-show" v-if="!isDesc" @click="isDesc = !isDesc" cols="30" rows="1" :placeholder="desc" ></textarea>
               <form v-else action="" @submit.prevent="addDesc(group.id)">
-                <textarea
-                  class="desc-txt-edit"
-                  v-model="description"
-                  cols="30"
-                  rows="6"
-                  :placeholder="desc"
-                ></textarea>
+                <textarea class="desc-txt-edit" v-model="description" cols="30" rows="6" :placeholder="desc" ></textarea>
                 <div class="actions-desc">
                   <button class="add-desc-btn">Save</button>
-                  <svg
-                    class="close-desc-btn"
-                    @click="isDesc = !isDesc"
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="
-                      color: rgb(66, 82, 110);
-                      font-size: 24px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                    "
-                  >
-                    <path
-                      d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
-                    ></path>
-                  </svg>
+                  <svg class="close-desc-btn" @click="isDesc = !isDesc" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style=" color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center; " > <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z" ></path> </svg>
                 </div>
               </form>
             </section>
@@ -111,18 +72,11 @@
           <span v-html="getAttachmentSvg"></span>
           <main>
             <h2>Attachments</h2>
-            <div
-              class="card-attachment"
-              v-for="(attachment, idx) in card.attachments"
-              :key="attachment.id"
-            >
+            <div class="card-attachment" v-for="(attachment, idx) in card.attachments" :key="attachment.id" >
               <a :href="attachment.url" target="_blank">
-                <img
-                  v-if="attachment.url.includes('cloudinary')"
-                  :src="attachment.url"
-                />
+                <img v-if="attachment.url.includes('cloudinary')" :src="attachment.url" />
                 <img v-else src="@/assets/imgs/link-thumbnail.png" />
-              </a>
+              </a> 
               <div class="attachment-details">
                 <span class="attachment-title">{{ attachment.title }}</span>
                 <div class="attachment-actions">
@@ -132,10 +86,7 @@
                    <div v-if="attachment.isEdit" class="dynamic-popover">
                     <div class="popover-header">
                       <span class="popover-title"> Edit attachment </span>
-                      <span
-                        v-html="getCloseSvg"
-                        @click="attachment.isEdit = false"
-                      ></span>
+                      <span v-html="getCloseSvg" @click="attachment.isEdit = false"></span>
                     </div>
                     <!-- edit still not working -->
                     Attachment name:
@@ -150,27 +101,10 @@
           <div class="checklist" v-for="(checklist, idx) in card.checklists" :key="idx">
             <div class="checklist-header">
               <div class="checklist-desc">
-                <span
-                  ><svg
- class="action-svg"
- stroke="currentColor"
- fill="currentColor"
- stroke-width="0"
- viewBox="0 0 16 16"
- height="1em"
- width="1em"
- xmlns="http://www.w3.org/2000/svg" >
-                    <path
-                      fill-rule="evenodd"
-                      d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z"
-                      clip-rule="evenodd"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      d="M7 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 11.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0zM7 9.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 01.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0z"
-                      clip-rule="evenodd"
-                    ></path></svg
-                ></span>
+                <span>
+                  <svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" >
+                    <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd" ></path>
+                    <path fill-rule="evenodd" d="M7 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 11.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0zM7 9.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 01.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0z" clip-rule="evenodd" ></path></svg></span>
                 <h2>{{ checklist }}</h2>
               </div>
               <button @click="removeCecklist(idx)">Delete</button>
@@ -183,35 +117,10 @@
           </div>
           <div >
             <!-- <form @submit.prevent="">
-              <textarea
-                class="add-item"
-                v-model="card.title"
-                placeholder="Add an item"
-              ></textarea>
+              <textarea class="add-item" v-model="card.title" placeholder="Add an item" ></textarea>
               <div>
                 <button class="btn-add">Add card</button>
-                <svg
-                  class="btn-close icon"
-                  @click.prevent="closeTextarea()"
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 512 512"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="
-                    color: rgb(66, 82, 110);
-                    font-size: 24px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                  "
-                >
-                  <path
-                    d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
-                  ></path>
-                </svg>
+                <svg class="btn-close icon" @click.prevent="closeTextarea()" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style=" color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center; " > <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z" ></path> </svg>
               </div>
             </form> -->
           </div>
@@ -225,12 +134,7 @@
             </div>
             <div v-else class="activity-area" @change="addComment(group.id)">
               <form action="" @submit.prevent="addComment(group.id)">
-                <textarea
-                  v-model="comment"
-                  class="activity-txtarea"
-                  placeholder="Write a comment..."
-                  rows="1"
-                ></textarea>
+                <textarea v-model="comment" class="activity-txtarea" placeholder="Write a comment..." rows="1" ></textarea>
                 <button>Save</button>
               </form>
             </div>
@@ -372,14 +276,9 @@ export default {
     },
     async updateCard(card) {
       await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card }});
-      // socketService.emit('board-watch', this.board)
     },
     async removeCard(groupId, cardId) {
-      await this.$store.dispatch({
-        type: "removeCard",
-        payload: { groupId, cardId },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId }});
       this.closeDetails();
     },
     cardCopy() {
@@ -389,68 +288,40 @@ export default {
       this.isDesc = !this.isDesc;
       let card = this.cardCopy();
       card.description = this.description;
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId, card },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId, card }, });
     },
     async editTitle(groupId) {
       this.isEdit = !this.isEdit;
       let card = this.cardCopy();
       if (!this.title) return;
       card.title = this.title;
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId, card },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId, card }});
     },
     getLabel(labelId) {
-      const label = this.board.labels.find((id) => id === labelId);
+      const label = this.board.labels.find(id => id === labelId);
       return label || null;
     },
     async removeCecklist(idx) {
       let card = this.cardCopy();
       card.checklists.splice(idx, 1);
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card }, });
     },
     async addComment(groupId) {
       this.isActivity = !this.isActivity;
       if (!this.comment) return;
       let card = this.cardCopy();
       card.comments.unshift(this.comment);
-      console.log(
-        "New comment was added!",
-        this.comment,
-        card.comments,
-        card.comments.length,
-        groupId
-      );
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId, card },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId, card }});
       this.comment = "";
     },
     async removeAttachment(idx) {
       let card = this.cardCopy();
       card.style = {size: '', color: ''}
       card.attachments.splice(idx, 1);
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
-      // socketService.emit('board-watch', this.board)
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card }, });
     },
     editAttachment(attachment) {
       attachment.isEdit = !attachment.isEdit;
-      console.log(attachment);
     },
     async toggleDueDate(ev) {
       let card = this.cardCopy();
@@ -461,7 +332,6 @@ export default {
           card: { ...card, isDone: ev.target.checked },
         },
       });
-      // socketService.emit('board-watch', this.board)
     },
   },
   computed: {
@@ -481,17 +351,13 @@ export default {
       return this.$route.params.cardId;
     },
     desc() {
-      // return this.card.description ||  "Add a more detailed description..."
-      return !this.card.description
-        ? "Add a more detailed description..."
-        : this.card.description;
+      return this.card.description ||  "Add a more detailed description..."
+      // return !this.card.description ? "Add a more detailed description...": this.card.description;
     },
     getLabels() {
       if (this.$store.getters.currCard.labelsIds.length > 0) {
         const labels = this.$store.getters.board.labels;
-        this.labels = labels.filter((label) =>
-          this.card.labelsIds.includes(label.id)
-        );
+        this.labels = labels.filter(label => this.card.labelsIds.includes(label.id));
       }
     },
     getHeaderSvg() {

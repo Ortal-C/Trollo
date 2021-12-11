@@ -39,7 +39,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
   },
   methods: {
     homePage() {

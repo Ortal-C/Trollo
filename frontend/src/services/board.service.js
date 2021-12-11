@@ -200,7 +200,7 @@ function getEmptyBoard() {
     var boards = await storageService.query('board')
     // Dev Helper: Listens to when localStorage changes in OTHER browser
     window.addEventListener('storage', async () => {
-        console.log('Storage updated');
+        // console.log('Storage updated');
         const freshBoards = await storageService.query('review')
         if (freshBoards.length === boards.length + 1) {
             console.log('Review Added - localStorage updated from another browser')

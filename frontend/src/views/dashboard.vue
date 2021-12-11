@@ -34,9 +34,7 @@
       <section class="info-container"></section>
       <section class="charts-container">
         <div class="chart-container">
-          <chart
-            :data="this.labels"
-          />
+          <chart :data="this.labels" />
         </div>
         <div class="pie-chart-container">
           <pie-chart :data="members" />
@@ -82,8 +80,7 @@ export default {
     tasksCount() {
       return this.board.groups.reduce(
         (acc, group) => acc + group.cards.length,
-        0
-      );
+        0);
     },
     membersCount() {
       return this.board.members.length;
@@ -95,6 +92,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
