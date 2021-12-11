@@ -463,7 +463,14 @@
                     height: 55px;
                     width: auto;
                 }
+                .desc-txt-edit {
+                    width: auto;
+                    height: 55px;
+                }
             }
+        }
+        .card-details-desc, .card-details-activity, .card-details-attachment  {
+            margin-bottom: 0;
         }
         .card-details-main {
             width: 90%;
@@ -471,8 +478,23 @@
         }
         .add-to-card {
             .action-div {
-                width: 150px;
+                width: 140px;
             }
+            .actions-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 300px;
+            }
+        }
+        .activity-area {
+            width: auto;
+        }
+        .activity-txtarea {
+            width: 100%;
+        }
+        .attachment-details {
+            padding-left: 20px;
         }
     }
 }
