@@ -51,12 +51,16 @@ export default {
       const id = utilService.makeId();
       let tmpCard = this.cardCopy();
       if (this.upload) {
+        console.log(this.upload);
         tmpCard.attachments.unshift({ ...this.upload, id, title: this.attachment.title});
+        tmpCard.style.color = this.upload.url
+        tmpCard.style.size = 'header'
+        console.log(tmpCard.style.color);
       } 
       else{
         tmpCard.attachments.unshift({...this.attachment, id});
       }
-       this.$emit("closeActionModal", "attachment");
+      this.$emit("closeActionModal", "attachment");
       this.$emit("updateCard", tmpCard);
     },
     async onUpload(ev) {
