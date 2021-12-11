@@ -18,12 +18,9 @@
 
 <script>
 export default {
-
   name:'card-cover',
-  // props: ['card'],
   data(){
     return{
-      // colors: ['#cc0033', '#ff8000', '#ffbf00', '#00cc00', '#0099cc', '#66d9ff', '#bf80ff', '#ff66ff', '#ff4da6'],
       colors: ['#eb3b5a', '#fa8231', '#f7b731', '#20bf6b', '#0fb9b1', '#45aaf2', '#4b7bec', '#a55eea', '#4b6584', '#a5b1c2']
     }
   },
@@ -45,19 +42,18 @@ export default {
     updateSize(size) {
       let card = this.cardCopy()
       card.style.size = size
-      this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
+      this.$emit('updateCard', card)
     },
     updateColor(color) {
       let card = this.cardCopy()
       if (!card.style.size) card.style.size = 'header'
       card.style.color = color
       this.$emit('updateCard', card)
-      // this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
     },
     removeCover() {
       let card = this.cardCopy()
       card.style = {size: '', color: ''}
-      this.$store.dispatch({ type: "saveCard", payload: { groupId: this.group.id, card } });
+      this.$emit('updateCard', card)
     }
   }
 }

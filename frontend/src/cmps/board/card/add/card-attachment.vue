@@ -11,15 +11,10 @@
         Attach a link
         <input class="input" v-model="attachment.url" type="url" placeholder="Paste any link here..." @change="attachment.type = 'link'" />
       </label>
-      <!-- <label>
-				Upload image or video from computer
-				<input class="file" type="file" id="upload" @change="attachment.type = 'upload'" />
-			</label> -->
       <label>
         Attachment name (optional)
         <input class="input" type="text" v-model="attachment.title" />
       </label>
-      <!-- @click="submit()" -->
       <button class="btn-action-list">Attach</button>
     </form>
   </div>
@@ -29,7 +24,6 @@
 import { utilService } from "@/services/util.service.js";
 export default {
   name: "card-attachment",
-
   data() {
     return {
       attachment: {
@@ -51,17 +45,14 @@ export default {
       const id = utilService.makeId();
       let tmpCard = this.cardCopy();
       if (this.upload) {
-        console.log(this.upload);
         tmpCard.attachments.unshift({ ...this.upload, id, title: this.attachment.title});
-        tmpCard.style.color = this.upload.url
-        tmpCard.style.size = 'header'
-        console.log(tmpCard.style.color);
+        tmpCard.style = { color: this.upload.url, size: 'header' };
       } 
       else{
         tmpCard.attachments.unshift({...this.attachment, id});
       }
-      this.$emit("closeActionModal", "attachment");
       this.$emit("updateCard", tmpCard);
+      this.$emit("closeActionModal", "attachment");
     },
     async onUpload(ev) {
       const res = await utilService.upload(ev);
