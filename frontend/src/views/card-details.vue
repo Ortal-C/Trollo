@@ -256,19 +256,12 @@
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title">{{ action.title }}</span>
-                <span
-                  v-html="getCloseSvg"
-                  @click="action.isOpen = false"
-                  @keydown.esc="action.isOpen = false"
-                ></span>
+                <span v-html="getCloseSvg" @click="action.isOpen = false"
+                  @keydown.esc="action.isOpen = false" ></span>
               </div>
-              <component
-                :card="card"
-                :is="`card-${action.type}`"
-                @addChecklist="closeActionModal"
-                @closeActionModal="closeActionModal"
-                @updateCard="updateCard"
-              ></component>
+              <component :card="card" :is="`card-${action.type}`" 
+                @closeActionModal="closeActionModal" @updateCard="updateCard" >
+              </component>
             </div>
           </div>
           <div class="action-div" @click="removeCard(groupId, cardId)">
