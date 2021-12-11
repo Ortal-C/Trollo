@@ -26,7 +26,7 @@
         </p>
         </div>
         <div>
-          <img src="../assets/imgs/Trollo.jpeg" alt="">
+          <img src="../assets/imgs/home-page.jpeg" alt="">
         </div>
       </section>
     </div>

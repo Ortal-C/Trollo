@@ -7,15 +7,14 @@ export default {
   created() {
     const labels = Object.keys(this.data);
     this.labels = labels;
-    const values = Object.values(this.data)
-    this.values = values
+    const values = Object.values(this.data);
+    this.values = values;
   },
   data() {
     return {
       labels: null,
       values: null,
-
-    }
+    };
   },
   mounted() {
     // Overwriting base render method with actual data.
