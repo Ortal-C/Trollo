@@ -3,21 +3,32 @@
 <template>
   <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
     <!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
-    <div class="card-details-cover" v-if="card.style.color" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;` : `background-color:${card.style.color}`"></div>
+    <div
+      class="card-details-cover"
+      v-if="card.style.color"
+      :style="
+        card.style.color.includes('cloudinary')
+          ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;`
+          : `background-color:${card.style.color}`
+      "
+    ></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
           <span v-html="getHeaderSvg"></span>
           <div class="title">
             <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-            <form v-else
+            <form
+              v-else
               @submit.prevent="editTitle(group.id)"
               @change="editTitle(group.id)"
               action=""
             >
               <input type="text" v-model="title" :placeholder="card.title" />
             </form>
-            <p>In list <span class="group-title">{{ group.title }}</span></p>
+            <p>
+              In list <span class="group-title">{{ group.title }}</span>
+            </p>
           </div>
         </header>
       </div>
@@ -33,7 +44,9 @@
                 ><el-avatar :size="33" :src="member.imgUrl"></el-avatar
               ></span>
             </div>
-            <span @click="openMemberModal" class="add-member"><i class="el-icon-plus"></i></span>
+            <span @click="openMemberModal" class="add-member"
+              ><i class="el-icon-plus"></i
+            ></span>
           </main>
         </div>
         <div class="data-preview" v-if="labels && card.labelsIds.length">
@@ -51,8 +64,14 @@
         </div>
         <div class="data-preview due-date-container" v-if="card.dueDate">
           <h5>Due date</h5>
-          <input type="checkbox" :checked="card.isDone" @change="toggleDueDate" />
-          <span>{{ new Date(card.dueDate).toLocaleString("HEB").substring(0, 10) }}</span>
+          <input
+            type="checkbox"
+            :checked="card.isDone"
+            @change="toggleDueDate"
+          />
+          <span>{{
+            new Date(card.dueDate).toLocaleString("HEB").substring(0, 10)
+          }}</span>
           <el-tag v-if="card.isDone" type="success">Complete</el-tag>
         </div>
         <div class="card-details-desc">
@@ -126,10 +145,19 @@
               <div class="attachment-details">
                 <span class="attachment-title">{{ attachment.title }}</span>
                 <div class="attachment-actions">
-                  <span v-if="attachment.createdAt">{{ new Date(attachment.createdAt).toLocaleString('HEB') }}</span>
-                  <span class="attachment-action" @click="removeAttachment(idx)" >Delete</span>
-                  <span class="attachment-action" @click="editAttachment(attachment)"> Edit</span>
-                   <div v-if="attachment.isEdit" class="dynamic-popover">
+                  <span v-if="attachment.createdAt">{{
+                    new Date(attachment.createdAt).toLocaleString("HEB")
+                  }}</span>
+                  <span class="attachment-action" @click="removeAttachment(idx)"
+                    >Delete</span
+                  >
+                  <span
+                    class="attachment-action"
+                    @click="editAttachment(attachment)"
+                  >
+                    Edit</span
+                  >
+                  <div v-if="attachment.isEdit" class="dynamic-popover">
                     <div class="popover-header">
                       <span class="popover-title"> Edit attachment </span>
                       <span
@@ -147,19 +175,24 @@
           </main>
         </div>
         <section class="checklist-container">
-          <div class="checklist" v-for="(checklist, idx) in card.checklists" :key="idx">
+          <div
+            class="checklist"
+            v-for="(checklist, idx) in card.checklists"
+            :key="idx"
+          >
             <div class="checklist-header">
               <div class="checklist-desc">
                 <span
                   ><svg
- class="action-svg"
- stroke="currentColor"
- fill="currentColor"
- stroke-width="0"
- viewBox="0 0 16 16"
- height="1em"
- width="1em"
- xmlns="http://www.w3.org/2000/svg" >
+                    class="action-svg"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       fill-rule="evenodd"
                       d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z"
@@ -181,7 +214,7 @@
             </div>
             <button>Add an item</button>
           </div>
-          <div >
+          <div>
             <!-- <form @submit.prevent="">
               <textarea
                 class="add-item"
@@ -220,8 +253,16 @@
           <span v-html="getActivitySvg"></span>
           <main>
             <h2>Activity</h2>
-            <div v-if="!isActivity" @click="isActivity = !isActivity" class="activity-area">
-              <textarea class="activity-txtarea" placeholder="Write a comment..." rows="1"></textarea>
+            <div
+              v-if="!isActivity"
+              @click="isActivity = !isActivity"
+              class="activity-area"
+            >
+              <textarea
+                class="activity-txtarea"
+                placeholder="Write a comment..."
+                rows="1"
+              ></textarea>
             </div>
             <div v-else class="activity-area" @change="addComment(group.id)">
               <form action="" @submit.prevent="addComment(group.id)">
@@ -276,14 +317,14 @@
 </template>
 
 <script>
-import { boardService } from '../services/board.service.js';
-import {socketService} from '@/services/socket.service.js'
-import cardMembers from '@/cmps/board/card/add/card-members.vue';
-import cardLabels from '@/cmps/board/card/add/card-labels.vue';
-import cardChecklist from '@/cmps/board/card/add/card-checklist.vue';
-import cardDates from '@/cmps/board/card/add/card-dates.vue';
-import cardAttachment from '@/cmps/board/card/add/card-attachment.vue';
-import cardCover from '@/cmps/board/card/add/card-cover.vue';
+import { boardService } from "../services/board.service.js";
+import { socketService } from "@/services/socket.service.js";
+import cardMembers from "@/cmps/board/card/add/card-members.vue";
+import cardLabels from "@/cmps/board/card/add/card-labels.vue";
+import cardChecklist from "@/cmps/board/card/add/card-checklist.vue";
+import cardDates from "@/cmps/board/card/add/card-dates.vue";
+import cardAttachment from "@/cmps/board/card/add/card-attachment.vue";
+import cardCover from "@/cmps/board/card/add/card-cover.vue";
 
 export default {
   name: "card-details",
@@ -343,11 +384,11 @@ export default {
     if (this.cardId) {
       const board = await boardService.getById(this.boardId);
       this.board = board;
-			socketService.emit('board-watch', board)
+      socketService.emit("board-watch", board);
       const group = board.groups.find((group) => group.id === this.groupId);
       this.$store.commit({ type: "setCurrGroup", group });
       const card = group.cards.find((card) => card.id === this.cardId);
-      this.$store.commit({ type: 'setCurrCard', card });
+      this.$store.commit({ type: "setCurrCard", card });
       this.description = card.description;
       this.title = card.title;
       this.getLabels;
@@ -371,7 +412,10 @@ export default {
       if (action) action.isOpen = false;
     },
     async updateCard(card) {
-      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card }});
+      await this.$store.dispatch({
+        type: "saveCard",
+        payload: { groupId: this.groupId, card },
+      });
       // socketService.emit('board-watch', this.board)
     },
     async removeCard(groupId, cardId) {
@@ -440,7 +484,7 @@ export default {
     },
     async removeAttachment(idx) {
       let card = this.cardCopy();
-      card.style = {size: '', color: ''}
+      card.style = { size: "", color: "" };
       card.attachments.splice(idx, 1);
       await this.$store.dispatch({
         type: "saveCard",
