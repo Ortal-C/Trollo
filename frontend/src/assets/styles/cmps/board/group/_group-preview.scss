@@ -7,6 +7,20 @@
     padding: 0 8px 8px;
     // overflow-y: scroll;
     max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    //  ::-webkit-scrollbar {
+    //     width: 15px;
+    //     height: 12px;
+    // }
+    //  ::-webkit-scrollbar-track {
+    //     margin: 0 3px;
+    //     border-radius: 8px;
+    //     background-color: hsla(0, 0%, 100%, 0.746);
+    // }
+    //  ::-webkit-scrollbar-thumb {
+    //     border-radius: 8px;
+    //     background-color: hsla(0, 0%, 100%, 0.746);
+    // }
     h2 {
         font-size: 1rem;
     }
@@ -48,23 +62,6 @@
             padding: 10px 0px 0 10px;
         }
     }
-    // .smooth-dnd-container {
-    //     max-height: 1000px;
-    //     overflow-y: auto;
-    //      ::-webkit-scrollbar {
-    //         width: 15px;
-    //         height: 12px;
-    //     }
-    //      ::-webkit-scrollbar-track {
-    //         margin: 0 3px;
-    //         border-radius: 8px;
-    //         background-color: hsla(0, 0%, 100%, 0.746);
-    //     }
-    //      ::-webkit-scrollbar-thumb {
-    //         border-radius: 8px;
-    //         background-color: hsla(0, 0%, 100%, 0.746);
-    //     }
-    // }
     .remove-btn {
         border: none;
         direction: ltr;

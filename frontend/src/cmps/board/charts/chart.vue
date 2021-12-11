@@ -4,20 +4,24 @@ import { Bar } from "vue-chartjs";
 export default {
   extends: Bar,
   props: ["data"],
+  created() {
+    const labels = Object.keys(this.data);
+    this.labels = labels;
+    const values = Object.values(this.data)
+    this.values = values
+  },
+  data() {
+    return {
+      labels: null,
+      values: null,
+
+    }
+  },
   mounted() {
     // Overwriting base render method with actual data.
     this.renderChart(
       {
-        labels: [
-          "Done",
-          "One more step",
-          "Priority",
-          "Design team",
-          "Has to be discussed",
-          "Waiting for feedback",
-          "Optional",
-          "Important",
-        ],
+        labels: [...this.labels],
         datasets: [
           {
             label: "Label",
@@ -32,7 +36,7 @@ export default {
               "#fa8231",
             ],
 
-            data: this.data,
+            data: [...this.values],
           },
         ],
         options: {
