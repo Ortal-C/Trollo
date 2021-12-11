@@ -150,7 +150,7 @@ export default {
       this.getLabels();
     },
   },
-  async created() {
+  created() {
     if (this.card) this.getLabels();
   },
   methods: {
