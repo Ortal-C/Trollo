@@ -247,6 +247,7 @@
       <div class="card-details-sidebar">
         <div class="add-to-card">
           <h3 class="add-to-card-title">Add to card</h3>
+          <div class="actions-container">
           <div v-for="action in actions" :key="action.type">
             <div class="action-div" @click="action.isOpen = !action.isOpen">
               <span v-html="action.svg"></span>
@@ -268,6 +269,7 @@
             Archive
           </div>
         </div>
+       </div>
       </div>
     </div>
   </div>
