@@ -26,14 +26,14 @@ export default {
           {
             label: "Label",
             backgroundColor: [
-              "#20bf6b",
-              "#f7b731",
-              "#eb3b5a",
-              "#a55eea",
-              "#45aaf2",
+              "#fd9644",
               "#4b7bec",
+              "#45aaf2",
+              "#fc5c65",
+              "#fed330",
               "#778ca3",
-              "#fa8231",
+              "#a55eea",
+              "#26de81",
             ],
 
             data: [...this.values],
