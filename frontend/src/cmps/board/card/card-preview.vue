@@ -151,9 +151,7 @@ export default {
     },
   },
   async created() {
-    if (this.card) {
-      this.getLabels();
-    }
+    if (this.card) this.getLabels();
   },
   methods: {
     //  closeActionModal(type) {
