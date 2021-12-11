@@ -66,7 +66,7 @@
                 <span class="popover-title"> {{ action.title }} </span>
                 <span v-html="getCloseSvg" @click="action.isOpen = false"></span>
               </div>
-              <!-- <component :card="card" :is="`card-${action.type}`"></component> -->
+              <component :card="card" :is="`card-${action.type}`"></component>
               <component
                 :card="card"
                 :is="`card-${action.type}`"
