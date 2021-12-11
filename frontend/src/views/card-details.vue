@@ -288,6 +288,7 @@
       <div class="card-details-sidebar">
         <div class="add-to-card">
           <h3 class="add-to-card-title">Add to card</h3>
+          <div class="actions-container">
           <div v-for="action in actions" :key="action.type">
             <div class="action-div" @click="action.isOpen = !action.isOpen">
               <span v-html="action.svg"></span>
@@ -296,14 +297,12 @@
             <div v-if="action.isOpen" class="dynamic-popover">
               <div class="popover-header">
                 <span class="popover-title">{{ action.title }}</span>
-                <span
-                  v-html="getCloseSvg"
-                  @click="action.isOpen = false"
-                  @keydown.esc="action.isOpen = false"
-                ></span>
+                <span v-html="getCloseSvg" @click="action.isOpen = false"
+                  @keydown.esc="action.isOpen = false" ></span>
               </div>
-              <component :card="card" :is="`card-${action.type}`" @addChecklist="closeActionModal"
-              @closeActionModal="closeActionModal" @updateCard="updateCard"></component>
+              <component :card="card" :is="`card-${action.type}`" 
+                @closeActionModal="closeActionModal" @updateCard="updateCard" >
+              </component>
             </div>
           </div>
           <div class="action-div" @click="removeCard(groupId, cardId)">
@@ -311,6 +310,7 @@
             Archive
           </div>
         </div>
+       </div>
       </div>
     </div>
   </div>
