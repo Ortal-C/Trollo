@@ -4,7 +4,7 @@
   <section class="card-preview-container" v-if="card">
     <section class="card-preview" v-if="!isEdit" :style="backgroundColor" @click="cardDetails">
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
-      <div class="card-cover" v-if="card.style.size === 'header'" :style="`background-color:${card.style.color}`"></div>
+      <div class="card-cover" v-if="card.style.size === 'header'" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: cover; height: 250px;` : `background-color:${card.style.color}`"></div>
       <div class="card-content">
         <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
@@ -66,7 +66,14 @@
                 <span class="popover-title"> {{ action.title }} </span>
                 <span v-html="getCloseSvg" @click="action.isOpen = false"></span>
               </div>
-              <component :card="card" :is="`card-${action.type}`"></component>
+              <!-- <component :card="card" :is="`card-${action.type}`"></component> -->
+              <component
+                :card="card"
+                :is="`card-${action.type}`"
+                @addChecklist="closeActionModal"
+                @closeActionModal="closeActionModal"
+                @updateCard="updateCard"
+              ></component>
             </div>
           </button>
         </div>
@@ -87,12 +94,6 @@ export default {
       title: this.card.title,
       labels: [],
       actions: [
-        // {
-        //   title: 'Open card',
-        //   type: 'open',
-        //   isOpen: false,
-        //   svg: `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <circle fill="none" cx="12" cy="7" r="3"></circle> <path   d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" ></path> </svg>`,
-        // },
         {
           title: 'Edit labels',
           type: 'labels',
@@ -155,6 +156,16 @@ export default {
     }
   },
   methods: {
+    //  closeActionModal(type) {
+    //   let action = this.actions.find((action) => action.type === type);
+    //   if (action) action.isOpen = false;
+    // },
+    // async updateCard(card) {
+    //   await this.$store.dispatch({
+    //     type: "saveCard",
+    //     payload: { groupId: this.groupId, card },
+    //   })
+    // },
     cardDetails() {
       if (this.isEdit = true) this.isEdit = false;
       this.$router.push(`/board/${this.board._id}/` + this.group.id + '/' + this.card.id);
@@ -194,6 +205,9 @@ export default {
     },
     classLabel() {
       return { open: this.openLabels, close: !this.openLabels };
+    },
+    getCloseSvg() {
+      return `<svg class="close-popover" @click="action.isOpen = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style="fill: #000000" > <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#666666"> <path d="M33.73372,23.59961l-10.13411,10.13411l52.26628,52.26628l-52.26628,52.26628l10.13411,10.13411l52.26628,-52.26628l52.26628,52.26628l10.13411,-10.13411l-52.26628,-52.26628l52.26628,-52.26628l-10.13411,-10.13411l-52.26628,52.26628z" ></path> </g> </g> </svg>`;
     },
   },
 };

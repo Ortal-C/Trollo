@@ -2,15 +2,15 @@
 
 <template>
   <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
-    <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div>
+    <!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
+    <div class="card-details-cover" v-if="card.style.color" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;` : `background-color:${card.style.color}`"></div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
           <span v-html="getHeaderSvg"></span>
           <div class="title">
             <h2 v-if="!isEdit" @click="isEdit = !isEdit">{{ card.title }}</h2>
-            <form
-              v-else
+            <form v-else
               @submit.prevent="editTitle(group.id)"
               @change="editTitle(group.id)"
               action=""
@@ -376,10 +376,7 @@ export default {
       if (action) action.isOpen = false;
     },
     async updateCard(card) {
-      await this.$store.dispatch({
-        type: "saveCard",
-        payload: { groupId: this.groupId, card },
-      });
+      await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card }});
       // socketService.emit('board-watch', this.board)
     },
     async removeCard(groupId, cardId) {
@@ -448,6 +445,7 @@ export default {
     },
     async removeAttachment(idx) {
       let card = this.cardCopy();
+      card.style = {size: '', color: ''}
       card.attachments.splice(idx, 1);
       await this.$store.dispatch({
         type: "saveCard",

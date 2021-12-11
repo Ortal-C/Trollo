@@ -18,8 +18,8 @@ export default {
   },
   methods: {
     removeClass() {
-      document.body.classList.remove('details-open');
-      this.$router.back()
+      document.body.classList.remove('details-open')
+      if (this.$route.params.cardId) this.$router.back()
     }
   }
 }
