@@ -53,8 +53,7 @@
 	}
 	.dynamic-popover {
 		top: 40px;
-		// ASK
-		margin-left: 230px;
+        z-index:20;
 		h3 {
 			margin: 2px;
 		}
@@ -66,6 +65,7 @@
 			cursor: pointer;
 		}
 		.list-action {
+            
 			padding: 10px;
 			cursor: pointer;
 		}
@@ -73,6 +73,7 @@
 			border-radius: 3px;
 			background-color: #f0f0f0a2;
 		}
+
 	}
 	.card-add-container {
 		border-radius: 3px;
