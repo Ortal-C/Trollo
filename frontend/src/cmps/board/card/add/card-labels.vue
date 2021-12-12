@@ -1,7 +1,8 @@
 <template>
   <section class="card-labels">
     <section class="labels-preview" v-for="label in board.labels" :key="label.id" >
-      <div class="label-preview" @click="toggleLabel(label.id)" :style="`--custom_color: ${label.color}; background-color:${label.color};`" >
+      <div class="label-preview" @click="toggleLabel(label.id)" 
+        :style="`--custom_color: ${label.color}; background-color:${label.color};`" >
         <h4>{{ label.title }}</h4>
         <!-- <button class="labelClass" > ✔</button> -->
       </div>
@@ -32,8 +33,7 @@ export default {
         card.labelsIds.splice(idx, 1);
       }
       this.$emit('updateCard', card);
-      // await this.$store.dispatch({ type: "saveCard", payload: { groupId: this.groupId, card } });
-    },
+     },
   },
   computed: {
     board() {

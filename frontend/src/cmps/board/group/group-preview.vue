@@ -24,7 +24,7 @@
 						</g>
 					</g>
 				</svg>
-				<div class="list-action" @click="copyGroup(group)">Copy list...</div>
+				<div class="list-action" @click="cloneGroup(group)">Copy list...</div>
 				<div class="list-action" @click="addCard(group.id)">Add card...</div>
 				<div class="list-action" @click="removeGroup(group.id)">
 					<!-- <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" >  <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg> -->
@@ -35,7 +35,8 @@
 		<ul class="smooth-dnd-container">
 			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop" :drop-placeholder="dropPlaceholderOptions" @drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
-					<card-preview :card="card" :group="group" @saveCard="saveCard" />
+					<card-preview :card="card" :group="group" 
+						@saveCard="saveCard"/>
 				</Draggable>
 			</Container>
 			<div class="card-add-container" @click="isAddClicked = !isAddClicked" v-if="!isAddClicked">
@@ -50,9 +51,7 @@
 				<textarea class="card-add-textarea" v-model="card.title" placeholder="Enter a title for this card..."></textarea>
 				<div class="actions-container">
 					<button class="btn-add">Add card</button>
-					<svg class="btn-close icon" @click.prevent="closeTextarea()" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
-						<path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
-					</svg>
+					<svg class="btn-close icon" @click.prevent="closeTextarea()" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path></svg>
 				</div>
 			</form>
 		</ul>
@@ -98,10 +97,9 @@ export default {
 		removeGroup(groupId) {
 			this.$emit('removeGroup', groupId)
 		},
-		copyGroup(group) {
-			let copiedGroup = this.groupCopy()
-			copiedGroup.id = ''
-			this.$emit('copyGroup', copiedGroup)
+		cloneGroup(group) {
+			const copiedGroup = {...group, id: ''}
+			this.$emit('saveGroup', copiedGroup)
 		},
 		addCard(groupId) {
 			this.isOpen = false
@@ -124,8 +122,7 @@ export default {
 		toggleMenu() {
 			this.isOpen = !this.isOpen
 		},
-		saveCard(groupId, card) {
-			// console.log('preview', groupId, card)
+		saveCard({groupId, card}) {
 			this.$emit('saveCard', {groupId, card})
 		},
 		// DND

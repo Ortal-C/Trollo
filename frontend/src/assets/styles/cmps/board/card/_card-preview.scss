@@ -129,11 +129,14 @@
 	}
 	.card-actions {
 		position: absolute;
-		z-index: 10;
+		z-index: 15;
 		left: 104%;
 		width: auto;
-		button {
+		.action-div {
+			cursor: pointer;
+			font-size: 16px;
 			margin: 5px;
+			padding-inline-end: 5px;
 			color: #e6e6e6;
 			display: flex;
 			border: none;
@@ -156,9 +159,7 @@
 				margin-right: 10px;
 			}
             .dynamic-popover {
-                position: fixed;
-                top: 40px;
-                z-index: 20;
+                position: absolute;
             }
 		}
 		button:hover {

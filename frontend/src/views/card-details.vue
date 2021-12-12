@@ -3,15 +3,9 @@
 <template>
   <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
     <!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
-    <div
-      class="card-details-cover"
-      v-if="card.style.color"
-      :style="
-        card.style.color.includes('cloudinary')
-          ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;`
-          : `background-color:${card.style.color}`
-      "
-    ></div>
+    <div class="card-details-cover" v-if="card.style.color"
+      :style=" card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;`: `background-color:${card.style.color}`">
+    </div>
     <div class="card-details-header">
       <div class="card-details-header-content">
         <header>
@@ -35,38 +29,29 @@
           <h5>Members</h5>
           <main class="members-container">
             <div v-for="member in card.members" :key="member._id">
-              <span
-                ><el-avatar :size="33" :src="member.imgUrl"></el-avatar
-              ></span>
+              <span>
+                <el-avatar :size="33" :src="member.imgUrl"></el-avatar>
+              </span>
             </div>
-            <span @click="openMemberModal" class="add-member"
-              ><i class="el-icon-plus"></i
-            ></span>
+            <span @click="openMemberModal" class="add-member">
+              <i class="el-icon-plus"></i>
+            </span>
           </main>
         </div>
         <div class="data-preview" v-if="labels && card.labelsIds.length">
           <h5>Labels</h5>
           <main class="labels-container">
-            <div
-              class="card-label"
-              v-for="label in labels"
-              :key="label.id"
-              :style="`background-color:${label.color}`"
-            >
+            <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`">
               <span :title="label.title">{{ label.title }}</span>
             </div>
           </main>
         </div>
         <div class="data-preview due-date-container" v-if="card.dueDate">
           <h5>Due date</h5>
-          <input
-            type="checkbox"
-            :checked="card.isDone"
-            @change="toggleDueDate"
-          />
-          <span>{{
-            new Date(card.dueDate).toLocaleString("HEB").substring(0, 10)
-          }}</span>
+          <input type="checkbox" :checked="card.isDone" @change="toggleDueDate" />
+          <span>
+            {{ new Date(card.dueDate).toLocaleString("HEB").substring(0, 10) }}
+          </span>
           <el-tag v-if="card.isDone" type="success">Complete</el-tag>
         </div>
         <div class="card-details-desc">
@@ -98,18 +83,15 @@
               <div class="attachment-details">
                 <span class="attachment-title">{{ attachment.title }}</span>
                 <div class="attachment-actions">
-                  <span v-if="attachment.createdAt">{{
-                    new Date(attachment.createdAt).toLocaleString("HEB")
-                  }}</span>
-                  <span class="attachment-action" @click="removeAttachment(idx)"
-                    >Delete</span
-                  >
-                  <span
-                    class="attachment-action"
-                    @click="editAttachment(attachment)"
-                  >
-                    Edit</span
-                  >
+                  <span v-if="attachment.createdAt">
+                    {{ new Date(attachment.createdAt).toLocaleString("HEB") }}
+                  </span>
+                  <span class="attachment-action" @click="removeAttachment(idx)">
+                    Delete
+                  </span>
+                  <span class="attachment-action" @click="editAttachment(attachment)">
+                    Edit
+                  </span>
                   <div v-if="attachment.isEdit" class="dynamic-popover">
                     <div class="popover-header">
                       <span class="popover-title"> Edit attachment </span>
@@ -125,11 +107,7 @@
           </main>
         </div>
         <section class="checklist-container">
-          <div
-            class="checklist"
-            v-for="(checklist, idx) in card.checklists"
-            :key="idx"
-          >
+          <div class="checklist" v-for="(checklist, idx) in card.checklists" :key="idx" >
             <div class="checklist-header">
               <div class="checklist-desc">
                 <span>
@@ -160,16 +138,8 @@
           <span v-html="getActivitySvg"></span>
           <main>
             <h2>Activity</h2>
-            <div
-              v-if="!isActivity"
-              @click="isActivity = !isActivity"
-              class="activity-area"
-            >
-              <textarea
-                class="activity-txtarea"
-                placeholder="Write a comment..."
-                rows="1"
-              ></textarea>
+            <div v-if="!isActivity" @click="isActivity = !isActivity" class="activity-area">
+              <textarea class="activity-txtarea" placeholder="Write a comment..." rows="1" ></textarea>
             </div>
             <div v-else class="activity-area" @change="addComment(group.id)">
               <form action="" @submit.prevent="addComment(group.id)">
