@@ -1,4 +1,5 @@
 <template>
+
   <section v-if="board" class="dashboard">
     <button @click="closeDashboard()">✖</button>
     <main class="data-container">
