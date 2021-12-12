@@ -35,8 +35,7 @@ export default {
   components: {},
   watch: {
     $route() {
-      console.log(this.$route);
-      if (this.$route.path === '/board' || this.$route.path === '/') this.$refs.header.style.backgroundColor = '#4b6584'
+      if (this.$route.path === '/board' || this.$route.path === '/' || this.$route.path === '/login' || this.$route.path === '/signup') this.$refs.header.style.backgroundColor = '#4b6584'
       else this.$refs.header.style.backgroundColor = '#00000031'
     }
   },

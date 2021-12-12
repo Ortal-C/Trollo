@@ -66,7 +66,6 @@ export default {
     this.labels = labels; 
     const members = dashboardService.createMembersMap(board);
     this.members = members
-    
   },
   methods: {
     closeDashboard() {
