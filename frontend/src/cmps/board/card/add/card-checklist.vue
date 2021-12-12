@@ -2,19 +2,20 @@
   <section class="card-checklist">
     <form action="" @submit.prevent="addChecklist()">
       <label for="checklist-checklist">checklist</label>
-      <input type="text" v-model="checklist" placeholder="checklist" />
+      <input type="text" v-model="checklistTitle" placeholder="Checklist name..." />
       <button class="btn-action-list" @click="addChecklist()">Add</button>
     </form>
   </section>
 </template>
 
 <script>
+import { utilService } from "@/services/util.service.js";
 export default {
   name: "card-checklist",
   props: ["card"],
   data() {
     return {
-      checklist: "",
+      checklistTitle:'',
     };
   },
   computed: {
@@ -30,12 +31,12 @@ export default {
       return JSON.parse(JSON.stringify(this.card));
     },
     addChecklist() {
-      if (!this.checklist) return;
+      if (!this.checklistTitle) return;
       let card = this.cardCopy();
-      card.checklists.unshift(this.checklist);
-      this.$emit("closeActionModal", "checklist");
-      this.$emit("updateCard", card);
-      this.checklist = "";
+      card.checklists.push({id: utilService.makeId(), title:this.checklistTitle, items:[]});
+      this.$emit('closeActionModal', 'checklist');
+      this.$emit('updateCard', card);
+      this.checklistTitle = '';
     },
   },
 };
