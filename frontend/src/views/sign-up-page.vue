@@ -32,14 +32,9 @@
 
 <script>
 export default {
-
-
-methods:{
-
-}
+ created() {
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundImage = "none";
+  },
 }
 </script>
-
-<style>
-
-</style>

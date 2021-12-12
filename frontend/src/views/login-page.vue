@@ -44,6 +44,8 @@ export default {
   },
   created() {
     this.loadUsers()
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundImage = "none";
   },
   methods: {
     async doLogin() {
