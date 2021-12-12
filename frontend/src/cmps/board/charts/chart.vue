@@ -7,8 +7,10 @@ export default {
   created() {
     const labels = Object.keys(this.data);
     this.labels = labels;
+    console.log(this.labels);
     const values = Object.values(this.data);
     this.values = values;
+    console.log(this.values);
   },
   data() {
     return {
