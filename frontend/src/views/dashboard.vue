@@ -41,15 +41,14 @@
           </div>
         </div>
       </div>
-      <section class="info-container"></section>
       <section class="charts-container">
         <div class="chart-container">
           <h2>Labels count in board</h2>
-          <chart :data="this.labels" />
+          <chart class="chart" :data="this.labels" />
         </div>
         <div class="pie-chart-container">
           <h2>Task distribution</h2>
-          <pie-chart :data="members" />
+          <pie-chart class="pie-chart" :data="members" />
         </div>
       </section>
     </main>
