@@ -159,6 +159,7 @@ export default {
       if (action) action.isOpen = false;
     },
     updateCard(card) {
+      console.log(card.title);
       this.$emit('saveCard', {groupId:this.group.id, card});
     },  
     cardDetails() {
