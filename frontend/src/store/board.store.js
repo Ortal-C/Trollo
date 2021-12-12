@@ -110,7 +110,6 @@ export const boardStore = {
         async saveCard(context, { payload }) {
             try {
                 const { groupId, card } = payload
-                console.log('store', groupId, card);
                 const board = await boardService.saveCard(context.state.board, groupId, card)
                 context.commit({ type: 'setCurrCard', card })
                 context.commit({ type: 'setBoard', board })
