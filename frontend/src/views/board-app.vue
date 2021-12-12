@@ -1,7 +1,10 @@
 // Gets boards from store
 
 <template>
-  <div class='board-app' v-if="boards">
+<div class="loader" v-if="isLoading">
+    <img src="../assets/imgs/loader.gif"/>
+</div>
+  <div v-else class='board-app'>
     <div class="starred-boards">
       <h2>Starred boards</h2>
         <ul>
@@ -56,8 +59,8 @@ export default {
     boards() {
       return this.$store.getters.boards;
     },
-    boardStyle(){
-
+    isLoading(){
+      return this.$store.getters.isLoading
     }
   },
   methods: {
