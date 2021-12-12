@@ -4,7 +4,7 @@
   <div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
     <!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
     <div class="card-details-cover" v-if="card.style.color"
-      :style=" card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: contain; background-repeat: no-repeat;`: `background-color:${card.style.color}`">
+      :style=" card.style.color.includes('cloudinary') ? `background: url(${card.style.color}) center; background-size: contain; background-repeat: no-repeat;`: `background-color:${card.style.color}`">
     </div>
     <div class="card-details-header">
       <div class="card-details-header-content">
