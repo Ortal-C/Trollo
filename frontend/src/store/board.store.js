@@ -2,6 +2,7 @@ import { boardService } from '../services/board.service';
 
 export const boardStore = {
     state: {
+        isLoading: false,
         boards: [],
         board: null,
         currGroup: null,
@@ -9,6 +10,7 @@ export const boardStore = {
         currEdit: ''
     },
     getters: {
+        isLoading(state) { return state.isLoading; },
         boards(state) { return state.boards },
         board(state) { return state.board },
         currEdit(state) { return state.currEdit },
@@ -16,6 +18,9 @@ export const boardStore = {
         currCard(state) { return state.currCard },
     },
     mutations: {
+        setLoading(state, { isLoading }) {
+            state.isLoading = isLoading;
+        },
         setBoards(state, { boards }) {
             state.boards = boards;
         },
@@ -35,29 +40,35 @@ export const boardStore = {
     actions: {
         async addBoard({ commit, state }, { board }) {
             try {
+                commit({ type: 'setLoading', isLoading: true });
                 const newBoard = await boardService.add(board);
                 const boards = [...state.boards, newBoard]
                 commit({ type: 'setBoards', boards })
+                commit({ type: 'setLoading', isLoading: false });
+                //setTimeout ???????
             } catch (err) {
                 console.log('boardStore: Error in loadBoards', err)
                 throw err
             }
         },
-        async loadBoards(context) {
+        async loadBoards({ commit }) {
             try {
+                commit({ type: 'setLoading', isLoading: true });
                 const boards = await boardService.query()
-                context.commit({ type: 'setBoards', boards })
+                commit({ type: 'setBoards', boards })
+                commit({ type: 'setLoading', isLoading: false });
                 return boards;
             } catch (err) {
                 console.log('boardStore: Error in loadBoards', err)
                 throw err
             }
         },
-        async loadBoard(context, { boardId }) {
+        async loadBoard({ commit }, { boardId }) {
             try {
+                commit({ type: 'setLoading', isLoading: true });
                 const board = await boardService.getById(boardId)
-                // board = await boardService.query(board)
-                context.commit({ type: 'setBoard', board })
+                commit({ type: 'setBoard', board })
+                commit({ type: 'setLoading', isLoading: false });
                 return board;
             } catch (err) {
                 console.log('BoardStore: Error in loadBoard', err)
