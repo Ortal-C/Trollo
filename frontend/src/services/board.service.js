@@ -34,7 +34,7 @@ async function query() {
 async function getById(boardId) {
     // const board = await storageService.get(KEY, boardId)
     const board = await httpService.get(`board/${boardId}`)
-    socketService.emit('board-watch', boardId)
+    socketService.emit('board-watch', board)
     return board;
 }
 

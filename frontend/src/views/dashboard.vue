@@ -7,16 +7,25 @@
         <div class="stats tasks">
           <div class="title">
             <i class="fas fa-tasks"></i>
-            <h1>All tasks</h1>
+            <h1>Cards</h1>
           </div>
           <div>
             <span>{{ tasksCount }}</span>
           </div>
         </div>
+        <div class="stats done">
+          <div class="title">
+            <i class="fas fa-check"></i>
+            <h1>Done</h1>
+          </div>
+          <div>
+            <span>{{ doneCount }}</span>
+          </div>
+        </div>
         <div class="stats lists">
           <div class="title">
             <i class="fas fa-clipboard-list"></i>
-            <h1>All lists</h1>
+            <h1>Lists</h1>
           </div>
           <div>
             <span>{{ listsCount }}</span>
@@ -35,9 +44,11 @@
       <section class="info-container"></section>
       <section class="charts-container">
         <div class="chart-container">
+          <h2>Labels count in board</h2>
           <chart :data="this.labels" />
         </div>
         <div class="pie-chart-container">
+          <h2>Task distribution</h2>
           <pie-chart :data="members" />
         </div>
       </section>
@@ -76,6 +87,10 @@ export default {
   computed: {
     listsCount() {
       return this.board.groups.length;
+    },
+    doneCount() {
+      const group = this.board.groups.find(group => group.title.toLowerCase() === 'done')
+      return group.cards.length || 0;
     },
     tasksCount() {
       return this.board.groups.reduce(

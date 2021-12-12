@@ -26,17 +26,7 @@ export default {
         datasets: [
           {
             label: "Label",
-            backgroundColor: [
-              "#fd9644",
-              "#4b7bec",
-              "#45aaf2",
-              "#fc5c65",
-              "#fed330",
-              "#778ca3",
-              "#a55eea",
-              "#26de81",
-            ],
-
+            backgroundColor: [ "#fd9644", "#4b7bec", "#45aaf2", "#fc5c65", "#fed330", "#778ca3", "#a55eea", "#26de81", ],
             data: [...this.values],
           },
         ],
