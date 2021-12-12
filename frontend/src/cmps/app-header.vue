@@ -31,25 +31,24 @@
 
 <script>
 export default {
-  name: "app-header",
+  name: 'app-header',
   components: {},
   watch: {
-    "this.$router"() {
-      console.log("change");
-    },
-  },
-  mounted() {
-    // console.log(this.$refs);
+    $route() {
+      console.log(this.$route);
+      if (this.$route.path === '/board' || this.$route.path === '/') this.$refs.header.style.backgroundColor = '#4b6584'
+      else this.$refs.header.style.backgroundColor = '#00000031'
+    }
   },
   methods: {
     homePage() {
-      this.$router.push("/");
+      this.$router.push('/');
     },
     boards() {
-      this.$router.push("/board");
+      this.$router.push('/board');
     },
     login() {
-      this.$router.push("/login");
+      this.$router.push('/login');
     },
   },
 };

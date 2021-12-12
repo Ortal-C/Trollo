@@ -6,7 +6,7 @@
 </div>
   <div v-else class='board-app'>
     <div class="starred-boards">
-      <h2>Starred boards</h2>
+      <h2><i class="far fa-star"></i> Starred boards</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
             <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)'
@@ -17,7 +17,7 @@
         </ul>
     </div>
      <div class="workspace-boards">
-      <h2>Workspace</h2>
+      <h2><i class="far fa-user"></i> Workspace</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
               <li v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)'
