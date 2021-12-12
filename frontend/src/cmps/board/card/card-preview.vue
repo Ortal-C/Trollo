@@ -159,7 +159,8 @@ export default {
       if (action) action.isOpen = false;
     },
     updateCard(card) {
-      this.$emit('saveCard', {groupId:this.group.id, card});
+      console.log('in updateCard > cardPrev', this.group.id, card) 
+      this.$emit('saveCard', { groupId:this.group.id, card});
     },  
     cardDetails() {
       if (this.isEdit = true) this.isEdit = false;
@@ -183,8 +184,8 @@ export default {
       document.body.classList.remove('details-open');
       this.isEdit = false;
       let card = this.cardCopy();
+      if (!card.title || card.title === this.title) return;
       card.title = this.title;
-      if (!card.title) return;
       this.$emit('saveCard', groupId, card);
     },
     async removeCard(groupId, cardId) {

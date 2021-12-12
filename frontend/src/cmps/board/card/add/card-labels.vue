@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'card-labels',
+  props: ['card'],
   data() {
     return {
     }
@@ -40,9 +41,6 @@ export default {
     },
     groupId() {
       return this.$route.params.groupId;
-    },
-    card() {
-      return this.$store.getters.currCard
     },
     labelClass(){
       return {'btn-check-lable': false}
