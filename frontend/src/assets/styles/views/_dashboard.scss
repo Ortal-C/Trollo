@@ -1,78 +1,114 @@
-.dashboard {
-    background-color: hsla(0, 0%, 100%, 0.459);
-    height: calc(100vh - 40px);
-    button {
-        border: none;
-        background-color: transparent;
-        position: absolute;
-        top: 43px;
-        right: 0;
-        font-size: 1.4em;
-        color: #404040
-    }
-    .data-container {
-        text-align: center;
-        .data-topic {
-            display: flex;
-            align-self: center;
-            justify-content: space-evenly;
-            flex-wrap:wrap;
-            // justify-content: center;
-            margin-bottom: 50px;
-            width: 100vw;
-            .stats {
-                display: flex;
-                flex-direction: column;
-                background-color: hsla(0, 0%, 100%, 0.671);
-                margin: 50px 15px 20px;
-                border-radius: 15px;
-                width: 150px;
-                height: 150px;
-                padding: 15px 0;
-                .title {
-                    display: flex;
-                    justify-content: center;
-                    padding: 10px;
-                    font-size: 2em;
-                    line-height: 0.5;
-                    h1 {
-                        margin: 0 10px;
-                    }
-                }
-                span {
-                    display: flex;
-                    justify-content: center;
-                    font-weight: bolder;
-                    font-size: 4em;
-                }
-            }
-            .stats:hover {
-                background-color: hsla(0, 0%, 100%, 0.425);
-            }
-        }
-        .charts-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 50px;
-            min-width: 500px;
-            .chart-container,
-            .pie-chart-container {
-                background-color: hsla(0, 0%, 100%, 0.671);
-                padding: 20px;
-                box-shadow: 1px 1px 13px -1px rgb(0 0 0 / 25%);
-                border-radius: 15px;
-                max-width: 80vw;
-                max-height: 80vh;
-                .chart,
-                .pie-chart {
-                    width: 30%;
-                }
-            }
-            .chart-container:hover,
-            .pie-chart-container:hover {
-                background-color: hsla(0, 0%, 100%, 0.425);
-            }
-        }
-    }
-}
+ .dashboard {
+     background-color: hsla(0, 0%, 100%, 0.459);
+     height: calc(100vh - 40px);
+     button {
+         border: none;
+         background-color: transparent;
+         position: absolute;
+         top: 43px;
+         right: 0;
+         font-size: 1.4em;
+         color: #404040
+     }
+     .data-container {
+         text-align: center;
+         .data-topic {
+             display: flex;
+             align-self: center;
+             justify-content: space-evenly;
+             flex-wrap: wrap;
+             // justify-content: center;
+             margin-bottom: 50px;
+             width: 100vw;
+             .stats {
+                 display: flex;
+                 flex-direction: column;
+                 background-color: hsla(0, 0%, 100%, 0.671);
+                 margin: 50px 0 20px;
+                 border-radius: 15px;
+                 width: 250px;
+                 height: 150px;
+                 padding: 15px 0;
+                 .title {
+                     display: flex;
+                     justify-content: center;
+                     padding: 10px;
+                     font-size: 2em;
+                     line-height: 0.5;
+                     h1 {
+                         margin: 0 10px;
+                     }
+                 }
+                 span {
+                     display: flex;
+                     justify-content: center;
+                     font-weight: bolder;
+                     font-size: 4em;
+                 }
+             }
+             .stats:hover {
+                 background-color: hsla(0, 0%, 100%, 0.425);
+             }
+         }
+         .charts-container {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: center;
+             gap: 50px;
+             min-width: 500px;
+             .chart-container,
+             .pie-chart-container {
+                 background-color: hsla(0, 0%, 100%, 0.671);
+                 padding: 20px;
+                 box-shadow: 1px 1px 13px -1px rgb(0 0 0 / 25%);
+                 border-radius: 15px;
+                 max-width: 80vw;
+                 max-height: 80vh;
+                 .chart,
+                 .pie-chart {
+                     width: 100%;
+                 }
+             }
+             .chart-container:hover,
+             .pie-chart-container:hover {
+                 background-color: hsla(0, 0%, 100%, 0.425);
+             }
+         }
+     }
+ }
+ 
+ @media (max-width: 400px) {
+     .dashboard {
+         height: 90vh;
+         .data-container {
+             .data-topic {
+                 margin: 30px 0 10px;
+                 .stats {
+                     width: 150px;
+                     height: 70px;
+                     margin: 5px 0;
+                     .title {
+                         font-size: 1em;
+                         padding: 0;
+                         margin-bottom: 5px;
+                     }
+                     span {
+                         font-size: 1.5em;
+                     }
+                 }
+             }
+             .charts-container {
+                 gap: 10px;
+                 min-width: 100%;
+                 display: flex;
+                 h2 {
+                     margin: 0;
+                 }
+                 .chart-container,
+                 .pie-chart-container {
+                     height: 280px;
+                 }
+             }
+         }
+     }
+ }

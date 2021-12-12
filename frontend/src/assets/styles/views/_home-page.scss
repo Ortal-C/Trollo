@@ -66,14 +66,31 @@
     }
 }
 
-// margin: 0;
-// font-family: Charlie, sans-serif;
-// font-size: 150px;
-// font-weight: 600;
-// letter-spacing: 0.15em;
-// color: #cecbcb;
-// text-shadow: 0.5px 0.5px 2px black;
-// position: absolute;
-// left: 50%;
-// top: 50%;
-// transform: translate(-50%, -50%);
+@media (max-width: 400px) {
+    .home-page {
+        .main-container {
+            padding: 30px;
+            .first-section,
+            .second-section {
+                .desc {
+                    gap: 10px;
+                    h1 {
+                        font-size: 1.5rem;
+                    }
+                    p {
+                        font-size: 1rem;
+                    }
+                    button {
+                        font-size: 1em;
+                        padding: 15px 10px;
+                        height: 10px;
+                    }
+                }
+            }
+            .second-section {
+                margin-top: 30px;
+                gap: 20px;
+            }
+        }
+    }
+}
