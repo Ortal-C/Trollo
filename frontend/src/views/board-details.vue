@@ -60,6 +60,10 @@ export default {
 		this.updateBackground()
 		this.getEmptyGroup()
 	},
+	mounted() {
+		
+		console.log(document.querySelectorAll('.card-label'));
+	},
 	methods: {
 		async updateBoard(board) {
 			await this.$store.dispatch({type: 'updateBoard', board})

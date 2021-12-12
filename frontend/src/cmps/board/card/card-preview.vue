@@ -37,8 +37,8 @@
     <section v-else>
        <div class="card-edit-container">
           <form @change="editCard(group.id)">
-            <div class="card-labels" v-if=" card.style.size === 'full' && card.labelsIds.length" @click.stop="toggleLabels" >
-              <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
+            <div class="card-labels" v-if=" card.style.size === 'full' && card.labelsIds.length" @click.stop="toggleLabels">
+              <div class="card-label" v-for="label in labels" :key="label.id" :style="`background-color:${label.color}`">
                 <span v-if="openLabels">{{ label.title }}</span>
               </div>
             </div>
@@ -95,7 +95,6 @@
 </template>
 
 <script>
-import {socketService} from '@/services/socket.service.js'
 import cardMembers from "@/cmps/board/card/add/card-members.vue";
 import cardLabels from "@/cmps/board/card/add/card-labels.vue";
 import cardChecklist from "@/cmps/board/card/add/card-checklist.vue";
@@ -108,8 +107,7 @@ export default {
   props: ['group', 'card'],
   data() {
     return {
-      // board: null,
-      openLabels: false,
+      openLabels: true,
       isEdit: false,
       title: this.card.title,
       labels: [],
@@ -143,13 +141,7 @@ export default {
           type: 'move',
           isOpen: false,
           fa: `<i class="fas fa-arrow-right"></i>`
-        },
-        // {
-        //   title: 'Copy',
-        //   type: 'copy',
-        //   isOpen: false,
-        //   fa: `<i class="far fa-copy"></i>`
-        // },
+        }
       ],
     };
   },
@@ -205,7 +197,14 @@ export default {
       }
     },
     toggleLabels() {
-      this.openLabels = !this.openLabels;
+        this.$nextTick(() => {
+          const labels = document.querySelectorAll('.card-label')
+          labels.forEach(label => {
+              label.classList.toggle('open')
+              label.classList.toggle('close')
+            })
+        })
+        this.openLabels = !this.openLabels
     },
   },
   computed: {
