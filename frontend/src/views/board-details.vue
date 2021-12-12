@@ -149,6 +149,9 @@
 			groups() {
 				return this.$store.getters.board.groups
 			},
+			isLoading(){
+      			return this.$store.getters.isLoading
+    		},
 			dndName() {
 				return 'Trollo'
 			},
