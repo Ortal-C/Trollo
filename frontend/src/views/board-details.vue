@@ -63,6 +63,7 @@
 				socketService.emit('board-watch', board)
 			},
 			setBoard(board) {
+				console.log('setBoard in details', board);
 				this.$store.commit({type: 'setBoard', board})
 			},
 			getEmptyGroup() {
@@ -130,6 +131,7 @@
 				}
 			},
 			updateBackground() {
+				console.log(this.board);
 				if (this.board.style.length > 10) {
 					document.body.style.backgroundImage = `url("${this.board.style}")`
 					document.body.style.backgroundColor = 'none'

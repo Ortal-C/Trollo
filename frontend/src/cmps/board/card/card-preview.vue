@@ -8,7 +8,7 @@
       <div class="card-content">
         <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
-            <span v-if="openLabels">{{ label.title }}</span>
+            <span >{{ label.title }}</span>
           </div>
         </div>
         <p class="card-title">{{ card.title }}</p>
@@ -107,7 +107,7 @@ export default {
   props: ['group', 'card'],
   data() {
     return {
-      openLabels: true,
+      openLabels: false,
       isEdit: false,
       title: this.card.title,
       labels: [],
