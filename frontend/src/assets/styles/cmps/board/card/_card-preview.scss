@@ -84,6 +84,7 @@
 			padding: 6px 8px;
 			margin-top: 0;
 			width: 258px;
+			margin-left: 0
 		}
 		textarea {
 			overflow: hidden;
@@ -107,6 +108,7 @@
 			border-radius: 3px;
 			line-height: 30px;
 			background-color: #0079bf;
+			margin-left: 0;
 		}
 		button:hover {
 			background-color: #0070b1;
@@ -136,7 +138,7 @@
 			cursor: pointer;
 			font-size: 16px;
 			margin: 5px;
-			padding-inline-end: 5px;
+			padding-inline-end: 10px;
 			color: #e6e6e6;
 			display: flex;
 			border: none;
@@ -150,19 +152,21 @@
 			.fas,
 			.far {
 				color: #e6e6e6;
-				margin-left: 3px;
-				margin-right: 10px;
+				margin: 0 10px;
 			}
 			svg {
 				color: #e6e6e6;
-				margin-left: 3px;
-				margin-right: 10px;
+				margin-left: 8px;
+				margin-right: 9px;
 			}
             .dynamic-popover {
                 position: absolute;
             }
 		}
-		button:hover {
+		.action-div:first-of-type {
+			margin-top: 0;
+		}
+		.action-div:hover {
 			background-color: rgba(0, 0, 0, 0.9);
 			margin-left: 15px;
 			transition: 0.1s;
