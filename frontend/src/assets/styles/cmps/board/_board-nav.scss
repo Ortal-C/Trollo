@@ -18,6 +18,9 @@
 				margin: 0;
 			}
 		}
+		section > :not(last-child) {
+			margin-inline-end: 6.5px;
+		}
 	}
 	.fade-enter-active,
 	.fade-leave-active {

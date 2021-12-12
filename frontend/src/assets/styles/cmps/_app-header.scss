@@ -9,6 +9,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 400px) {
+        .app-header {
+            width: 97%;
+        }
+    }
     .logo {
         font-family: Calistoga, cursive;
         font-size: 25px;
