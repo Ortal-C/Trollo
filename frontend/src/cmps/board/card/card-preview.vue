@@ -158,8 +158,8 @@ export default {
       let action = this.actions.find((action) => action.type === type);
       if (action) action.isOpen = false;
     },
-    async updateCard(card) {
-      this.$emit('saveCard', groupId, card);
+    updateCard(card) {
+      this.$emit('saveCard', {groupId:this.group.id, card});
     },
     cardDetails() {
       if (this.isEdit = true) this.isEdit = false;
@@ -169,6 +169,8 @@ export default {
 		cloneCard(card) {
 			const copiedCard = {...card, id: ''}
 			this.$emit('saveCard', {groupId: this.group.id , card: copiedCard})
+      document.body.classList.remove('details-open');
+      this.isEdit = false;
 		},
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));

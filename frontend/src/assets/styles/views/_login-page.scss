@@ -1,99 +1,105 @@
-        .login {
-            text-align: center;
-            img {
-                width: 100%;
-                object-fit: cover;
-            }
-            .login-header {
-                display: flex;
-                font-size: 5rem;
-                padding: 20px;
-                justify-content: center;
-                .fa-trello {
-                    font-size: 6rem;
-                    margin-right: 10px;
-                    color: #b24c63
-                }
-                .header-icon {
-                    padding-top: 35px
-                }
-            }
-            .login-container,
-            form {
-                display: flex;
-                flex-direction: column;
-                max-width: 400px;
-            }
-            .login-container {
-                margin: auto;
-                background-color: #fff;
-                border-radius: 3px;
-                padding: 30px 40px;
-                box-shadow: 0 0 10px rgb(0 0 0 / 12%);
-                h3 {
-                    font-weight: bold;
-                    line-height: 1;
-                    margin-bottom: 50px;
-                }
-                p,
-                a {
-                    margin: 30px;
-                }
-                a {
-                    text-decoration: none;
-                    color: rgb(58, 58, 180);
-                }
-                .google-btn {
-                    display: flex;
-                    justify-content: space-evenly;
-                    font-size: 1.5em;
-                    background-color: rgb(255, 255, 255);
-                    color: rgba(0, 0, 0, 0.54);
-                    box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
-                    border-radius: 2px;
-                    border: 1px solid transparent;
-                    font-size: 14px;
-                    height: 40px;
-                    i,
-                    span {
-                        font-size: 1.2em;
-                        line-height: 2.2;
-                    }
-                }
-                form {
-                    input {
-                        font-size: 1rem;
-                        background-color: #fafbfc;
-                        border-radius: 3px;
-                        border: 2px solid #dfe1e6;
-                        height: 44px;
-                        padding: 7px;
-                        transition: background-color .2s ease-in-out 0s, border-color .2s ease-in-out 0s;
-                        margin-bottom: 17px;
-                        outline: none;
-                    }
-                    button {
-                        color: #fff;
-                        background: linear-gradient( 180deg, #61bd4f, #5aac44);
-                        border: none;
-                        font-weight: 700;
-                        box-shadow: none;
-                        font-size: 14px;
-                        line-height: 20px;
-                        border-radius: 3px;
-                        padding: 6px 12px;
-                        transition: background-color .2s;
-                    }
-                }
-            }
-            .right-img {
-                position: absolute;
-                right: 0;
-                bottom: 0;
-            }
-            .left-img {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-            }
-        }
+.login {
+    
+	text-align: center;
+	img {
+		width: 100%;
+		object-fit: cover;
+	}
+	.login-header {
+		display: flex;
+		font-size: 5rem;
+		padding: 20px;
+		justify-content: center;
+		.fa-trello {
+			font-size: 6rem;
+			margin-right: 10px;
+			color: #b24c63;
+		}
+		.header-icon {
+			padding-top: 35px;
+		}
+	}
+	.login-container,
+	form {
+		display: flex;
+		flex-direction: column;
+		max-width: 400px;
+	}
+	.login-container {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+		margin: auto;
+		background-color: #fff;
+		border-radius: 3px;
+		padding: 30px 40px;
+		box-shadow: 0 0 10px rgb(0 0 0 / 12%);
+		h3 {
+			font-weight: bold;
+			line-height: 1;
+			margin-bottom: 50px;
+		}
+		p,
+		a {
+			margin: 30px;
+		}
+		a {
+			text-decoration: none;
+			color: rgb(58, 58, 180);
+		}
+		.google-btn {
+            margin-top: 20px;
+			display: flex;
+			justify-content: space-evenly;
+			font-size: 1.5em;
+			background-color: rgb(255, 255, 255);
+			color: rgba(0, 0, 0, 0.54);
+			box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+			border-radius: 2px;
+			border: 1px solid transparent;
+			font-size: 14px;
+			height: 40px;
+			i,
+			span {
+				font-size: 1.2em;
+				line-height: 2.2;
+			}
+		}
+		form {
+			input {
+				font-size: 1rem;
+				background-color: #fafbfc;
+				border-radius: 3px;
+				border: 2px solid #dfe1e6;
+				height: 44px;
+				padding: 7px;
+				transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
+				margin-bottom: 17px;
+				outline: none;
+			}
+			button {
+				color: #fff;
+				background: linear-gradient(180deg, #61bd4f, #5aac44);
+				border: none;
+				font-weight: 700;
+				box-shadow: none;
+				font-size: 14px;
+				line-height: 20px;
+				border-radius: 3px;
+				padding: 6px 12px;
+				transition: background-color 0.2s;
+			}
+		}
+	}
+	.right-img {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+	.left-img {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+}

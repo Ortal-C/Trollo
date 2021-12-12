@@ -24,15 +24,15 @@ export default {
     cardCopy() {
       return JSON.parse(JSON.stringify(this.card));
     },
-    async toggleLabel(labelId) {
-      let card = this.cardCopy()
-      const label = card.labelsIds.find(id=> id===labelId)
-      if (!label) card.labelsIds.push(labelId)
+    toggleLabel(labelId) {
+      let currCard = this.cardCopy()
+      const label = currCard.labelsIds.find(id=> id===labelId)
+      if (!label) currCard.labelsIds.push(labelId)
       else {
-        const idx = card.labelsIds.findIndex(id=> id===labelId)
-        card.labelsIds.splice(idx, 1);
+        const idx = currCard.labelsIds.findIndex(id=> id===labelId)
+        currCard.labelsIds.splice(idx, 1);
       }
-      this.$emit('updateCard', card);
+      this.$emit('updateCard', currCard);
      },
   },
   computed: {

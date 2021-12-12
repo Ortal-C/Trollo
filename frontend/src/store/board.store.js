@@ -63,12 +63,12 @@ export const boardStore = {
                 throw err
             }
         },
-        async loadBoard({ commit }, { boardId }) {
+        async loadBoard(context, { boardId }) {
             try {
-                commit({ type: 'setLoading', isLoading: true });
+                context.commit({ type: 'setLoading', isLoading: true });
                 const board = await boardService.getById(boardId)
-                commit({ type: 'setBoard', board })
-                commit({ type: 'setLoading', isLoading: false });
+                context.commit({ type: 'setBoard', board })
+                context.commit({ type: 'setLoading', isLoading: false });
                 return board;
             } catch (err) {
                 console.log('BoardStore: Error in loadBoard', err)

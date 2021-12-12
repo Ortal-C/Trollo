@@ -1,18 +1,18 @@
 <template>
   <section class="login">
-    <div class="login-header">
+    <!-- <div class="login-header">
       <div class="header-icon">
         <i class="fab fa-trello"></i>
       </div>
       <h1>Trollo</h1>
-    </div>
+    </div> -->
     <main class="login-container">
       <h3>Sign up for your account</h3>
-      <form action="">
+      <form @submit.prevent="doSignup" action="">
         <input type="text" placeholder="Enter full name" />
         <input type="text" placeholder="Enter username" />
         <input type="text" placeholder="Enter password" />
-        <button>Log in</button>
+        <button>Signup</button>
       </form>
       <button class="google-btn">
         <i class="fab fa-google"></i><span>Continue with Google</span>
