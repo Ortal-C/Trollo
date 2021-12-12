@@ -160,7 +160,7 @@ export default {
     },
     updateCard(card) {
       this.$emit('saveCard', {groupId:this.group.id, card});
-    },
+    },  
     cardDetails() {
       if (this.isEdit = true) this.isEdit = false;
       this.$router.push(`/board/${this.board._id}/` + this.group.id + '/' + this.card.id);
