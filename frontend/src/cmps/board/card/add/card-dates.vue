@@ -11,6 +11,7 @@
 <script>
 	export default {
 		name: 'card-dates',
+		props: ['card'],
 		data() {
 			return {
 				value: '',
@@ -82,9 +83,9 @@
 			groupId() {
 				return this.$route.params.groupId
 			},
-			card() {
-				return this.$store.getters.currCard
-			},
+			// card() {
+			// 	return this.$store.getters.currCard
+			// },
 		},
 		watch: {
 			value(newVal, oldVal) {

@@ -24,6 +24,7 @@
 import { utilService } from "@/services/util.service.js";
 export default {
   name: "card-attachment",
+  props: ['card'],
   data() {
     return {
       attachment: {
@@ -67,9 +68,9 @@ export default {
     groupId() {
       return this.$route.params.groupId;
     },
-    card() {
-      return this.$store.getters.currCard;
-    },
+    // card() {
+    //   return this.$store.getters.currCard;
+    // },
   },
 };
 </script>

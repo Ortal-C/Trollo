@@ -15,6 +15,7 @@
 <script>
 	export default {
 		name: 'card-members',
+		props: ['card'],
 		data() {
 			return {
 				searchBy: '',
@@ -31,9 +32,9 @@
 			groupId() {
 				return this.$route.params.groupId
 			},
-			card() {
-				return this.$store.getters.currCard
-			},
+			// card() {
+			// 	return this.$store.getters.currCard
+			// },
 		},
 		methods: {
 			cardCopy() {
