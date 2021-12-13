@@ -10,7 +10,7 @@
 						<form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="">
 							<input type="text" v-model="title" :placeholder="card.title" />
 						</form>
-						<p>In list<span class="group-title">{{ group.title }}</span></p>
+						<p>In list <span class="group-title">{{ group.title }}</span></p>
 					</div>
 				</header>
 			</div>
