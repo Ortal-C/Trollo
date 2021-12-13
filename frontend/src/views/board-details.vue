@@ -105,8 +105,8 @@
 					if (!this.tmpBoard) this.boardCopy()
 					if (removedIndex !== null) {
 						this.tmpBoard.groups[lane].cards.splice(removedIndex, 1)
-						await this.$store.dispatch({type: 'updateBoard', board: this.tmpBoard})
-						socketService.emit('board-watch', this.board)
+						// await this.$store.dispatch({type: 'updateBoard', board: this.tmpBoard})
+						// socketService.emit('board-watch', this.board)
 					}
 					if (addedIndex !== null) {
 						this.tmpBoard.groups[lane].cards.splice(addedIndex, 0, payload)

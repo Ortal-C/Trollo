@@ -1,8 +1,12 @@
 <template>
   <div class="card-attachment">
-    <form @submit.prevent="attach()">
-      <div class="upload">
-        <label>
+    <div class="spinner" v-if="isLoading">
+      <img src="../../../../assets/imgs/spinner.gif" alt="spinner"/>
+    </div>
+    <main v-else>
+      <form @submit.prevent="attach()">
+        <div class="upload">
+          <label>
           Computer
           <input hidden class="file" type="file" id="upload" @change="onUpload($event)" />
         </label>
@@ -17,6 +21,8 @@
       </label>
       <button class="btn-action-list">Attach</button>
     </form>
+    </main>
+    
   </div>
 </template>
 
@@ -56,9 +62,11 @@ export default {
       this.$emit("closeActionModal", "attachment");
     },
     async onUpload(ev) {
+      this.isLoading = true;
       const res = await utilService.upload(ev);
       this.upload = {type: res.type, url: res.url, createdAt: Date.now()}
       this.$notify({ title: "Upload finished successfully", type: "success" });
+      this.isLoading = false;
     },
   },
   computed: {

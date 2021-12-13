@@ -33,7 +33,9 @@
 			</div>
 		</div>
 		<ul class="smooth-dnd-container">
-			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop" :drop-placeholder="dropPlaceholderOptions" @drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
+			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop"
+			:drop-placeholder="dropPlaceholderOptions" 
+			@drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
 					<card-preview :card="card" :group="group" 
 						@saveCard="saveCard"/>
