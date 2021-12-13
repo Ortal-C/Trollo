@@ -24,22 +24,18 @@ export const boardService = {
 }
 
 async function query() {
-    // return storageService.query(KEY)
-    // return await httpService.get(`board`)
     const boards = await httpService.get(`board`)
     socketService.emit('boards-watch', boards)
     return boards
 }
 
 async function getById(boardId) {
-    // const board = await storageService.get(KEY, boardId)
     const board = await httpService.get(`board/${boardId}`)
     socketService.emit('board-watch', board)
     return board;
 }
 
 function remove(boardId) {
-    // return storageService.remove(KEY, boardId)
     return httpService.delete(`board/${boardId}`)
 }
 
@@ -193,7 +189,6 @@ function getEmptyBoard() {
     }
 }
 
-
 // This IIFE functions for Dev purposes 
 // It allows testing of real time updates (such as sockets) by listening to storage events
 (async () => {
@@ -209,16 +204,3 @@ function getEmptyBoard() {
         boards = freshBoards
     });
 })()
-
-
-// function query() {
-//     return storageService.query(KEY)
-// }
-
-// function getById(id) {
-//     return storageService.get(KEY, id)
-// }
-
-// function remove(id) {
-//     return storageService.remove(KEY, id)
-// }

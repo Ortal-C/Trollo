@@ -13,8 +13,6 @@ async function getImgs(searchBy) {
         const res = await axios.get(url)
         return res.data.results.map(result => {
             return {
-                // fullImg: { backgroundImg: result.urls.full },
-                // smallImg: { backgroundImg: result.urls.smaill },
                 fullImg: result.urls.full,
                 smallImg: result.urls.small,
                 id: result.id

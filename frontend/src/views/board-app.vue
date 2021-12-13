@@ -1,5 +1,3 @@
-// Gets boards from store
-
 <template>
 <div class="loader" v-if="isLoading">
     <img src="../assets/imgs/loader.gif"/>
@@ -9,7 +7,7 @@
       <h2><i class="far fa-star"></i> Starred boards</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
-            <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)'
+            <li v-if="board.isStarred" class='board-preview board' @click='openBoard(board._id)' title="Open board"
             :style="board.style.includes('unsplash') ? `background: url(${board.style}); background-size: cover; ` : `background-color:${board.style}`">
               <p>{{board.title}}</p>
             </li>
@@ -20,12 +18,12 @@
       <h2><i class="far fa-user"></i> Workspace</h2>
         <ul>
           <div v-for='board in boards' :key='board._id'>
-              <li v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)'
+              <li v-if="!board.isStarred" class='board-preview board' @click='openBoard(board._id)' title="Open board"
             :style="board.style.includes('unsplash') ? `background: url(${board.style}); background-size: cover; ` : `background-color:${board.style}`">
               <p>{{board.title}}</p>
             </li>
           </div>
-          <li v-if="!isAdd" class='board-add board' @click='isAdd = true'>Add new board</li>
+          <li v-if="!isAdd" class='board-add board' @click='isAdd = true' title="Add board">Add new board</li>
           <li class="create-board board" v-if="isAdd">
             <form @submit.prevent="createBoard">
               <input type="text" placeholder="Enter board title" v-model="title">
@@ -53,7 +51,6 @@ export default {
     document.body.style.backgroundColor = "#ffffff";
     document.body.style.backgroundImage = "none";
     this.$store.dispatch({ type: "loadBoards" });
-    this.$store.dispatch({ type: "loadUsers" });
     socketService.on('boards-watch', this.updateBoards)
   },
   computed: {

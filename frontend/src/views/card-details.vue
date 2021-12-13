@@ -1,8 +1,5 @@
-// Details and edit, gets cardId from params
-
 <template>
 	<div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
-		<!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
 		<div class="card-details-cover" v-if="card.style.color" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}) center; background-size: contain; background-repeat: no-repeat;` : `background-color:${card.style.color}`"></div>
 		<div class="card-details-header">
 			<div class="card-details-header-content">
@@ -13,16 +10,13 @@
 						<form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="">
 							<input type="text" v-model="title" :placeholder="card.title" />
 						</form>
-						<p>
-							In list
-							<span class="group-title">{{ group.title }}</span>
-						</p>
+						<p>In list <span class="group-title">{{ group.title }}</span></p>
 					</div>
 				</header>
 			</div>
 			<button class="close-btn" @click="closeDetails">✖</button>
 		</div>
-		<div class="card-details-main-container">
+		<main class="card-details-main-container">
 			<div class="card-details-main">
 				<div class="data-preview" v-if="card.members.length">
 					<h5>Members</h5>
@@ -117,20 +111,24 @@
 							<button @click="removeChecklist(idx)">Delete</button>
 						</div>
 						<div class="checklist-main">
-							<progress :value="checklist.doneCount / checklist.items.length *100" max="100"></progress>
-							<span>{{checklist.doneCount / checklist.items.length *100}}%</span>
+							<span>{{(checklist.doneCount / checklist.items.length *100).toFixed(0)}}%</span>
+							<progress :value="checklist.doneCount / checklist.items.length *100." max="100"></progress>
 						</div>
-						<div v-for="item in checklist.items" :key="item.id">
-							<el-checkbox @change="toggleChecklistItem(checklist, item)" :checked="item.isDone">{{ item.desc }}</el-checkbox>
+						<div class="item" v-for="item in checklist.items" :key="item.id">
+			<input type="checkbox" @change="toggleChecklistItem(checklist, item)" :checked="item.isDone"><span>{{item.desc}} </span>
+							<!-- <el-checkbox @change="toggleChecklistItem(checklist, item)" :checked="item.isDone">{{ item.desc }}</el-checkbox> -->
 						</div>
-						<button @click="isChecklistAdd = !isChecklistAdd">{{ isChecklistAdd ? 'Discard changes' : 'Add an item' }}</button>
-						<section v-if="isChecklistAdd">
+						<button @click="isChecklistAdd = !isChecklistAdd" v-if="!isChecklistAdd">Add an item</button>
+						<!-- <button @click="isChecklistAdd = !isChecklistAdd">{{ isChecklistAdd ?'' : 'Add an item' }}</button> -->
+						<section class="add-items-container" v-else>
 							<form @submit.prevent="addChecklistItem(checklist)">
-								<textarea v-model="checklistItem" cols="30" rows="1" placeholder="Add an item"></textarea>
-								<button>Save</button>
-								<svg class="close-desc-btn" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
+								<textarea class="new-item" v-model="checklistItem" cols="30" rows="1" placeholder="Add an item"></textarea>
+								<div class="add-items-btns">
+									<button class="btn-item">Save</button>
+								<svg @click="closeItems()" class="close-desc-btn" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
 									<path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
 								</svg>
+								</div>
 							</form>
 						</section>
 					</div>
@@ -183,12 +181,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	</div>
 </template>
 
 <script>
-	import {boardService} from '../services/board.service.js'
+	import {boardService} from '@/services/board.service.js'
 	import {socketService} from '@/services/socket.service.js'
 	import cardMembers from '@/cmps/board/card/add/card-members.vue'
 	import cardLabels from '@/cmps/board/card/add/card-labels.vue'
@@ -196,7 +194,7 @@
 	import cardDates from '@/cmps/board/card/add/card-dates.vue'
 	import cardAttachment from '@/cmps/board/card/add/card-attachment.vue'
 	import cardCover from '@/cmps/board/card/add/card-cover.vue'
-	import {utilService} from '../services/util.service.js'
+	import {utilService} from '@/services/util.service.js'
 
 	export default {
 		name: 'card-details',
@@ -269,9 +267,6 @@
 			}
 		},
 		methods: {
-			// setBoard(board) {
-			// 	this.$store.commit({type: 'setBoard', board})
-			// },
 			openMemberModal() {
 				const idx = this.actions.findIndex((action) => action.type === 'members')
 				this.actions[idx].isOpen = true
@@ -326,9 +321,11 @@
 			async addChecklistItem(checklist) {
 				let card = this.cardCopy()
 				const idx = card.checklists.findIndex((list) => list.id === checklist.id)
+				if(!this.checklistItem)return
 				card.checklists[idx].items.push({id: utilService.makeId(), desc: this.checklistItem, isDone: false})
 				await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card}})
 				this.isChecklistAdd = false
+				this.checklistItem=''
 			},
 			async toggleChecklistItem(checklist, item){
 				let card = this.cardCopy();
@@ -357,14 +354,11 @@
 			},
 			async toggleDueDate(ev) {
 				let card = this.cardCopy()
-				await this.$store.dispatch({
-					type: 'saveCard',
-					payload: {
-						groupId: this.groupId,
-						card: {...card, isDone: ev.target.checked},
-					},
-				})
+				await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card: {...card, isDone: ev.target.checked}}})
 			},
+			closeItems(){
+				this.isChecklistAdd = false
+			}
 		},
 		computed: {
 			card() {
@@ -384,7 +378,6 @@
 			},
 			desc() {
 				return this.card.description || 'Add a more detailed description...'
-				// return !this.card.description ? "Add a more detailed description...": this.card.description;
 			},
 			getLabels() {
 				if (this.$store.getters.currCard.labelsIds.length > 0) {
@@ -410,6 +403,10 @@
 			getArchiveSvg() {
 				return `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`
 			},
+			progress(){
+				const progress= checklist.doneCount / checklist.items.length *100
+				return progress.toFixed(0)
+			}
 		},
 		watch: {
 			'card.labelsIds'() {

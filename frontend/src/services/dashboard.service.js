@@ -27,13 +27,9 @@ function setLabelsNames(map, board) {
         return label.title
     })
     var values = Object.values(map)
-        // namedKeys.forEach((key, idx) => {
-        //         res[key] = values[idx]
-        //     })
     for (let i = 0; i < namedKeys.length; i++) {
         res[namedKeys[i]] = values[i]
     }
-    // console.log('res', res);
     return res
 }
 
