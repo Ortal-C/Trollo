@@ -83,8 +83,9 @@
          .data-container {
              .data-topic {
                  margin: 30px 0 10px;
+                 padding: 0 10px;
                  .stats {
-                     width: 150px;
+                     width: 130px;
                      height: 70px;
                      margin: 5px 0;
                      .title {
@@ -107,6 +108,10 @@
                  .chart-container,
                  .pie-chart-container {
                      height: 280px;
+                     .chart,
+                     .pie-chart {
+                         height: 200px;
+                     }
                  }
              }
          }
