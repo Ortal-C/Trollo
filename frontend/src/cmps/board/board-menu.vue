@@ -35,7 +35,7 @@
               <b>{{ activity.byMember.fullname }}</b>
               &#160;{{ activity.txt }}
             </p>
-            <p>{{ activity.createdAt }}</p>
+            <p>{{ moment(activity.createdAt).fromNow() }}</p>
           </div>
         </div>
       </ul>
@@ -66,6 +66,7 @@
 
 <script>
 import boardImgs from "./board-imgs.vue";
+import * as moment from "moment/moment";
 export default {
   name: "board-menu",
   props: ["board"],
@@ -87,5 +88,10 @@ export default {
       this.$emit("updateStyle", style);
     },
   },
+  computed:{
+    moment(){
+      return moment().format(); 
+    } 
+  }
 };
 </script>

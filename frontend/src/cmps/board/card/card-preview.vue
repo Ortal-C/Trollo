@@ -4,7 +4,7 @@
   <section class="card-preview-container" v-if="card">
     <section class="card-preview" v-if="!isEdit" :style="backgroundColor" @click="cardDetails">
       <button class="edit-card" @click.stop="openEditCard"><i class="far fa-edit"></i></button>
-      <div class="card-cover" v-if="card.style.size === 'header'" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: cover; height: 250px;` : `background-color:${card.style.color}`"></div>
+      <div class="card-cover" v-if="card.style.size === 'header'" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}); background-size: cover; height: 224px;` : `background-color:${card.style.color}`"></div>
       <div class="card-content">
         <div class="card-labels" v-if="labels && card.style.size !== 'full'" @click.stop="toggleLabels" >
           <div class="card-label" v-for="label in labels" :key="label.id" :class="classLabel" :style="`background-color:${label.color}`" >
