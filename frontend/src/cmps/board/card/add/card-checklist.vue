@@ -33,7 +33,7 @@ export default {
     addChecklist() {
       if (!this.checklistTitle) return;
       let card = this.cardCopy();
-      card.checklists.push({id: utilService.makeId(), title:this.checklistTitle, items:[]});
+      card.checklists.push({id: utilService.makeId(), title:this.checklistTitle, items:[], doneCount:0});
       this.$emit('closeActionModal', 'checklist');
       this.$emit('updateCard', card);
       this.checklistTitle = '';

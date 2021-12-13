@@ -107,20 +107,23 @@
 						<div class="checklist-header">
 							<div class="checklist-desc">
 								<span>
-									<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"></path> <path fill-rule="evenodd" d="M7 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 11.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0zM7 9.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 01.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0z" clip-rule="evenodd"></path></svg>
-                </span>
+									<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"></path>
+										<path fill-rule="evenodd" d="M7 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 11.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0zM7 9.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm-1.496-.854a.5.5 0 010 .708l-1.5 1.5a.5.5 0 01-.708 0l-.5-.5a.5.5 0 01.708-.708l.146.147 1.146-1.147a.5.5 0 01.708 0z" clip-rule="evenodd"></path>
+									</svg>
+								</span>
 								<h2>{{ checklist.title }}</h2>
 							</div>
 							<button @click="removeChecklist(idx)">Delete</button>
 						</div>
 						<div class="checklist-main">
-              <!-- {{checklist.items.reduce((item, acc) => {  acc + item.isDone? 1:0 }, 0)}} -->
-							<progress value="10" max="100"></progress>
+							<progress :value="checklist.doneCount / checklist.items.length *100" max="100"></progress>
+							<span>{{checklist.doneCount / checklist.items.length *100}}%</span>
 						</div>
 						<div v-for="item in checklist.items" :key="item.id">
-              <el-checkbox  @click="item.isDone = !item.isDone" >{{ item.desc }}</el-checkbox>
+							<el-checkbox @change="toggleChecklistItem(checklist, item)" :checked="item.isDone">{{ item.desc }}</el-checkbox>
 						</div>
-						<button @click="isChecklistAdd = !isChecklistAdd">{{isChecklistAdd ? 'Discard changes' : 'Add an item'}}</button>
+						<button @click="isChecklistAdd = !isChecklistAdd">{{ isChecklistAdd ? 'Discard changes' : 'Add an item' }}</button>
 						<section v-if="isChecklistAdd">
 							<form @submit.prevent="addChecklistItem(checklist)">
 								<textarea v-model="checklistItem" cols="30" rows="1" placeholder="Add an item"></textarea>
@@ -131,8 +134,7 @@
 							</form>
 						</section>
 					</div>
-					<div>
-					</div>
+					<div></div>
 				</section>
 				<div class="card-details-activity">
 					<span v-html="getActivitySvg"></span>
@@ -327,6 +329,14 @@
 				card.checklists[idx].items.push({id: utilService.makeId(), desc: this.checklistItem, isDone: false})
 				await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card}})
 				this.isChecklistAdd = false
+			},
+			async toggleChecklistItem(checklist, item){
+				let card = this.cardCopy();
+				const idx = card.checklists.findIndex(list => list.id === checklist.id)
+				let currItem = card.checklists[idx].items.find(currItem => currItem.id === item.id)
+				currItem.isDone = !currItem.isDone;
+				card.checklists[idx].doneCount += (currItem.isDone) ? 1 : -1;
+				await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card}})
 			},
 			async addComment(groupId) {
 				this.isActivity = !this.isActivity
