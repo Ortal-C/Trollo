@@ -41,7 +41,7 @@
 				return JSON.parse(JSON.stringify(this.card))
 			},
 			toggleMember(currMember) {
-				let card = this.cardCopy()
+				const card = this.cardCopy()
 				const member = card.members.find((member) => member._id === currMember._id)
 				if (!member) {
 					card.members.push(currMember)

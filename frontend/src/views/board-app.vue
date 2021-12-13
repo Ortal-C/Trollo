@@ -53,6 +53,7 @@ export default {
     document.body.style.backgroundColor = "#ffffff";
     document.body.style.backgroundImage = "none";
     this.$store.dispatch({ type: "loadBoards" });
+    this.$store.dispatch({ type: "loadUsers" });
     socketService.on('boards-watch', this.updateBoards)
   },
   computed: {
