@@ -14,7 +14,6 @@
         height: 100px;
         width: 100%;
         border-radius: 3px 3px 0 0;
-
     }
     svg {
         display: flex;
@@ -261,26 +260,76 @@
             background-color: #eaecf0;
         }
     }
-    .card-checklist {
-        label {
-            color: #5e6c84;
-            font-size: 14px;
-            font-weight: 700;
+    .checklist-container {
+        button {
+            margin: 0 25px 0 60px;
         }
-        input {
-            margin: 4px 0 12px;
-            width: 100%;
-            box-shadow: inset 0 0 0 2px #dfe1e6;
-            background-color: #fafbfc;
-            padding: 8px 12px;
-            color: #172b4d;
-            font-size: 14px;
+        .item {
+            margin: 10px 0 10px 15px;
+            display: flex;
+            align-items: center;
+            span {
+                // margin-inline-start: 20px;
+                margin-left: 30px;
+            }
         }
-        input:focus {
-            box-shadow: inset 0 0 0 2px #0079bf;
+        .card-checklist {
+            label {
+                color: #5e6c84;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            input {
+                margin: 4px 0 12px;
+                width: 100%;
+                box-shadow: inset 0 0 0 2px #dfe1e6;
+                background-color: #fafbfc;
+                padding: 8px 12px;
+                color: #172b4d;
+                font-size: 14px;
+            }
+            input:focus {
+                box-shadow: inset 0 0 0 2px #0079bf;
+            }
         }
-        .el-checkbox{
-            margin-inline-start: 20px;
+        .checklist-main {
+            width: 495px;
+            progress {
+                height: 25px;
+                width: 100%;
+                margin: 10px 0 0 28px;
+            }
+        }
+        .add-items-container {
+            margin-left: 60px;
+            .new-item {
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                padding: 8px 12px;
+                resize: none;
+                color: #172b4d;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 1rem;
+                background-color: #fff;
+                box-shadow: inset 0 0 0 2px #0079bf;
+                width: 450px;
+                transition: 0.3s;
+            }
+            .add-items-btns {
+                display: flex;
+                align-items: center;
+                button {
+                    color: #fff;
+                    font-family: inherit;
+                    height: 32px;
+                    border: none;
+                    margin: 5px 0;
+                    border-radius: 3px;
+                    background-color: #0079bf;
+                    line-height: 1;
+                }
+            }
         }
     }
     .btn-action-list {
@@ -454,6 +503,7 @@
         background-color: rgba(9, 30, 66, 0.212);
     }
 }
+
 @media (max-width: 800px) {
     .card-details {
         width: 90%;
@@ -473,7 +523,9 @@
                 }
             }
         }
-        .card-details-desc, .card-details-activity, .card-details-attachment  {
+        .card-details-desc,
+        .card-details-activity,
+        .card-details-attachment {
             margin-bottom: 0;
         }
         .card-details-main {

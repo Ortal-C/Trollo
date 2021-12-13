@@ -1,8 +1,8 @@
 <template>
   <section class="card-checklist">
     <form action="" @submit.prevent="addChecklist()">
-      <label for="checklist-checklist">checklist</label>
-      <input type="text" v-model="checklistTitle" placeholder="Checklist name..." />
+      <label for="checklist-checklist">Checklist</label>
+      <input type="text" v-model="checklistTitle" placeholder="Checklist" />
       <button class="btn-action-list" @click="addChecklist()">Add</button>
     </form>
   </section>

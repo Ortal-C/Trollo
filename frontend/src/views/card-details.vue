@@ -117,20 +117,24 @@
 							<button @click="removeChecklist(idx)">Delete</button>
 						</div>
 						<div class="checklist-main">
-							<progress :value="checklist.doneCount / checklist.items.length *100" max="100"></progress>
-							<span>{{checklist.doneCount / checklist.items.length *100}}%</span>
+							<span>{{(checklist.doneCount / checklist.items.length *100).toFixed(0)}}%</span>
+							<progress :value="checklist.doneCount / checklist.items.length *100." max="100"></progress>
 						</div>
-						<div v-for="item in checklist.items" :key="item.id">
-							<el-checkbox @change="toggleChecklistItem(checklist, item)" :checked="item.isDone">{{ item.desc }}</el-checkbox>
+						<div class="item" v-for="item in checklist.items" :key="item.id">
+			<input type="checkbox" @change="toggleChecklistItem(checklist, item)" :checked="item.isDone"><span>{{item.desc}} </span>
+							<!-- <el-checkbox @change="toggleChecklistItem(checklist, item)" :checked="item.isDone">{{ item.desc }}</el-checkbox> -->
 						</div>
-						<button @click="isChecklistAdd = !isChecklistAdd">{{ isChecklistAdd ? 'Discard changes' : 'Add an item' }}</button>
-						<section v-if="isChecklistAdd">
+						<button @click="isChecklistAdd = !isChecklistAdd" v-if="!isChecklistAdd">Add an item</button>
+						<!-- <button @click="isChecklistAdd = !isChecklistAdd">{{ isChecklistAdd ?'' : 'Add an item' }}</button> -->
+						<section class="add-items-container" v-else>
 							<form @submit.prevent="addChecklistItem(checklist)">
-								<textarea v-model="checklistItem" cols="30" rows="1" placeholder="Add an item"></textarea>
-								<button>Save</button>
-								<svg class="close-desc-btn" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
+								<textarea class="new-item" v-model="checklistItem" cols="30" rows="1" placeholder="Add an item"></textarea>
+								<div class="add-items-btns">
+									<button class="btn-item">Save</button>
+								<svg @click="closeItems()" class="close-desc-btn" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="color: rgb(66, 82, 110); font-size: 24px; display: flex; align-items: center; justify-content: center">
 									<path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
 								</svg>
+								</div>
 							</form>
 						</section>
 					</div>
@@ -326,9 +330,11 @@
 			async addChecklistItem(checklist) {
 				let card = this.cardCopy()
 				const idx = card.checklists.findIndex((list) => list.id === checklist.id)
+				if(!this.checklistItem)return
 				card.checklists[idx].items.push({id: utilService.makeId(), desc: this.checklistItem, isDone: false})
 				await this.$store.dispatch({type: 'saveCard', payload: {groupId: this.groupId, card}})
 				this.isChecklistAdd = false
+				this.checklistItem=''
 			},
 			async toggleChecklistItem(checklist, item){
 				let card = this.cardCopy();
@@ -365,6 +371,9 @@
 					},
 				})
 			},
+			closeItems(){
+				this.isChecklistAdd = false
+			}
 		},
 		computed: {
 			card() {
@@ -410,6 +419,10 @@
 			getArchiveSvg() {
 				return `<svg class="action-svg" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" d="M13 2H1v2h12V2zM0 4a1 1 0 0 0 1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v2zm2 1h10v9H2V5zm2 3h6V7H4v1z" ></path> </svg>`
 			},
+			progress(){
+				const progress= checklist.doneCount / checklist.items.length *100
+				return progress.toFixed(0)
+			}
 		},
 		watch: {
 			'card.labelsIds'() {
