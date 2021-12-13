@@ -56,15 +56,15 @@
 </template>
 
 <script>
-import { boardService } from "../services/board.service.js";
-import { dashboardService } from "../services/dashboard.service.js";
-import chart from "@/cmps/board/charts/chart.vue";
-import pieChart from "@/cmps/board/charts/pie-chart.vue";
+import { boardService } from '@/services/board.service.js';
+import { dashboardService } from '@/services/dashboard.service.js';
+import chart from '@/cmps/board/charts/chart.vue';
+import pieChart from '@/cmps/board/charts/pie-chart.vue';
 export default {
   data() {
     return {
       board: null,
-      labels:null,
+      labels: null,
       members: null
     };
   },
@@ -92,9 +92,7 @@ export default {
       return group.cards.length || 0;
     },
     tasksCount() {
-      return this.board.groups.reduce(
-        (acc, group) => acc + group.cards.length,
-        0);
+      return this.board.groups.reduce((acc, group) => acc + group.cards.length, 0);
     },
     membersCount() {
       return this.board.members.length;

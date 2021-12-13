@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- <h1>Trollo</h1> -->
     <div class="main-container">
       <section class="first-section">
         <div class="desc">
@@ -10,7 +9,7 @@
             high rises to the home office, the way your team works is
             unique—accomplish it all with Trollo.
           </p>
-          <button @click="boards">Try Demo version</button>
+          <button @click="boards" title="Try demo">Try Demo version</button>
         </div>
         <div>
           <img src="../assets/imgs/hero.png" alt="" />
@@ -35,15 +34,15 @@
 
 <script>
 export default {
-  name: "home-page",
+  name: 'home-page',
   components: {},
   created() {
-    document.body.style.backgroundColor = "#ffffff";
-    document.body.style.backgroundImage = "none";
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.backgroundImage = 'none';
   },
   methods: {
     boards() {
-      this.$router.push("/board");
+      this.$router.push('/board');
     },
   },
 };
