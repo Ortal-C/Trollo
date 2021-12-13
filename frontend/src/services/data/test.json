@@ -1,0 +1,725 @@
+{
+	"title": "SPRINT 4",
+	"isStarred": true,
+	"style": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyODE4OTh8MHwxfHNlYXJjaHwyfHxmcmFuY2V8ZW58MHx8fHwxNjM5Mzg2NTUz&ixlib=rb-1.2.1&q=85",
+	"createdBy": {
+		"_id": "u101",
+		"fullname": "Lihi Sered",
+		"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+	},
+	"labels": [
+		{
+			"id": "l101",
+			"title": "Done",
+			"color": "#20bf6b"
+		},
+		{
+			"id": "l102",
+			"title": "One more step",
+			"color": "#f7b731"
+		},
+		{
+			"id": "l103",
+			"title": "Priority",
+			"color": "#eb3b5a"
+		},
+		{
+			"id": "l104",
+			"title": "Design team",
+			"color": "#a55eea"
+		},
+		{
+			"id": "l105",
+			"title": "Has to be discussed",
+			"color": "#45aaf2"
+		},
+		{
+			"id": "l106",
+			"title": "Waiting for feedback",
+			"color": "#4b7bec"
+		},
+		{
+			"id": "l107",
+			"title": "Optional",
+			"color": "#778ca3"
+		},
+		{
+			"id": "l108",
+			"title": "Important",
+			"color": "#fa8231"
+		}
+	],
+	"members": [
+		{
+			"_id": "u407",
+			"fullname": "Lihi Sered",
+			"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+		},
+		{
+			"_id": "u123",
+			"fullname": "Michal Ozeri",
+			"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+		},
+		{
+			"_id": "u245",
+			"fullname": "Ortal Cohen",
+			"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+		}
+	],
+	"groups": [
+		{
+			"id": "g101",
+			"title": "Backlog",
+			"cards": [
+				{
+					"id": "8vqOV",
+					"title": "Bug in card attachments",
+					"description": "Bug in attachments  FIXED!!",
+					"isDone": false,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						}
+					],
+					"labelsIds": ["l101"],
+					"checklists": [],
+					"attachments": [
+						{
+							"type": "upload",
+							"url": "http://res.cloudinary.com/trollo/image/upload/v1639320623/hgacm3hcv7xrfgfzst6e.jpg",
+							"createdAt": 1639320625206.0,
+							"id": "g9teZ",
+							"title": "Bug is FIXED!"
+						}
+					],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1639315325434.0,
+					"dueDate": "2021-12-14T00:00:00.000Z",
+					"style": {
+						"color": "http://res.cloudinary.com/trollo/image/upload/v1639320623/hgacm3hcv7xrfgfzst6e.jpg",
+						"size": "header"
+					}
+				}
+			],
+			"style": {}
+		},
+		{
+			"id": "Rw9zT",
+			"title": "In progress",
+			"cards": [
+				{
+					"id": "c2067",
+					"title": "Drag & Drop",
+					"description": "",
+					"isDone": false,
+					"members": [],
+					"labelsIds": ["l108", "l106", "l105"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-31T00:00:00.000Z",
+					"style": {
+						"size": "full",
+						"color": "#a5b1c2"
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "c301",
+					"title": "Clean the scss code for CR",
+					"description": "Before the meeting with Assi",
+					"isDone": false,
+					"members": [],
+					"labelsIds": ["l104"],
+					"checklists": [
+						{
+							"id": "hpUKc",
+							"title": "nfjwkr",
+							"items": [],
+							"doneCount": 0
+						}
+					],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-10T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "OeIe6",
+					"title": "Allow users change their borads background Image",
+					"description": "",
+					"isDone": true,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						},
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						}
+					],
+					"labelsIds": ["l104", "l106"],
+					"checklists": [
+						{
+							"id": "Dzrb9",
+							"title": "ndjke",
+							"items": [],
+							"doneCount": 0
+						}
+					],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958804591.0,
+					"dueDate": "2021-12-22T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "c104",
+					"title": "Connect MongoDB atlas server",
+					"description": "Connect to MongoDb Atlas and create all the collections.",
+					"isDone": true,
+					"members": [],
+					"labelsIds": ["l103", "l108"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-07T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "c201",
+					"title": "Insert demo data",
+					"description": "Create templates",
+					"isDone": true,
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						}
+					],
+					"labelsIds": ["l102", "l103"],
+					"checklists": [],
+					"attachments": [
+						{
+							"type": "upload",
+							"url": "http://res.cloudinary.com/trollo/image/upload/v1639327957/ytxem0wilpcmucrg6mns.jpg",
+							"createdAt": 1639327959444.0,
+							"id": "PIQn2",
+							"title": "Attachment"
+						}
+					],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-25T00:00:00.000Z",
+					"style": {
+						"size": "header",
+						"color": "#fa8231"
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "5xJFF",
+					"title": "CRUD",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958629970.0,
+					"dueDate": "",
+					"style": {
+						"size": "full",
+						"color": "#4b7bec"
+					}
+				}
+			]
+		},
+		{
+			"id": "PY5H0",
+			"title": "Done",
+			"cards": [
+				{
+					"id": "LvWD8",
+					"title": "Backend",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638957631341.0,
+					"dueDate": "",
+					"style": {
+						"size": "full",
+						"color": "#45aaf2"
+					}
+				},
+				{
+					"id": "mElap",
+					"title": "CR with Yaron",
+					"description": "YESSS PASHUT",
+					"isDone": true,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						},
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						},
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958654779.0,
+					"dueDate": "2021-12-08T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "c103",
+					"title": "Apply sockets in boards-app",
+					"description": "Creating Sockets using Socket.io api.",
+					"isDone": false,
+					"members": [
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": ["l106", "l108"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-20T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {},
+					"comments": []
+				},
+				{
+					"id": "c102",
+					"title": "User management",
+					"description": "nice in here",
+					"isDone": false,
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-fc6afe05f449-512"
+						}
+					],
+					"labelsIds": ["l103", "l107", "l105"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"createdAt": 1590999730348.0,
+					"dueDate": "2021-12-09T00:00:00.000Z",
+					"style": {
+						"size": "",
+						"color": ""
+					},
+					"byMember": {
+						"_id": "u123",
+						"fullname": "Michal Ozeri",
+						"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+					},
+					"comments": []
+				},
+				{
+					"id": "AJwoK",
+					"title": "Fixing guest mode",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u123",
+							"fullname": "Michal Ozeri",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+						}
+					],
+					"labelsIds": ["l101", "l103", "l104"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638903694452.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				}
+			]
+		},
+		{
+			"id": "g102",
+			"title": "New Features",
+			"cards": [
+				{
+					"id": "Dpbw2",
+					"title": "Status bar for checklist in task details cmp",
+					"description": "Status bar\n",
+					"isDone": false,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						},
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						}
+					],
+					"labelsIds": ["l108", "l106", "l105"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1639308352347.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "4AHru",
+					"title": "Login / Signup page when invite link is clicked",
+					"description": "Show user login / signup page before letting him join a board",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [
+						{
+							"type": "upload",
+							"url": "http://res.cloudinary.com/trollo/image/upload/v1639390076/fddpmupgv6ftf24trex2.png",
+							"createdAt": 1639390078327.0,
+							"id": "Xkl22",
+							"title": "Google Example"
+						}
+					],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958816612.0,
+					"dueDate": "2021-12-30T00:00:00.000Z",
+					"style": {
+						"color": "http://res.cloudinary.com/trollo/image/upload/v1639390076/fddpmupgv6ftf24trex2.png",
+						"size": "header"
+					}
+				}
+			],
+			"style": {}
+		},
+		{
+			"id": "NJOXZ",
+			"title": "Design",
+			"cards": [
+				{
+					"id": "pRee2",
+					"title": "Header",
+					"description": "Heade stuff to be done as we discussed yesterday",
+					"isDone": true,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u407",
+							"fullname": "Lihi Sered",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+						}
+					],
+					"labelsIds": ["l101"],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958419459.0,
+					"dueDate": "2021-12-12T00:00:00.000Z",
+					"style": {
+						"size": "full",
+						"color": "#fa8231"
+					}
+				},
+				{
+					"id": "G8Xrr",
+					"title": "Home page\n",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638957625512.0,
+					"dueDate": "",
+					"style": {
+						"size": "full",
+						"color": "#0fb9b1"
+					}
+				},
+				{
+					"id": "xDx3n",
+					"title": "Board menu",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958454239.0,
+					"dueDate": "",
+					"style": {
+						"size": "",
+						"color": ""
+					}
+				},
+				{
+					"id": "HOMVk",
+					"title": "Pick color palette",
+					"description": "",
+					"isDone": false,
+					"byMember": {},
+					"members": [
+						{
+							"_id": "u245",
+							"fullname": "Ortal Cohen",
+							"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+						}
+					],
+					"labelsIds": [],
+					"checklists": [],
+					"attachments": [
+						{
+							"type": "upload",
+							"url": "http://res.cloudinary.com/trollo/image/upload/v1639318757/j0kwnpdikfx3rygq8leo.jpg",
+							"createdAt": 1639318759715.0,
+							"id": "5U4X6",
+							"title": "Palette for example "
+						},
+						{
+							"type": "link",
+							"url": "https://flatuicolors.com/",
+							"title": "Color palette site ",
+							"createdAt": 1639318641491.0,
+							"isEdit": false,
+							"id": "zYrud"
+						}
+					],
+					"activities": [],
+					"comments": [],
+					"createdAt": 1638958429167.0,
+					"dueDate": "2021-12-16T00:00:00.000Z",
+					"style": {
+						"color": "http://res.cloudinary.com/trollo/image/upload/v1639318757/j0kwnpdikfx3rygq8leo.jpg",
+						"size": "header"
+					}
+				}
+			]
+		}
+	],
+	"activities": [
+		{
+			"id": "a101",
+			"txt": "changed color",
+			"createdAt": "1639490426000",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c101",
+				"title": "Data structure planning"
+			}
+		},
+		{
+			"id": "a102",
+			"txt": "changed title",
+			"createdAt": "1639485074000",
+			"byMember": {
+				"_id": "u407",
+				"fullname": "Lihi Sered",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a103",
+			"txt": "Added list",
+			"createdAt": "1639485074000",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a104",
+			"txt": "Removed card",
+			"createdAt": "1639476002000",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a105",
+			"txt": "Changed cover",
+			"createdAt": "1639476002000",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a106",
+			"txt": "Changed description",
+			"createdAt": "1639411212000",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c101",
+				"title": "Data structure planning"
+			}
+		},
+		{
+			"id": "a107",
+			"txt": "Added attachment",
+			"createdAt": "1639407872000",
+			"byMember": {
+				"_id": "u407",
+				"fullname": "Lihi Sered",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CJQ59YJJ-74bd35dc0ec5-72"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a108",
+			"txt": "Changed background image",
+			"createdAt": "1639491240000",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a109",
+			"txt": "Changed card labels",
+			"createdAt": "1639404900000",
+			"byMember": {
+				"_id": "u245",
+				"fullname": "Ortal Cohen",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02AL3BDQ3E-56466cdcd6e4-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		},
+		{
+			"id": "a110",
+			"txt": "Updated due date",
+			"createdAt": "1639404840000",
+			"byMember": {
+				"_id": "u101",
+				"fullname": "Michal Ozeri",
+				"imgUrl": "https://ca.slack-edge.com/T0284CDCCBB-U02CRNGHZJ7-fb378d29c936-512"
+			},
+			"card": {
+				"id": "c103",
+				"title": "Backend"
+			}
+		}
+	]
+}

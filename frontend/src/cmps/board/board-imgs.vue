@@ -2,12 +2,12 @@
   <section class="board-imgs">
       <section class="search-container">
         <form @submit.prevent="searchImgs">
-          <input type="text" v-model="searchBy" placeholder="Search" class="imgs-input">
+          <input class="imgs-input" type="text" v-model="searchBy" placeholder="Search" />
         </form>
       </section>
       <section v-if="imgs" class="imgs-container">
           <div class="img-container" v-for="img in imgs" :key="img.id" @click="setImg(img)">
-              <img :src="img.smallImg" alt="">
+              <img :src="img.smallImg" title="Click for set image">
           </div>
       </section>
   </section>
@@ -15,7 +15,6 @@
 
 <script>
 import { imgService } from '@/services/img.service.js'
-import { utilService } from '@/services/util.service.js'
 export default {
     name: 'board-imgs',
     data() {
