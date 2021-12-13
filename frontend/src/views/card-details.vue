@@ -1,8 +1,5 @@
-// Details and edit, gets cardId from params
-
 <template>
 	<div class="card-details" v-if="card && group" @keydown.esc="closeDetails">
-		<!-- <div class="card-details-cover" v-if="card.style.color" :style="`background-color:${card.style.color}`"></div> -->
 		<div class="card-details-cover" v-if="card.style.color" :style="card.style.color.includes('cloudinary') ? `background: url(${card.style.color}) center; background-size: contain; background-repeat: no-repeat;` : `background-color:${card.style.color}`"></div>
 		<div class="card-details-header">
 			<div class="card-details-header-content">
@@ -13,16 +10,13 @@
 						<form v-else @submit.prevent="editTitle(group.id)" @change="editTitle(group.id)" action="">
 							<input type="text" v-model="title" :placeholder="card.title" />
 						</form>
-						<p>
-							In list
-							<span class="group-title">{{ group.title }}</span>
-						</p>
+						<p>In list<span class="group-title">{{ group.title }}</span></p>
 					</div>
 				</header>
 			</div>
 			<button class="close-btn" @click="closeDetails">✖</button>
 		</div>
-		<div class="card-details-main-container">
+		<main class="card-details-main-container">
 			<div class="card-details-main">
 				<div class="data-preview" v-if="card.members.length">
 					<h5>Members</h5>
@@ -183,12 +177,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	</div>
 </template>
 
 <script>
-	import {boardService} from '../services/board.service.js'
+	import {boardService} from '@/services/board.service.js'
 	import {socketService} from '@/services/socket.service.js'
 	import cardMembers from '@/cmps/board/card/add/card-members.vue'
 	import cardLabels from '@/cmps/board/card/add/card-labels.vue'
@@ -196,7 +190,7 @@
 	import cardDates from '@/cmps/board/card/add/card-dates.vue'
 	import cardAttachment from '@/cmps/board/card/add/card-attachment.vue'
 	import cardCover from '@/cmps/board/card/add/card-cover.vue'
-	import {utilService} from '../services/util.service.js'
+	import {utilService} from '@/services/util.service.js'
 
 	export default {
 		name: 'card-details',
@@ -269,9 +263,6 @@
 			}
 		},
 		methods: {
-			// setBoard(board) {
-			// 	this.$store.commit({type: 'setBoard', board})
-			// },
 			openMemberModal() {
 				const idx = this.actions.findIndex((action) => action.type === 'members')
 				this.actions[idx].isOpen = true
@@ -357,13 +348,7 @@
 			},
 			async toggleDueDate(ev) {
 				let card = this.cardCopy()
-				await this.$store.dispatch({
-					type: 'saveCard',
-					payload: {
-						groupId: this.groupId,
-						card: {...card, isDone: ev.target.checked},
-					},
-				})
+				await this.$store.dispatch({ type: 'saveCard', payload: { groupId: this.groupId, card: {...card, isDone: ev.target.checked}}})
 			},
 		},
 		computed: {
@@ -384,7 +369,6 @@
 			},
 			desc() {
 				return this.card.description || 'Add a more detailed description...'
-				// return !this.card.description ? "Add a more detailed description...": this.card.description;
 			},
 			getLabels() {
 				if (this.$store.getters.currCard.labelsIds.length > 0) {

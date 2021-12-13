@@ -1,5 +1,3 @@
-import { boardData } from '../services/data/board.js'
-
 export const storageService = {
     query,
     get,
@@ -8,22 +6,6 @@ export const storageService = {
     remove,
     postMany
 }
-
-// _createBoards()
-
-// function _createBoards() {
-//     let boards = load('boardsDB')
-//     if (!boards || !boards.length) {
-//         boards = []
-//         boards.push(boardData)
-//         _save('boardsDB', boards)
-//     }
-// }
-
-// function load(key) {
-//     var val = localStorage.getItem(key)
-//     return (val) ? JSON.parse(val) : null;
-// }
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []

@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import axios from 'axios'
 import { router } from '@/router'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
@@ -6,7 +6,7 @@ const BASE_URL = process.env.NODE_ENV === 'production'
     : '//localhost:3030/api/'
 
 
-var axios = Axios.create({
+var axios = axios.create({
     withCredentials: true
 })
 
@@ -38,9 +38,6 @@ async function ajax(endpoint, method = 'GET', data = null) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
         console.dir(err)
         if (err.response && err.response.status === 401) {
-            // Depends on routing startegy - hash or history
-            // window.location.assign('/#/login')
-            // window.location.assign('/login')
             router.push('/login')
         }
         throw err
