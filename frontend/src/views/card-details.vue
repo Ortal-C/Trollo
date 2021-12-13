@@ -110,8 +110,8 @@
 							</div>
 							<button @click="removeChecklist(idx)">Delete</button>
 						</div>
-						<div class="checklist-main">
-							<span>{{(checklist.doneCount / checklist.items.length *100).toFixed(0)}}%</span>
+						<div v-if="checklist.items.length>0" class="checklist-main">
+							<span >{{(checklist.doneCount / checklist.items.length *100).toFixed(0)}}%</span>
 							<progress :value="checklist.doneCount / checklist.items.length *100." max="100"></progress>
 						</div>
 						<div class="item" v-for="item in checklist.items" :key="item.id">
