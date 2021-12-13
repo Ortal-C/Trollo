@@ -35,7 +35,7 @@
               <b>{{ activity.byMember.fullname }}</b>
               &#160;{{ activity.txt }}
             </p>
-            <p>{{ moment.from(new Date(activity.createdAt)) }}</p>
+            <p>{{ moment(activity.createdAt).fromNow() }}</p>
           </div>
         </div>
       </ul>
