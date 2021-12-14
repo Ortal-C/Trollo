@@ -190,6 +190,7 @@ export default {
     },
     async removeCard(groupId, cardId) {
       await this.$store.dispatch({ type: "removeCard", payload: { groupId, cardId }});
+      socketService.emit('board-watch', this.board)
       this.isEdit = false;
       document.body.classList.remove('details-open');
     },

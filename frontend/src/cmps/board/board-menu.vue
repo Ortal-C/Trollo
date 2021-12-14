@@ -35,7 +35,7 @@
               <b>{{ activity.byMember.fullname }}</b>
               &#160;{{ activity.txt }}
             </p>
-            <p>{{ Date(activity.createdAt).toLocaleString('HEB').substring(0, 10) }}</p>
+            <!-- <p>{{ activity.createdAt }}</p> -->
           </div>
         </div>
       </ul>

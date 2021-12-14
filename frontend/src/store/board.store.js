@@ -1,4 +1,5 @@
 import { boardService } from '../services/board.service';
+import { socketService } from '../services/socket.service';
 
 export const boardStore = {
     state: {
@@ -45,7 +46,6 @@ export const boardStore = {
                 const boards = [...state.boards, newBoard]
                 commit({ type: 'setBoards', boards })
                 commit({ type: 'setLoading', isLoading: false });
-                //setTimeout ???????
             } catch (err) {
                 console.log('boardStore: Error in loadBoards', err)
                 throw err

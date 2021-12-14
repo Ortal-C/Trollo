@@ -33,9 +33,9 @@
 			</div>
 		</div>
 		<ul class="smooth-dnd-container">
-			<Container :group-name="dndName" drag-class="ghost" drop-class="ghost-drop"
-			:drop-placeholder="dropPlaceholderOptions" 
-			@drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
+			<Container group-name="trolloCard" drag-class="ghost" drop-class="ghost-drop"
+				:drop-placeholder="dropPlaceholderOptions" 
+				@drop="handleCardDrop(idx, $event)" :get-child-payload="getChildPayload">
 				<Draggable v-for="card in group.cards" :key="card.id">
 					<card-preview :card="card" :group="group" 
 						@saveCard="saveCard"/>
@@ -66,7 +66,7 @@ import {boardService} from '@/services/board.service.js'
 import {Container, Draggable} from 'vue-smooth-dnd'
 export default {
 	name: 'group-preview',
-	props: ['group', 'dndName', 'idx'],
+	props: ['group', 'idx'],
 	data() {
 		return {
 			card: {
