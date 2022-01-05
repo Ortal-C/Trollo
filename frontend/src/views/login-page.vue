@@ -14,10 +14,10 @@
       <router-link to="/signup"><a href="">Sign up for an account</a></router-link>
     </main>
     <div class="left-img">
-      <img src="@/assets/imgs/login-svg-left.svg" alt="" />
+      <img src="@/assets/imgs/login-svg-left.svg" alt="login" />
     </div>
     <div class="right-img">
-      <img src="@/assets/imgs/login-svg.svg" alt="" />
+      <img src="@/assets/imgs/login-svg.svg" alt="login" />
     </div>
   </section>
 </template>

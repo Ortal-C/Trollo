@@ -38,11 +38,9 @@
         scroll-margin-inline-end: -10px;
         overflow-y: scroll;
         display: flex;
+        flex-flow: row wrap;
         justify-content: space-evenly;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 6px;
-        margin-inline-end: 0;
     }
     .img-container {
         margin: 0;
@@ -51,7 +49,7 @@
         cursor: pointer;
         object-fit: cover;
         height: 100px;
-        width: 145px;
+        width: 135px;
         border-radius: 5px;
     }
 }

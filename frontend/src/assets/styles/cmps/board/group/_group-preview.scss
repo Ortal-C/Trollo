@@ -40,10 +40,9 @@
 			height: 27px;
 		}
 		.menu-btn {
-			color: #6b778c;
+			padding: 0;
 			background-color: transparent;
 			border: none;
-			padding: 10px 0px 0 10px;
 		}
 	}
 	.remove-btn {
@@ -90,13 +89,13 @@
 			width: 100%;
 			background-color: transparent;
 			border: none;
+			p{
+				padding: 0 8px;
+			}
 		}
 		button:hover {
 			border-radius: 3px;
 			background-color: #dddddf;
-		}
-		svg {
-			padding: 4px;
 		}
 	}
 	form {

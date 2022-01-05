@@ -7,6 +7,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	width:100vw;
 	height: 50px;
 	@media (max-width: $mobile-breakpoint) {
 		.el-avatar {
@@ -27,10 +28,10 @@
 	.fade-leave-to {
 		opacity: 0;
 	}
-	main{
+	nav{
 		width: 100%;
 	}
-	main,
+	nav,
 	section {
 		display: flex;
 		justify-content: space-between;
@@ -58,9 +59,6 @@
 		button:hover,
 		h3:hover {
 			background-color: hsla(0, 0%, 100%, 0.459);
-		}
-		.starred {
-			color: gold;
 		}
 	}
 	.board-title {

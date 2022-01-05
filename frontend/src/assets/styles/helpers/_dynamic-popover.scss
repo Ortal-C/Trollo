@@ -23,19 +23,10 @@
             margin: 2px;
         }
         .close-svg {
-            padding: 5px;
             position: absolute;
-            right: 0;
+            right: 10px;
             top: 0;
             cursor: pointer;
         }
-    }
-    .close-popover {
-        padding: 5px;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        cursor: pointer;
-        width: 30px;
     }
 }

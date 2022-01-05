@@ -18,7 +18,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
-Vue.use(require("moment"));
 locale.use(en)
 
 new Vue({
